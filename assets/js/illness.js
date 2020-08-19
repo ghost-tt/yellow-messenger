@@ -4,16 +4,29 @@ var stepper4
 var stepperForm
 var stepperFormEl
 
+var form = document.getElementById("illness__form");
+var listCheckBox = document.querySelector('#illness_upload_invalidCheck_1');
+var file1 = document.getElementById('illness_file_Upload_1');
+var file2 = document.getElementById('illness_file_Upload_2');
+var file3 = document.getElementById('illness_file_Upload_3');
+var file5 = document.getElementById('illness_file_Upload_5');
 
+form.addEventListener('submit', handleForm);
 
 document.addEventListener('DOMContentLoaded', function () {
     stepperFormEl = document.querySelector('#stepperForm')
     stepperForm = new Stepper(stepperFormEl, {
         animation: true
     })
-
-
 })
+
+listCheckBox.onchange = function () {
+    if ($(listCheckBox).is(':checked')) {
+        $('.feedback_label').show();
+    } else {
+        $('.feedback_label').hide();
+    }
+}
 
 function loader() {
     var btnNextList = [].slice.call(document.querySelectorAll('.btn-next-form'))
@@ -54,10 +67,8 @@ function validateEmail(emailField) {
         $("#err_field_emailAddress").show();
         return false;
     }
-
     return true;
 }
-
 
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
@@ -93,42 +104,19 @@ function validateNotNumber(evt) {
     return;
 }
 
-
-var form = document.getElementById("accidental__form");
 function handleForm(event) {
     event.preventDefault();
-    /* setTimeout(() => {
-        $("#err_field_firstName").hide();
-        $("#err_field_middleName").hide();
-        $("#err_field_lastName").hide();
-        $("#err_field_lastName_Suffix").hide();
-        $("#err_field_DOB").hide();
-        $("#err_field_mobileNum").hide();
-        $("#err_field_emailAddress").hide();
-        $("#err_field_homeAddress").hide();
-        $("#err_field_DOA").hide();
-        $("#err_field_TOA").hide();
-        $("#err_field_POA").hide();
-        $("#err_invalidCheck_basic").hide();
-        $("#err_invalidCheck_privacy").hide();
-    }, 3000); */
-
     var field_firstName = $("#field_firstName").val();
     var field_middleName = $("#field_middleName").val();
-
     var field_lastName = $("#field_lastName").val();
     var field_lastName_Suffix = $("#field_lastName_Suffix").val();
-
     var field_DOB = $("#field_DOB").val();
     var field_mobileNum = $("#field_mobileNum").val();
-
     var field_emailAddress = $("#field_emailAddress").val();
     var field_homeAddress = $("#field_homeAddress").val();
-
     var field_DOA = $("#field_DOA").val();
     var field_TOA = $("#field_TOA").val();
     var field_POA = $("#field_POA").val();
-
 
     if (field_firstName.length === 0) {
         $("#err_field_firstName").text('field is empty');
@@ -235,9 +223,9 @@ function handleForm(event) {
         $("#err_invalidCheck_privacy").hide();
     }
 
-    //  && $('#invalidCheck_privacy').is(':checked') && $('#privacy_consent_1').is(':checked') && $('#privacy_consent_2').is(':checked')
-
     if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_lastName_Suffix.length !== 0 && field_DOB.length !== 0 && field_mobileNum.length !== 0 && field_emailAddress.length !== 0 && field_homeAddress.length !== 0 && field_DOA.length !== 0 && field_TOA.length !== 0 && field_POA.length !== 0 && $('#invalidCheck_basic').is(':checked')) {
+        let pConsentCheck1 = !$('#privacy_consent_1').is(':checked')
+        let pConsentCheck2 = !$('#privacy_consent_2').is(':checked');
 
         if (pConsentCheck1) {
             $("#err_privacy_consent").text('Please select both the fields first');
@@ -265,28 +253,21 @@ function handleForm(event) {
                 privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
             }
 
-            console.log('Data -> ', data)
-
+            $("#err_privacy_consent").text('');
+            $("#err_privacy_consent").hide();
             $('#form_wrapper').hide();
             $('#stepper_intro').hide();
-            $('#accidental_data_privacy').hide();
+            $('#illness_data_privacy').hide();
             $('.circle__2').css("background", "#007bff");
             $('.firstChild').css("background", "#007bff");
             $('.bs-stepper-circle-text-2').css("color", "#007bff");
-            // $('.bs-stepper-line').css("background", "#007bff");
             $('#requirements').show();
             $('#requirements')[0].scrollIntoView(true);
+
+            console.log('Data -> ', data)
         }
     }
 }
-
-form.addEventListener('submit', handleForm);
-
-
-var file1 = document.getElementById('file_Upload_1');
-var file2 = document.getElementById('file_Upload_2');
-var file3 = document.getElementById('file_Upload_3');
-var file5 = document.getElementById('file_Upload_5');
 
 file1.onchange = function (e) {
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -312,7 +293,6 @@ file1.onchange = function (e) {
     }
 };
 
-
 file2.onchange = function (e) {
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
@@ -335,7 +315,6 @@ file2.onchange = function (e) {
             this.value = '';
     }
 };
-
 
 file3.onchange = function (e) {
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -382,22 +361,8 @@ file5.onchange = function (e) {
     }
 };
 
-
-
-var listCheckBox = document.querySelector('#upload_invalidCheck_1');
-listCheckBox.onchange = function () {
-    if ($(listCheckBox).is(':checked')) {
-        $('.feedback_label').show();
-    } else {
-        $('.feedback_label').hide();
-    }
-
-}
-
-
 function buttonSubmitClicked(event) {
     event.preventDefault();
-    // $('#upload_warning').text('')
     if (!file1.value) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your government id front!');
@@ -423,7 +388,7 @@ function buttonSubmitClicked(event) {
     }
 
 
-    if (!$('#upload_invalidCheck_1').is(':checked')) {
+    if (!$('#illness_upload_invalidCheck_1').is(':checked')) {
         $("#upload_warning").text('Please don’t forget to tick the box is certify the accuracy of the documents submitted');
         $("#warning_parent").show();
         return;
@@ -435,26 +400,21 @@ function buttonSubmitClicked(event) {
         return;
     }
 
-
-    // if (file1.value && file2.value ) {
-
     const upload_data = {
         upload_file_1: file1.value,
         upload_file_2: file2.value,
         upload_file_3: file3.value,
         upload_file_5: file5.value,
-        aia_Philam_Life_Checkbox: $('#upload_invalidCheck_1').is(':checked'),
+        aia_Philam_Life_Checkbox: $('#illness_upload_invalidCheck_1').is(':checked'),
         insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
     }
-
-    console.log('upload data --> ', upload_data);
 
     $('#requirements').hide();
     $('#payment').show();
     $('#payment')[0].scrollIntoView(true);
+
+    console.log('upload data --> ', upload_data);
 }
-
-
 
 function bankTranfer() {
     $('#payment').hide();

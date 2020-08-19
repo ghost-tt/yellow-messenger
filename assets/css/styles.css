@@ -367,6 +367,6 @@ svg > path {
     .container { max-width: 1500px; }
 } */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .container {  max-width: 960px; }
-}
+} */

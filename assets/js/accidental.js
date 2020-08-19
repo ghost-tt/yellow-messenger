@@ -4,7 +4,18 @@ var stepper4
 var stepperForm
 var stepperFormEl
 
+var form = document.getElementById("accidental__form");
+var form_Bank = document.getElementById("bank_form");
+var listCheckBox = document.querySelector('#upload_invalidCheck_1');
+var file1 = document.getElementById('file_Upload_1');
+var file2 = document.getElementById('file_Upload_2');
+var file3 = document.getElementById('file_Upload_3');
+var file4 = document.getElementById('file_Upload_4');
+var file5 = document.getElementById('file_Upload_5');
+var file6 = document.getElementById('proof_BAO');
 
+form.addEventListener('submit', handleForm);
+form_Bank.addEventListener('submit', handleAccountInfo)
 
 document.addEventListener('DOMContentLoaded', function () {
     stepperFormEl = document.querySelector('#stepperForm')
@@ -12,6 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
         animation: true
     })
 })
+
+listCheckBox.onchange = function () {
+    if ($(listCheckBox).is(':checked')) {
+        $('.feedback_label').show();
+    } else {
+        $('.feedback_label').hide();
+    }
+}
 
 function loader() {
     var btnNextList = [].slice.call(document.querySelectorAll('.btn-next-form'))
@@ -52,89 +71,103 @@ function validateEmail(emailField) {
         $("#err_field_emailAddress").show();
         return false;
     }
-
     return true;
 }
-
 
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        $("#err_field_mobileNum").text('Only numbers allowed!');
-        $("#err_field_mobileNum").show();
+        $(`#err_${evt.target.id}`).text('Only numbers allowed!');
+        $(`#err_${evt.target.id}`).show();
         return false;
     }
-    $("#err_field_mobileNum").text('');
-    $("#err_field_mobileNum").hide();
+    $(`#err_${evt.target.id}`).text('');
+    $(`#err_${evt.target.id}`).hide();
     return true;
 }
 
-var form = document.getElementById("accidental__form");
+function isNotNumber(evt) {
+    $(`#err_${evt.target.id}`).text("");
+    $(`#err_${evt.target.id}`).hide();
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        $("#err_field_mobileNum").text('');
+        $("#err_field_mobileNum").hide();
+        return true;
+    }
+    validateNotNumber(evt)
+    return false;
+}
+
+function validateNotNumber(evt) {
+    let id = evt.target.id;
+    $(`#err_${id}`).text("Numbers not allowed");
+    $(`#err_${id}`).show();
+    return;
+}
 
 function handleForm(event) {
     event.preventDefault();
-    /* setTimeout(() => {
-        $("#err_field_firstName").hide();
-        $("#err_field_middleName").hide();
-        $("#err_field_lastName").hide();
-        $("#err_field_lastName_Suffix").hide();
-        $("#err_field_DOB").hide();
-        $("#err_field_mobileNum").hide();
-        $("#err_field_emailAddress").hide();
-        $("#err_field_homeAddress").hide();
-        $("#err_field_DOA").hide();
-        $("#err_field_TOA").hide();
-        $("#err_field_POA").hide();
-        $("#err_invalidCheck_basic").hide();
-        $("#err_invalidCheck_privacy").hide();
-    }, 3000); */
-
     var field_firstName = $("#field_firstName").val();
     var field_middleName = $("#field_middleName").val();
-
     var field_lastName = $("#field_lastName").val();
     var field_lastName_Suffix = $("#field_lastName_Suffix").val();
-
     var field_DOB = $("#field_DOB").val();
     var field_mobileNum = $("#field_mobileNum").val();
-
     var field_emailAddress = $("#field_emailAddress").val();
     var field_homeAddress = $("#field_homeAddress").val();
-
     var field_DOA = $("#field_DOA").val();
     var field_TOA = $("#field_TOA").val();
     var field_POA = $("#field_POA").val();
 
-
     if (field_firstName.length === 0) {
         $("#err_field_firstName").text('field is empty');
         $("#err_field_firstName").show();
+    } else {
+        $("#err_field_firstName").text('');
+        $("#err_field_firstName").hide();
     }
 
     if (field_middleName.length === 0) {
         $("#err_field_middleName").text('field is empty');
         $("#err_field_middleName").show();
+    } else {
+        $("#err_field_middleName").text('');
+        $("#err_field_middleName").hide();
     }
 
     if (field_lastName.length === 0) {
         $("#err_field_lastName").text('field is empty');
         $("#err_field_lastName").show();
+    } else {
+        $("#err_field_lastName").text('');
+        $("#err_field_lastName").hide();
     }
 
     if (field_lastName_Suffix.length === 0) {
         $("#err_field_lastName_Suffix").text('field is empty');
         $("#err_field_lastName_Suffix").show();
+    } else {
+        $("#err_field_lastName_Suffix").text('');
+        $("#err_field_lastName_Suffix").hide();
     }
 
     if (field_DOB.length === 0) {
         $("#err_field_DOB").text('field is empty');
         $("#err_field_DOB").show();
+    } else {
+        $("#err_field_DOB").text('');
+        $("#err_field_DOB").hide();
     }
 
     if (field_mobileNum.length === 0) {
         $("#err_field_mobileNum").text('field is empty');
         $("#err_field_mobileNum").show();
+    } else {
+        $("#err_field_mobileNum").text('');
+        $("#err_field_mobileNum").hide();
     }
 
     if (field_emailAddress.length === 0) {
@@ -142,88 +175,102 @@ function handleForm(event) {
         $("#err_field_emailAddress").show();
     } else {
         validateEmail(field_emailAddress);
+        $("#err_field_emailAddress").text('');
+        $("#err_field_emailAddress").hide();
     }
 
     if (field_homeAddress.length === 0) {
         $("#err_field_homeAddress").text('field is empty');
         $("#err_field_homeAddress").show();
+    } else {
+        $("#err_field_homeAddress").text('');
+        $("#err_field_homeAddress").hide();
     }
 
     if (field_DOA.length === 0) {
         $("#err_field_DOA").text('field is empty');
         $("#err_field_DOA").show();
+    } else {
+        $("#err_field_DOA").text('');
+        $("#err_field_DOA").hide();
     }
 
     if (field_TOA.length === 0) {
         $("#err_field_TOA").text('field is empty');
         $("#err_field_TOA").show();
+    } else {
+        $("#err_field_TOA").text('');
+        $("#err_field_TOA").hide();
     }
 
     if (field_POA.length === 0) {
         $("#err_field_POA").text('field is empty');
         $("#err_field_POA").show();
+    } else {
+        $("#err_field_POA").text('');
+        $("#err_field_POA").hide();
     }
 
     if (!$('#invalidCheck_basic').is(':checked')) {
         $("#err_invalidCheck_basic").text('Please select the field');
         $("#err_invalidCheck_basic").show();
-
+    } else {
+        $("#err_invalidCheck_basic").text('');
+        $("#err_invalidCheck_basic").hide();
     }
 
     if (!$('#invalidCheck_privacy').is(':checked')) {
         $("#err_invalidCheck_privacy").text('Please select the field');
         $("#err_invalidCheck_privacy").show();
+    } else {
+        $("#err_invalidCheck_privacy").text('');
+        $("#err_invalidCheck_privacy").hide();
     }
 
-    //  && $('#invalidCheck_privacy').is(':checked') && $('#privacy_consent_1').is(':checked') && $('#privacy_consent_2').is(':checked')
-
     if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_lastName_Suffix.length !== 0 && field_DOB.length !== 0 && field_mobileNum.length !== 0 && field_emailAddress.length !== 0 && field_homeAddress.length !== 0 && field_DOA.length !== 0 && field_TOA.length !== 0 && field_POA.length !== 0 && $('#invalidCheck_basic').is(':checked')) {
+        
+        let pConsentCheck1 = !$('#privacy_consent_1').is(':checked')
+        let pConsentCheck2 = !$('#privacy_consent_2').is(':checked');
 
-        if (!$('#privacy_consent_1').is(':checked') && !$('#privacy_consent_2').is(':checked')) {
+        if (pConsentCheck1) {
             $("#err_privacy_consent").text('Please select both the fields first');
             $("#err_privacy_consent").show();
             $('#privacy_consent_1')[0].scrollIntoView(true);
-            return;
-        }
-        const data = {
-            field_firstName,
-            field_middleName,
-            field_lastName,
-            field_lastName_Suffix,
-            field_DOB,
-            country_code: $("select#inlineFormCustomSelect option").filter(":selected").val(),
-            field_mobileNum,
-            field_emailAddress,
-            field_homeAddress,
-            field_DOA,
-            field_TOA,
-            field_POA,
-            basic_checkbox: $('#invalidCheck_basic').is(':checked'),
-            privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
-        }
+        } else if (pConsentCheck2) {
+            $("#err_privacy_consent").text('Please select both the fields first');
+            $("#err_privacy_consent").show();
+            $('#privacy_consent_1')[0].scrollIntoView(true);
+        } else {
+            const data = {
+                field_firstName,
+                field_middleName,
+                field_lastName,
+                field_lastName_Suffix,
+                field_DOB,
+                country_code: $("select#inlineFormCustomSelect option").filter(":selected").val(),
+                field_mobileNum,
+                field_emailAddress,
+                field_homeAddress,
+                field_DOA,
+                field_TOA,
+                field_POA,
+                basic_checkbox: $('#invalidCheck_basic').is(':checked'),
+                privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
+            }
 
-        console.log('Data -> ', data)
+            $('#form_wrapper').hide();
+            $('#stepper_intro').hide();
+            $('#accidental_data_privacy').hide();
+            $('.circle__2').css("background", "#007bff");
+            $('.firstChild').css("background", "#007bff");
+            $('.bs-stepper-circle-text-2').css("color", "#007bff");
+            $('#requirements').show();
+            $('#requirements')[0].scrollIntoView(true);
 
-        $('#form_wrapper').hide();
-        $('#stepper_intro').hide();
-        $('#accidental_data_privacy').hide();
-        $('.circle__2').css("background", "#007bff");
-        $('.firstChild').css("background", "#007bff");
-        $('.bs-stepper-circle-text-2').css("color", "#007bff");
-        // $('.bs-stepper-line').css("background", "#007bff");
-        $('#requirements').show();
-        $('#requirements')[0].scrollIntoView(true);
+            console.log('Data -> ', data)
+        }
     }
 }
-
-form.addEventListener('submit', handleForm);
-
-
-var file1 = document.getElementById('file_Upload_1');
-var file2 = document.getElementById('file_Upload_2');
-var file3 = document.getElementById('file_Upload_3');
-var file4 = document.getElementById('file_Upload_4');
-var file5 = document.getElementById('file_Upload_5');
 
 file1.onchange = function (e) {
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -249,7 +296,6 @@ file1.onchange = function (e) {
     }
 };
 
-
 file2.onchange = function (e) {
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
@@ -272,7 +318,6 @@ file2.onchange = function (e) {
             this.value = '';
     }
 };
-
 
 file3.onchange = function (e) {
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -297,7 +342,6 @@ file3.onchange = function (e) {
     }
 };
 
-
 file4.onchange = function (e) {
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
@@ -321,7 +365,6 @@ file4.onchange = function (e) {
     }
 };
 
-
 file5.onchange = function (e) {
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
@@ -343,22 +386,30 @@ file5.onchange = function (e) {
     }
 };
 
-
-
-var listCheckBox = document.querySelector('#upload_invalidCheck_1');
-listCheckBox.onchange = function () {
-    if ($(listCheckBox).is(':checked')) {
-        $('.feedback_label').show();
-    } else {
-        $('.feedback_label').hide();
+file6.onchange = function (e) {
+    var ext = this.value.match(/\.([^\.]+)$/)[1];
+    switch (ext) {
+        case 'jpg':
+        case 'pdf':
+        case 'png':
+        case 'tif':
+            if (this.files[0].size < 2097152) {
+                $('#upload_feedback_label').hide();
+                $('#proof_BAO_Tick_1').show();
+                return
+            }
+            $('#upload_feedback_label').show();
+            $('#upload_feedback_label').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+            break;
+        default:
+            $('#upload_feedback_label').text('You may only upload documents that are in .jpg, .pdf, or .tif formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
+            $('#upload_feedback_label').show();
+            this.value = '';
     }
-
-}
-
+};
 
 function buttonSubmitClicked(event) {
     event.preventDefault();
-    // $('#upload_warning').text('')
     if (!file1.value) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your government id front!');
@@ -402,9 +453,6 @@ function buttonSubmitClicked(event) {
         return;
     }
 
-
-    // if (file1.value && file2.value ) {
-
     const upload_data = {
         upload_file_1: file1.value,
         upload_file_2: file2.value,
@@ -415,18 +463,88 @@ function buttonSubmitClicked(event) {
         insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
     }
 
-    console.log('upload data --> ', upload_data);
-    
     $('#requirements').hide();
     $('#payment').show();
     $('#payment')[0].scrollIntoView(true);
+
+    console.log('upload data --> ', upload_data);
+}
+
+
+
+function handleAccountInfo(event) {
+    console.log('handle Account Info', account_details)
+    event.preventDefault();
+    var field_AccountName = $("#field_AccountName").val();
+    var field_AccountNumber = $("#field_AccountNumber").val();
+    var field_Bank = $("#field_Bank").val();
+    var field_Branch = $("#field_Branch").val();
+    var field_Currency = $("#field_Currency").val();
+
+    if (field_AccountName.length === 0) {
+        $("#err_field_AccountName").text('field is empty');
+        $("#err_field_AccountName").show();
+    } else {
+        $("#err_field_AccountName").text('');
+        $("#err_field_AccountName").hide();
+    }
+
+    if (field_AccountNumber.length === 0) {
+        $("#err_field_AccountNumber").text('field is empty');
+        $("#err_field_AccountNumber").show();
+    } else {
+        $("#err_field_AccountNumber").text('');
+        $("#err_field_AccountNumber").hide();
+    }
+
+    if (field_Bank.length === 0) {
+        $("#err_field_Bank").text('field is empty');
+        $("#err_field_Bank").show();
+    } else {
+        $("#err_field_Bank").text('');
+        $("#err_field_Bank").hide();
+    }
+
+    if (field_Branch.length === 0) {
+        $("#err_field_Branch").text('field is empty');
+        $("#err_field_Branch").show();
+    } else {
+        $("#err_field_Branch").text('');
+        $("#err_field_Branch").hide();
+    }
+
+    if (field_Currency.length === 0) {
+        $("#err_field_Currency").text('field is empty');
+        $("#err_field_Currency").show();
+    } else {
+        $("#err_field_Currency").text('');
+        $("#err_field_Currency").hide();
+    }
+
+    if (!file6.value) {
+        $('#upload_feedback_label').show();
+        $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
+    }
+
+    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && field_Currency.length !== 0 && file6.length !== 0) {
+        const data = {
+            field_AccountName,
+            field_AccountNumber,
+            field_Bank,
+            field_Branch,
+            field_Currency,
+            upload_file_6: file6.value
+        }
+          
+        console.log('Data -> ', data)
+    }
 }
 
 
 
 function bankTranfer() {
     $('#payment').hide();
-    $('#process_confirmation').show();
+    $('#account_details').show();
     $('.secondChild').css("background", "#007bff");
     $('.circle__3').css("background", "#007bff");
     $('.bs-stepper-circle-text-3').css("color", "#007bff");
