@@ -72,8 +72,29 @@ function isNumber(evt) {
     return true;
 }
 
-var form = document.getElementById("accidental__form");
+function isNotNumber(evt) {
+    $(`#err_${evt.target.id}`).text("");
+    $(`#err_${evt.target.id}`).hide();
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        $("#err_field_mobileNum").text('');
+        $("#err_field_mobileNum").hide();
+        return true;
+    }
+    validateNotNumber(evt)
+    return false;
+}
 
+function validateNotNumber(evt) {
+    let id = evt.target.id;
+    $(`#err_${id}`).text("Numbers not allowed");
+    $(`#err_${id}`).show();
+    return;
+}
+
+
+var form = document.getElementById("accidental__form");
 function handleForm(event) {
     event.preventDefault();
     /* setTimeout(() => {
@@ -112,31 +133,49 @@ function handleForm(event) {
     if (field_firstName.length === 0) {
         $("#err_field_firstName").text('field is empty');
         $("#err_field_firstName").show();
+    } else {
+        $("#err_field_firstName").text('');
+        $("#err_field_firstName").hide();
     }
 
     if (field_middleName.length === 0) {
         $("#err_field_middleName").text('field is empty');
         $("#err_field_middleName").show();
+    } else {
+        $("#err_field_middleName").text('');
+        $("#err_field_middleName").hide();
     }
 
     if (field_lastName.length === 0) {
         $("#err_field_lastName").text('field is empty');
         $("#err_field_lastName").show();
+    } else {
+        $("#err_field_lastName").text('');
+        $("#err_field_lastName").hide();
     }
 
     if (field_lastName_Suffix.length === 0) {
         $("#err_field_lastName_Suffix").text('field is empty');
         $("#err_field_lastName_Suffix").show();
+    } else {
+        $("#err_field_lastName_Suffix").text('');
+        $("#err_field_lastName_Suffix").hide();
     }
 
     if (field_DOB.length === 0) {
         $("#err_field_DOB").text('field is empty');
         $("#err_field_DOB").show();
+    } else {
+        $("#err_field_DOB").text('');
+        $("#err_field_DOB").hide();
     }
 
     if (field_mobileNum.length === 0) {
         $("#err_field_mobileNum").text('field is empty');
         $("#err_field_mobileNum").show();
+    } else {
+        $("#err_field_mobileNum").text('');
+        $("#err_field_mobileNum").hide();
     }
 
     if (field_emailAddress.length === 0) {
@@ -144,77 +183,100 @@ function handleForm(event) {
         $("#err_field_emailAddress").show();
     } else {
         validateEmail(field_emailAddress);
+        $("#err_field_emailAddress").text('');
+        $("#err_field_emailAddress").hide();
     }
 
     if (field_homeAddress.length === 0) {
         $("#err_field_homeAddress").text('field is empty');
         $("#err_field_homeAddress").show();
+    } else {
+        $("#err_field_homeAddress").text('');
+        $("#err_field_homeAddress").hide();
     }
 
     if (field_DOA.length === 0) {
         $("#err_field_DOA").text('field is empty');
         $("#err_field_DOA").show();
+    } else {
+        $("#err_field_DOA").text('');
+        $("#err_field_DOA").hide();
     }
 
     if (field_TOA.length === 0) {
         $("#err_field_TOA").text('field is empty');
         $("#err_field_TOA").show();
+    } else {
+        $("#err_field_TOA").text('');
+        $("#err_field_TOA").hide();
     }
 
     if (field_POA.length === 0) {
         $("#err_field_POA").text('field is empty');
         $("#err_field_POA").show();
+    } else {
+        $("#err_field_POA").text('');
+        $("#err_field_POA").hide();
     }
 
     if (!$('#invalidCheck_basic').is(':checked')) {
         $("#err_invalidCheck_basic").text('Please select the field');
         $("#err_invalidCheck_basic").show();
-
+    } else {
+        $("#err_invalidCheck_basic").text('');
+        $("#err_invalidCheck_basic").hide();
     }
 
     if (!$('#invalidCheck_privacy').is(':checked')) {
         $("#err_invalidCheck_privacy").text('Please select the field');
         $("#err_invalidCheck_privacy").show();
+    } else {
+        $("#err_invalidCheck_privacy").text('');
+        $("#err_invalidCheck_privacy").hide();
     }
 
     //  && $('#invalidCheck_privacy').is(':checked') && $('#privacy_consent_1').is(':checked') && $('#privacy_consent_2').is(':checked')
 
     if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_lastName_Suffix.length !== 0 && field_DOB.length !== 0 && field_mobileNum.length !== 0 && field_emailAddress.length !== 0 && field_homeAddress.length !== 0 && field_DOA.length !== 0 && field_TOA.length !== 0 && field_POA.length !== 0 && $('#invalidCheck_basic').is(':checked')) {
 
-        if (!$('#privacy_consent_1').is(':checked') && !$('#privacy_consent_2').is(':checked')) {
+        if (pConsentCheck1) {
             $("#err_privacy_consent").text('Please select both the fields first');
             $("#err_privacy_consent").show();
             $('#privacy_consent_1')[0].scrollIntoView(true);
-            return;
-        }
-        const data = {
-            field_firstName,
-            field_middleName,
-            field_lastName,
-            field_lastName_Suffix,
-            field_DOB,
-            country_code: $("select#inlineFormCustomSelect option").filter(":selected").val(),
-            field_mobileNum,
-            field_emailAddress,
-            field_homeAddress,
-            field_DOA,
-            field_TOA,
-            field_POA,
-            basic_checkbox: $('#invalidCheck_basic').is(':checked'),
-            privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
-        }
+        } else if (pConsentCheck2) {
+            $("#err_privacy_consent").text('Please select both the fields first');
+            $("#err_privacy_consent").show();
+            $('#privacy_consent_1')[0].scrollIntoView(true);
+        } else {
+            const data = {
+                field_firstName,
+                field_middleName,
+                field_lastName,
+                field_lastName_Suffix,
+                field_DOB,
+                country_code: $("select#inlineFormCustomSelect option").filter(":selected").val(),
+                field_mobileNum,
+                field_emailAddress,
+                field_homeAddress,
+                field_DOA,
+                field_TOA,
+                field_POA,
+                basic_checkbox: $('#invalidCheck_basic').is(':checked'),
+                privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
+            }
 
-        console.log('Data -> ', data)
+            console.log('Data -> ', data)
 
-        $('#form_wrapper').hide();
-        $('#stepper_intro').hide();
-        $('#accidental_data_privacy').hide();
-        $('.circle__2').css("background", "#007bff");
-        $('.firstChild').css("background", "#007bff");
-        $('.bs-stepper-circle-text-2').css("color", "#007bff");
-        // $('.bs-stepper-line').css("background", "#007bff");
-        $('#requirements').show();
-        $('#requirements')[0].scrollIntoView(true);
+            $('#form_wrapper').hide();
+            $('#stepper_intro').hide();
+            $('#accidental_data_privacy').hide();
+            $('.circle__2').css("background", "#007bff");
+            $('.firstChild').css("background", "#007bff");
+            $('.bs-stepper-circle-text-2').css("color", "#007bff");
+            // $('.bs-stepper-line').css("background", "#007bff");
+            $('#requirements').show();
+            $('#requirements')[0].scrollIntoView(true);
+        }
     }
 }
 
@@ -386,7 +448,7 @@ function buttonSubmitClicked(event) {
     }
 
     console.log('upload data --> ', upload_data);
-    
+
     $('#requirements').hide();
     $('#payment').show();
     $('#payment')[0].scrollIntoView(true);
