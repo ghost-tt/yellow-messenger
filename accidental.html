@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-11 offset-md-1" id="stepper_intro" >
+                            <div class="col-md-11 offset-md-1" id="stepper_intro">
                                 <div class="stepper__description">
                                     <h3 class="stepper__description__title">We’re sorry to hear that you’ve been hurt.
                                     </h3>
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="form_wrapper" class="form__container" >
+                    <div id="form_wrapper" class="form__container">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-11 offset-md-1">
@@ -155,9 +155,10 @@
                                                                 details of the injury.</p>
                                                             <div class="form-row">
                                                                 <textarea class="input__box"
-                                                                    id="exampleFormControlTextarea1" rows="8"
+                                                                    id="field_injury" rows="8"
                                                                     placeholder="Details of Injury"
                                                                     tabindex="10"></textarea>
+                                                                <div id="err_field_injury" class="error"></div>
                                                             </div>
                                                         </div>
 
@@ -850,9 +851,10 @@
                                                             <div class="col-md-12 form__tags">
                                                                 <label for="validationCustom02">What time did the
                                                                     accident happen?</label>
-                                                                <input type="text" class="input__box" id="field_TOA"
+                                                                <!-- <input type="text" class="input__box" id="field_TOA"
                                                                     value="" placeholder="Time of Accident"
-                                                                    tabindex="12" required />
+                                                                    tabindex="12" required /> -->
+                                                                <input type="time" id="field_TOA" class="input__box" min="09:00" max="18:00"  tabindex="12" required />
                                                                 <div id="err_field_TOA" class="error"></div>
                                                             </div>
                                                             <div class="col-md-12 form__tags">
@@ -1209,30 +1211,27 @@
                                         </div>
 
                                         <div class="card" id="warning_parent">
-                                            <div class="card-body">
-                                                <span>
+                                            <div class="card-body" style="display: flex;padding: 0.5rem;">
+                                                <div style="font-size: 1.8rem;">
                                                     <svg width="1em" height="1em" viewBox="0 0 16 16"
                                                         class="bi bi-exclamation-triangle-fill" fill="currentColor"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd"
                                                             d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                                                     </svg>
-                                                </span>
-                                                <span id="upload_warning">
+                                                </div>
+                                                <div id="upload_warning" style="padding: 0 0.9rem;">
                                                     Warning: We detected a virus/malware
                                                     in your uploaded documents. Please
                                                     re-upload a clean, virus-free document
                                                     to proceed.
-                                                </span>
+                                                </div>
 
                                             </div>
                                         </div>
-
-
                                     </div>
                                     <button type="submit" onclick="buttonSubmitClicked(event)" class="btn submit__btn"
                                         style="width: 50%;">Submit</button>
-
                                 </div>
                             </div>
                         </div>
@@ -1411,19 +1410,73 @@
                                             <div class="form-row">
                                                 <div class="col-md-12 form__tags">
                                                     <label for="validation">What is your account’s currency?</label>
-                                                    <input type="text" class="input__box" id="field_Currency" value=""
+                                                    <!-- <input type="text" class="input__box" id="field_Currency" value=""
                                                         placeholder="Currency" tabindex="19"
-                                                        onkeypress="return isNotNumber(event)" required />
+                                                        onkeypress="return isNotNumber(event)" required /> -->
+                                                        <select id="from_currency" class="custom-select-container mr-sm-2 " tabindex="19">
+                                                            <option value="AED">AED</option>
+                                                            <option value="ARS">ARS</option>
+                                                            <option value="AUD">AUD</option>
+                                                            <option value="BGN">BGN</option>
+                                                            <option value="BRL">BRL</option>
+                                                            <option value="BSD">BSD</option>
+                                                            <option value="CAD">CAD</option>
+                                                            <option value="CHF">CHF</option>
+                                                            <option value="CLP">CLP</option>
+                                                            <option value="CNY">CNY</option>
+                                                            <option value="COP">COP</option>
+                                                            <option value="CZK">CZK</option>
+                                                            <option value="DKK">DKK</option>
+                                                            <option value="DOP">DOP</option>
+                                                            <option value="EGP">EGP</option>
+                                                            <option value="EUR">EUR</option>
+                                                            <option value="FJD">FJD</option>
+                                                            <option value="GBP">GBP</option>
+                                                            <option value="GTQ">GTQ</option>
+                                                            <option value="HKD">HKD</option>
+                                                            <option value="HRK">HRK</option>
+                                                            <option value="HUF">HUF</option>
+                                                            <option value="IDR">IDR</option>
+                                                            <option value="ILS">ILS</option>
+                                                            <option value="INR" selected>INR</option>
+                                                            <option value="ISK">ISK</option>
+                                                            <option value="JPY">JPY</option>
+                                                            <option value="KRW">KRW</option>
+                                                            <option value="KZT">KZT</option>
+                                                            <option value="MXN">MXN</option>
+                                                            <option value="MYR">MYR</option>
+                                                            <option value="NOK">NOK</option>
+                                                            <option value="NZD">NZD</option>
+                                                            <option value="PAB">PAB</option>
+                                                            <option value="PEN">PEN</option>
+                                                            <option value="PHP">PHP</option>
+                                                            <option value="PKR">PKR</option>
+                                                            <option value="PLN">PLN</option>
+                                                            <option value="PYG">PYG</option>
+                                                            <option value="RON">RON</option>
+                                                            <option value="RUB">RUB</option>
+                                                            <option value="SAR">SAR</option>
+                                                            <option value="SEK">SEK</option>
+                                                            <option value="SGD">SGD</option>
+                                                            <option value="THB">THB</option>
+                                                            <option value="TRY">TRY</option>
+                                                            <option value="TWD">TWD</option>
+                                                            <option value="UAH">UAH</option>
+                                                            <option value="USD">USD</option>
+                                                            <option value="UYU">UYU</option>
+                                                            <option value="VND">VND</option>
+                                                            <option value="ZAR">ZAR</option>
+                                                        </select>
                                                     <div id="err_field_Currency" class="error"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-row">
-                                                <div  style="padding: 0; margin: 1.5rem 0;">
+                                                <div style="padding: 0; margin: 1.5rem 0;">
                                                     <p class="upload_btn_title">Proof of Bank Account Ownership</p>
                                                     <span class="btn btn-file" tabindex="22">
-                                                        Upload<input type="file" id="proof_BAO"/>
+                                                        Upload<input type="file" id="proof_BAO" />
                                                         <span id="proof_BAO_Tick_1"
                                                             class="upload_btn_span">&#10004;</span>
                                                     </span>
@@ -1439,7 +1492,7 @@
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn submit__btn"
-                                        style="width: 50%; margin: 3rem 0;">Submit</button>
+                                                style="width: 50%; margin: 3rem 0;">Submit</button>
                                         </div>
                                     </div>
                                 </div>

@@ -45,6 +45,10 @@ ul {
   text-decoration: unset !important;
 }
 
+svg {
+  vertical-align: baseline;
+}
+
 .step-trigger {
   padding: 0 !important;
 }
@@ -289,7 +293,7 @@ small {
 
 .upload_btn_span {
   float: right;
-  color: green;
+  color: #fff;
   display: none;
 }
 
@@ -327,6 +331,11 @@ small {
 
 svg > path {
   color: red;
+}
+
+.zero-margin-padding {
+  margin: 0;
+  padding-left: 5px;
 }
 
 /* 
