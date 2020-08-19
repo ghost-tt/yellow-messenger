@@ -20,7 +20,7 @@
 }
 
 .lead {
-    font-size: 1.15rem !important;
+  font-size: 1.15rem !important;
 }
 
 p {
@@ -366,3 +366,7 @@ svg > path {
 @media only screen and (min-width : 1200px) {
     .container { max-width: 1500px; }
 } */
+
+@media (min-width: 768px) {
+  .container {  max-width: 960px; }
+}
