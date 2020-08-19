@@ -358,7 +358,11 @@ svg > path {
     color: red !important;
   } */
 
+/* 
+@media only screen and (min-width: 768px) {
+    .container { max-width: 960px; }
+}
   
 @media only screen and (min-width : 1200px) {
     .container { max-width: 1500px; }
-}
+} */
