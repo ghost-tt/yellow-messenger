@@ -357,3 +357,8 @@ svg > path {
     /* background-color: #C8FFC8;  
     color: red !important;
   } */
+
+  
+@media only screen and (min-width : 1200px) {
+    .container { max-width: 1500px; }
+}
