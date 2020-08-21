@@ -209,7 +209,7 @@ function handleFormAddBeneficiary(event) {
             dataReset("field_addBeneficiaryFirstName", "field_addBeneficiaryMiddleName", "field_addBeneficiaryLastName", "field_addBeneficiaryMobileNum", "field_addBeneficiaryEmailAddress", "field_addBeneficiaryHomeAddress", "field_addBeneficiaryDOB", "field_addBeneficiaryPOB", "field_addBeneficiaryNationality", "field_addBeneficiarySex", "field_addBeneficiaryRelationToDeceased");
 
             $('#form_wrapper').hide();
-            $('#stepper_intro').hide();
+            // $('#stepper_intro').hide();
             $('#death_data_privacy').hide();
             $('#addBeneficiary').hide();
             $('#requirements').show();
@@ -440,7 +440,7 @@ function handleForm(event) {
             $("#step2").addClass("active");
             $("#step2>div").addClass("active");
             $('#form_wrapper').hide();
-            $('#stepper_intro').hide();
+            // $('#stepper_intro').hide();
             $('#death_data_privacy').hide();
             $('#requirements').show();
             $('#requirements')[0].scrollIntoView(true);
@@ -634,7 +634,7 @@ function addBeneficiary(event) {
 
     $("#step2").removeClass("active");
     $("#step2>div").removeClass("active");
-    $('#stepper_intro').show();
+    // $('#stepper_intro').show();
     $('#addBeneficiary').show();
     $('#requirements').hide();
     $('#addBeneficiary')[0].scrollIntoView(true);
@@ -793,4 +793,14 @@ function pickUp() {
     $('.secondChild').css("background", "#007bff");
     $('.circle__3').css("background", "#007bff");
     $('.bs-stepper-circle-text-3').css("color", "#007bff");
+}
+
+function goBack() {
+    console.log('go back!!!');
+    $("#step2").removeClass("active");
+    $("#step2>div").removeClass("active");
+    $("#step2").removeClass("done");
+    $('#requirements').hide();
+    $('#form_wrapper').show();
+    $('#form_wrapper')[0].scrollIntoView(true);
 }
