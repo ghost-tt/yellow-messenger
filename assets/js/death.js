@@ -177,17 +177,17 @@ function handleFormAddBeneficiary(event) {
 
     if (field_addBeneficiaryFirstName.length !== 0 && field_addBeneficiaryMiddleName.length !== 0 && field_addBeneficiaryLastName.length !== 0 && field_addBeneficiaryMobileNum.length!==0 && field_addBeneficiaryEmailAddress.length !== 0 && field_addBeneficiaryHomeAddress.length !== 0 && field_addBeneficiaryDOB.length !== 0 && field_addBeneficiaryPOB.length !== 0 && field_addBeneficiaryNationality.length !== 0 && field_addBeneficiarySex.length !== 0 && field_addBeneficiaryRelationToDeceased.length !== 0 && $('#invalidCheck_basicAddBeneficiary').is(':checked') && $('#invalidCheck_privacyAddBeneficiary').is(':checked') && validateEmail(field_addBeneficiaryEmailAddress)) {
         
-        let pConsentCheck1 = !$('#privacy_consent_1').is(':checked')
-        let pConsentCheck2 = !$('#privacy_consent_2').is(':checked');
+        let pConsentCheck1 = !$('#privacy_consent_beneficiary_1').is(':checked')
+        let pConsentCheck2 = !$('#privacy_consent_beneficiary_2').is(':checked');
 
         if (pConsentCheck1) {
-            $("#err_privacy_consent").text('Please select both the fields first');
-            $("#err_privacy_consent").show();
-            $('#privacy_consent_1')[0].scrollIntoView(true);
+            $("#err_beneficiary_privacy_consent").text('Please select both the fields first');
+            $("#err_beneficiary_privacy_consent").show();
+            $('#privacy_consent_beneficiary_1')[0].scrollIntoView(true);
         } else if (pConsentCheck2) {
-            $("#err_privacy_consent").text('Please select both the fields first');
-            $("#err_privacy_consent").show();
-            $('#privacy_consent_1')[0].scrollIntoView(true);
+            $("#err_beneficiary_privacy_consent").text('Please select both the fields first');
+            $("#err_beneficiary_privacy_consent").show();
+            $('#privacy_consent_beneficiary_2')[0].scrollIntoView(true);
         } else {
             const data = {
                 field_addBeneficiaryFirstName,
@@ -206,9 +206,8 @@ function handleFormAddBeneficiary(event) {
                 privacy_checkbox: $('#invalidCheck_privacyAddBeneficiary').is(':checked')
             }
 
-            dataReset("field_addBeneficiaryFirstName", "field_addBeneficiaryMiddleName", "field_addBeneficiaryLastName", "field_addBeneficiaryMobileNum", "field_addBeneficiaryEmailAddress", "field_addBeneficiaryHomeAddress", "field_addBeneficiaryDOB", "field_addBeneficiaryPOB", "field_addBeneficiaryNationality", "field_addBeneficiarySex", "field_addBeneficiaryRelationToDeceased");
-
-            $('#form_wrapper').hide();
+            dataReset("field_addBeneficiaryFirstName", "field_addBeneficiaryMiddleName", "field_addBeneficiaryLastName", "field_addBeneficiaryMobileNum", "field_addBeneficiaryEmailAddress", "field_addBeneficiaryHomeAddress", "field_addBeneficiaryDOB", "field_addBeneficiaryPOB", "field_addBeneficiaryNationality", "field_addBeneficiarySex", "field_addBeneficiaryRelationToDeceased", "file_Upload_1", "file_Upload_2", "file_Upload_3", "file_Upload_4", "file_Upload_5", "file_Upload_6", "proof_BAO");
+            uploadDataReset();
             // $('#stepper_intro').hide();
             $('#death_data_privacy').hide();
             $('#addBeneficiary').hide();
@@ -456,6 +455,19 @@ function dataReset() {
     }
 }
 
+function uploadDataReset() {
+    $('#file_Upload_Tick_1').hide();
+    $('#file_Upload_Tick_2').hide();
+    $('#file_Upload_Tick_3').hide();
+    $('#file_Upload_Tick_4').hide();
+    $('#file_Upload_Tick_5').hide();
+    $('#file_Upload_Tick_6').hide();
+    $('#file_Upload_Tick_1').hide();
+    $('#proof_BAO').hide();
+    $('#warning_parent').hide();
+    $('#upload_warning').text('');
+}
+ 
 function removeErr(event) {
     $(`#err_${event.target.id}`).text('');
     $(`#err_${event.target.id}`).hide();
@@ -631,14 +643,13 @@ file7.onchange = function (e) {
 
 function addBeneficiary(event) {
     event.preventDefault();
-
+    $('#privacy_consent_1').prop('checked', false);
+    $('#privacy_consent_2').prop('checked', false);
     $("#step2").removeClass("active");
     $("#step2>div").removeClass("active");
-    // $('#stepper_intro').show();
     $('#addBeneficiary').show();
     $('#requirements').hide();
     $('#addBeneficiary')[0].scrollIntoView(true);
-
 } 
 
 function buttonSubmitClicked(event) {
@@ -766,9 +777,6 @@ function handleAccountInfo(event) {
         $("#step3").addClass("active");
         $("#step3>div").addClass("active");
         $("#step3").addClass("done");
-        $('.secondChild').css("background", "#007bff");
-        $('.circle__3').css("background", "#007bff");
-        $('.bs-stepper-circle-text-3').css("color", "#007bff");
         $('#account_details').hide();
         $('#process_confirmation').show();
         console.log('Data -> ', data)
@@ -790,9 +798,6 @@ function pickUp() {
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
     $("#step3").addClass("done");
-    $('.secondChild').css("background", "#007bff");
-    $('.circle__3').css("background", "#007bff");
-    $('.bs-stepper-circle-text-3').css("color", "#007bff");
 }
 
 function goBack() {

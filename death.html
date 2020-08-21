@@ -43,21 +43,21 @@
 							<div id="step1" class="md-step active">
 								<div class="md-step-circle active"><span>1</span>
 								</div>
-								<div class="md-step-title">Fill out the form</div>
+								<div class="md-step-title d-none d-sm-block">Fill out the form</div>
 								<div class="md-step-bar-left"></div>
 								<div class="md-step-bar-right"></div>
 							</div>
 							<div id="step2" class="md-step">
 								<div class="md-step-circle"><span>2</span>
 								</div>
-								<div class="md-step-title">Submit your requirements</div>
+								<div class="md-step-title d-none d-sm-block">Submit your requirements</div>
 								<div class="md-step-bar-left"></div>
 								<div class="md-step-bar-right"></div>
 							</div>
 							<div id="step3" class="md-step">
 								<div class="md-step-circle"><span>3</span>
 								</div>
-								<div class="md-step-title">Get your reference number</div>
+								<div class="md-step-title d-none d-sm-block">Get your reference number</div>
 								<div class="md-step-bar-left"></div>
 								<div class="md-step-bar-right"></div>
 							</div>
@@ -67,7 +67,7 @@
 			</div>
         </section>
         
-		<section id="form_wrapper" style="margin-top: 2rem;">
+		<section id="form_wrapper">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-11 offset-md-1">
@@ -443,7 +443,7 @@
 																		<div id="err_invalidCheck_privacy" class="error">You must agree before submitting.</div>
 																	</div>
 																</div>
-																<button type="submit" class="btn btn-next-form submit__btn" tabindex="21" style="width: 50%; margin: 4rem 0 2rem 0;">NEXT</button>
+																<button type="submit" class="btn btn-next-form submit__btn" tabindex="21" style="width: 50%; margin: 2rem 0;">NEXT</button>
 															</div>
 														</div>
 													</div>
@@ -588,7 +588,7 @@
 										</div>
 										<div class="col-12 col-md-6">
 											<div class="form-row">
-												<div class="col-12 col-md-12" style="padding: 0; margin: 1.5rem 0;">
+												<div class="col-12 col-md-12" style="padding: 0; margin: 0;">
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox" value="" id="upload_invalidCheck_2" required>
 														<label class="form-check-label" for="invalidCheck">I certify that all the information and documents submitted here are true and accurate. I also understand that I may be fined double the amount claimed and/or imprisoned for two (2) years for any fraudulent claim made as outlined under <a href="#insurance_code_policy">Section 251 of the Insurance
@@ -692,7 +692,7 @@
 			</div>
         </section>
         
-		<section id="account_details" style="margin-top: 2rem;display: none;">
+		<section id="account_details" style="display: none;">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-11 offset-md-1" id="stepper_intro">
@@ -836,7 +836,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-11 offset-md-1">
-						<form id="death__form_addBeneficiary" onSubmit="return false;" novalidate>
+						<form id="death__form_addBeneficiary" onSubmit="return false;" novalidate style="margin-top: 1rem">
 							<div class="row">
 								<input type="hidden" id="inputMailForm2" />
 								<div class="col-12 col-md-12">
@@ -1156,6 +1156,41 @@
 					</div>
 				</div>
 			</div>
+			<section class="privacy__page">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-11 offset-md-1" style="margin-top: 4rem;">
+							<p class="privacy_title">PRIVACY NOTICE</p>
+							<ul class="privacy_ul">
+								<li>The Company values your privacy and we abide by the Principles of Transparency, Legitimate Purpose and Proportionality enshrined in the Philippine Data Privacy Act of 2012.</li>
+								<li>Accordingly, the Company processes, using any medium, any information pertaining to this application or insurance policy and all submitted documents, to provide our insurance and investment products and services. The information and documents is also disclosed to the Company’s affiliations (including but not limited to any of its subsidiaries/affiliates in the Asia Pacific Region), its Brokers, Agents, and their employees and staff and to accredited/affiliated third parties or independent/non-affiliated third parties, whether local or foreign. The Company will upload your medical information to a Medical Information Database accessible to life insurance companies for the purpose of enhancing risk assessment and preventing fraud. Once uploaded, all life insurance companies will only have limited access to the said medical information in order to protect my/our right to privacy in accordance with law. A copy of Circular Letter No. 2016-54 may be accessed at the Insurance Commission’s website at www.insurance.gov.ph.</li>
+								<li>Your information and documents are retained by the Company (a) from execution until seven (7) years after termination of your policy, for hard documents in paper form, and (b) from execution until ten (10) years after termination of your policy, for documents in electronic form; but in no case shorter than may be required by appropriate orders and regulations. Your information will be deleted/destroyed after this period.</li>
+								<li>The Company will use such information in the insurance policy and all related documents to conduct automated processing, data analytics, profiling, historical research (a) to improve the Company’s internal systems and processes, (b) for actuarial assumptions, © in internal and external company reports, and (d) to develop and implement business strategies.</li>
+								<li>Please visit our website, www.philamlife.com for our Privacy Statement, which provides further details on why your personal data is collected, how it is intended to be used, to whom your personal data may be transferred to, how to access, review and amend your personal data, and our policies on direct marketing.</li>
+							</ul>
+							<p class="privacy_title">PRIVACY CONSENT</p>
+							<ul class="privacy_consent">
+								<li style="list-style: none;">
+									<div class="form-group form-check">
+										<input type="checkbox" class="form-check-input" id="privacy_consent_beneficiary_1">
+										<p class="privacy_consent" style="margin-left: 1rem;">I/we agree for the Company to use the information in the insurance policy and all related documents in the design and communication of the Company’s marketing campaigns and offers in order to improve the quality of service the Company provides, and to receive such marketing campaigns.</p>
+									</div>
+								</li>
+								<li style="list-style: none;">
+									<div class="form-group form-check">
+										<input type="checkbox" class="form-check-input" id="privacy_consent_beneficiary_2">
+										<p class="privacy_consent" style="margin-left: 1rem;">I/we agree for the Company to use such information for profiling to develop, enhance and offer me/us financial services and products that the Company considers as suitable for my/our insurance and other financial needs.</p>
+									</div>
+								</li>
+								<li>
+									<p style="margin-left: 1rem;">I/we may at anytime withdraw our consent by visiting Philam branches, calling the Company’s contact center, or by emailing the request to phi.philamprivacy@aia.com. Upon receipt of such withdrawal of consent, the Company will no longer approach me/us for promotions or products that may be suited to my/our insurance needs. I/We am/are assured that this will not affect the Company’s ability to provide quality service in relation to my/our existing policies</p>
+								</li>
+							</ul>
+							<p id="err_beneficiary_privacy_consent" class="error" style="margin-left: 5rem"></p>
+						</div>
+					</div>
+				</div>
+			</section>
         </section>
         
 	</main>

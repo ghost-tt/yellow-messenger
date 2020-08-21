@@ -54,7 +54,7 @@ svg {
 }
 
 .stepper__description {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 .stepper__description__title {
@@ -62,7 +62,7 @@ svg {
 }
 
 .stepper__description__info {
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .error {
@@ -75,6 +75,7 @@ svg {
 
 .form__container {
   background: #f0eee1;
+  margin-top: 1rem;
 }
 
 .form__tags {
