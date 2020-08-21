@@ -283,6 +283,19 @@ function handleForm(event) {
     }
 }
 
+function dataReset() {
+    let args = arguments;
+    for(let i=0; i<args.length; i++) {
+        console.log(args[i])
+        $(`#${args[i]}`).val('');
+    }
+}
+
+function removeErr(event) {
+    $(`#err_${event.target.id}`).text('');
+    $(`#err_${event.target.id}`).hide();
+}
+
 file1.onchange = function (e) {
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {

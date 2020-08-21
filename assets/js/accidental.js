@@ -282,6 +282,11 @@ function handleForm(event) {
     }
 }
 
+function removeErr(event) {
+    $(`#err_${event.target.id}`).text('');
+    $(`#err_${event.target.id}`).hide();
+}
+
 file1.onchange = function (e) {
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {

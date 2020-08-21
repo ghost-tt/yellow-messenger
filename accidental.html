@@ -157,7 +157,7 @@
                                                                 <textarea class="input__box"
                                                                     id="field_injury" rows="8"
                                                                     placeholder="Details of Injury"
-                                                                    tabindex="10"></textarea>
+                                                                    tabindex="10" onkeypress="removeErr(event)"></textarea>
                                                                 <div id="err_field_injury" class="error"></div>
                                                             </div>
                                                         </div>
@@ -863,7 +863,7 @@
                                                                     happen?</label>
                                                                 <input type="text" class="input__box" id="field_POA"
                                                                     value="" placeholder="Place of Accident"
-                                                                    tabindex="13" />
+                                                                    tabindex="13" onkeypress="removeErr(event)"/>
                                                                 <div id="err_field_POA" class="error"></div>
                                                             </div>
                                                         </div>
@@ -876,7 +876,7 @@
                                                                     address?</label>
                                                                 <input type="text" class="input__box"
                                                                     id="field_emailAddress" value=""
-                                                                    placeholder="Email Address" tabindex="8" required />
+                                                                    placeholder="Email Address" tabindex="8" onkeypress="removeErr(event)" required />
                                                                 <div id="err_field_emailAddress" class="error">
                                                                 </div>
                                                             </div>
@@ -906,7 +906,7 @@
                                                                     address?</label>
                                                                 <input type="text" class="input__box"
                                                                     id="field_homeAddress" value=""
-                                                                    placeholder="Home Address" tabindex="9" required />
+                                                                    placeholder="Home Address" tabindex="9" onkeypress="removeErr(event)" required />
                                                                 <div id="err_field_homeAddress" class="error"></div>
                                                             </div>
                                                         </div>
