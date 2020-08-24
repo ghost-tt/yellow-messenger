@@ -7,7 +7,7 @@ var file3 = document.getElementById('file_Upload_3');
 var file4 = document.getElementById('file_Upload_4');
 var file5 = document.getElementById('file_Upload_5');
 var file6 = document.getElementById('file_Upload_6');
-var file7 = document.getElementById('proof_BAO');
+var file7 = document.getElementById('file_Upload_7');
 form.addEventListener('submit', handleForm);
 death__form_addBeneficiary.addEventListener('submit', handleFormAddBeneficiary);
 form_Bank.addEventListener('submit', handleAccountInfo);
@@ -206,7 +206,7 @@ function handleFormAddBeneficiary(event) {
                 privacy_checkbox: $('#invalidCheck_privacyAddBeneficiary').is(':checked')
             }
 
-            dataReset("field_addBeneficiaryFirstName", "field_addBeneficiaryMiddleName", "field_addBeneficiaryLastName", "field_addBeneficiaryMobileNum", "field_addBeneficiaryEmailAddress", "field_addBeneficiaryHomeAddress", "field_addBeneficiaryDOB", "field_addBeneficiaryPOB", "field_addBeneficiaryNationality", "field_addBeneficiarySex", "field_addBeneficiaryRelationToDeceased", "file_Upload_1", "file_Upload_2", "file_Upload_3", "file_Upload_4", "file_Upload_5", "file_Upload_6", "proof_BAO");
+            dataReset("field_addBeneficiaryFirstName", "field_addBeneficiaryMiddleName", "field_addBeneficiaryLastName", "field_addBeneficiaryMobileNum", "field_addBeneficiaryEmailAddress", "field_addBeneficiaryHomeAddress", "field_addBeneficiaryDOB", "field_addBeneficiaryPOB", "field_addBeneficiaryNationality", "field_addBeneficiarySex", "field_addBeneficiaryRelationToDeceased");
             uploadDataReset();
             // $('#stepper_intro').hide();
             $('#death_data_privacy').hide();
@@ -462,8 +462,8 @@ function uploadDataReset() {
     $('#file_Upload_Tick_4').hide();
     $('#file_Upload_Tick_5').hide();
     $('#file_Upload_Tick_6').hide();
-    $('#file_Upload_Tick_1').hide();
-    $('#proof_BAO').hide();
+    $('#file_Upload_Tick_7').hide();
+    // $('#file_Upload_7').hide();
     $('#warning_parent').hide();
     $('#upload_warning').text('');
 }
@@ -762,16 +762,17 @@ function handleAccountInfo(event) {
     if (!file7.value) {
         $('#upload_feedback_label').show();
         $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
+        return;
     }
 
-    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && file7.length !== 0) {
+    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0) {
         const data = {
             field_AccountName,
             field_AccountNumber,
             field_Bank,
             field_Branch,
             field_Currency: $("select#from_currency option").filter(":selected").val(),
-            upload_file_6: file6.value
+            upload_file_7: file7.value
         }
 
         $("#step3").addClass("active");

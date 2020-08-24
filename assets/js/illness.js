@@ -287,7 +287,6 @@ function handleForm(event) {
 function dataReset() {
     let args = arguments;
     for(let i=0; i<args.length; i++) {
-        console.log(args[i])
         $(`#${args[i]}`).val('');
     }
 }

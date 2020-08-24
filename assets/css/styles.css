@@ -19,6 +19,10 @@
   font-size: 2.5rem !important;
 }
 
+.hide {
+  display: none;
+}
+
 .lead {
   font-size: 1.15rem !important;
 }
