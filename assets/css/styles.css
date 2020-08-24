@@ -502,44 +502,25 @@ svg > path {
   right: 50%;
   margin-right: 20px;
 }
-/* 
 
-
-.form-check-input:checked {
-    background-color: green!important;
-    color: red !important;
-  }
-  
-  input[type=checkbox]:checked:focus {
-    background-color: green!important;
-    color: red !important;
-  }
-  
-
-  .form-check-input:checked:focus{
-    background-color: green!important;
-    color: red !important;
-  }
-  .form-check-input:focus{
-    background-color: green!important;
-    color: red !important;
-    /* box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25) 
-  }
-  .form-check-input:active{
-    background-color: green!important;
-    /* background-color: #C8FFC8;  
-    color: red !important;
-  } */
-
-/* 
-@media only screen and (min-width: 768px) {
-    .container { max-width: 960px; }
+.bg_light_pink {
+  background: #f0eee1;
 }
-  
-@media only screen and (min-width : 1200px) {
-    .container { max-width: 1500px; }
-} */
 
-/* @media (min-width: 768px) {
-  .container {  max-width: 960px; }
-} */
+.claim-card {
+  border: 1px solid #fff;
+  padding: 2rem 0;
+  margin: 0 2rem 2rem 2rem;
+}
+
+.md-2 {
+  margin: 2rem 0 4rem 0;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
