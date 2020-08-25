@@ -509,10 +509,9 @@ svg > path {
   align-items: center;
 }
 
-.hero-section {
-  height: 35vh;
+.p-2 {
+  padding: 0 0.2rem;
 }
-
 .bg_light_pink {
   background: #f0eee1;
   /* height: 5vh; */
