@@ -19,6 +19,10 @@
   font-size: 2.5rem !important;
 }
 
+.hide {
+  display: none;
+}
+
 .lead {
   font-size: 1.15rem !important;
 }
@@ -54,7 +58,7 @@ svg {
 }
 
 .stepper__description {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 .stepper__description__title {
@@ -62,7 +66,7 @@ svg {
 }
 
 .stepper__description__info {
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .error {
@@ -75,6 +79,7 @@ svg {
 
 .form__container {
   background: #f0eee1;
+  margin-top: 1rem;
 }
 
 .form__tags {
@@ -338,44 +343,236 @@ svg > path {
   padding-left: 5px;
 }
 
-/* 
 
-
-.form-check-input:checked {
-    background-color: green!important;
-    color: red !important;
-  }
-  
-  input[type=checkbox]:checked:focus {
-    background-color: green!important;
-    color: red !important;
-  }
-  
-
-  .form-check-input:checked:focus{
-    background-color: green!important;
-    color: red !important;
-  }
-  .form-check-input:focus{
-    background-color: green!important;
-    color: red !important;
-    /* box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25) 
-  }
-  .form-check-input:active{
-    background-color: green!important;
-    /* background-color: #C8FFC8;  
-    color: red !important;
-  } */
-
-/* 
-@media only screen and (min-width: 768px) {
-    .container { max-width: 960px; }
+.md-stepper-horizontal {
+  display: table;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  /* box-shadow: 0 3px 8px -6px rgba(0, 0, 0, .50); */
 }
-  
-@media only screen and (min-width : 1200px) {
-    .container { max-width: 1500px; }
+
+.md-stepper-horizontal .md-step {
+  display: table-cell;
+  position: relative;
+  padding: 24px;
+}
+
+/* .md-stepper-horizontal .md-step:hover,
+.md-stepper-horizontal .md-step:active {
+  background-color: rgba(0, 0, 0, 0.04);
 } */
 
-/* @media (min-width: 768px) {
-  .container {  max-width: 960px; }
+.md-stepper-horizontal .md-step:active {
+  border-radius: 15% / 75%;
+}
+
+.md-stepper-horizontal .md-step:first-child:active {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.md-stepper-horizontal .md-step:last-child:active {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* .md-stepper-horizontal .md-step:hover .md-step-circle {
+  background-color: #757575;
 } */
+
+.md-stepper-horizontal .md-step:first-child .md-step-bar-left,
+.md-stepper-horizontal .md-step:last-child .md-step-bar-right {
+  display: none;
+}
+
+.md-stepper-horizontal .md-step .md-step-circle {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #333;
+  text-align: center;
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.md-stepper-horizontal.green .md-step.active .md-step-circle {
+  background-color: #00AE4D;
+}
+
+/* .md-stepper-horizontal.active .md-step.active .md-step-circle > span {
+  color: white;
+} */
+
+.md-step-circle.active > span {
+  color: white;
+}
+
+.md-stepper-horizontal.blue .md-step.active .md-step-circle {
+  background-color: #007bff;
+  border: unset;
+}
+
+.md-stepper-horizontal .md-step.active .md-step-circle {
+  background-color: rgb(33, 150, 243);
+}
+
+.md-stepper-horizontal .md-step.done .md-step-circle:before {
+  font-family: 'FontAwesome';
+  font-weight: 100;
+  content: "\2713";
+}
+
+.md-stepper-horizontal .md-step.done .md-step-circle *,
+.md-stepper-horizontal .md-step.editable .md-step-circle * {
+  display: none;
+}
+
+.md-stepper-horizontal .md-step.editable .md-step-circle {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.md-stepper-horizontal .md-step.editable .md-step-circle:before {
+  font-family: 'FontAwesome';
+  font-weight: 100;
+  content: "\f040";
+}
+
+.md-stepper-horizontal .md-step .md-step-title {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.md-stepper-horizontal .md-step .md-step-title,
+.md-stepper-horizontal .md-step .md-step-optional {
+  text-align: center;
+  color: rgba(0, 0, 0, .26);
+}
+
+.md-stepper-horizontal .md-step.active .md-step-title {
+  font-weight: 600;
+  color: #007bff;
+}
+
+.md-stepper-horizontal .md-step.active.done .md-step-title,
+.md-stepper-horizontal .md-step.active.editable .md-step-title {
+  font-weight: 600;
+}
+
+.md-stepper-horizontal .md-step .md-step-optional {
+  font-size: 12px;
+}
+
+.md-stepper-horizontal .md-step.active .md-step-optional {
+  color: rgba(0, 0, 0, .54);
+}
+
+.md-stepper-horizontal .md-step .md-step-bar-left,
+.md-stepper-horizontal .md-step .md-step-bar-right {
+  position: absolute;
+  top: 36px;
+  height: 1px;
+  border-top: 1px solid #a79999;
+}
+
+.md-stepper-horizontal .md-step .md-step-bar-left .active,
+.md-stepper-horizontal .md-step .md-step-bar-right .active {
+  position: absolute;
+  top: 36px;
+  height: 1px;
+  border-top: 1px solid #007bff;
+}
+
+.md-stepper-horizontal .md-step .md-step-bar-right {
+  right: 0;
+  left: 50%;
+  margin-left: 20px;
+}
+
+.md-stepper-horizontal .md-step .md-step-bar-left {
+  left: 0;
+  right: 50%;
+  margin-right: 20px;
+}
+
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.hero-section {
+  height: 35vh;
+}
+
+.bg_light_pink {
+  background: #f0eee1;
+  height: 65vh;
+}
+
+.claim-card {
+  border: 1px solid #fff;
+  padding: 2rem 0;
+  margin: 0 2rem 2rem 2rem;
+}
+
+.md-2 {
+  margin: 1rem 0;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+
+.flip-card {
+  background-color: transparent;
+  width: 180px;
+  height: 250px;
+  perspective: 1000px;
+  margin: 0 1rem;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #fff;
+}
+
+.flip-card-back {
+  background-color: #fff;
+  color: white;
+  transform: rotateY(180deg);
+}

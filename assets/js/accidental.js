@@ -1,8 +1,8 @@
-var stepper2
+/* var stepper2
 var stepper3
 var stepper4
 var stepperForm
-var stepperFormEl
+var stepperFormEl */
 
 var form = document.getElementById("accidental__form");
 var form_Bank = document.getElementById("bank_form");
@@ -17,12 +17,12 @@ var file6 = document.getElementById('proof_BAO');
 form.addEventListener('submit', handleForm);
 form_Bank.addEventListener('submit', handleAccountInfo);
 
-document.addEventListener('DOMContentLoaded', function () {
+/* document.addEventListener('DOMContentLoaded', function () {
     stepperFormEl = document.querySelector('#stepperForm')
     stepperForm = new Stepper(stepperFormEl, {
         animation: true
     })
-})
+}) */
 
 listCheckBox.onchange = function () {
     if ($(listCheckBox).is(':checked')) {
@@ -32,7 +32,7 @@ listCheckBox.onchange = function () {
     }
 }
 
-function loader() {
+/* function loader() {
     var btnNextList = [].slice.call(document.querySelectorAll('.btn-next-form'))
     var stepperPanList = [].slice.call(stepperFormEl.querySelectorAll('.bs-stepper-pane'))
     var inputMailForm = document.getElementById('inputMailForm')
@@ -62,7 +62,7 @@ function loader() {
             form.classList.add('was-validated')
         }
     })
-}
+} */
 
 function validateEmail(emailField) {
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -95,8 +95,8 @@ function isNotNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        $("#err_field_mobileNum").text('');
-        $("#err_field_mobileNum").hide();
+        $(`#err_${evt.target.id}`).text('');
+        $(`#err_${evt.target.id}`).hide();
         return true;
     }
     validateNotNumber(evt)
@@ -271,15 +271,20 @@ function handleForm(event) {
             $('#form_wrapper').hide();
             $('#stepper_intro').hide();
             $('#accidental_data_privacy').hide();
-            $('.circle__2').css("background", "#007bff");
-            $('.firstChild').css("background", "#007bff");
-            $('.bs-stepper-circle-text-2').css("color", "#007bff");
+            $("#step1").addClass("done");
+            $("#step2").addClass("active");
+            $("#step2>div").addClass("active");
             $('#requirements').show();
             $('#requirements')[0].scrollIntoView(true);
 
             console.log('Data -> ', data)
         }
     }
+}
+
+function removeErr(event) {
+    $(`#err_${event.target.id}`).text('');
+    $(`#err_${event.target.id}`).hide();
 }
 
 file1.onchange = function (e) {
@@ -481,6 +486,9 @@ function buttonSubmitClicked(event) {
         insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
     }
 
+    $("#step2").addClass("active");
+    $("#step2>div").addClass("active");
+    $("#step2").addClass("done");
     $('#requirements').hide();
     $('#payment').show();
     $('#payment')[0].scrollIntoView(true);
@@ -529,14 +537,6 @@ function handleAccountInfo(event) {
         $("#err_field_Branch").hide();
     }
 
-    /* if (field_Currency.length === 0) {
-        $("#err_field_Currency").text('Field is empty');
-        $("#err_field_Currency").show();
-    } else {
-        $("#err_field_Currency").text('');
-        $("#err_field_Currency").hide();
-    } */
-
     if (!file6.value) {
         $('#upload_feedback_label').show();
         $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
@@ -551,9 +551,9 @@ function handleAccountInfo(event) {
             field_Currency: $("select#from_currency option").filter(":selected").val(),
             upload_file_6: file6.value
         }
-        $('.secondChild').css("background", "#007bff");
-        $('.circle__3').css("background", "#007bff");
-        $('.bs-stepper-circle-text-3').css("color", "#007bff");
+        $("#step3").addClass("active");
+        $("#step3>div").addClass("active");
+        $("#step3").addClass("done");
         $('#account_details').hide();
         $('#process_confirmation').show();
         console.log('Data -> ', data)
@@ -565,13 +565,14 @@ function handleAccountInfo(event) {
 function bankTranfer() {
     $('#payment').hide();
     $('#account_details').show();
-    
+    $("#step3").addClass("active");
+    $("#step3>div").addClass("active");
 }
 
 function pickUp() {
     $('#payment').hide();
     $('#process_confirmation').show();
-    $('.secondChild').css("background", "#007bff");
-    $('.circle__3').css("background", "#007bff");
-    $('.bs-stepper-circle-text-3').css("color", "#007bff");
+    $("#step3").addClass("active");
+    $("#step3>div").addClass("active");
+    $("#step3").addClass("done");
 }
