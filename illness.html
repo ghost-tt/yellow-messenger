@@ -181,8 +181,10 @@
                                                                     <select
                                                                         class="custom-select-container mr-sm-2"
                                                                         id="inlineFormCustomSelect" tabindex="6">
-                                                                        <option data-countryCode="IN" value="91"
-                                                                            Selected>India (+91)</option>
+                                                                        <option value="63" style="display:none">+63</option>
+                                                                        <option data-countryCode="PH"
+                                                                            value="63">Philippines (+63)
+                                                                        </option>
                                                                         <optgroup label="Other countries">
                                                                             <option data-countryCode="DZ"
                                                                                 value="213">Algeria (+213)
@@ -426,6 +428,9 @@
                                                                             <option data-countryCode="HU"
                                                                                 value="36">Hungary (+36)
                                                                             </option>
+                                                                            <option data-countryCode="IN" 
+                                                                                value="91">India (+91)
+                                                                            </option>
                                                                             <option data-countryCode="IS"
                                                                                 value="354">Iceland (+354)
                                                                             </option>
@@ -613,9 +618,6 @@
                                                                             </option>
                                                                             <option data-countryCode="PE"
                                                                                 value="51">Peru (+51)</option>
-                                                                            <option data-countryCode="PH"
-                                                                                value="63">Philippines (+63)
-                                                                            </option>
                                                                             <option data-countryCode="PL"
                                                                                 value="48">Poland (+48)</option>
                                                                             <option data-countryCode="PT"
@@ -999,6 +1001,7 @@
                                             quality of service the Company provides, and to receive such marketing
                                             campaigns.
                                         </p>
+                                        <p id="err_privacy_consent1" class="error" style="margin-left: 5rem"></p>
                                     </div>
                                 </li>
                                 <li style="list-style: none;">
@@ -1011,6 +1014,7 @@
                                             my/our insurance and other
                                             financial needs.
                                         </p>
+                                        <p id="err_privacy_consent2" class="error" style="margin-left: 5rem"></p>
                                     </div>
                                 </li>
                                 <li>
@@ -1032,8 +1036,6 @@
                                     </p>
                                 </li>
                             </ul>
-
-                            <p id="err_privacy_consent" class="error" style="margin-left: 5rem"></p>
                         </div>
                     </div>
                 </div>
@@ -1061,7 +1063,7 @@
                                             <span id="file_Upload_Tick_1" class="upload_btn_span">&#10004;</span>
                                         </span>
                                         <small id="passwordHelpBlock" class="form-text text-muted">
-                                            Acceptable format .jpg .pdf .tif. & 2MB size.
+                                            Acceptable format .jpg .pdf & 2MB size.
                                         </small>
                                     </div>
 
@@ -1072,7 +1074,7 @@
                                             <span id="file_Upload_Tick_2" class="upload_btn_span">&#10004;</span>
                                         </span>
                                         <small id="passwordHelpBlock" class="form-text text-muted">
-                                            Acceptable format .jpg .pdf .tif. & 2MB size.
+                                            Acceptable format .jpg .pdf & 2MB size.
                                         </small>
                                     </div>
 
@@ -1084,7 +1086,7 @@
                                             <span id="file_Upload_Tick_3" class="upload_btn_span">&#10004;</span>
                                         </span>
                                         <small id="passwordHelpBlock" class="form-text text-muted">
-                                            Acceptable format .jpg .pdf .tif. & 2MB size.
+                                            Acceptable format .jpg .pdf & 2MB size.
                                         </small>
                                     </div>
 
@@ -1096,7 +1098,7 @@
                                             <span id="file_Upload_Tick_5" class="upload_btn_span">&#10004;</span>
                                         </span>
                                         <small id="passwordHelpBlock" class="form-text text-muted">
-                                            Acceptable format .jpg .pdf .tif. & 2MB size.
+                                            Acceptable format .jpg .pdf & 2MB size.
                                         </small>
                                     </div>
 
@@ -1242,7 +1244,7 @@
                             <div class="col-9">
                                 <p class="font-weight-normal">Hi Alex. Hang in there as we are now processing your
                                     request. Kindly
-                                    expect an update from us within 24 to 48 hours on the status of
+                                    expect an update from us within 2 to 4 days on the status of
                                     your request.
                                 </p>
                                 <br />
@@ -1266,7 +1268,7 @@
                                     <br />
                                     <div class="time_duration">
                                         <div>Turnaround Time</div>
-                                        <div class="font-weight-bold">24-48 hours</div>
+                                        <div class="font-weight-bold">2-4 days</div>
                                     </div>
                                 </div>
                             </div>
@@ -1415,7 +1417,7 @@
                                                         account documents: Passbook, Bank
                                                         Account Statement, or Bank Certification.
                                                         You may only upload documents that are
-                                                        in .jpg, .pdf, or .tif formats and must not
+                                                        in .jpg, .pdf, or formats and must not
                                                         exceed 2MB in file size.
                                                     </small>
                                                     <p class="feedback_label" id="upload_feedback_label"></p>

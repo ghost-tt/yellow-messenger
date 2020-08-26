@@ -23,6 +23,38 @@ form_Bank.addEventListener('submit', handleAccountInfo);
     })
 }) */
 
+
+$(document).ready(function(event){
+    event.preventDefault();
+    disableFutureDates();
+    setCountryCode();
+});
+
+function disableFutureDates() {
+    var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    var maxDate = year + '-' + month + '-' + day;
+    $('#field_DOB').attr('max', maxDate);
+    $('#field_DOA').attr('max', maxDate);
+    $('#field_TOA').attr('max', maxDate);
+    $('#field_POA').attr('max', maxDate);
+}
+
+function setCountryCode() {
+    $('select').change(function() {
+        $('select option')[0].value= $('select option:selected').val();
+        $('select option')[0].innerHTML= '+' + $('select option:selected').val();
+        $("select").val($('select option:selected').val());
+        $("select option").css({"background-color":"","color":""});
+    });
+}
+
 listCheckBox.onchange = function () {
     if ($(listCheckBox).is(':checked')) {
         $('.feedback_label').show();
@@ -157,14 +189,7 @@ function handleForm(event) {
         $("#err_field_lastName").hide();
     }
 
-    if (field_lastName_Suffix.length === 0) {
-        $("#err_field_lastName_Suffix").text('Field is empty');
-        $("#err_field_lastName_Suffix").show();
-    } else {
-        $("#err_field_lastName_Suffix").text('');
-        $("#err_field_lastName_Suffix").hide();
-    }
-
+    
     if (field_DOB.length === 0) {
         $("#err_field_DOB").text('Field is empty');
         $("#err_field_DOB").show();
@@ -237,17 +262,23 @@ function handleForm(event) {
         $("#err_invalidCheck_privacy").hide();
     }
 
-    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_MedicalConsultation.length !== 0 && field_lastName.length !== 0 && field_lastName_Suffix.length !== 0 && field_DOB.length !== 0 && field_mobileNum.length !== 0 && field_emailAddress.length !== 0 && validateEmail(field_emailAddress) && field_homeAddress.length !== 0 && field_DOA.length !== 0 && field_TOA.length !== 0 && field_POA.length !== 0 && $('#invalidCheck_basic').is(':checked')) {
+    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_MedicalConsultation.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_mobileNum.length !== 0 && field_emailAddress.length !== 0 && validateEmail(field_emailAddress) && field_homeAddress.length !== 0 && field_DOA.length !== 0 && field_TOA.length !== 0 && field_POA.length !== 0 && $('#invalidCheck_basic').is(':checked')) {
         let pConsentCheck1 = !$('#privacy_consent_1').is(':checked')
         let pConsentCheck2 = !$('#privacy_consent_2').is(':checked');
 
-        if (pConsentCheck1) {
-            $("#err_privacy_consent").text('Please select both the fields first');
-            $("#err_privacy_consent").show();
+        if((pConsentCheck1) && (pConsentCheck2)){
+            $("#err_privacy_consent1").text('Please select this fields first');
+            $("#err_privacy_consent1").show();
+            $("#err_privacy_consent2").text('Please select this fields first');
+            $("#err_privacy_consent2").show();
+            $('#privacy_consent_1')[0].scrollIntoView(true);
+        }else if (pConsentCheck1) {
+            $("#err_privacy_consent1").text('Please select this fields first');
+            $("#err_privacy_consent1").show();
             $('#privacy_consent_1')[0].scrollIntoView(true);
         } else if (pConsentCheck2) {
-            $("#err_privacy_consent").text('Please select both the fields first');
-            $("#err_privacy_consent").show();
+            $("#err_privacy_consent2").text('Please select both the fields first');
+            $("#err_privacy_consent2").show();
             $('#privacy_consent_1')[0].scrollIntoView(true);
         } else {
             const data = {
@@ -301,7 +332,6 @@ file1.onchange = function (e) {
     switch (ext) {
         case 'jpg':
         case 'pdf':
-        case 'tif':
             if (this.files[0].size < 2097152) {
                 $('#warning_parent').hide();
                 $('#file_Upload_Tick_1').show();
@@ -315,7 +345,7 @@ file1.onchange = function (e) {
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_1').hide();
-            $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or .tif formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
+            $('#upload_warning').text('You may only upload documents that are in .jpg, or .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
 
             this.value = '';
     }
@@ -326,7 +356,6 @@ file2.onchange = function (e) {
     switch (ext) {
         case 'jpg':
         case 'pdf':
-        case 'tif':
             if (this.files[0].size < 2097152) {
                 $('#warning_parent').hide();
                 $('#file_Upload_Tick_2').show();
@@ -340,7 +369,7 @@ file2.onchange = function (e) {
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_2').hide();
-            $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or .tif formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
+            $('#upload_warning').text('You may only upload documents that are in .jpg, or .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
 
             this.value = '';
     }
@@ -351,7 +380,6 @@ file3.onchange = function (e) {
     switch (ext) {
         case 'jpg':
         case 'pdf':
-        case 'tif':
             if (this.files[0].size < 2097152) {
                 $('#warning_parent').hide();
                 $('#file_Upload_Tick_3').show();
@@ -365,7 +393,7 @@ file3.onchange = function (e) {
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_3').hide();
-            $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or .tif formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
+            $('#upload_warning').text('You may only upload documents that are in .jpg, or .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
 
             this.value = '';
     }
@@ -377,7 +405,6 @@ file5.onchange = function (e) {
     switch (ext) {
         case 'jpg':
         case 'pdf':
-        case 'tif':
             if (this.files[0].size < 2097152) {
                 $('#warning_parent').hide();
                 $('#file_Upload_Tick_5').show();
@@ -390,7 +417,7 @@ file5.onchange = function (e) {
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_5').hide();
-            $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or .tif formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
+            $('#upload_warning').text('You may only upload documents that are in .jpg, or .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
             this.value = '';
     }
 };
@@ -401,7 +428,6 @@ file6.onchange = function (e) {
     switch (ext) {
         case 'jpg':
         case 'pdf':
-        case 'tif':
             if (this.files[0].size < 2097152) {
                 $('#upload_feedback_label').hide();
                 $('#proof_BAO_Tick_1').show();
@@ -413,7 +439,7 @@ file6.onchange = function (e) {
             break;
         default:
             $('#proof_BAO_Tick_1').hide();
-            $('#upload_feedback_label').text('You may only upload documents that are in .jpg, .pdf, or .tif formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
+            $('#upload_feedback_label').text('You may only upload documents that are in .jpg, or .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
             $('#upload_feedback_label').show();
             this.value = '';
     }
@@ -446,11 +472,7 @@ function buttonSubmitClicked(event) {
     }
 
 
-    if (!$('#illness_upload_invalidCheck_1').is(':checked')) {
-        $("#upload_warning").text('Please don’t forget to tick the box is certify the accuracy of the documents submitted');
-        $("#warning_parent").show();
-        return;
-    }
+   
 
     if (!$('#upload_invalidCheck_2').is(':checked')) {
         $("#upload_warning").text('Please don’t forget to tick the box is certify the accuracy of the documents submitted');

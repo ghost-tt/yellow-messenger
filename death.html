@@ -162,7 +162,8 @@
 																<div class="row">
 																	<div class="col-md-3">
 																		<select class="custom-select-container mr-sm-2" id="field_BeneficiaryMobileNumberSelect" tabindex="10">
-																			<option data-countryCode="IN" value="91" Selected>India (+91)</option>
+																			<option value="63" style="display:none">+63</option>
+																			<option data-countryCode="PH" value="63">Philippines (+63)</option>
 																			<optgroup label="Other countries">
 																				<option data-countryCode="DZ" value="213">Algeria (+213)</option>
 																				<option data-countryCode="AD" value="376">Andorra (+376)</option>
@@ -248,6 +249,7 @@
 																				<option data-countryCode="HN" value="504">Honduras (+504)</option>
 																				<option data-countryCode="HK" value="852">Hong Kong (+852)</option>
 																				<option data-countryCode="HU" value="36">Hungary (+36)</option>
+																				<option data-countryCode="IN" value="91">India (+91)</option>
 																				<option data-countryCode="IS" value="354">Iceland (+354)</option>
 																				<option data-countryCode="ID" value="62">Indonesia (+62)</option>
 																				<option data-countryCode="IR" value="98">Iran (+98)</option>
@@ -476,18 +478,20 @@
 										<input type="checkbox" class="form-check-input" id="privacy_consent_1">
 										<p class="privacy_consent" style="margin-left: 1rem;">I/we agree for the Company to use the information in the insurance policy and all related documents in the design and communication of the Company’s marketing campaigns and offers in order to improve the quality of service the Company provides, and to receive such marketing campaigns.</p>
 									</div>
+									<p id="err_privacy_consent1" class="error" style="margin-left: 5rem"></p>
 								</li>
 								<li style="list-style: none;">
 									<div class="form-group form-check">
 										<input type="checkbox" class="form-check-input" id="privacy_consent_2">
 										<p class="privacy_consent" style="margin-left: 1rem;">I/we agree for the Company to use such information for profiling to develop, enhance and offer me/us financial services and products that the Company considers as suitable for my/our insurance and other financial needs.</p>
 									</div>
+									<p id="err_privacy_consent2" class="error" style="margin-left: 5rem"></p>
 								</li>
 								<li>
 									<p style="margin-left: 1rem;">I/we may at anytime withdraw our consent by visiting Philam branches, calling the Company’s contact center, or by emailing the request to phi.philamprivacy@aia.com. Upon receipt of such withdrawal of consent, the Company will no longer approach me/us for promotions or products that may be suited to my/our insurance needs. I/We am/are assured that this will not affect the Company’s ability to provide quality service in relation to my/our existing policies</p>
 								</li>
 							</ul>
-							<p id="err_privacy_consent" class="error" style="margin-left: 5rem"></p>
+						
 						</div>
 					</div>
 				</div>
@@ -513,7 +517,7 @@
                                                         Upload<input type="file" id="file_Upload_1">
                                                         <span id="file_Upload_Tick_1" class="upload_btn_span">&#10004;</span>
 													</span> <small id="passwordHelpBlock" class="form-text text-muted">
-                                                        Acceptable format .jpg .pdf .tif. & 2MB size.
+                                                        Acceptable format .jpg .pdf & 2MB size.
                                                     </small>
 												</div>
 											</div>
@@ -523,7 +527,7 @@
                                                         Upload<input type="file" id="file_Upload_2">
                                                         <span id="file_Upload_Tick_2" class="upload_btn_span">&#10004;</span>
 													</span> <small id="passwordHelpBlock" class="form-text text-muted">
-                                                        Acceptable format .jpg .pdf .tif. & 2MB size.
+                                                        Acceptable format .jpg .pdf & 2MB size.
                                                     </small>
 												</div>
 											</div>
@@ -535,7 +539,7 @@
                                                         Upload<input type="file" id="file_Upload_3">
                                                         <span id="file_Upload_Tick_3" class="upload_btn_span">&#10004;</span>
 													</span> <small id="passwordHelpBlock" class="form-text text-muted">
-                                                        Acceptable format .jpg .pdf .tif. & 2MB size.
+                                                        Acceptable format .jpg .pdf & 2MB size.
                                                     </small>
 												</div>
 											</div>
@@ -545,7 +549,7 @@
                                                         Upload<input type="file" id="file_Upload_4">
                                                         <span id="file_Upload_Tick_4" class="upload_btn_span">&#10004;</span>
 													</span> <small id="passwordHelpBlock" class="form-text text-muted">
-                                                        Acceptable format .jpg .pdf .tif. & 2MB size.
+                                                        Acceptable format .jpg .pdf & 2MB size.
                                                     </small>
 												</div>
 											</div>
@@ -555,7 +559,7 @@
                                                         Upload<input type="file" id="file_Upload_5">
                                                         <span id="file_Upload_Tick_5" class="upload_btn_span">&#10004;</span>
 													</span> <small id="passwordHelpBlock" class="form-text text-muted">
-                                                        Acceptable format .jpg .pdf .tif. & 2MB size.
+                                                        Acceptable format .jpg .pdf & 2MB size.
                                                     </small>
 												</div>
 											</div>
@@ -565,7 +569,7 @@
                                                         Upload<input type="file" id="file_Upload_6">
                                                         <span id="file_Upload_Tick_6" class="upload_btn_span">&#10004;</span>
 													</span> <small id="passwordHelpBlock" class="form-text text-muted">
-                                                        Acceptable format .jpg .pdf .tif. & 2MB size.
+                                                        Acceptable format .jpg .pdf & 2MB size.
                                                     </small>
 												</div>
 											</div>
@@ -667,7 +671,7 @@
 						<br />
 						<div class="row">
 							<div class="col-9">
-								<p class="font-weight-normal">Hi Alex. Hang in there as we are now processing your request. Kindly expect an update from us within 24 to 48 hours on the status of your request.</p>
+								<p class="font-weight-normal">Hi Alex. Hang in there as we are now processing your request. Kindly expect an update from us within 2 to 4 days on the status of your request.</p>
 								<br />
 								<p class="font-weight-normal">If we would need additional documents to support your request, we will reach out to you immediately.</p>
 								<br />
@@ -682,7 +686,7 @@
 									<br />
 									<div class="time_duration">
 										<div>Turnaround Time</div>
-										<div class="font-weight-bold">24-48 hours</div>
+										<div class="font-weight-bold">2-4 days</div>
 									</div>
 								</div>
 							</div>
@@ -815,7 +819,7 @@
                                                         account documents: Passbook, Bank
                                                         Account Statement, or Bank Certification.
                                                         You may only upload documents that are
-                                                        in .jpg, .pdf, or .tif formats and must not
+                                                        in .jpg, .pdf, or formats and must not
                                                         exceed 2MB in file size.
                                                     </small>
 													<p class="feedback_label" id="upload_feedback_label"></p>
@@ -864,7 +868,8 @@
 													<div class="row">
 														<div class="col-md-3">
 															<select class="custom-select-container mr-sm-2" id="field_addBeneficiaryMobileNumberSelect" tabindex="10">
-																<option data-countryCode="IN" value="91" Selected>India (+91)</option>
+																<option value="63" style="display:none">+63</option>
+																<option data-countryCode="PH" value="63">Philippines (+63)</option>
 																<optgroup label="Other countries">
 																	<option data-countryCode="DZ" value="213">Algeria (+213)</option>
 																	<option data-countryCode="AD" value="376">Andorra (+376)</option>
@@ -950,6 +955,7 @@
 																	<option data-countryCode="HN" value="504">Honduras (+504)</option>
 																	<option data-countryCode="HK" value="852">Hong Kong (+852)</option>
 																	<option data-countryCode="HU" value="36">Hungary (+36)</option>
+																	<option data-countryCode="IN" value="91">India (+91)</option>
 																	<option data-countryCode="IS" value="354">Iceland (+354)</option>
 																	<option data-countryCode="ID" value="62">Indonesia (+62)</option>
 																	<option data-countryCode="IR" value="98">Iran (+98)</option>
@@ -1016,7 +1022,6 @@
 																	<option data-countryCode="PG" value="675">Papua New Guinea (+675)</option>
 																	<option data-countryCode="PY" value="595">Paraguay (+595)</option>
 																	<option data-countryCode="PE" value="51">Peru (+51)</option>
-																	<option data-countryCode="PH" value="63">Philippines (+63)</option>
 																	<option data-countryCode="PL" value="48">Poland (+48)</option>
 																	<option data-countryCode="PT" value="351">Portugal (+351)</option>
 																	<option data-countryCode="PR" value="1787">Puerto Rico (+1787)</option>
@@ -1174,19 +1179,21 @@
 									<div class="form-group form-check">
 										<input type="checkbox" class="form-check-input" id="privacy_consent_beneficiary_1">
 										<p class="privacy_consent" style="margin-left: 1rem;">I/we agree for the Company to use the information in the insurance policy and all related documents in the design and communication of the Company’s marketing campaigns and offers in order to improve the quality of service the Company provides, and to receive such marketing campaigns.</p>
+										<p id="err_beneficiary_privacy_consent1" class="error" style="margin-left: 5rem"></p>
 									</div>
 								</li>
 								<li style="list-style: none;">
 									<div class="form-group form-check">
 										<input type="checkbox" class="form-check-input" id="privacy_consent_beneficiary_2">
 										<p class="privacy_consent" style="margin-left: 1rem;">I/we agree for the Company to use such information for profiling to develop, enhance and offer me/us financial services and products that the Company considers as suitable for my/our insurance and other financial needs.</p>
+										<p id="err_beneficiary_privacy_consent2" class="error" style="margin-left: 5rem"></p>
 									</div>
 								</li>
 								<li>
 									<p style="margin-left: 1rem;">I/we may at anytime withdraw our consent by visiting Philam branches, calling the Company’s contact center, or by emailing the request to phi.philamprivacy@aia.com. Upon receipt of such withdrawal of consent, the Company will no longer approach me/us for promotions or products that may be suited to my/our insurance needs. I/We am/are assured that this will not affect the Company’s ability to provide quality service in relation to my/our existing policies</p>
 								</li>
 							</ul>
-							<p id="err_beneficiary_privacy_consent" class="error" style="margin-left: 5rem"></p>
+					
 						</div>
 					</div>
 				</div>
