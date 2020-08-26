@@ -140,14 +140,38 @@
     <script>
         function getAccidentPage() {
             console.log('get accident page ');
+            window.parent.postMessage(JSON.stringify({
+                        event_code: 'ym-client-event', data: JSON.stringify({
+                            event: {
+                                code: "nextaction",
+                                data: "accident"
+                            }
+                        })
+                    }), '*');
         }
 
         function getIllnessPage() {
             console.log('get illness page ');
+            window.parent.postMessage(JSON.stringify({
+                        event_code: 'ym-client-event', data: JSON.stringify({
+                            event: {
+                                code: "nextaction",
+                                data: "illness"
+                            }
+                        })
+                    }), '*');
         }
 
         function getDeathPage() {
             console.log('get death page ');
+            window.parent.postMessage(JSON.stringify({
+                        event_code: 'ym-client-event', data: JSON.stringify({
+                            event: {
+                                code: "nextaction",
+                                data: "death"
+                            }
+                        })
+                    }), '*');
         }
 
     </script>
