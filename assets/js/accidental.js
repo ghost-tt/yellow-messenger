@@ -24,7 +24,6 @@ form_Bank.addEventListener('submit', handleAccountInfo);
     })
 }) */
 $(document).ready(function(event){
-    event.preventDefault();
     disableFutureDates();
     setCountryCode();
 });

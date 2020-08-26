@@ -13,7 +13,6 @@ death__form_addBeneficiary.addEventListener('submit', handleFormAddBeneficiary);
 form_Bank.addEventListener('submit', handleAccountInfo);
 
 $(document).ready(function(event){
-    event.preventDefault();
     disableFutureDates();
     setCountryCode();
 });
