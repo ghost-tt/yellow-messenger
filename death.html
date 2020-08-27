@@ -98,23 +98,23 @@
 														<div class="form-row">
 															<div class="col-md-12 form__tags">
 																<label for="validationCustom01">What is the Insured’s first name?</label>
-																<input type="text" class="input__box" id="field_firstName" value="" placeholder="First Name" tabindex="1" onkeypress="return isNotNumber(event)" required />
+																<input type="text" class="input__box" id="field_firstName" value="" placeholder="First Name" tabindex="1" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 																<div id="err_field_firstName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="validationCustom02">What is the Insured’s middle name?</label>
-																<input type="text" class="input__box" id="field_middleName" value="" placeholder="Middle Name" tabindex="2" onkeypress="return isNotNumber(event)" required />
+																<input type="text" class="input__box" id="field_middleName" value="" placeholder="Middle Name" tabindex="2" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 																<div id="err_field_middleName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="validationCustom02">What is the Insured’s last name?</label>
 																<div class="row">
 																	<div class="col-md-9">
-																		<input type="text" class="input__box" id="field_lastName" value="" placeholder="Last Name" tabindex="3" onkeypress="return isNotNumber(event)" required />
+																		<input type="text" class="input__box" id="field_lastName" value="" placeholder="Last Name" tabindex="3" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 																		<div id="err_field_lastName" class="error"></div>
 																	</div>
 																	<div class="col-md-3">
-																		<input type="text" class="input__box" id="field_lastName_Suffix" value="" placeholder="Suffix" tabindex="4" onkeypress="return isNotNumber(event)" required />
+																		<input type="text" class="input__box" id="field_lastName_Suffix" value="" placeholder="Suffix" tabindex="4" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 																		<div id="err_field_lastName_Suffix" class="error"></div>
 																	</div>
 																</div>
@@ -144,17 +144,17 @@
 														<div class="form-row">
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryFirstName">What is the Beneficiary’s first name?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryFirstName" value="" placeholder="First Name" tabindex="7" onkeypress="return isNotNumber(event)" required />
+																<input type="text" class="input__box" id="field_BeneficiaryFirstName" value="" placeholder="First Name" tabindex="7" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 																<div id="err_field_BeneficiaryFirstName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryMiddleName">What is the Beneficiary’s middle name?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryMiddleName" value="" placeholder="Middle Name (If married, provide maiden name)" tabindex="8" onkeypress="return isNotNumber(event)" required />
+																<input type="text" class="input__box" id="field_BeneficiaryMiddleName" value="" placeholder="Middle Name (If married, provide maiden name)" tabindex="8" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 																<div id="err_field_BeneficiaryMiddleName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryLastName">What is the Beneficiary’s last name?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryLastName" value="" placeholder="Last Name (if married, provide maiden name)" tabindex="9" onkeypress="return isNotNumber(event)" required />
+																<input type="text" class="input__box" id="field_BeneficiaryLastName" value="" placeholder="Last Name (if married, provide maiden name)" tabindex="9" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 																<div id="err_field_BeneficiaryLastName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
@@ -630,7 +630,7 @@
 						<div class="col-md-11 offset-md-1" style="margin-top: 4rem;">
 							<p class="privacy_title">SECTION 251 OF THE INSURANCE CODE</p>
 							<p style="margin: 2rem 0 2rem 0;">Section 251 of the Insurance Code, as amended, imposes a fine not exceeding twice the amount claimed and/or imprisonment of two (2) years, or both, at the discretion of the court, to any person who presents or causes to be presented any fraudulent claim for the payment of a loss under a contract of insurance, and who fraudulently prepares, makes or subscribes any writing with intent to present or use the same, or to allow it to be presented in support of any claim.</p>
-							<p style="margin: 2rem 0;">A copy of Circular Letter No. 2016-50 may be accessed at the Insurance Commission’s website at www.insurance.gov.ph.</p>
+							<p style="margin: 2rem 0;">A copy of Circular Letter No. 2016-50 may be accessed at the Insurance Commission’s website at   <a href="# www.insurance.gov.ph.">www.insurance.gov.ph.</a></p>
 						</div>
 					</div>
 				</div>
@@ -721,7 +721,7 @@
 											<div class="form-row">
 												<div class="col-md-12 form__tags">
 													<label for="validation">What is your account name?</label>
-													<input type="text" class="input__box" id="field_AccountName" value="" placeholder="Account Name" tabindex="17" onkeypress="return isNotNumber(event)" required />
+													<input type="text" class="input__box" id="field_AccountName" value="" placeholder="Account Name" tabindex="17" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 													<div id="err_field_AccountName" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
@@ -735,12 +735,12 @@
 											<div class="form-row">
 												<div class="col-md-12 form__tags">
 													<label for="validation">What is your bank?</label>
-													<input type="text" class="input__box" id="field_Bank" value="" placeholder="Bank" tabindex="20" onkeypress="return isNotNumber(event)" required />
+													<input type="text" class="input__box" id="field_Bank" value="" placeholder="Bank" tabindex="20" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 													<div id="err_field_Bank" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="validation">What is your bank’s branch?</label>
-													<input type="text" class="input__box" id="field_Branch" value="" placeholder="Branch" tabindex="21" onkeypress="return isNotNumber(event)" required />
+													<input type="text" class="input__box" id="field_Branch" value="" placeholder="Branch" tabindex="21" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 													<div id="err_field_Branch" class="error"></div>
 												</div>
 											</div>
@@ -850,17 +850,17 @@
 											<div class="form-row">
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryFirstName">What is the Beneficiary’s first name?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryFirstName" value="" placeholder="First Name" tabindex="7" onkeypress="return isNotNumber(event)" required />
+													<input type="text" class="input__box" id="field_addBeneficiaryFirstName" value="" placeholder="First Name" tabindex="7" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 													<div id="err_field_addBeneficiaryFirstName" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryMiddleName">What is the Beneficiary’s middle name?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryMiddleName" value="" placeholder="Middle Name (If married, provide maiden name)" tabindex="8" onkeypress="return isNotNumber(event)" required />
+													<input type="text" class="input__box" id="field_addBeneficiaryMiddleName" value="" placeholder="Middle Name (If married, provide maiden name)" tabindex="8" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 													<div id="err_field_addBeneficiaryMiddleName" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryLastName">What is the Beneficiary’s last name?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryLastName" value="" placeholder="Last Name (if married, provide maiden name)" tabindex="9" onkeypress="return isNotNumber(event)" required />
+													<input type="text" class="input__box" id="field_addBeneficiaryLastName" value="" placeholder="Last Name (if married, provide maiden name)" tabindex="9" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
 													<div id="err_field_addBeneficiaryLastName" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">

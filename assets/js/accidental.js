@@ -115,6 +115,20 @@ function isNumber(evt) {
     $(`#err_${evt.target.id}`).hide();
     return true;
 }
+ 
+function checkSpcialChar(evt){
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if(!((evt.charCode >= 65) && (evt.charCode <= 90) || (evt.charCode >= 97) 
+    && (evt.charCode <= 122)|| (evt.charCode >= 48) && (evt.charCode <= 57) || (evt.charCode == 32))){
+        $(`#err_${evt.target.id}`).text("special character is not allowed");
+        $(`#err_${evt.target.id}`).show(); 
+       return false;
+    }
+    $(`#err_${evt.target.id}`).text("");
+    $(`#err_${evt.target.id}`).hide();
+    return true;
+ } 
 
 function isNotNumber(evt) {
     $(`#err_${evt.target.id}`).text("");
@@ -314,6 +328,7 @@ function removeErr(event) {
 }
 
 file1.onchange = function (e) {
+    $('#file_Upload_Tick_1').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
         case 'jpg':
@@ -337,6 +352,7 @@ file1.onchange = function (e) {
 };
 
 file2.onchange = function (e) {
+    $('#file_Upload_Tick_2').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
         case 'jpg':
@@ -362,6 +378,7 @@ file2.onchange = function (e) {
 };
 
 file3.onchange = function (e) {
+    $('#file_Upload_Tick_3').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
         case 'jpg':
@@ -387,6 +404,7 @@ file3.onchange = function (e) {
 };
 
 file4.onchange = function (e) {
+    $('#file_Upload_Tick_4').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
         case 'jpg':
@@ -412,6 +430,7 @@ file4.onchange = function (e) {
 };
 
 file5.onchange = function (e) {
+    $('#file_Upload_Tick_5').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
         case 'jpg':
@@ -435,6 +454,7 @@ file5.onchange = function (e) {
 };
 
 file6.onchange = function (e) {
+    $('#proof_BAO_Tick_1').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
         case 'jpg':
@@ -461,13 +481,13 @@ function buttonSubmitClicked(event) {
     event.preventDefault();
     if (!file1.value) {
         $('#warning_parent').show();
-        $('#upload_warning').text('Please upload your government id front!');
+        $('#upload_warning').text('Please upload your Valid Government ID (Front)');
         return;
     }
 
     if (!file2.value) {
         $('#warning_parent').show();
-        $('#upload_warning').text('Please upload your government id back!');
+        $('#upload_warning').text('Please upload your Valid Government ID (Back)');
         return;
     }
 

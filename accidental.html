@@ -123,7 +123,7 @@
                                                         <input type="text" class="input__box"
                                                             id="field_firstName" value=""
                                                             placeholder="First Name" tabindex="1"
-                                                            onkeypress="return isNotNumber(event)"
+                                                            onkeypress="return isNotNumber(event) && checkSpcialChar(event)"
                                                             required />
                                                         <div id="err_field_firstName" class="error"></div>
                                                     </div>
@@ -134,7 +134,7 @@
                                                         <input type="text" class="input__box"
                                                             id="field_middleName" value=""
                                                             placeholder="Middle Name" tabindex="2"
-                                                            onkeypress="return isNotNumber(event)"
+                                                            onkeypress="return isNotNumber(event) && checkSpcialChar(event)"
                                                             required />
                                                         <div id="err_field_middleName" class="error"></div>
                                                     </div>
@@ -164,7 +164,7 @@
                                                             <input type="text" class="input__box"
                                                                 id="field_lastName" value=""
                                                                 placeholder="Last Name" tabindex="3"
-                                                                onkeypress="return isNotNumber(event)"
+                                                                onkeypress="return isNotNumber(event) && checkSpcialChar(event)"
                                                                 required />
                                                             <div id="err_field_lastName" class="error">
                                                             </div>
@@ -173,7 +173,7 @@
                                                             <input type="text" class="input__box"
                                                                 id="field_lastName_Suffix" value=""
                                                                 placeholder="Suffix" tabindex="4"
-                                                                onkeypress="return isNotNumber(event)"
+                                                                onkeypress="return isNotNumber(event) && checkSpcialChar(event)"
                                                                 required />
                                                             <div id="err_field_lastName_Suffix"
                                                                 class="error"></div>
@@ -1226,7 +1226,7 @@
                                 A copy of Circular Letter No. 2016-50 may be accessed at the Insurance Commission’s
                                 website
                                 at
-                                www.insurance.gov.ph.
+                                  <a href="# www.insurance.gov.ph.">www.insurance.gov.ph.</a>
                             </p>
                         </div>
                     </div>
@@ -1339,7 +1339,7 @@
                                                     <label for="validation">What is your account name?</label>
                                                     <input type="text" class="input__box" id="field_AccountName"
                                                         value="" placeholder="Account Name" tabindex="17"
-                                                        onkeypress="return isNotNumber(event)" required />
+                                                        onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
                                                     <div id="err_field_AccountName" class="error"></div>
                                                 </div>
                                                 <div class="col-md-12 form__tags">
@@ -1357,14 +1357,14 @@
                                                     <label for="validation">What is your bank?</label>
                                                     <input type="text" class="input__box" id="field_Bank" value=""
                                                         placeholder="Bank" tabindex="20"
-                                                        onkeypress="return isNotNumber(event)" required />
+                                                        onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
                                                     <div id="err_field_Bank" class="error"></div>
                                                 </div>
                                                 <div class="col-md-12 form__tags">
                                                     <label for="validation">What is your bank’s branch?</label>
                                                     <input type="text" class="input__box" id="field_Branch" value=""
                                                         placeholder="Branch" tabindex="21"
-                                                        onkeypress="return isNotNumber(event)" required />
+                                                        onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
                                                     <div id="err_field_Branch" class="error"></div>
                                                 </div>
                                             </div>
@@ -1376,7 +1376,7 @@
                                                     <label for="validation">What is your account’s currency?</label>
                                                     <!-- <input type="text" class="input__box" id="field_Currency" value=""
                                                         placeholder="Currency" tabindex="19"
-                                                        onkeypress="return isNotNumber(event)" required /> -->
+                                                        onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required /> -->
                                                         <select id="from_currency" class="custom-select-container mr-sm-2 " tabindex="19">
                                                             <option value="AED">AED</option>
                                                             <option value="ARS">ARS</option>
@@ -1402,7 +1402,7 @@
                                                             <option value="HUF">HUF</option>
                                                             <option value="IDR">IDR</option>
                                                             <option value="ILS">ILS</option>
-                                                            <option value="INR" selected>INR</option>
+                                                            <option value="INR">INR</option>
                                                             <option value="ISK">ISK</option>
                                                             <option value="JPY">JPY</option>
                                                             <option value="KRW">KRW</option>

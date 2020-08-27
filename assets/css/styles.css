@@ -488,19 +488,20 @@ svg > path {
   position: absolute;
   top: 36px;
   height: 1px;
+  /* margin-left: 119px; */
   border-top: 1px solid #007bff;
 }
 
 .md-stepper-horizontal .md-step .md-step-bar-right {
   right: 0;
   left: 50%;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 .md-stepper-horizontal .md-step .md-step-bar-left {
   left: 0;
   right: 50%;
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
 
