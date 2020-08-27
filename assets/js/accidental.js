@@ -14,6 +14,9 @@ var file4 = document.getElementById('file_Upload_4');
 var file5 = document.getElementById('file_Upload_5');
 var file6 = document.getElementById('proof_BAO');
 
+$('#privacy_consent_1').prop('checked', true);
+$('#privacy_consent_2').prop('checked', true);
+
 form.addEventListener('submit', handleForm);
 form_Bank.addEventListener('submit', handleAccountInfo);
 

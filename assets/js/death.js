@@ -8,6 +8,13 @@ var file4 = document.getElementById('file_Upload_4');
 var file5 = document.getElementById('file_Upload_5');
 var file6 = document.getElementById('file_Upload_6');
 var file7 = document.getElementById('file_Upload_7');
+
+$('#privacy_consent_1').prop('checked', true);
+$('#privacy_consent_2').prop('checked', true);
+
+$('#privacy_consent_beneficiary_1').prop('checked', true);
+$('#privacy_consent_beneficiary_2').prop('checked', true);
+
 form.addEventListener('submit', handleForm);
 death__form_addBeneficiary.addEventListener('submit', handleFormAddBeneficiary);
 form_Bank.addEventListener('submit', handleAccountInfo);

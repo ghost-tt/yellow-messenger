@@ -13,6 +13,9 @@ var file3 = document.getElementById('illness_file_Upload_3');
 var file5 = document.getElementById('illness_file_Upload_5');
 var file6 = document.getElementById('proof_BAO');
 
+$('#privacy_consent_1').prop('checked', true);
+$('#privacy_consent_2').prop('checked', true);
+
 form.addEventListener('submit', handleForm);
 form_Bank.addEventListener('submit', handleAccountInfo);
 
