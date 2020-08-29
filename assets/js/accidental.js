@@ -13,9 +13,14 @@ var file3 = document.getElementById('file_Upload_3');
 var file4 = document.getElementById('file_Upload_4');
 var file5 = document.getElementById('file_Upload_5');
 var file6 = document.getElementById('proof_BAO');
+var file7 = document.getElementById('proof_addBAO');
+
 
 $('#privacy_consent_1').prop('checked', true);
 $('#privacy_consent_2').prop('checked', true);
+
+var form_addBank = document.getElementById("addbank_form");
+form_addBank.addEventListener('submit', handleAddBankInfo);
 
 form.addEventListener('submit', handleForm);
 form_Bank.addEventListener('submit', handleAccountInfo);
@@ -480,6 +485,31 @@ file6.onchange = function (e) {
     }
 };
 
+file7.onchange = function (e) {
+    $('#proof_addBAO_Tick_1').hide();
+    var ext = this.value.match(/\.([^\.]+)$/)[1];
+    switch (ext) {
+        case 'jpg':
+        case 'pdf':
+            if (this.files[0].size < 2097152) {
+                $('#upload_feedback_label1').hide();
+                $('#proof_addBAO_Tick_1').show();
+                return
+            }
+            $('#proof_addBAO_Tick_1').hide();
+            $('#upload_feedback_label1').show();
+            $('#upload_feedback_label1').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+            break;
+        default:
+            $('#proof_addBAO_Tick_1').hide();
+            $('#upload_feedback_label1').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
+            $('#upload_feedback_label1').show();
+            this.value = '';
+    }
+};
+
+
+
 function buttonSubmitClicked(event) {
     event.preventDefault();
     if (!file1.value) {
@@ -618,4 +648,74 @@ function pickUp() {
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
     $("#step3").addClass("done");
+}
+
+function addBank(event) {
+     event.preventDefault();
+     $('#account_details').hide();
+     $('#requirements').hide();
+     $('#account_details1').show();
+     $('#account_details1')[0].scrollIntoView(true);
+ }
+
+ function handleAddBankInfo(event) {
+    event.preventDefault();
+    var field_AccountName1 = $("#field_AccountName1").val();
+    var field_AccountNumber1 = $("#field_AccountNumber1").val();
+    var field_Bank1 = $("#field_Bank1").val();
+    var field_Branch1 = $("#field_Branch1").val();
+
+    if (field_AccountName1.length === 0) {
+        $("#err_field_AccountName1").text('Field is empty');
+        $("#err_field_AccountName1").show();
+    } else {
+        $("#err_field_AccountName1").text('');
+        $("#err_field_AccountName1").hide();
+    }
+
+    if (field_AccountNumber1.length === 0) {
+        $("#err_field_AccountNumber1").text('Field is empty');
+        $("#err_field_AccountNumber1").show();
+    } else {
+        $("#err_field_AccountNumber1").text('');
+        $("#err_field_AccountNumber1").hide();
+    }
+
+    if (field_Bank1.length === 0) {
+        $("#err_field_Bank1").text('Field is empty');
+        $("#err_field_Bank1").show();
+    } else {
+        $("#err_field_Bank1").text('');
+        $("#err_field_Bank1").hide();
+    }
+
+    if (field_Branch1.length === 0) {
+        $("#err_field_Branch1").text('Field is empty');
+        $("#err_field_Branch1").show();
+    } else {
+        $("#err_field_Branch1").text('');
+        $("#err_field_Branch1").hide();
+    }
+
+    if (!file7.value) {
+        $('#upload_feedback_label1').show();
+        $('#upload_feedback_label1').text('Please upload your Bank Account Ownership');
+    }
+
+    if (field_AccountName1.length !== 0 && field_AccountNumber1.length !== 0 && field_Bank1.length !== 0 && field_Branch1.length !== 0 && file7.length !== 0) {
+        const data = {
+            field_AccountName1,
+            field_AccountNumber1,
+            field_Bank1,
+            field_Branch1,
+            field_Currency: $("select#from_currency option").filter(":selected").val(),
+            upload_file_6: file7.value
+        }
+        $("#step3").addClass("active");
+        $("#step3>div").addClass("active");
+        $("#step3").addClass("done");
+        $('#account_details1').hide();
+        $('#process_confirmation').show();
+        console.log('Data -> ', data)
+    }
 }

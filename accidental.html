@@ -1445,18 +1445,25 @@
                                                             class="upload_btn_span">&#10004;</span>
                                                     </span>
                                                     <small class="form-text text-muted">
-                                                        Please upload any of the following bank
-                                                        account documents: Passbook, Bank
-                                                        Account Statement, or Bank Certification.
-                                                        You may only upload documents that are
-                                                        in .jpg, .pdf, or formats and must not
-                                                        exceed 2MB in file size.
+                                                        Acceptable format .jpg .pdf & 2MB size
                                                     </small>
                                                     <p class="feedback_label" id="upload_feedback_label"></p>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn submit__btn"
-                                                style="width: 50%; margin: 3rem 0;">Submit</button>
+                                            <!-- <button type="submit" class="btn submit__btn"
+                                                style="width: 50%; margin: 3rem 0;">Submit</button> -->
+                                        </div>
+                                        <div class="col-12 col-md-12">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <button type="submit" onclick="addBank(event)" class="btn" style="margin: 3.5rem 0 0 0;">CHANGE BANK ACCOUNT</button>
+                                                </div>
+                                                <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
+                                                    <div style="width: 50%;">
+                                                        <button type="submit" class="btn" style="width: 100%; margin: 3rem 0;">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1466,6 +1473,170 @@
                 </div>
             </div>
         </section>
+		
+		
+        <section class="hide" id="account_details1" style="margin-top: 2rem;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-11 offset-md-1" id="stepper_intro">
+                        <div class="stepper__description">
+                            <h3 class="stepper__description__title">Bank Transfer</h3>
+                            <div class="stepper__description__info">
+                                <p class="lead font-weight-normal">We have your bank details on file</p>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="form_wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-11 offset-md-1">
+                            <form id="addbank_form" onSubmit="return false;" novalidate>
+                                <div role="tabpanel" aria-labelledby="stepperFormTrigger1">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-row">
+                                                <div class="col-md-12 form__tags">
+                                                    <label for="validation">What is your account name?</label>
+                                                    <input type="text" class="input__box" id="field_AccountName1"
+                                                        value="" placeholder="Account Name" tabindex="17"
+                                                        onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+                                                    <div id="err_field_AccountName1" class="error"></div>
+                                                </div>
+                                                <div class="col-md-12 form__tags">
+                                                    <label for="validation">What is your account number?</label>
+                                                    <input type="text" class="input__box" id="field_AccountNumber1"
+                                                        value="" placeholder="Account Number" tabindex="18"
+                                                        onkeypress="return isNumber(event)" required />
+                                                    <div id="err_field_AccountNumber1" class="error"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-row">
+                                                <div class="col-md-12 form__tags">
+                                                    <label for="validation">What is your bank?</label>
+                                                    <input type="text" class="input__box" id="field_Bank1" value=""
+                                                        placeholder="Bank" tabindex="20"
+                                                        onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+                                                    <div id="err_field_Bank1" class="error"></div>
+                                                </div>
+                                                <div class="col-md-12 form__tags">
+                                                    <label for="validation">What is your bank’s branch?</label>
+                                                    <input type="text" class="input__box" id="field_Branch1" value=""
+                                                        placeholder="Branch" tabindex="21"
+                                                        onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+                                                    <div id="err_field_Branch1" class="error"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-row">
+                                                <div class="col-md-12 form__tags">
+                                                    <label for="validation">What is your account’s currency?</label>
+                                                    <!-- <input type="text" class="input__box" id="field_Currency" value=""
+                                                        placeholder="Currency" tabindex="19"
+                                                        onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required /> -->
+                                                        <select id="from_currency1" class="custom-select-container mr-sm-2 " tabindex="19">
+                                                            <option value="AED">AED</option>
+                                                            <option value="ARS">ARS</option>
+                                                            <option value="AUD">AUD</option>
+                                                            <option value="BGN">BGN</option>
+                                                            <option value="BRL">BRL</option>
+                                                            <option value="BSD">BSD</option>
+                                                            <option value="CAD">CAD</option>
+                                                            <option value="CHF">CHF</option>
+                                                            <option value="CLP">CLP</option>
+                                                            <option value="CNY">CNY</option>
+                                                            <option value="COP">COP</option>
+                                                            <option value="CZK">CZK</option>
+                                                            <option value="DKK">DKK</option>
+                                                            <option value="DOP">DOP</option>
+                                                            <option value="EGP">EGP</option>
+                                                            <option value="EUR">EUR</option>
+                                                            <option value="FJD">FJD</option>
+                                                            <option value="GBP">GBP</option>
+                                                            <option value="GTQ">GTQ</option>
+                                                            <option value="HKD">HKD</option>
+                                                            <option value="HRK">HRK</option>
+                                                            <option value="HUF">HUF</option>
+                                                            <option value="IDR">IDR</option>
+                                                            <option value="ILS">ILS</option>
+                                                            <option value="INR">INR</option>
+                                                            <option value="ISK">ISK</option>
+                                                            <option value="JPY">JPY</option>
+                                                            <option value="KRW">KRW</option>
+                                                            <option value="KZT">KZT</option>
+                                                            <option value="MXN">MXN</option>
+                                                            <option value="MYR">MYR</option>
+                                                            <option value="NOK">NOK</option>
+                                                            <option value="NZD">NZD</option>
+                                                            <option value="PAB">PAB</option>
+                                                            <option value="PEN">PEN</option>
+                                                            <option value="PHP">PHP</option>
+                                                            <option value="PKR">PKR</option>
+                                                            <option value="PLN">PLN</option>
+                                                            <option value="PYG">PYG</option>
+                                                            <option value="RON">RON</option>
+                                                            <option value="RUB">RUB</option>
+                                                            <option value="SAR">SAR</option>
+                                                            <option value="SEK">SEK</option>
+                                                            <option value="SGD">SGD</option>
+                                                            <option value="THB">THB</option>
+                                                            <option value="TRY">TRY</option>
+                                                            <option value="TWD">TWD</option>
+                                                            <option value="UAH">UAH</option>
+                                                            <option value="USD">USD</option>
+                                                            <option value="UYU">UYU</option>
+                                                            <option value="VND">VND</option>
+                                                            <option value="ZAR">ZAR</option>
+                                                        </select>
+                                                    <div id="err_field_Currency1" class="error"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-row">
+                                                <div style="padding: 0; margin: 1.5rem 0;">
+                                                    <p class="upload_btn_title">Proof of Bank Account Ownership</p>
+                                                    <span class="btn btn-file" tabindex="22">
+                                                        Upload<input type="file" id="proof_addBAO" />
+                                                        <span id="proof_addBAO_Tick_1"
+                                                            class="upload_btn_span">&#10004;</span>
+                                                    </span>
+                                                    <small class="form-text text-muted">
+                                                        Acceptable format .jpg .pdf & 2MB size
+                                                    </small>
+                                                    <p class="feedback_label" id="upload_feedback_label1"></p>
+                                                </div>
+                                            </div>
+                                             <button type="submit" class="btn submit__btn"
+                                                style="width: 50%; margin: 3rem 0;">Submit</button>
+                                        </div>
+                                        <!-- <div class="col-12 col-md-12">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <button type="submit" class="btn" style="margin: 3.5rem 0 0 0;">CHANGE BANK ACCOUNT</button>
+                                                </div>
+                                                <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
+                                                    <div style="width: 50%;">
+                                                        <button type="submit" class="btn" style="width: 100%; margin: 3rem 0;">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
 
 
     </main>
