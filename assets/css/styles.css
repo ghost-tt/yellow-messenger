@@ -268,7 +268,8 @@ small {
 .card {
   border: 1px solid red;
   color: red;
-  margin: 4rem 0;
+  /* margin: 4rem 0; */
+  margin-bottom: 4rem;
 }
 
 #warning_parent {

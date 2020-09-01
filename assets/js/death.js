@@ -122,9 +122,24 @@ function handleFormAddBeneficiary(event) {
     var field_addBeneficiaryNationality = $("#field_addBeneficiaryNationality").val();
     var field_addBeneficiarySex = $("#field_addBeneficiarySex").val();
     var field_addBeneficiaryRelationToDeceased = $("#field_addBeneficiaryRelationToDeceased").val();
+    var speciAddBeniFirstName = specialcharacterValidation(field_addBeneficiaryFirstName);
+    var numAddBeniFirstName = numberValidation(field_addBeneficiaryFirstName);
+    var numAddBeniMobile = onlyNumberValidate(field_addBeneficiaryMobileNum);
+    var speciAddBeniMiddleName = specialcharacterValidation(field_addBeneficiaryMiddleName);
+    var numAddBeniMiddleName = numberValidation(field_addBeneficiaryMiddleName);
+    var speciAddBeniLastName = specialcharacterValidation(field_addBeneficiaryLastName);
+    var numAddBeniLastName = numberValidation(field_addBeneficiaryLastName);
+
+
     
     if (field_addBeneficiaryFirstName.length === 0) {
         $("#err_field_addBeneficiaryFirstName").text('Field is empty');
+        $("#err_field_addBeneficiaryFirstName").show();
+    } else if(speciAddBeniFirstName == true ){
+        $("#err_field_addBeneficiaryFirstName").text('Special character is not allowed');
+        $("#err_field_addBeneficiaryFirstName").show();
+    } else if(numAddBeniFirstName) {
+        $("#err_field_addBeneficiaryFirstName").text('Number is not allowed');
         $("#err_field_addBeneficiaryFirstName").show();
     } else {
         $("#err_field_addBeneficiaryFirstName").text('');
@@ -134,7 +149,13 @@ function handleFormAddBeneficiary(event) {
     if (field_addBeneficiaryMiddleName.length === 0) {
         $("#err_field_addBeneficiaryMiddleName").text('Field is empty');
         $("#err_field_addBeneficiaryMiddleName").show();
-    } else {
+    } else if(speciAddBeniMiddleName) {
+        $("#err_field_addBeneficiaryMiddleName").text('Special character is not allowed');
+        $("#err_field_addBeneficiaryMiddleName").show();
+    } else if(numAddBeniMiddleName) {
+        $("#err_field_addBeneficiaryMiddleName").text('Number is not allowed');
+        $("#err_field_addBeneficiaryMiddleName").show();
+    }  else {
         $("#err_field_addBeneficiaryMiddleName").text('');
         $("#err_field_addBeneficiaryMiddleName").hide();
     }
@@ -142,13 +163,22 @@ function handleFormAddBeneficiary(event) {
     if (field_addBeneficiaryLastName.length === 0) {
         $("#err_field_addBeneficiaryLastName").text('Field is empty');
         $("#err_field_addBeneficiaryLastName").show();
-    } else {
+    } else if (speciAddBeniLastName){
+        $("#err_field_addBeneficiaryLastName").text('Special character is not allowed');
+        $("#err_field_addBeneficiaryLastName").show();
+    } else if (numAddBeniLastName) {
+        $("#err_field_addBeneficiaryLastName").text('Number is not allowed');
+        $("#err_field_addBeneficiaryLastName").show();
+    }   else {
         $("#err_field_addBeneficiaryLastName").text('');
         $("#err_field_addBeneficiaryLastName").hide();
     }
 
     if (field_addBeneficiaryMobileNum.length === 0) {
         $("#err_field_addBeneficiaryMobileNum").text('Field is empty');
+        $("#err_field_addBeneficiaryMobileNum").show();
+    } else if (!numAddBeniMobile){
+        $("#err_field_addBeneficiaryMobileNum").text('Only number is allowed!');
         $("#err_field_addBeneficiaryMobileNum").show();
     } else {
         $("#err_field_addBeneficiaryMobileNum").text('');
@@ -278,6 +308,38 @@ function handleFormAddBeneficiary(event) {
     }
 }
 
+function specialcharacterValidation(input) {
+    var regex = /^[A-Za-z0-9 ]+$/
+    var firstNameValid = regex.test(input);
+    if (!firstNameValid) {
+        return true;
+    } else {
+       return false;
+    }
+} 
+
+
+function numberValidation(input) {
+    var regex =  /^([^0-9]*)$/;
+    var firstNameValid = regex.test(input);
+    if (!firstNameValid) {
+        return true;
+    } else {
+       return false;
+    }
+} 
+
+function onlyNumberValidate(input) {
+    var regex =  /^[0-9]*$/;
+    var firstNameValid = regex.test(input);
+    if (firstNameValid) {
+        return true;
+    } else {
+       return false;
+    }
+} 
+
+
 function handleForm(event) {
     event.preventDefault();
     var field_firstName = $("#field_firstName").val();
@@ -297,10 +359,29 @@ function handleForm(event) {
     var field_BeneficiaryNationality = $("#field_BeneficiaryNationality").val();
     var field_BeneficiarySex = $("#field_BeneficiarySex").val();
     var field_BeneficiaryRelationToDeceased = $("#field_BeneficiaryRelationToDeceased").val();
-
+    
+    var specFirstName = specialcharacterValidation(field_firstName);
+    var  specMiddleName = specialcharacterValidation(field_middleName);
+    var specLastName = specialcharacterValidation(field_lastName);
+    var numFirstName = numberValidation(field_firstName);
+    var numMiddleName = numberValidation(field_middleName)
+    var numLastName = numberValidation(field_lastName);
+    var speciBeniFirstName = specialcharacterValidation(field_BeneficiaryFirstName);
+    var numBeniFirstName = numberValidation(field_BeneficiaryFirstName);
+    var numberMobile = onlyNumberValidate(field_BeneficiaryMobileNum);
+    var speciBeniMiddleName = specialcharacterValidation(field_BeneficiaryMiddleName);
+    var numBeniMiddleName = numberValidation(field_BeneficiaryMiddleName);
+    var speciBeniLastName = specialcharacterValidation(field_BeneficiaryLastName);
+    var numBeniLastName = numberValidation(field_BeneficiaryLastName);
 
     if (field_firstName.length === 0) {
         $("#err_field_firstName").text('Field is empty');
+        $("#err_field_firstName").show();
+    } else if(specFirstName == true ){
+        $("#err_field_firstName").text('Special character is not allowed');
+        $("#err_field_firstName").show();
+    } else if(numFirstName) {
+        $("#err_field_firstName").text('Number is not allowed');
         $("#err_field_firstName").show();
     } else {
         $("#err_field_firstName").text('');
@@ -310,13 +391,25 @@ function handleForm(event) {
     if (field_middleName.length === 0) {
         $("#err_field_middleName").text('Field is empty');
         $("#err_field_middleName").show();
-    } else {
+    } else if(specMiddleName) {
+        $("#err_field_middleName").text('Special character is not allowed');
+        $("#err_field_middleName").show();
+    } else if(numMiddleName) {
+        $("#err_field_middleName").text('Number is not allowed');
+        $("#err_field_middleName").show();
+    }   else {
         $("#err_field_middleName").text('');
         $("#err_field_middleName").hide();
     }
 
     if (field_lastName.length === 0) {
         $("#err_field_lastName").text('Field is empty');
+        $("#err_field_lastName").show();
+    } else if (specLastName){
+        $("#err_field_lastName").text('Special character is not allowed');
+        $("#err_field_lastName").show();
+    } else if (numLastName) {
+        $("#err_field_lastName").text('Number is not allowed');
         $("#err_field_lastName").show();
     } else {
         $("#err_field_lastName").text('');
@@ -343,6 +436,12 @@ function handleForm(event) {
     if (field_BeneficiaryFirstName.length === 0) {
         $("#err_field_BeneficiaryFirstName").text('Field is empty');
         $("#err_field_BeneficiaryFirstName").show();
+    } else if(speciBeniFirstName == true ){
+        $("#err_field_BeneficiaryFirstName").text('Special character is not allowed');
+        $("#err_field_BeneficiaryFirstName").show();
+    } else if(numBeniFirstName) {
+        $("#err_field_BeneficiaryFirstName").text('Number is not allowed');
+        $("#err_field_BeneficiaryFirstName").show();
     } else {
         $("#err_field_BeneficiaryFirstName").text('');
         $("#err_field_BeneficiaryFirstName").hide();
@@ -350,6 +449,12 @@ function handleForm(event) {
 
     if (field_BeneficiaryMiddleName.length === 0) {
         $("#err_field_BeneficiaryMiddleName").text('Field is empty');
+        $("#err_field_BeneficiaryMiddleName").show();
+    } else if(speciBeniMiddleName == true ){
+        $("#err_field_BeneficiaryMiddleName").text('Special character is not allowed');
+        $("#err_field_BeneficiaryMiddleName").show();
+    } else if(numBeniMiddleName) {
+        $("#err_field_BeneficiaryMiddleName").text('Number is not allowed');
         $("#err_field_BeneficiaryMiddleName").show();
     } else {
         $("#err_field_BeneficiaryMiddleName").text('');
@@ -359,6 +464,12 @@ function handleForm(event) {
     if (field_BeneficiaryLastName.length === 0) {
         $("#err_field_BeneficiaryLastName").text('Field is empty');
         $("#err_field_BeneficiaryLastName").show();
+    } else if(speciBeniLastName == true ){
+        $("#err_field_BeneficiaryLastName").text('Special character is not allowed');
+        $("#err_field_BeneficiaryLastName").show();
+    } else if(numBeniLastName) {
+        $("#err_field_BeneficiaryLastName").text('Number is not allowed');
+        $("#err_field_BeneficiaryLastName").show();
     } else {
         $("#err_field_BeneficiaryLastName").text('');
         $("#err_field_BeneficiaryLastName").hide();
@@ -366,6 +477,9 @@ function handleForm(event) {
 
     if (field_BeneficiaryMobileNum.length === 0) {
         $("#err_field_BeneficiaryMobileNum").text('Field is empty');
+        $("#err_field_BeneficiaryMobileNum").show();
+    } else if (!numberMobile){
+        $("#err_field_BeneficiaryMobileNum").text('Only number is allowed!');
         $("#err_field_BeneficiaryMobileNum").show();
     } else {
         $("#err_field_BeneficiaryMobileNum").text('');
@@ -445,7 +559,7 @@ function handleForm(event) {
         $("#err_invalidCheck_privacy").hide();
     }
 
-    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && validateEmail(field_BeneficiaryEmailAddress)) {
+    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && validateEmail(field_BeneficiaryEmailAddress) && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (speciBeniFirstName == false) && (numBeniFirstName == false) && (numberMobile == true) && (speciBeniMiddleName == false) && (numBeniMiddleName == false) && (speciBeniLastName == false) && (numBeniLastName == false)) {
         
         let pConsentCheck1 = !$('#privacy_consent_1').is(':checked')
         let pConsentCheck2 = !$('#privacy_consent_2').is(':checked');
@@ -720,7 +834,7 @@ function buttonSubmitClicked(event) {
     event.preventDefault();
     if (!file1.value) {
         $('#warning_parent').show();
-        $('#upload_warning').text('Please upload your government id back!');
+        $('#upload_warning').text('Please upload your Death Certificate of the Deceased');
         return;
     }
 
@@ -790,9 +904,23 @@ function handleAccountInfo(event) {
     var field_AccountNumber = $("#field_AccountNumber").val();
     var field_Bank = $("#field_Bank").val();
     var field_Branch = $("#field_Branch").val();
+    var speCharAccountName = specialcharacterValidation(field_AccountName);
+    var numAccountName = numberValidation(field_AccountName);
+    var specAccountNumber = specialcharacterValidation(field_AccountNumber);
+    var numAccountNumber = onlyNumberValidate(field_AccountNumber);
+    var specCharBank = specialcharacterValidation(field_Bank);
+    var numBank = numberValidation(field_Bank);
+    var specCharBRANCH = specialcharacterValidation(field_Branch);
+    var numBranch = numberValidation(field_Branch);
 
     if (field_AccountName.length === 0) {
         $("#err_field_AccountName").text('Field is empty');
+        $("#err_field_AccountName").show();
+    } else if (speCharAccountName) {
+        $("#err_field_AccountName").text('special character is not allowed');
+        $("#err_field_AccountName").show();
+    } else if (numAccountName) {
+        $("#err_field_AccountName").text('Number not allowed');
         $("#err_field_AccountName").show();
     } else {
         $("#err_field_AccountName").text('');
@@ -802,7 +930,10 @@ function handleAccountInfo(event) {
     if (field_AccountNumber.length === 0) {
         $("#err_field_AccountNumber").text('Field is empty');
         $("#err_field_AccountNumber").show();
-    } else {
+    } else if((!numAccountNumber) || (specAccountNumber)) {
+        $("#err_field_AccountNumber").text('Only number is allowed');
+        $("#err_field_AccountNumber").show();
+    }  else {
         $("#err_field_AccountNumber").text('');
         $("#err_field_AccountNumber").hide();
     }
@@ -810,13 +941,25 @@ function handleAccountInfo(event) {
     if (field_Bank.length === 0) {
         $("#err_field_Bank").text('Field is empty');
         $("#err_field_Bank").show();
-    } else {
+    } else if(specCharBank) {
+        $("#err_field_Bank").text('Special character is not allowed');
+        $("#err_field_Bank").show();
+    } else if(numBank) {
+        $("#err_field_Bank").text('Number is not allowed');
+        $("#err_field_Bank").show();
+    }  else {
         $("#err_field_Bank").text('');
         $("#err_field_Bank").hide();
     }
 
     if (field_Branch.length === 0) {
         $("#err_field_Branch").text('Field is empty');
+        $("#err_field_Branch").show();
+    } else if(specCharBRANCH) {
+        $("#err_field_Branch").text('special character is not allowed');
+        $("#err_field_Branch").show();
+    } else if(numBranch) {
+        $("#err_field_Branch").text('Number is not allowed');
         $("#err_field_Branch").show();
     } else {
         $("#err_field_Branch").text('');
@@ -829,7 +972,7 @@ function handleAccountInfo(event) {
         return;
     }
 
-    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0) {
+    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0  && (speCharAccountName == false) && (numAccountName == false) &&(numAccountNumber == true) && (specCharBank == false) && (numBank == false) && (specCharBRANCH == false) && (numBranch == false)) {
         const data = {
             field_AccountName,
             field_AccountNumber,
