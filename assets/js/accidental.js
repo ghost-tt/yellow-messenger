@@ -51,7 +51,7 @@ function disableFutureDates() {
 }
 
 function setCountryCode() {
-    $('select').change(function() {
+    $('#inlineFormCustomSelect').change(function() {
     $('select option')[0].value= $('select option:selected').val();
     $('select option')[0].innerHTML= '+' + $('select option:selected').val();
     $("select").val($('select option:selected').val());
@@ -636,13 +636,12 @@ function handleAccountInfo(event) {
     var field_AccountName = $("#field_AccountName").val();
     var field_AccountNumber = $("#field_AccountNumber").val();
     var field_Bank = $("#field_Bank").val();
+    var field_currency = $("from_currency").val();
     var field_Branch = $("#field_Branch").val();
     var speCharAccountName = specialcharacterValidation(field_AccountName);
     var numAccountName = numberValidation(field_AccountName);
     var specAccountNumber = specialcharacterValidation(field_AccountNumber);
     var numAccountNumber = onlyNumberValidate(field_AccountNumber);
-    var specCharBank = specialcharacterValidation(field_Bank);
-    var numBank = numberValidation(field_Bank);
     var specCharBRANCH = specialcharacterValidation(field_Branch);
     var numBranch = numberValidation(field_Branch);
 
@@ -672,16 +671,10 @@ function handleAccountInfo(event) {
         $("#err_field_AccountNumber").hide();
     }
 
-    if (field_Bank.length === 0) {
+    if (field_Bank.length <= 0) {
         $("#err_field_Bank").text('Field is empty');
         $("#err_field_Bank").show();
-    } else if(specCharBank) {
-        $("#err_field_Bank").text('Special character is not allowed');
-        $("#err_field_Bank").show();
-    } else if(numBank) {
-        $("#err_field_Bank").text('Number not allowed');
-        $("#err_field_Bank").show();
-    } else {
+    }  else {
         $("#err_field_Bank").text('');
         $("#err_field_Bank").hide();
     }
@@ -700,12 +693,20 @@ function handleAccountInfo(event) {
         $("#err_field_Branch").hide();
     }
 
+    if (field_currency <= 0){
+        $("#err_field_Currency").text('Field is empty');
+        $("#err_field_Currency").show();
+    } else {
+        $("#err_field_Currency").text('');
+        $("#err_field_Currency").show();
+    }
+
     if (!file6.value) {
         $('#upload_feedback_label').show();
         $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
     }
 
-    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && file6.length !== 0 && (speCharAccountName == false) && (numAccountName == false) &&(numAccountNumber == true) && (specCharBank == false) && (numBank == false) && (specCharBRANCH == false) && (numBranch == false)) {
+    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && file6.length !== 0 && (speCharAccountName == false) && (numAccountName == false) &&(numAccountNumber == true) && (specCharBRANCH == false) && (numBranch == false)) {
         const data = {
             field_AccountName,
             field_AccountNumber,
@@ -752,13 +753,12 @@ function addBank(event) {
     event.preventDefault();
     var field_AccountName1 = $("#field_AccountName1").val();
     var field_AccountNumber1 = $("#field_AccountNumber1").val();
+    var field_currency1 = $("#from_currency1").val();
     var field_Bank1 = $("#field_Bank1").val();
     var field_Branch1 = $("#field_Branch1").val();
     var speCharAddAccountName = specialcharacterValidation(field_AccountName1);
     var numAddAccountName = numberValidation(field_AccountName1);
     var numAddAccountNumber = onlyNumberValidate(field_AccountNumber1);
-    var specCharAddBank = specialcharacterValidation(field_Bank1);
-    var numAddBank = numberValidation(field_Bank1);
     var specCharAddBRANCH = specialcharacterValidation(field_Branch1);
     var numAddBranch = numberValidation(field_Branch1);
 
@@ -787,14 +787,16 @@ function addBank(event) {
         $("#err_field_AccountNumber1").hide();
     }
 
-    if (field_Bank1.length === 0) {
+    if (field_currency1 <= 0){
+        $("#err_field_Currency1").text('Field is empty');
+        $("#err_field_Currency1").show();
+    } else {
+        $("#err_field_Currency1").text('');
+        $("#err_field_Currency1").show();
+    }
+
+    if (field_Bank1.length <= 0) {
         $("#err_field_Bank1").text('Field is empty');
-        $("#err_field_Bank1").show();
-    } else if(specCharAddBank) {
-        $("#err_field_Bank1").text('Special character is not allowed');
-        $("#err_field_Bank1").show();
-    } else if(numAddBank) {
-        $("#err_field_Bank1").text('Number not allowed');
         $("#err_field_Bank1").show();
     }  else {
         $("#err_field_Bank1").text('');
@@ -820,13 +822,13 @@ function addBank(event) {
         $('#upload_feedback_label1').text('Please upload your Bank Account Ownership');
     }
 
-    if (field_AccountName1.length !== 0 && field_AccountNumber1.length !== 0 && field_Bank1.length !== 0 && field_Branch1.length !== 0 && file7.length !== 0 && (speCharAddAccountName == false) && (numAddAccountName == false) &&(numAddAccountNumber == true) && (specCharAddBank == false) && (numAddBank == false) && (specCharAddBRANCH == false) && (numAddBranch == false)) {
+    if (field_AccountName1.length !== 0 && field_AccountNumber1.length !== 0 && field_currency1.length !== 0 && field_Bank1.length !== 0 && field_Branch1.length !== 0 && file7.length !== 0 && (speCharAddAccountName == false) && (numAddAccountName == false) &&(numAddAccountNumber == true) && (specCharAddBRANCH == false) && (numAddBranch == false)) {
         const data = {
             field_AccountName1,
             field_AccountNumber1,
             field_Bank1,
             field_Branch1,
-            field_Currency: $("select#from_currency option").filter(":selected").val(),
+            field_Currency1: $("select#from_currency1 option").filter(":selected").val(),
             upload_file_6: file7.value
         }
         $("#step3").addClass("active");

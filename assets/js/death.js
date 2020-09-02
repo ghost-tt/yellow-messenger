@@ -41,13 +41,13 @@ function disableFutureDates() {
 }
 
 function setCountryCode() {
-    $('select').change(function() {
-        $('select option')[0].value= $('select option:selected').val();
-        $('select option')[0].innerHTML= '+' + $('select option:selected').val();
-        $("select").val($('select option:selected').val());
+    $('#field_BeneficiaryMobileNumberSelect').change(function() {
+        $('#field_BeneficiaryMobileNumberSelect option')[0].value= $('#field_BeneficiaryMobileNumberSelect option:selected').val();
+        $('#field_BeneficiaryMobileNumberSelect option')[0].innerHTML= '+' + $('#field_BeneficiaryMobileNumberSelect option:selected').val();
+        $("#field_BeneficiaryMobileNumberSelect").val($('#field_BeneficiaryMobileNumberSelect option:selected').val());
         $("select option").css({"background-color":"","color":""});
     });
-}
+}  
 
 function validateEmail(emailField) {
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -611,8 +611,11 @@ function handleForm(event) {
             $('#form_wrapper').hide();
             // $('#stepper_intro').hide();
             $('#death_data_privacy').hide();
-            $('#requirements').show();
-            $('#requirements')[0].scrollIntoView(true);
+            /* $('#requirements').show();
+            $('#requirements')[0].scrollIntoView(true); */
+            $('#payment').show();
+            $('#payment')[0].scrollIntoView(true); 
+            
             console.log('Data -> ', data)
         }
     }
@@ -890,8 +893,9 @@ function buttonSubmitClicked(event) {
     $("#step2>div").addClass("active");
     $("#step2").addClass("done");
     $('#requirements').hide();
-    $('#payment').show();
-    $('#payment')[0].scrollIntoView(true);
+   /*  $('#payment').show();
+    $('#payment')[0].scrollIntoView(true); */
+    $('#process_confirmation').show(); 
 
     console.log('upload data --> ', upload_data);
 }
@@ -986,7 +990,9 @@ function handleAccountInfo(event) {
         $("#step3>div").addClass("active");
         $("#step3").addClass("done");
         $('#account_details').hide();
-        $('#process_confirmation').show();
+       /*  $('#process_confirmation').show(); */
+       $('#requirements').show();
+       $('#requirements')[0].scrollIntoView(true); 
         console.log('Data -> ', data)
     }
 }

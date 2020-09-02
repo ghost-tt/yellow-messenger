@@ -49,7 +49,7 @@ function disableFutureDates() {
 }
 
 function setCountryCode() {
-    $('select').change(function() {
+    $('#inlineFormCustomSelect').change(function() {
         $('select option')[0].value= $('select option:selected').val();
         $('select option')[0].innerHTML= '+' + $('select option:selected').val();
         $("select").val($('select option:selected').val());
@@ -591,8 +591,8 @@ function handleAccountInfo(event) {
     var speCharAccountName = specialcharacterValidation(field_AccountName);
     var numAccountName = numberValidation(field_AccountName);
     var numAccountNumber = onlyNumberValidate(field_AccountNumber);
-    var specCharBank = specialcharacterValidation(field_Bank);
-    var numBank = numberValidation(field_Bank);
+   /*  var specCharBank = specialcharacterValidation(field_Bank);
+    var numBank = numberValidation(field_Bank); */
     var specCharBRANCH = specialcharacterValidation(field_Branch);
     var numBranch = numberValidation(field_Branch);
 
@@ -621,14 +621,9 @@ function handleAccountInfo(event) {
         $("#err_field_AccountNumber").hide();
     }
 
-    if (field_Bank.length === 0) {
+
+    if(field_Bank.length <= 0 ){
         $("#err_field_Bank").text('Field is empty');
-        $("#err_field_Bank").show();
-    } else if(specCharBank) {
-        $("#err_field_Bank").text('Special character is not allowed');
-        $("#err_field_Bank").show();
-    } else if(numBank) {
-        $("#err_field_Bank").text('Number is not allowed');
         $("#err_field_Bank").show();
     }  else {
         $("#err_field_Bank").text('');
@@ -654,7 +649,7 @@ function handleAccountInfo(event) {
         $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
     }
 
-    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && file6.length !== 0 && (speCharAccountName == false) && (numAccountName == false) && (numAccountNumber == true) && (specCharBank == false) && (numBank == false) && (specCharBRANCH == false) && (numBranch == false)) {
+    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && file6.length !== 0 && (speCharAccountName == false) && (numAccountName == false) && (numAccountNumber == true) && (specCharBRANCH == false) && (numBranch == false)) {
         const data = {
             field_AccountName,
             field_AccountNumber,
