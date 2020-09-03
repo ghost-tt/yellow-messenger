@@ -396,6 +396,7 @@ function removeErr(event) {
 }
 
 file1.onchange = function (e) {
+    $('#file_upload_cancle_1').hide();
     $('#file_Upload_Tick_1').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
@@ -409,17 +410,20 @@ file1.onchange = function (e) {
             }
             $('#warning_parent').show();
             $('#file_Upload_Tick_1').hide();
+            $('#file_upload_cancle_1').show();
             $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
             break;
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_1').hide();
+            $('#file_upload_cancle_1').show();
             $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
             this.value = '';
     }
 };
 
 file2.onchange = function (e) {
+    $('#file_upload_cancle_2').hide();
     $('#file_Upload_Tick_2').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
@@ -433,12 +437,14 @@ file2.onchange = function (e) {
             }
             $('#warning_parent').show();
             $('#file_Upload_Tick_2').hide();
+            $('#file_upload_cancle_2').show();
             $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
 
             break;
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_2').hide();
+            $('#file_upload_cancle_2').show();
             $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
 
             this.value = '';
@@ -446,6 +452,7 @@ file2.onchange = function (e) {
 };
 
 file3.onchange = function (e) {
+    $('#file_upload_cancle_3').hide();
     $('#file_Upload_Tick_3').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
@@ -459,12 +466,14 @@ file3.onchange = function (e) {
             }
             $('#warning_parent').show();
             $('#file_Upload_Tick_3').hide();
+            $('#file_upload_cancle_3').show();
             $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
 
             break;
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_3').hide();
+            $('#file_upload_cancle_3').show();
             $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
 
             this.value = '';
@@ -472,6 +481,7 @@ file3.onchange = function (e) {
 };
 
 file4.onchange = function (e) {
+    $('#file_upload_cancle_4').hide();
     $('#file_Upload_Tick_4').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
@@ -485,12 +495,14 @@ file4.onchange = function (e) {
             }
             $('#warning_parent').show();
             $('#file_Upload_Tick_4').hide();
+            $('#file_upload_cancle_4').show();
             $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
 
             break;
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_4').hide();
+            $('#file_upload_cancle_4').show();
             $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
 
             this.value = '';
@@ -498,6 +510,7 @@ file4.onchange = function (e) {
 };
 
 file5.onchange = function (e) {
+    $('#file_upload_cancle_5').hide();
     $('#file_Upload_Tick_5').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
@@ -511,17 +524,20 @@ file5.onchange = function (e) {
             }
             $('#warning_parent').show();
             $('#file_Upload_Tick_5').hide();
+            $('#file_upload_cancle_5').show();
             $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
             break;
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_5').hide();
+            $('#file_upload_cancle_5').show();
             $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
             this.value = '';
     }
 };
 
 file6.onchange = function (e) {
+    $('#file_upload_cancle_6').hide();
     $('#proof_BAO_Tick_1').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
@@ -535,10 +551,12 @@ file6.onchange = function (e) {
             }
             $('#proof_BAO_Tick_1').hide();
             $('#upload_feedback_label').show();
+            $('#file_upload_cancle_6').show();
             $('#upload_feedback_label').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
             break;
         default:
             $('#proof_BAO_Tick_1').hide();
+            $('#file_upload_cancle_6').show();
             $('#upload_feedback_label').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
             $('#upload_feedback_label').show();
             this.value = '';
