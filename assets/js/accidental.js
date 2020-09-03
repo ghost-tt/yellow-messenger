@@ -74,10 +74,9 @@ const checkForVirus = (fileData) => {
     var requestOptions = {
         method: 'POST',
         headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
+        body: raw
     };
-    return fetch("https://cors-anywhere.herokuapp.com/https://staging.yellowmessenger.com/components/virus-scanner/scan", requestOptions);
+    return fetch("https://staging.yellowmessenger.com/components/virus-scanner/scan", requestOptions);
 }
 
 listCheckBox.onchange = function () {
@@ -845,42 +844,41 @@ file7.onchange = async function (e) {
 
 function buttonSubmitClicked(event) {
     event.preventDefault();
-    if (!file1.value) {
+    // console.log(!$('#file_Upload_Tick_1').is(":hidden"));
+    // console.log(!$('#file_Upload_Tick_2').is(":hidden"));
+    // console.log(!$('#file_Upload_Tick_3').is(":hidden"));
+    // console.log(!$('#file_Upload_Tick_4').is(":hidden"));
+    // console.log(!$('#file_Upload_Tick_5').is(":hidden"));
+    
+    if (!file1.value || ($('#file_Upload_Tick_1').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Valid Government ID (Front)');
         return;
     }
 
-    if (!file2.value) {
+    if (!file2.value || ($('#file_Upload_Tick_2').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Valid Government ID (Back)');
         return;
     }
 
-    if (!file3.value) {
+    if (!file3.value || ($('#file_Upload_Tick_3').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Attending Physician’s Statement (APS)!');
         return;
     }
 
-    if (!file4.value) {
+    if (!file4.value || ($('#file_Upload_Tick_4').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Police or Narration Report!');
         return;
     }
 
-    if (!file5.value) {
+    if (!file5.value || ($('#file_Upload_Tick_5').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Official Receipts (ORs)!');
         return;
     }
-
-    /* 
-        if (!$('#upload_invalidCheck_2').is(':checked')) {
-            $("#upload_warning").text('Please don’t forget to tick the box is certify the accuracy of the documents submitted');
-            $("#warning_parent").show();
-            return;
-        } */
 
     const upload_data = {
         upload_file_1: file1.value,
