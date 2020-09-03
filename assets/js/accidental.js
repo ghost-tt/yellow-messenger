@@ -477,7 +477,7 @@ file1.onchange = async function (e) {
     }
 };
 
-file2.onchange = function (e) {
+file2.onchange = async function (e) {
     $('#file_upload_cancle_2').hide();
     $('#file_Upload_Tick_2').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -486,27 +486,59 @@ file2.onchange = function (e) {
         case 'pdf':
             /* case 'tif': */
             if (this.files[0].size < 2097152) {
-                $('#warning_parent').hide();
-                $('#file_Upload_Tick_2').show();
-                return
-            }
-            $('#warning_parent').show();
-            $('#file_Upload_Tick_2').hide();
-            $('#file_upload_cancle_2').show();
-            $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+                $('#file_loader_icon_2').show();
+                let baseData = await toBase64((this.files[0]));
+                const regex = /data:application\/pdf;base64,/gi;
+                let newBaseData = baseData.replace(regex, '');
+                checkForVirus(newBaseData).then(response => response.text())
+                    .then(result => {
+                        let parsedJson = JSON.parse(result);
+                        console.log(parsedJson)
+                        if (parsedJson.hasVirus) {
+                            console.log("Netering")
+                            $('#warning_parent').show();
+                            $('#file_loader_icon_2').hide();
+                            $('#file_Upload_Tick_2').hide();
+                            $('#file_upload_cancle_2').show();
+                            $('#upload_warning').text('Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed.');
+                            return;
+                        } else {
+                            $('#warning_parent').hide();
+                            $('#file_loader_icon_2').hide();
+                            $('#file_Upload_Tick_2').show();
+                            $('#file_upload_cancle_2').hide();
+                            return
+                        }
 
-            break;
+                    })
+                    .catch(error => {
+                        console.log('error', error);
+                        $('#warning_parent').show();
+                        $('#file_loader_icon_1').hide();
+                        $('#file_Upload_Tick_1').hide();
+                        $('#file_upload_cancle_1').show();
+                        $('#upload_warning').text('Looks like the file you are trying to upload is Virus infected. Please upload a virus free document.');
+                        return;
+                    });
+                break;
+            } else {
+                $('#warning_parent').show();
+                $('#file_loader_icon_2').hide();
+                $('#file_Upload_Tick_2').hide();
+                $('#file_upload_cancle_2').show();
+                $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+                break;
+            }
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_2').hide();
             $('#file_upload_cancle_2').show();
             $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
-
             this.value = '';
     }
 };
 
-file3.onchange = function (e) {
+file3.onchange = async function (e) {
     $('#file_upload_cancle_3').hide();
     $('#file_Upload_Tick_3').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -515,27 +547,59 @@ file3.onchange = function (e) {
         case 'pdf':
             /* case 'tif': */
             if (this.files[0].size < 2097152) {
-                $('#warning_parent').hide();
-                $('#file_Upload_Tick_3').show();
-                return
-            }
-            $('#warning_parent').show();
-            $('#file_Upload_Tick_3').hide();
-            $('#file_upload_cancle_3').show();
-            $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+                $('#file_loader_icon_3').show();
+                let baseData = await toBase64((this.files[0]));
+                const regex = /data:application\/pdf;base64,/gi;
+                let newBaseData = baseData.replace(regex, '');
+                checkForVirus(newBaseData).then(response => response.text())
+                    .then(result => {
+                        let parsedJson = JSON.parse(result);
+                        console.log(parsedJson)
+                        if (parsedJson.hasVirus) {
+                            console.log("Netering")
+                            $('#warning_parent').show();
+                            $('#file_loader_icon_3').hide();
+                            $('#file_Upload_Tick_3').hide();
+                            $('#file_upload_cancle_3').show();
+                            $('#upload_warning').text('Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed.');
+                            return;
+                        } else {
+                            $('#warning_parent').hide();
+                            $('#file_loader_icon_3').hide();
+                            $('#file_Upload_Tick_3').show();
+                            $('#file_upload_cancle_3').hide();
+                            return
+                        }
 
-            break;
+                    })
+                    .catch(error => {
+                        console.log('error', error);
+                        $('#warning_parent').show();
+                        $('#file_loader_icon_3').hide();
+                        $('#file_Upload_Tick_3').hide();
+                        $('#file_upload_cancle_3').show();
+                        $('#upload_warning').text('Looks like the file you are trying to upload is Virus infected. Please upload a virus free document.');
+                        return;
+                    });
+                break;
+            } else {
+                $('#warning_parent').show();
+                $('#file_loader_icon_3').hide();
+                $('#file_Upload_Tick_3').hide();
+                $('#file_upload_cancle_3').show();
+                $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+                break;
+            }
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_3').hide();
             $('#file_upload_cancle_3').show();
             $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
-
             this.value = '';
     }
 };
 
-file4.onchange = function (e) {
+file4.onchange = async function (e) {
     $('#file_upload_cancle_4').hide();
     $('#file_Upload_Tick_4').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -544,27 +608,59 @@ file4.onchange = function (e) {
         case 'pdf':
             /* case 'tif': */
             if (this.files[0].size < 2097152) {
-                $('#warning_parent').hide();
-                $('#file_Upload_Tick_4').show();
-                return
-            }
-            $('#warning_parent').show();
-            $('#file_Upload_Tick_4').hide();
-            $('#file_upload_cancle_4').show();
-            $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+                $('#file_loader_icon_4').show();
+                let baseData = await toBase64((this.files[0]));
+                const regex = /data:application\/pdf;base64,/gi;
+                let newBaseData = baseData.replace(regex, '');
+                checkForVirus(newBaseData).then(response => response.text())
+                    .then(result => {
+                        let parsedJson = JSON.parse(result);
+                        console.log(parsedJson)
+                        if (parsedJson.hasVirus) {
+                            console.log("Netering")
+                            $('#warning_parent').show();
+                            $('#file_loader_icon_4').hide();
+                            $('#file_Upload_Tick_4').hide();
+                            $('#file_upload_cancle_4').show();
+                            $('#upload_warning').text('Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed.');
+                            return;
+                        } else {
+                            $('#warning_parent').hide();
+                            $('#file_loader_icon_4').hide();
+                            $('#file_Upload_Tick_4').show();
+                            $('#file_upload_cancle_4').hide();
+                            return
+                        }
 
-            break;
+                    })
+                    .catch(error => {
+                        console.log('error', error);
+                        $('#warning_parent').show();
+                        $('#file_loader_icon_4').hide();
+                        $('#file_Upload_Tick_4').hide();
+                        $('#file_upload_cancle_4').show();
+                        $('#upload_warning').text('Looks like the file you are trying to upload is Virus infected. Please upload a virus free document.');
+                        return;
+                    });
+                break;
+            } else {
+                $('#warning_parent').show();
+                $('#file_loader_icon_4').hide();
+                $('#file_Upload_Tick_4').hide();
+                $('#file_upload_cancle_4').show();
+                $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+                break;
+            }
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_4').hide();
             $('#file_upload_cancle_4').show();
             $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
-
             this.value = '';
     }
 };
 
-file5.onchange = function (e) {
+file5.onchange = async function (e) {
     $('#file_upload_cancle_5').hide();
     $('#file_Upload_Tick_5').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -573,15 +669,49 @@ file5.onchange = function (e) {
         case 'pdf':
             /* case 'tif': */
             if (this.files[0].size < 2097152) {
-                $('#warning_parent').hide();
-                $('#file_Upload_Tick_5').show();
-                return
+                $('#file_loader_icon_5').show();
+                let baseData = await toBase64((this.files[0]));
+                const regex = /data:application\/pdf;base64,/gi;
+                let newBaseData = baseData.replace(regex, '');
+                checkForVirus(newBaseData).then(response => response.text())
+                    .then(result => {
+                        let parsedJson = JSON.parse(result);
+                        console.log(parsedJson)
+                        if (parsedJson.hasVirus) {
+                            console.log("Netering")
+                            $('#warning_parent').show();
+                            $('#file_loader_icon_5').hide();
+                            $('#file_Upload_Tick_5').hide();
+                            $('#file_upload_cancle_5').show();
+                            $('#upload_warning').text('Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed.');
+                            return;
+                        } else {
+                            $('#warning_parent').hide();
+                            $('#file_loader_icon_5').hide();
+                            $('#file_Upload_Tick_5').show();
+                            $('#file_upload_cancle_5').hide();
+                            return
+                        }
+
+                    })
+                    .catch(error => {
+                        console.log('error', error);
+                        $('#warning_parent').show();
+                        $('#file_loader_icon_5').hide();
+                        $('#file_Upload_Tick_5').hide();
+                        $('#file_upload_cancle_5').show();
+                        $('#upload_warning').text('Looks like the file you are trying to upload is Virus infected. Please upload a virus free document.');
+                        return;
+                    });
+                break;
+            } else {
+                $('#warning_parent').show();
+                $('#file_loader_icon_5').hide();
+                $('#file_Upload_Tick_5').hide();
+                $('#file_upload_cancle_5').show();
+                $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+                break;
             }
-            $('#warning_parent').show();
-            $('#file_Upload_Tick_5').hide();
-            $('#file_upload_cancle_5').show();
-            $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
-            break;
         default:
             $('#warning_parent').show();
             $('#file_Upload_Tick_5').hide();
@@ -591,7 +721,7 @@ file5.onchange = function (e) {
     }
 };
 
-file6.onchange = function (e) {
+file6.onchange = async function (e) {
     $('#file_upload_cancle_6').hide();
     $('#proof_BAO_Tick_1').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -600,43 +730,113 @@ file6.onchange = function (e) {
         case 'pdf':
             /* case 'tif': */
             if (this.files[0].size < 2097152) {
-                $('#upload_feedback_label').hide();
-                $('#proof_BAO_Tick_1').show();
-                return
+                $('#file_loader_icon_6').show();
+                let baseData = await toBase64((this.files[0]));
+                const regex = /data:application\/pdf;base64,/gi;
+                let newBaseData = baseData.replace(regex, '');
+                checkForVirus(newBaseData).then(response => response.text())
+                    .then(result => {
+                        let parsedJson = JSON.parse(result);
+                        console.log(parsedJson)
+                        if (parsedJson.hasVirus) {
+                            console.log("Netering")
+                            $('#warning_parent').show();
+                            $('#file_loader_icon_6').hide();
+                            $('#file_Upload_Tick_6').hide();
+                            $('#file_upload_cancle_6').show();
+                            $('#upload_warning').text('Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed.');
+                            return;
+                        } else {
+                            $('#warning_parent').hide();
+                            $('#file_loader_icon_6').hide();
+                            $('#file_Upload_Tick_6').show();
+                            $('#file_upload_cancle_6').hide();
+                            return
+                        }
+
+                    })
+                    .catch(error => {
+                        console.log('error', error);
+                        $('#warning_parent').show();
+                        $('#file_loader_icon_6').hide();
+                        $('#file_Upload_Tick_6').hide();
+                        $('#file_upload_cancle_6').show();
+                        $('#upload_warning').text('Looks like the file you are trying to upload is Virus infected. Please upload a virus free document.');
+                        return;
+                    });
+                break;
+            } else {
+                $('#warning_parent').show();
+                $('#file_loader_icon_6').hide();
+                $('#file_Upload_Tick_6').hide();
+                $('#file_upload_cancle_6').show();
+                $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+                break;
             }
-            $('#proof_BAO_Tick_1').hide();
-            $('#upload_feedback_label').show();
-            $('#file_upload_cancle_6').show();
-            $('#upload_feedback_label').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
-            break;
         default:
-            $('#proof_BAO_Tick_1').hide();
+            $('#warning_parent').show();
+            $('#file_Upload_Tick_6').hide();
             $('#file_upload_cancle_6').show();
-            $('#upload_feedback_label').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
-            $('#upload_feedback_label').show();
+            $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
             this.value = '';
     }
 };
 
-file7.onchange = function (e) {
+file7.onchange = async function (e) {
     $('#proof_addBAO_Tick_1').hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch (ext) {
         case 'jpg':
         case 'pdf':
             if (this.files[0].size < 2097152) {
-                $('#upload_feedback_label1').hide();
-                $('#proof_addBAO_Tick_1').show();
-                return
+                $('#file_loader_icon_7').show();
+                let baseData = await toBase64((this.files[0]));
+                const regex = /data:application\/pdf;base64,/gi;
+                let newBaseData = baseData.replace(regex, '');
+                checkForVirus(newBaseData).then(response => response.text())
+                    .then(result => {
+                        let parsedJson = JSON.parse(result);
+                        console.log(parsedJson)
+                        if (parsedJson.hasVirus) {
+                            console.log("Netering")
+                            $('#warning_parent').show();
+                            $('#file_loader_icon_7').hide();
+                            $('#file_Upload_Tick_7').hide();
+                            $('#file_upload_cancle_7').show();
+                            $('#upload_warning').text('Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed.');
+                            return;
+                        } else {
+                            $('#warning_parent').hide();
+                            $('#file_loader_icon_7').hide();
+                            $('#file_Upload_Tick_7').show();
+                            $('#file_upload_cancle_7').hide();
+                            return
+                        }
+
+                    })
+                    .catch(error => {
+                        console.log('error', error);
+                        $('#warning_parent').show();
+                        $('#file_loader_icon_7').hide();
+                        $('#file_Upload_Tick_7').hide();
+                        $('#file_upload_cancle_7').show();
+                        $('#upload_warning').text('Looks like the file you are trying to upload is Virus infected. Please upload a virus free document.');
+                        return;
+                    });
+                break;
+            } else {
+                $('#warning_parent').show();
+                $('#file_loader_icon_7').hide();
+                $('#file_Upload_Tick_7').hide();
+                $('#file_upload_cancle_7').show();
+                $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
+                break;
             }
-            $('#proof_addBAO_Tick_1').hide();
-            $('#upload_feedback_label1').show();
-            $('#upload_feedback_label1').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
-            break;
         default:
-            $('#proof_addBAO_Tick_1').hide();
-            $('#upload_feedback_label1').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
-            $('#upload_feedback_label1').show();
+            $('#warning_parent').show();
+            $('#file_Upload_Tick_7').hide();
+            $('#file_upload_cancle_7').show();
+            $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
             this.value = '';
     }
 };
