@@ -977,7 +977,7 @@ function handleAccountInfo(event) {
         $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
     }
 
-    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && file6.length !== 0 && (speCharAccountName == false) && (numAccountName == false) && (numAccountNumber == true) && (specCharBRANCH == false) && (numBranch == false)) {
+    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && file6.length !== 0 && (speCharAccountName == false) && (numAccountName == false) && (numAccountNumber == true) && (specCharBRANCH == false) && (numBranch == false) && (file6.value && (!$('#proof_BAO_Tick_1').is(":hidden")))) {
         const data = {
             field_AccountName,
             field_AccountNumber,
