@@ -367,16 +367,16 @@ function handleForm(event) {
             $("#err_privacy_consent1").show();
             $("#err_privacy_consent2").text('Please select both the fields first');
             $("#err_privacy_consent2").show();
-            $('#privacy_consent_1')[0].scrollIntoView(true);
+            /* $('#privacy_consent_1')[0].scrollIntoView(true); */
         }
         else if (pConsentCheck1) {
             $("#err_privacy_consent1").text('Please select both the fields first');
             $("#err_privacy_consent1").show();
-            $('#privacy_consent_1')[0].scrollIntoView(true);
+            /* $('#privacy_consent_1')[0].scrollIntoView(true); */
         } else if (pConsentCheck2) {
             $("#err_privacy_consent2").text('Please select both the fields first');
             $("#err_privacy_consent2").show();
-            $('#privacy_consent_1')[0].scrollIntoView(true);
+            /* $('#privacy_consent_1')[0].scrollIntoView(true); */
         } else {
             const data = {
                 field_firstName,
@@ -403,7 +403,7 @@ function handleForm(event) {
             $("#step2").addClass("active");
             $("#step2>div").addClass("active");
             $('#requirements').show();
-            $('#requirements')[0].scrollIntoView(true);
+           /*  $('#requirements')[0].scrollIntoView(true); */
 
             console.log('Data -> ', data)
         }
@@ -741,14 +741,14 @@ file6.onchange = async function (e) {
                             console.log("Netering")
                             $('#warning_parent').show();
                             $('#file_loader_icon_6').hide();
-                            $('#file_Upload_Tick_6').hide();
+                            $('#proof_BAO_Tick_1').hide();
                             $('#file_upload_cancle_6').show();
                             $('#upload_warning').text('Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed.');
                             return;
                         } else {
                             $('#warning_parent').hide();
                             $('#file_loader_icon_6').hide();
-                            $('#file_Upload_Tick_6').show();
+                            $('#proof_BAO_Tick_1').show();
                             $('#file_upload_cancle_6').hide();
                             return
                         }
@@ -758,7 +758,7 @@ file6.onchange = async function (e) {
                         console.log('error', error);
                         $('#warning_parent').show();
                         $('#file_loader_icon_6').hide();
-                        $('#file_Upload_Tick_6').hide();
+                        $('#proof_BAO_Tick_1').hide();
                         $('#file_upload_cancle_6').show();
                         $('#upload_warning').text('Looks like the file you are trying to upload is Virus infected. Please upload a virus free document.');
                         return;
@@ -767,14 +767,14 @@ file6.onchange = async function (e) {
             } else {
                 $('#warning_parent').show();
                 $('#file_loader_icon_6').hide();
-                $('#file_Upload_Tick_6').hide();
+                $('#proof_BAO_Tick_1').hide();
                 $('#file_upload_cancle_6').show();
                 $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
                 break;
             }
         default:
             $('#warning_parent').show();
-            $('#file_Upload_Tick_6').hide();
+            $('#proof_BAO_Tick_1').hide();
             $('#file_upload_cancle_6').show();
             $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
             this.value = '';
@@ -800,14 +800,14 @@ file7.onchange = async function (e) {
                             console.log("Netering")
                             $('#warning_parent').show();
                             $('#file_loader_icon_7').hide();
-                            $('#file_Upload_Tick_7').hide();
+                            $('#proof_addBAO_Tick_1').hide();
                             $('#file_upload_cancle_7').show();
                             $('#upload_warning').text('Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed.');
                             return;
                         } else {
                             $('#warning_parent').hide();
                             $('#file_loader_icon_7').hide();
-                            $('#file_Upload_Tick_7').show();
+                            $('#proof_addBAO_Tick_1').show();
                             $('#file_upload_cancle_7').hide();
                             return
                         }
@@ -817,7 +817,7 @@ file7.onchange = async function (e) {
                         console.log('error', error);
                         $('#warning_parent').show();
                         $('#file_loader_icon_7').hide();
-                        $('#file_Upload_Tick_7').hide();
+                        $('#proof_addBAO_Tick_1').hide();
                         $('#file_upload_cancle_7').show();
                         $('#upload_warning').text('Looks like the file you are trying to upload is Virus infected. Please upload a virus free document.');
                         return;
@@ -826,14 +826,14 @@ file7.onchange = async function (e) {
             } else {
                 $('#warning_parent').show();
                 $('#file_loader_icon_7').hide();
-                $('#file_Upload_Tick_7').hide();
+                $('#proof_addBAO_Tick_1').hide();
                 $('#file_upload_cancle_7').show();
                 $('#upload_warning').text('You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed.');
                 break;
             }
         default:
             $('#warning_parent').show();
-            $('#file_Upload_Tick_7').hide();
+            $('#proof_addBAO_Tick_1').hide();
             $('#file_upload_cancle_7').show();
             $('#upload_warning').text('You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed.');
             this.value = '';
@@ -895,7 +895,7 @@ function buttonSubmitClicked(event) {
     $("#step2").addClass("done");
     $('#requirements').hide();
     $('#payment').show();
-    $('#payment')[0].scrollIntoView(true);
+  /*   $('#payment')[0].scrollIntoView(true); */
 
     console.log('upload data --> ', upload_data);
 }
@@ -1017,7 +1017,7 @@ function addBank(event) {
     $('#account_details').hide();
     $('#requirements').hide();
     $('#account_details1').show();
-    $('#account_details1')[0].scrollIntoView(true);
+  /*   $('#account_details1')[0].scrollIntoView(true); */
 }
 
 function handleAddBankInfo(event) {
