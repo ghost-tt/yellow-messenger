@@ -1,5 +1,7 @@
 * {
-  color: #554344;
+  /* color: #554344; */
+  color: #363e3f;
+  font-family: "AIABody",Arial,"Helvetica Neue",Helvetica,sans-serif;
 }
 
 .jumbotron {
@@ -636,8 +638,4 @@ svg > path {
   visibility: visible;
   opacity: 10;
   transition: opacity 1s ease;
-}
-
-.bg-white {
-  background: #fff;
 }
