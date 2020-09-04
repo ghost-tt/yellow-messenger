@@ -1,7 +1,5 @@
 * {
-  /* color: #554344; */
-  color: #363e3f;
-  font-family: "AIABody",Arial,"Helvetica Neue",Helvetica,sans-serif;
+  color: #554344;
 }
 
 .jumbotron {
@@ -29,13 +27,8 @@
   font-size: 1.15rem !important;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  font-size: 32px;
-}
-
 p {
   margin: 0;
-  font-size: 17px;
 }
 
 hr {
@@ -644,7 +637,6 @@ svg > path {
   opacity: 10;
   transition: opacity 1s ease;
 }
-
 
 .bg-white {
   background: #fff;
