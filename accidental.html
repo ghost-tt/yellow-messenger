@@ -923,7 +923,7 @@
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-next-form submit__btn"
-                                                    tabindex="16"
+                                                    tabindex="16" id="next"
                                                     style="width: 50%; margin: 4rem 0 2rem 0;">NEXT</button>
                                             </div>
                                         </div>
@@ -1622,7 +1622,24 @@
                 </div>
             </div>
         </section>
-        
+
+    
+      <section class="hide modal fade" id="popUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-body">
+                <p id="p1">Kindly review any missed or incorret information before proceeding.<br>
+                    All fields are mandatory to be field out.
+                  </p>
+            </div>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 50%; margin: 0 auto 3rem auto;">Ok</button>
+        </div>
+    </section>
+
+
+       
+    
+
 
 
     </main>

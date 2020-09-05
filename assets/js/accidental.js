@@ -407,6 +407,8 @@ function handleForm(event) {
 
             console.log('Data -> ', data)
         }
+    }else{
+        $('#popUp').modal('show'); 
     }
 }
 
@@ -853,30 +855,35 @@ function buttonSubmitClicked(event) {
     if (!file1.value || ($('#file_Upload_Tick_1').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Valid Government ID (Front)');
+        $('#popUp').modal('show'); 
         return;
     }
 
     if (!file2.value || ($('#file_Upload_Tick_2').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Valid Government ID (Back)');
+        $('#popUp').modal('show'); 
         return;
     }
 
     if (!file3.value || ($('#file_Upload_Tick_3').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Attending Physician’s Statement (APS)!');
+        $('#popUp').modal('show'); 
         return;
     }
 
     if (!file4.value || ($('#file_Upload_Tick_4').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Police or Narration Report!');
+        $('#popUp').modal('show'); 
         return;
     }
 
     if (!file5.value || ($('#file_Upload_Tick_5').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Official Receipts (ORs)!');
+        $('#popUp').modal('show'); 
         return;
     }
 
@@ -992,6 +999,8 @@ function handleAccountInfo(event) {
         $('#account_details').hide();
         $('#process_confirmation').show();
         console.log('Data -> ', data)
+    }else {
+        $('#popUp').modal('show'); 
     }
 }
 
