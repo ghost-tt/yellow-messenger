@@ -76,7 +76,7 @@ const checkForVirus = (fileData) => {
         headers: myHeaders,
         body: raw
     };
-    return fetch("https://staging.yellowmessenger.com/components/virus-scanner/scan", requestOptions);
+    return fetch("https://app.yellowmessenger.com/components/virus-scanner/scan", requestOptions);
 }
 
 listCheckBox.onchange = function () {
