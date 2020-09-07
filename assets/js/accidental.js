@@ -31,6 +31,20 @@ form_Bank.addEventListener('submit', handleAccountInfo);
         animation: true
     })
 }) */
+
+let finalPayload = {};
+let accidentPayload = {};
+let basicInformation = {};
+let InsuredInformation = {};
+let BeneficiaryList = {};
+let PaymentOption = {};
+let BankDetails = {};
+let FilesInformation = {};
+let filesList = [];
+let claimType, causeOfLoss, govIdFront, govIdBack, apsFile, narrationReport, officialReceipts;
+basicInformation["CompanyCode"] = "PAL/BPLAC";
+basicInformation["Claim Type "] = "LIVING";
+basicInformation["CauseOfLoss"] = "Accident";
 $(document).ready(function (event) {
     disableFutureDates();
     setCountryCode();
@@ -426,6 +440,10 @@ file1.onchange = async function (e) {
         case 'pdf':
             /* case 'tif': */
             if (this.files[0].size < 2097152) {
+                console.log("file 1")
+                console.log(this.files[0])
+                govIdFront = this.files[0];
+                filesList.push(govIdFront);
                 $('#file_loader_icon_1').show();
                 let baseData = await toBase64((this.files[0]));
                 const regex = /data:application\/pdf;base64,/gi;
@@ -993,12 +1011,37 @@ function handleAccountInfo(event) {
             field_Currency: $("select#from_currency option").filter(":selected").val(),
             upload_file_6: file6.value
         }
+
+
+        BankDetails["BankName"] = field_Bank;
+        BankDetails["BankBranch"] = field_Branch;
+        BankDetails["AccountName"] = field_AccountName;
+        BankDetails["AccountNumber"] = field_AccountNumber;
+        BankDetails["AccountCurrency"] = $("select#from_currency option").filter(":selected").val();
+
+        finalPayload["BasicInformation"] = basicInformation;
+        finalPayload["InsuredInformation"] = InsuredInformation;
+        finalPayload["BankDetails"] = BankDetails;
+        finalPayload["FileList"] = filesList;
+
+
         $("#step3").addClass("active");
         $("#step3>div").addClass("active");
         $("#step3").addClass("done");
         $('#account_details').hide();
         $('#process_confirmation').show();
-        console.log('Data -> ', data)
+        // console.log('Data -> ', data)
+
+        console.log("FPB : ")
+        console.log(finalPayload)
+        window.parent.postMessage(JSON.stringify({
+            event_code: 'ym-client-event', data: JSON.stringify({
+                event: {
+                    code: "personalinfo",
+                    data: finalPayload
+                }
+            })
+        }), '*');
     }else {
         $('#popUp').modal('show'); 
     }
