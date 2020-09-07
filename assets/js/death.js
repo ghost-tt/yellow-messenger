@@ -325,6 +325,8 @@ function handleFormAddBeneficiary(event) {
 
             console.log('Data -> ', data)
         }
+    }else {
+        $('#popUp').modal('show'); 
     }
 }
 
@@ -638,6 +640,8 @@ function handleForm(event) {
             
             console.log('Data -> ', data)
         }
+    }else {
+        $('#popUp').modal('show');
     }
 }
 
@@ -1111,42 +1115,49 @@ function buttonSubmitClicked(event) {
     if (!file1.value || ($('#file_Upload_Tick_1').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Death Certificate of the Deceased');
+        $('#popUp').modal('show'); 
         return;
     }
 
     if (!file2.value || ($('#file_Upload_Tick_2').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Police or Narration Report!');
+        $('#popUp').modal('show'); 
         return;
     }
 
     if (!file3.value || ($('#file_Upload_Tick_3').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Valid Government ID (Front)');
+        $('#popUp').modal('show'); 
         return;
     }
 
     if (!file4.value || ($('#file_Upload_Tick_4').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Valid Government ID (Back)');
+        $('#popUp').modal('show'); 
         return;
     }
 
     if (!file5.value || ($('#file_Upload_Tick_5').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Marriage Contract');
+        $('#popUp').modal('show'); 
         return;
     }
 
     if (!file6.value || ($('#file_Upload_Tick_6').is(":hidden"))) {
         $('#warning_parent').show();
         $('#upload_warning').text('Please upload your Birth Certificate');
+        $('#popUp').modal('show'); 
         return;
     }
 
     if (!$('#upload_invalidCheck_2').is(':checked')) {
         $("#upload_warning").text('Please don’t forget to tick the box is certify the accuracy of the documents submitted');
         $("#warning_parent").show();
+        $('#popUp').modal('show'); 
         return;
     }
 
@@ -1185,20 +1196,21 @@ function handleAccountInfo(event) {
     var numAccountName = numberValidation(field_AccountName);
     var specAccountNumber = specialcharacterValidation(field_AccountNumber);
     var numAccountNumber = onlyNumberValidate(field_AccountNumber);
-    var specCharBank = specialcharacterValidation(field_Bank);
-    var numBank = numberValidation(field_Bank);
     var specCharBRANCH = specialcharacterValidation(field_Branch);
     var numBranch = numberValidation(field_Branch);
 
     if (field_AccountName.length === 0) {
         $("#err_field_AccountName").text('Field is empty');
         $("#err_field_AccountName").show();
+        $('#popUp').modal('show'); 
     } else if (speCharAccountName) {
         $("#err_field_AccountName").text('special character is not allowed');
         $("#err_field_AccountName").show();
+        $('#popUp').modal('show'); 
     } else if (numAccountName) {
         $("#err_field_AccountName").text('Number not allowed');
         $("#err_field_AccountName").show();
+        $('#popUp').modal('show'); 
     } else {
         $("#err_field_AccountName").text('');
         $("#err_field_AccountName").hide();
@@ -1207,9 +1219,11 @@ function handleAccountInfo(event) {
     if (field_AccountNumber.length === 0) {
         $("#err_field_AccountNumber").text('Field is empty');
         $("#err_field_AccountNumber").show();
+        $('#popUp').modal('show'); 
     } else if((!numAccountNumber) || (specAccountNumber)) {
         $("#err_field_AccountNumber").text('Only number is allowed');
         $("#err_field_AccountNumber").show();
+        $('#popUp').modal('show'); 
     }  else {
         $("#err_field_AccountNumber").text('');
         $("#err_field_AccountNumber").hide();
@@ -1218,6 +1232,7 @@ function handleAccountInfo(event) {
     if(field_Bank.length <= 0 ){
         $("#err_field_Bank").text('Field is empty');
         $("#err_field_Bank").show();
+        $('#popUp').modal('show'); 
     }  else {
         $("#err_field_Bank").text('');
         $("#err_field_Bank").hide();
@@ -1226,12 +1241,15 @@ function handleAccountInfo(event) {
     if (field_Branch.length === 0) {
         $("#err_field_Branch").text('Field is empty');
         $("#err_field_Branch").show();
+        $('#popUp').modal('show'); 
     } else if(specCharBRANCH) {
         $("#err_field_Branch").text('special character is not allowed');
         $("#err_field_Branch").show();
+        $('#popUp').modal('show'); 
     } else if(numBranch) {
         $("#err_field_Branch").text('Number is not allowed');
         $("#err_field_Branch").show();
+        $('#popUp').modal('show'); 
     } else {
         $("#err_field_Branch").text('');
         $("#err_field_Branch").hide();
@@ -1240,6 +1258,7 @@ function handleAccountInfo(event) {
     if (!file7.value) {
         $('#upload_feedback_label').show();
         $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
+        $('#popUp').modal('show'); 
         return;
     }
 
