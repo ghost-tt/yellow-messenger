@@ -990,7 +990,7 @@ function handleAccountInfo(event) {
         event_code: 'ym-client-event', data: JSON.stringify({
             event: {
                 code: "personalinfo",
-                data: finalPayload
+                data: JSON.stringify(finalPayload)
             }
         })
     }), '*');
