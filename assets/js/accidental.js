@@ -1119,6 +1119,6 @@ function handleAddBankInfo(event) {
     $("#step3").addClass("done");
     $('#account_details1').hide();
     $('#process_confirmation').show();
-    console.log('Data -> ', data)
+    console.log('bank data -> ', data)
   }
 }
