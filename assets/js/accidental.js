@@ -553,7 +553,7 @@ file1.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
-        file1Buffer = await toBase64(file);
+        file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
         console.log(file1Buffer);
         filesMap["file1"] = file1Buffer;
@@ -595,7 +595,7 @@ file2.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
-        file1Buffer = await toBase64(file);
+        file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
         console.log(file1Buffer);
         filesMap["file2"] = file1Buffer;
@@ -637,7 +637,7 @@ file3.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
-        file1Buffer = await toBase64(file);
+        file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
         console.log(file1Buffer);
         filesMap["file3"] = file1Buffer;
@@ -680,7 +680,7 @@ file4.onchange = async function (e) {
           proceedScan(file, buttonNum);
         }
 
-        file1Buffer = await toBase64(file);
+        file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
         console.log(file1Buffer);
         filesMap["file4"] = file1Buffer;
@@ -722,7 +722,7 @@ file5.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
-        file1Buffer = await toBase64(file);
+        file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
         console.log(file1Buffer);
         filesMap["file5"] = file1Buffer;
@@ -764,7 +764,7 @@ file6.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
-        file1Buffer = await toBase64(file);
+        file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
         console.log(file1Buffer);
         filesMap["file6"] = file1Buffer;
@@ -806,7 +806,7 @@ file7.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
-        file1Buffer = await toBase64(file);
+        file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
         console.log(file1Buffer);
         filesMap["file7"] = file1Buffer;
