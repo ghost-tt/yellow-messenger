@@ -380,6 +380,7 @@ function handleForm(event) {
     var field_BeneficiaryPOB = $("#field_BeneficiaryPOB").val();
     var field_BeneficiaryNationality = $("#field_BeneficiaryNationality").val();
     var field_BeneficiarySex = $("#field_BeneficiarySex").val();
+    var field_BenificiaryOccupation = $("#field_BeneficiaryOccupation").val();
     var field_BeneficiaryRelationToDeceased = $("#field_BeneficiaryRelationToDeceased").val();
     
     var specFirstName = specialcharacterValidation(field_firstName);
@@ -557,6 +558,14 @@ function handleForm(event) {
         $("#err_field_BeneficiarySex").hide();
     }
 
+    if (field_BenificiaryOccupation.length === 0) {
+        $("#err_field_BeneficiaryOccupation").text('Field is empty');
+        $("#err_field_BeneficiaryOccupation").show();
+    } else {
+        $("#err_field_BeneficiaryOccupation").text('');
+        $("#err_field_BeneficiaryOccupation").hide();
+    }
+
     if (field_BeneficiaryRelationToDeceased.length === 0) {
         $("#err_field_BeneficiaryRelationToDeceased").text('Field is empty');
         $("#err_field_BeneficiaryRelationToDeceased").show();
@@ -583,24 +592,7 @@ function handleForm(event) {
 
     if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && validateEmail(field_BeneficiaryEmailAddress) && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (speciBeniFirstName == false) && (numBeniFirstName == false) && (numberMobile == true) && (speciBeniMiddleName == false) && (numBeniMiddleName == false) && (speciBeniLastName == false) && (numBeniLastName == false)) {
         
-        let pConsentCheck1 = !$('#privacy_consent_1').is(':checked')
-        let pConsentCheck2 = !$('#privacy_consent_2').is(':checked');
-
-        if((pConsentCheck1) && (pConsentCheck2)){
-            $("#err_privacy_consent1").text('Please select both the fields first');
-            $("#err_privacy_consent1").show();
-           /*  $('#privacy_consent_1')[0].scrollIntoView(true); */
-            $("#err_privacy_consent2").text('Please select both the fields first');
-            $("#err_privacy_consent2").show();
-        } else if (pConsentCheck1) {
-            $("#err_privacy_consent1").text('Please select both the fields first');
-            $("#err_privacy_consent1").show();
-           /*  $('#privacy_consent_1')[0].scrollIntoView(true); */
-        } else if (pConsentCheck2) {
-            $("#err_privacy_consent2").text('Please select both the fields first');
-            $("#err_privacy_consent2").show();
-           /*  $('#privacy_consent_1')[0].scrollIntoView(true); */
-        } else {
+    
             const data = {
                 field_firstName,
                 field_middleName,
@@ -617,7 +609,8 @@ function handleForm(event) {
                 field_BeneficiaryDOB,
                 field_BeneficiaryPOB,
                 field_BeneficiaryNationality,
-                field_BeneficiarySex,
+                BeneficiarySex : $("select#field_BeneficiarySex option").filter(":selected").val(),
+                field_BenificiaryOccupation,
                 field_BeneficiaryRelationToDeceased,
                 country_code: $("select#field_BeneficiaryMobileNumberSelect option").filter(":selected").val(),
                 basic_checkbox: $('#invalidCheck_basic').is(':checked'),
@@ -639,7 +632,7 @@ function handleForm(event) {
             /* $('#payment')[0].scrollIntoView(true);  */
             
             console.log('Data -> ', data)
-        }
+    
     }else {
         $('#popUp').modal('show');
     }

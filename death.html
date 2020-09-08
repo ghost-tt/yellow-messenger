@@ -134,7 +134,7 @@
 																<div id="err_field_DOID" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
-																<label for="validation">Nature of Loss</label>
+																<label for="validation">What is the nature of Insured’s death?</label>
 																<select id="nature_Loss" class="custom-select-container mr-sm-2" tabindex="7">
 																	<option value="" selected>--</option>
 																	<option value="Accident">Accident</option>
@@ -428,8 +428,18 @@
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiarySex">What is the Beneficiary’s sex?</label>
-																<input type="text" class="input__box" id="field_BeneficiarySex" value="" tabindex="18" onkeypress="removeErr(event)" required />
+																<!-- <input type="text" class="input__box" id="field_BeneficiarySex" value="" tabindex="18" onkeypress="removeErr(event)" required /> -->
+																<select id="field_BeneficiarySex" class="custom-select-container mr-sm-2" tabindex="18">
+																	<option value="" selected>--</option>
+																	<option value="Male">Male</option>
+																	<option value="Femail">Female</option>
+																</select>
 																<div id="err_field_BeneficiarySex" class="error"></div>
+															</div>
+															<div class="col-md-12 form__tags">
+																<label for="field_BeneficiaryOccupation">What is the Beneficiary’s Occupation?</label>
+																<input type="text" class="input__box" id="field_BeneficiaryOccupation" value="" tabindex="19" onkeypress="removeErr(event)" required />
+																<div id="err_field_BeneficiaryOccupation" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryRelationToDeceased">What is the Beneficiary’s relationship to the deceased?</label>

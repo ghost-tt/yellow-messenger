@@ -360,59 +360,64 @@ function handleForm(event) {
         $("#err_invalidCheck_privacy").hide();
     }
 
-    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_MedicalConsultation.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_mobileNum.length !== 0 && field_emailAddress.length !== 0 && validateEmail(field_emailAddress) && field_homeAddress.length !== 0 && field_DOA.length !== 0 && field_TOA.length !== 0 && field_POA.length !== 0 && $('#invalidCheck_basic').is(':checked') && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (numMobile == true)) {
-        let pConsentCheck1 = !$('#privacy_consent_1').is(':checked')
-        let pConsentCheck2 = !$('#privacy_consent_2').is(':checked');
+  if (
+    field_firstName.length !== 0 &&
+    field_middleName.length !== 0 &&
+    field_MedicalConsultation.length !== 0 &&
+    field_lastName.length !== 0 &&
+    field_DOB.length !== 0 &&
+    field_mobileNum.length !== 0 &&
+    field_emailAddress.length !== 0 &&
+    validateEmail(field_emailAddress) &&
+    field_homeAddress.length !== 0 &&
+    field_DOA.length !== 0 &&
+    field_TOA.length !== 0 &&
+    field_POA.length !== 0 &&
+    $("#invalidCheck_basic").is(":checked") &&
+    $("#invalidCheck_privacy").is(":checked") &&
+    specFirstName == false &&
+    specMiddleName == false &&
+    specLastName == false &&
+    numFirstName == false &&
+    numMiddleName == false &&
+    numLastName == false &&
+    numMobile == true
+  ) {
+    const data = {
+      field_firstName,
+      field_middleName,
+      field_MedicalConsultation,
+      field_lastName,
+      field_lastName_Suffix,
+      field_DOB,
+      country_code: $("select#inlineFormCustomSelect option")
+        .filter(":selected")
+        .val(),
+      field_mobileNum,
+      field_emailAddress,
+      field_homeAddress,
+      field_DOA,
+      field_TOA,
+      field_POA,
+      basic_checkbox: $("#invalidCheck_basic").is(":checked"),
+      privacy_checkbox: $("#invalidCheck_privacy").is(":checked"),
+    };
 
-        if((pConsentCheck1) && (pConsentCheck2)){
-            $("#err_privacy_consent1").text('Please select this fields first');
-            $("#err_privacy_consent1").show();
-            $("#err_privacy_consent2").text('Please select this fields first');
-            $("#err_privacy_consent2").show();
-           /*  $('#privacy_consent_1')[0].scrollIntoView(true); */
-        }else if (pConsentCheck1) {
-            $("#err_privacy_consent1").text('Please select this fields first');
-            $("#err_privacy_consent1").show();
-           /*  $('#privacy_consent_1')[0].scrollIntoView(true); */
-        } else if (pConsentCheck2) {
-            $("#err_privacy_consent2").text('Please select both the fields first');
-            $("#err_privacy_consent2").show();
-           /*  $('#privacy_consent_1')[0].scrollIntoView(true); */
-        } else {
-            const data = {
-                field_firstName,
-                field_middleName,
-                field_MedicalConsultation,
-                field_lastName,
-                field_lastName_Suffix,
-                field_DOB,
-                country_code: $("select#inlineFormCustomSelect option").filter(":selected").val(),
-                field_mobileNum,
-                field_emailAddress,
-                field_homeAddress,
-                field_DOA,
-                field_TOA,
-                field_POA,
-                basic_checkbox: $('#invalidCheck_basic').is(':checked'),
-                privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
-            }
+    $("#err_privacy_consent").text("");
+    $("#err_privacy_consent").hide();
+    $("#form_wrapper").hide();
+    $("#stepper_intro").hide();
+    $("#illness_data_privacy").hide();
+    $("#step1").addClass("done");
+    $("#step2").addClass("active");
+    $("#step2>div").addClass("active");
+    $("#requirements").show();
+    /* $('#requirements')[0].scrollIntoView(true); */
 
-            $("#err_privacy_consent").text('');
-            $("#err_privacy_consent").hide();
-            $('#form_wrapper').hide();
-            $('#stepper_intro').hide();
-            $('#illness_data_privacy').hide();
-            $("#step1").addClass("done");
-            $("#step2").addClass("active");
-            $("#step2>div").addClass("active");
-            $('#requirements').show();
-            /* $('#requirements')[0].scrollIntoView(true); */
-
-            console.log('Data -> ', data)
-        }
-    }else {
-        $('#popUp').modal('show'); 
-    }
+    console.log("Data -> ", data);
+  } else {
+    $("#popUp").modal("show");
+  }
 }
 
 function dataReset() {
@@ -428,7 +433,7 @@ function removeErr(event) {
 }
 
 const proceedScan = async (fileObj, button) => {
-    console.log(button);
+  console.log(button);
   console.log("code is here");
   $(`#file_loader_icon_${button}`).show();
   let baseData = await toBase64(fileObj);
