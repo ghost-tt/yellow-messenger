@@ -1091,12 +1091,6 @@ function handleAddBankInfo(event) {
       field_Currency1: $("select#from_currency1 option").filter(":selected").val(),
       upload_file_6: file7.value
     }
-    $("#step3").addClass("active");
-    $("#step3>div").addClass("active");
-    $("#step3").addClass("done");
-    $('#account_details1').hide();
-    $('#process_confirmation').show();
-    console.log('Data -> ', data)
 
     BankDetails["BankName"] = field_Bank1;
     BankDetails["BankBranch"] = field_Branch;
@@ -1119,5 +1113,12 @@ function handleAddBankInfo(event) {
             }
         })
     }), '*');
+
+    $("#step3").addClass("active");
+    $("#step3>div").addClass("active");
+    $("#step3").addClass("done");
+    $('#account_details1').hide();
+    $('#process_confirmation').show();
+    console.log('Data -> ', data)
   }
 }
