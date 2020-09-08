@@ -461,11 +461,6 @@ const proceedScan = async (fileObj, button) => {
   console.log("code is here");
   $(`#file_loader_icon_${button}`).show();
 
-  file1Buffer = await getBuffer(fileObj);
-  console.log("file buffer : ")
-  console.log(file1Buffer);
-  filesMap["file1"] = file1Buffer;
-
   let baseData = await toBase64(fileObj);
   const regex = /data:application\/pdf;base64,/gi;
   let newBaseData = baseData.replace(regex, "");
@@ -558,6 +553,10 @@ file1.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
+        file1Buffer = await getBuffer(file);
+        console.log("file buffer : ")
+        console.log(file1Buffer);
+        filesMap["file1"] = file1Buffer;
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_1").hide();
@@ -596,6 +595,10 @@ file2.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
+        file1Buffer = await getBuffer(file);
+        console.log("file buffer : ")
+        console.log(file1Buffer);
+        filesMap["file2"] = file1Buffer;
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_2").hide();
@@ -634,6 +637,10 @@ file3.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
+        file1Buffer = await getBuffer(file);
+        console.log("file buffer : ")
+        console.log(file1Buffer);
+        filesMap["file3"] = file1Buffer;
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_3").hide();
@@ -672,6 +679,11 @@ file4.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
+
+        file1Buffer = await getBuffer(file);
+        console.log("file buffer : ")
+        console.log(file1Buffer);
+        filesMap["file4"] = file1Buffer;
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_4").hide();
@@ -710,6 +722,10 @@ file5.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
+        file1Buffer = await getBuffer(file);
+        console.log("file buffer : ")
+        console.log(file1Buffer);
+        filesMap["file5"] = file1Buffer;
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_5").hide();
@@ -748,6 +764,10 @@ file6.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
+        file1Buffer = await getBuffer(file);
+        console.log("file buffer : ")
+        console.log(file1Buffer);
+        filesMap["file6"] = file1Buffer;
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_6").hide();
@@ -786,6 +806,10 @@ file7.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
+        file1Buffer = await getBuffer(file);
+        console.log("file buffer : ")
+        console.log(file1Buffer);
+        filesMap["file7"] = file1Buffer;
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_7").hide();
@@ -982,17 +1006,17 @@ function handleAccountInfo(event) {
     finalPayload["BasicInformation"] = basicInformation;
     finalPayload["InsuredInformation"] = InsuredInformation;
     finalPayload["BankDetails"] = BankDetails;
-    finalPayload["FileList"] = filesMap;
+    finalPayload["FileList"] = JSON.stringify(filesMap);
 
     console.log("FPB : ")
     console.log(finalPayload)
     window.parent.postMessage(JSON.stringify({
-        event_code: 'ym-client-event', data: JSON.stringify({
-            event: {
-                code: "personalinfo",
-                data: finalPayload
-            }
-        })
+      event_code: 'ym-client-event', data: JSON.stringify({
+        event: {
+          code: "personalinfo",
+          data: JSON.stringify(finalPayload)
+        }
+      })
     }), '*');
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
