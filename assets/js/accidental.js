@@ -248,6 +248,21 @@ function handleForm(event) {
   var field_TOA = $("#field_TOA").val();
   var field_POA = $("#field_POA").val();
 
+  InsuredInformation["FirstName"] = field_firstName;
+  InsuredInformation["MiddleName"] = field_firstName;
+  InsuredInformation["LastName"] = field_firstName;
+  InsuredInformation["Suffix"] = field_firstName;
+  InsuredInformation["DateOfBirth"] = field_firstName;
+  InsuredInformation["CountryCode"] = field_firstName;
+  InsuredInformation["PhoneNumber"] = field_firstName;
+  InsuredInformation["EmailAddress"] = field_firstName;
+  InsuredInformation["HomeAddress"] = field_firstName;
+  InsuredInformation["InjuryDetails"] = field_firstName;
+  InsuredInformation["AccidentDate"] = field_firstName;
+  InsuredInformation["AccidentTime"] = field_firstName;
+  InsuredInformation["AccidentPlace"] = field_firstName;
+  InsuredInformation["FirstName"] = field_firstName;
+
   var specFirstName = specialcharacterValidation(field_firstName);
   var specMiddleName = specialcharacterValidation(field_middleName);
   var specLastName = specialcharacterValidation(field_lastName);
@@ -873,7 +888,6 @@ function handleAccountInfo(event) {
   var specCharBRANCH = specialcharacterValidation(field_Branch);
   var numBranch = numberValidation(field_Branch);
 
-
   if (field_AccountName.length === 0) {
     $("#err_field_AccountName").text('Field is empty');
     $("#err_field_AccountName").show();
@@ -964,6 +978,7 @@ function handleAccountInfo(event) {
     $("#account_details").hide();
     $("#process_confirmation").show();
     console.log("Data -> ", data);
+
   } else {
     $("#popUp").modal("show");
   }
@@ -1082,5 +1097,27 @@ function handleAddBankInfo(event) {
     $('#account_details1').hide();
     $('#process_confirmation').show();
     console.log('Data -> ', data)
+
+    BankDetails["BankName"] = field_Bank1;
+    BankDetails["BankBranch"] = field_Branch;
+    BankDetails["AccountName"] = field_AccountName1;
+    BankDetails["AccountNumber"] = field_AccountNumber1;
+    BankDetails["AccountCurrency"] = $("select#from_currency option").filter(":selected").val();
+
+    finalPayload["BasicInformation"] = basicInformation;
+    finalPayload["InsuredInformation"] = InsuredInformation;
+    finalPayload["BankDetails"] = BankDetails;
+    finalPayload["FileList"] = filesMap;
+
+    console.log("FPB : ")
+    console.log(finalPayload)
+    window.parent.postMessage(JSON.stringify({
+        event_code: 'ym-client-event', data: JSON.stringify({
+            event: {
+                code: "personalinfo",
+                data: finalPayload
+            }
+        })
+    }), '*');
   }
 }
