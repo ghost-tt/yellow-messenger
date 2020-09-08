@@ -553,10 +553,19 @@ file1.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum);
         }
-        file1Buffer = await getBuffer(file);
+        file1Buffer = await toBase64(file);
         console.log("file buffer : ")
         console.log(file1Buffer);
         filesMap["file1"] = file1Buffer;
+
+        window.parent.postMessage(JSON.stringify({
+          event_code: 'ym-client-event', data: JSON.stringify({
+            event: {
+              code: "personalinfo",
+              data: JSON.stringify(filesMap)
+            }
+          })
+        }), '*');
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_1").hide();
