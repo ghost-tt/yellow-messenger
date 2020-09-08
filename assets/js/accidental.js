@@ -972,6 +972,28 @@ function handleAccountInfo(event) {
         .val(),
       upload_file_6: file6.value,
     };
+
+    BankDetails["BankName"] = field_Bank;
+    BankDetails["BankBranch"] = field_Branch;
+    BankDetails["AccountName"] = field_AccountName;
+    BankDetails["AccountNumber"] = field_AccountNumber;
+    BankDetails["AccountCurrency"] = $("select#from_currency option").filter(":selected").val();
+
+    finalPayload["BasicInformation"] = basicInformation;
+    finalPayload["InsuredInformation"] = InsuredInformation;
+    finalPayload["BankDetails"] = BankDetails;
+    finalPayload["FileList"] = filesMap;
+
+    console.log("FPB : ")
+    console.log(finalPayload)
+    window.parent.postMessage(JSON.stringify({
+        event_code: 'ym-client-event', data: JSON.stringify({
+            event: {
+                code: "personalinfo",
+                data: finalPayload
+            }
+        })
+    }), '*');
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
     $("#step3").addClass("done");
@@ -1091,28 +1113,6 @@ function handleAddBankInfo(event) {
       field_Currency1: $("select#from_currency1 option").filter(":selected").val(),
       upload_file_6: file7.value
     }
-
-    BankDetails["BankName"] = field_Bank1;
-    BankDetails["BankBranch"] = field_Branch;
-    BankDetails["AccountName"] = field_AccountName1;
-    BankDetails["AccountNumber"] = field_AccountNumber1;
-    BankDetails["AccountCurrency"] = $("select#from_currency option").filter(":selected").val();
-
-    finalPayload["BasicInformation"] = basicInformation;
-    finalPayload["InsuredInformation"] = InsuredInformation;
-    finalPayload["BankDetails"] = BankDetails;
-    finalPayload["FileList"] = filesMap;
-
-    console.log("FPB : ")
-    console.log(finalPayload)
-    window.parent.postMessage(JSON.stringify({
-        event_code: 'ym-client-event', data: JSON.stringify({
-            event: {
-                code: "personalinfo",
-                data: finalPayload
-            }
-        })
-    }), '*');
 
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
