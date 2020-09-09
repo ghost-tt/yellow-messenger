@@ -586,7 +586,7 @@ file1.onchange = async function (e) {
         $("#file_Upload_Tick_1").hide();
         $("#file_upload_cancle_1").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf format and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
@@ -624,7 +624,7 @@ file1.onchange = async function (e) {
         $("#file_Upload_Tick_2").hide();
         $("#file_upload_cancle_2").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf format and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
@@ -662,7 +662,7 @@ file1.onchange = async function (e) {
         $("#file_Upload_Tick_3").hide();
         $("#file_upload_cancle_3").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf format and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
@@ -700,7 +700,7 @@ file1.onchange = async function (e) {
         $("#file_Upload_Tick_5").hide();
         $("#file_upload_cancle_5").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf format and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
@@ -738,7 +738,7 @@ file6.onchange = async function (e) {
         $("#file_Upload_Tick_6").hide();
         $("#file_upload_cancle_6").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf format and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }

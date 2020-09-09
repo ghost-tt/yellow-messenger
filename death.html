@@ -98,23 +98,23 @@
 														<div class="form-row">
 															<div class="col-md-12 form__tags">
 																<label for="validationCustom01">What is the Insured’s first name?</label>
-																<input type="text" class="input__box" id="field_firstName" value="" placeholder="First Name" tabindex="1" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+																<input type="text" class="input__box" maxlength="30" id="field_firstName" value="" placeholder="First Name" tabindex="1" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 30)" required />
 																<div id="err_field_firstName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="validationCustom02">What is the Insured’s middle name?</label>
-																<input type="text" class="input__box" id="field_middleName" value="" placeholder="Middle Name" tabindex="2" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+																<input type="text" class="input__box" maxlength="30" id="field_middleName" value="" placeholder="Middle Name" tabindex="2" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 30)" required />
 																<div id="err_field_middleName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="validationCustom02">What is the Insured’s last name?</label>
 																<div class="row">
 																	<div class="col-md-9">
-																		<input type="text" class="input__box" id="field_lastName" value="" placeholder="Last Name" tabindex="3" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+																		<input type="text" class="input__box" maxlength="30" id="field_lastName" value="" placeholder="Last Name" tabindex="3" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 30)" required />
 																		<div id="err_field_lastName" class="error"></div>
 																	</div>
 																	<div class="col-md-3">
-																		<input type="text" class="input__box" id="field_lastName_Suffix" value="" placeholder="Suffix" tabindex="4" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+																		<input type="text" class="input__box" maxlength="3" id="field_lastName_Suffix" value="" placeholder="Suffix" tabindex="4" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 3)" required />
 																		<div id="err_field_lastName_Suffix" class="error"></div>
 																	</div>
 																</div>
@@ -153,17 +153,17 @@
 														<div class="form-row">
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryFirstName">What is the Beneficiary’s first name?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryFirstName" value="" placeholder="First Name" tabindex="8" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+																<input type="text" class="input__box" maxlength="30" id="field_BeneficiaryFirstName" value="" placeholder="First Name" tabindex="8" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 30)" required />
 																<div id="err_field_BeneficiaryFirstName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryMiddleName">What is the Beneficiary’s middle name?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryMiddleName" value="" placeholder="Middle Name (If married, provide maiden name)" tabindex="9" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+																<input type="text" class="input__box" maxlength="30" id="field_BeneficiaryMiddleName" value="" placeholder="Middle Name (If married, provide maiden name)" tabindex="9" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 30)" required />
 																<div id="err_field_BeneficiaryMiddleName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryLastName">What is the Beneficiary’s last name?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryLastName" value="" placeholder="Last Name (if married, provide maiden name)" tabindex="10" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+																<input type="text" class="input__box" maxlength="30" id="field_BeneficiaryLastName" value="" placeholder="Last Name (if married, provide maiden name)" tabindex="10" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 30)" required />
 																<div id="err_field_BeneficiaryLastName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
@@ -392,19 +392,19 @@
 																		</select>
 																	</div>
 																	<div class="col-md-9">
-																		<input type="text" class="input__box" id="field_BeneficiaryMobileNum" value="" placeholder="Mobile Number" onkeypress="return isNumber(event)" tabindex="12" required />
+																		<input type="text" class="input__box" maxlength="10" id="field_BeneficiaryMobileNum" value="" placeholder="Mobile Number" onkeypress="return isNumber(event)  && check_Mobile_Length(event, 10)" tabindex="12" required />
 																		<div id="err_field_BeneficiaryMobileNum" class="error"></div>
 																	</div>
 																</div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryEmailAddress">What is the Beneficiary’s email address?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryEmailAddress" value="" placeholder="Email Address" tabindex="13" onkeypress="removeErr(event)" required />
+																<input type="text" class="input__box" maxlength="40" id="field_BeneficiaryEmailAddress" value="" placeholder="Email Address" tabindex="13" onkeypress="removeErr(event) || checkLength(event, 40)" required />
 																<div id="err_field_BeneficiaryEmailAddress" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryHomeAddress">What is the Beneficiary’s home address?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryHomeAddress" value="" placeholder="Home Address" tabindex="14" onkeypress="removeErr(event)" required />
+																<input type="text" class="input__box" maxlength="250" id="field_BeneficiaryHomeAddress" value="" placeholder="Home Address" tabindex="14" onkeypress="removeErr(event) || checkLength(event, 250)" required />
 																<div id="err_field_BeneficiaryHomeAddress" class="error"></div>
 															</div>
 														</div>
@@ -418,12 +418,12 @@
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryPOB">What is the Beneficiary’s place of birth?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryPOB" value="" placeholder="Place of Birth" tabindex="16" onkeypress="removeErr(event)" required />
+																<input type="text" class="input__box" maxlength="120" id="field_BeneficiaryPOB" value="" placeholder="Place of Birth" tabindex="16" onkeypress="removeErr(event) || checkLength(event, 120 )" required />
 																<div id="err_field_BeneficiaryPOB" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryNationality">What is the Beneficiary’s nationality?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryNationality" value="" placeholder="Nationality" tabindex="17" required />
+																<input type="text" class="input__box" maxlength="120" id="field_BeneficiaryNationality" value="" placeholder="Nationality" tabindex="17" onkeypress=" return checkLength(event, 120)"  required />
 																<div id="err_field_BeneficiaryNationality" onkeypress="removeErr(event)" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
@@ -443,7 +443,7 @@
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryRelationToDeceased">What is the Beneficiary’s relationship to the deceased?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryRelationToDeceased" value="" placeholder="Relationship to the Deceased" tabindex="19" onkeypress="removeErr(event)" required />
+																<input type="text" class="input__box" maxlength="50" id="field_BeneficiaryRelationToDeceased" value="" placeholder="Relationship to the Deceased" tabindex="19" onkeypress="removeErr(event) || checkLength(event, 50)" required />
 																<div id="err_field_BeneficiaryRelationToDeceased" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags" style="margin-top: 2.8rem;">
@@ -753,12 +753,12 @@
 											<div class="form-row">
 												<div class="col-md-12 form__tags">
 													<label for="validation">What is your account name?</label>
-													<input type="text" class="input__box" id="field_AccountName" value="" placeholder="Account Name" tabindex="17" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+													<input type="text" class="input__box" maxlength="90" id="field_AccountName" value="" placeholder="Account Name" tabindex="17" onkeypress="return isNotNumber(event) && checkSpcialChar(event) &&  checkLength(event, 90)" required />
 													<div id="err_field_AccountName" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="validation">What is your account number?</label>
-													<input type="text" class="input__box" id="field_AccountNumber" value="" placeholder="Account Number" tabindex="18" onkeypress="return isNumber(event)" required />
+													<input type="text" class="input__box" maxlength="20" id="field_AccountNumber" value="" placeholder="Account Number" tabindex="18" onkeypress="return isNumber(event) && check_Mobile_Length(event, 20)" required />
 													<div id="err_field_AccountNumber" class="error"></div>
 												</div>
 											</div>
@@ -788,7 +788,7 @@
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="validation">What is your bank’s branch?</label>
-													<input type="text" class="input__box" id="field_Branch" value="" placeholder="Branch" tabindex="21" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+													<input type="text" class="input__box" maxlength="50" id="field_Branch" value="" placeholder="Branch" tabindex="21" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 50)" required />
 													<div id="err_field_Branch" class="error"></div>
 												</div>
 											</div>
@@ -819,7 +819,7 @@
                                                         account documents: Passbook, Bank
                                                         Account Statement, or Bank Certification.
                                                         You may only upload documents that are
-                                                        in .jpg, .pdf, or formats and must not
+                                                        in .jpg, .pdf formats and must not
                                                         exceed 2MB in file size.
                                                     </small>
 													<p class="feedback_label" id="upload_feedback_label"></p>
@@ -850,17 +850,17 @@
 											<div class="form-row">
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryFirstName">What is the Beneficiary’s first name?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryFirstName" value="" placeholder="First Name" tabindex="7" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+													<input type="text" class="input__box" maxlength="30" id="field_addBeneficiaryFirstName" value="" placeholder="First Name" tabindex="7" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 30)" required />
 													<div id="err_field_addBeneficiaryFirstName" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryMiddleName">What is the Beneficiary’s middle name?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryMiddleName" value="" placeholder="Middle Name (If married, provide maiden name)" tabindex="8" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+													<input type="text" class="input__box" maxlength="30" id="field_addBeneficiaryMiddleName" value="" placeholder="Middle Name (If married, provide maiden name)" tabindex="8" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 30)" required />
 													<div id="err_field_addBeneficiaryMiddleName" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryLastName">What is the Beneficiary’s last name?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryLastName" value="" placeholder="Last Name (if married, provide maiden name)" tabindex="9" onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+													<input type="text" class="input__box" maxlength="30" id="field_addBeneficiaryLastName" value="" placeholder="Last Name (if married, provide maiden name)" tabindex="9" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 30)" required />
 													<div id="err_field_addBeneficiaryLastName" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
@@ -1088,19 +1088,19 @@
 															</select>
 														</div>
 														<div class="col-md-9">
-															<input type="text" class="input__box" id="field_addBeneficiaryMobileNum" value="" placeholder="Mobile Number" onkeypress="return isNumber(event)" tabindex="11" required />
+															<input type="text" class="input__box" maxlength="10" id="field_addBeneficiaryMobileNum" value="" placeholder="Mobile Number" onkeypress="return isNumber(event) && check_Mobile_Length(event, 10)" tabindex="11" required />
 															<div id="err_field_addBeneficiaryMobileNum" class="error"></div>
 														</div>
 													</div>
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryEmailAddress">What is the Beneficiary’s email address?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryEmailAddress" value="" placeholder="Email Address" tabindex="12" onkeypress="removeErr(event)" required />
+													<input type="text" class="input__box" maxlength="40" id="field_addBeneficiaryEmailAddress" value="" placeholder="Email Address" tabindex="12" onkeypress="removeErr(event) || checkLength(event, 40)" required />
 													<div id="err_field_addBeneficiaryEmailAddress" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryHomeAddress">What is the Beneficiary’s home address?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryHomeAddress" value="" placeholder="Home Address" tabindex="13" onkeypress="removeErr(event)" required />
+													<input type="text" class="input__box" maxlength="250" id="field_addBeneficiaryHomeAddress" value="" placeholder="Home Address" tabindex="13" onkeypress="removeErr(event) || checkLength(event, 250)" required />
 													<div id="err_field_addBeneficiaryHomeAddress" class="error"></div>
 												</div>
 											</div>
@@ -1114,12 +1114,12 @@
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryPOB">What is the Beneficiary’s place of birth?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryPOB" value="" placeholder="Place of Birth" tabindex="15" onkeypress="removeErr(event)" required />
+													<input type="text" class="input__box" maxlength="120" id="field_addBeneficiaryPOB" value="" placeholder="Place of Birth" tabindex="15" onkeypress="removeErr(event) || checkLength(event,120)" required />
 													<div id="err_field_addBeneficiaryPOB" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryNationality">What is the Beneficiary’s nationality?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryNationality" value="" placeholder="Nationality" tabindex="16" onkeypress="removeErr(event)" required />
+													<input type="text" class="input__box" maxlength="120" id="field_addBeneficiaryNationality" value="" placeholder="Nationality" tabindex="16" onkeypress="removeErr(event) || checkLength(event, 120)" required />
 													<div id="err_field_addBeneficiaryNationality" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
@@ -1129,7 +1129,7 @@
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryRelationToDeceased">What is the Beneficiary’s relationship to the deceased?</label>
-													<input type="text" class="input__box" id="field_addBeneficiaryRelationToDeceased" value="" placeholder="Relationship to the Deceased" tabindex="18" onkeypress="removeErr(event)" required />
+													<input type="text" class="input__box" maxlength="50" id="field_addBeneficiaryRelationToDeceased" value="" placeholder="Relationship to the Deceased" tabindex="18" onkeypress="removeErr(event) || checkLength(event, 50)" required />
 													<div id="err_field_addBeneficiaryRelationToDeceased" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags" style="margin-top: 2.8rem;">

@@ -98,7 +98,7 @@ function checkSpcialChar(evt){
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
     if(!((evt.charCode >= 65) && (evt.charCode <= 90) || (evt.charCode >= 97) 
-    && (evt.charCode <= 122)|| (evt.charCode >= 48) && (evt.charCode <= 57) || (evt.charCode == 32))){
+    && (evt.charCode <= 122)|| (evt.charCode >= 48) && (evt.charCode <= 57) || (evt.charCode == 32) || (evt.charCode == 13))){
         $(`#err_${evt.target.id}`).text("special character is not allowed");
         $(`#err_${evt.target.id}`).show(); 
        return false;
@@ -113,13 +113,52 @@ function isNotNumber(evt) {
     $(`#err_${evt.target.id}`).hide();
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        $("#err_field_mobileNum").text('');
-        $("#err_field_mobileNum").hide();
+    if (charCode > 31 && (charCode < 48 || charCode > 57) || (evt.charCode == 13)) {
+        $(`#err_${evt.target.id}`).text('');
+        $(`#err_${evt.target.id}`).hide();
         return true;
     }
     validateNotNumber(evt)
     return false;
+}
+
+
+
+function checkLength(evt, max_Length) {
+    let id = evt.target.id;
+    var val = document.getElementById(id).value;
+    var length = val.length;
+    if (length >= max_Length) {
+        $(`#err_${id}`).text("Maximum " + max_Length + " character allowed!");
+        $(`#err_${id}`).show();
+    }else {
+        detection(evt);
+    }
+    
+}
+
+function detection(evt) {
+    id = evt.target.id;
+    document.getElementById(id).addEventListener('keydown', event => {
+       if(event.key == 'Backspace') {
+        $(`#err_${id}`).text("");
+        $(`#err_${id}`).hide();
+       }
+    })
+}
+
+
+function check_Mobile_Length(evt, max_Length) {
+    let id = evt.target.id;
+    var val = document.getElementById(id).value;
+    var length = val.length;
+    if (length !== max_Length) {
+        detection(evt);
+    } else {
+        console.log(length,max_Length)
+        $(`#err_${id}`).text("Maximum " + max_Length + " number allowed!");
+        $(`#err_${id}`).show();
+    }
 }
 
 function validateNotNumber(evt) {
@@ -504,7 +543,10 @@ function handleForm(event) {
     } else if (!numberMobile){
         $("#err_field_BeneficiaryMobileNum").text('Only number is allowed!');
         $("#err_field_BeneficiaryMobileNum").show();
-    } else {
+    } else if (field_BeneficiaryMobileNum.length !== 10) {
+        $("#err_field_BeneficiaryMobileNum").text('Minimum 10 number required!');
+        $("#err_field_BeneficiaryMobileNum").show();
+    }   else {
         $("#err_field_BeneficiaryMobileNum").text('');
         $("#err_field_BeneficiaryMobileNum").hide();
     }
@@ -590,7 +632,7 @@ function handleForm(event) {
         $("#err_invalidCheck_privacy").hide();
     }
 
-    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && validateEmail(field_BeneficiaryEmailAddress) && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (speciBeniFirstName == false) && (numBeniFirstName == false) && (numberMobile == true) && (speciBeniMiddleName == false) && (numBeniMiddleName == false) && (speciBeniLastName == false) && (numBeniLastName == false)) {
+    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryMobileNum.length == 10 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && validateEmail(field_BeneficiaryEmailAddress) && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (speciBeniFirstName == false) && (numBeniFirstName == false) && (numberMobile == true) && (speciBeniMiddleName == false) && (numBeniMiddleName == false) && (speciBeniLastName == false) && (numBeniLastName == false)) {
         
     
             const data = {
@@ -775,7 +817,7 @@ file1.onchange = async function (e) {
         $("#file_Upload_Tick_1").hide();
         $("#file_upload_cancle_1").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
@@ -813,7 +855,7 @@ file1.onchange = async function (e) {
         $("#file_Upload_Tick_2").hide();
         $("#file_upload_cancle_2").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
@@ -851,7 +893,7 @@ file3.onchange = async function (e) {
         $("#file_Upload_Tick_3").hide();
         $("#file_upload_cancle_3").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
@@ -889,7 +931,7 @@ file4.onchange = async function (e) {
         $("#file_Upload_Tick_4").hide();
         $("#file_upload_cancle_4").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
@@ -965,7 +1007,7 @@ file6.onchange = async function (e) {
         $("#file_Upload_Tick_6").hide();
         $("#file_upload_cancle_6").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
@@ -1004,7 +1046,7 @@ file6.onchange = async function (e) {
         $("#file_Upload_Tick_7").hide();
         $("#file_upload_cancle_7").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
