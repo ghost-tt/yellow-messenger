@@ -244,7 +244,7 @@ function check_Mobile_Length(evt, max_Length) {
         detection(evt);
     } else {
         console.log(length,max_Length)
-        $(`#err_${id}`).text("Minimum " + max_Length + " number allowed!");
+        $(`#err_${id}`).text("Maximum " + max_Length + " number allowed!");
         $(`#err_${id}`).show();
     }
 }
