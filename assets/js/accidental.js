@@ -372,8 +372,8 @@ function handleForm(event) {
     } else if (!numMobile) {
         $("#err_field_mobileNum").text('Only number is allowed!');
         $("#err_field_mobileNum").show();
-    } else if (field_mobileNum.length !== 7) {
-        $("#err_field_mobileNum").text('Minimum 7 number allowed!');
+    } else if (field_mobileNum.length !== 10) {
+        $("#err_field_mobileNum").text('Minimum 10 number allowed!');
         $("#err_field_mobileNum").show();
     } else {
         $("#err_field_mobileNum").text('');
