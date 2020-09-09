@@ -168,32 +168,32 @@ function isNumber(evt) {
   return true;
 }
 
-function checkSpcialChar(evt) {
-  evt = (evt) ? evt : window.event;
-  var charCode = (evt.which) ? evt.which : evt.keyCode;
-  if (!((evt.charCode >= 65) && (evt.charCode <= 90) || (evt.charCode >= 97)
-    && (evt.charCode <= 122) || (evt.charCode >= 48) && (evt.charCode <= 57) || (evt.charCode == 32))) {
-    $(`#err_${evt.target.id}`).text("special character is not allowed");
-    $(`#err_${evt.target.id}`).show();
-    return false;
-  }
-  $(`#err_${evt.target.id}`).text("");
-  $(`#err_${evt.target.id}`).hide();
-  return true;
-}
-
-function isNotNumber(evt) {
-  $(`#err_${evt.target.id}`).text("");
-  $(`#err_${evt.target.id}`).hide();
-  evt = (evt) ? evt : window.event;
-  var charCode = (evt.which) ? evt.which : evt.keyCode;
-  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-    $(`#err_${evt.target.id}`).text('');
+function checkSpcialChar(evt){
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if(!((evt.charCode >= 65) && (evt.charCode <= 90) || (evt.charCode >= 97) 
+    && (evt.charCode <= 122)|| (evt.charCode >= 48) && (evt.charCode <= 57) || (evt.charCode == 32) || (evt.charCode == 13))){
+        $(`#err_${evt.target.id}`).text("special character is not allowed");
+        $(`#err_${evt.target.id}`).show(); 
+       return false;
+    }
+    $(`#err_${evt.target.id}`).text("");
     $(`#err_${evt.target.id}`).hide();
     return true;
-  }
-  validateNotNumber(evt)
-  return false;
+ } 
+
+function isNotNumber(evt) {
+    $(`#err_${evt.target.id}`).text("");
+    $(`#err_${evt.target.id}`).hide();
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57) || (evt.charCode == 13)) {
+        $(`#err_${evt.target.id}`).text('');
+        $(`#err_${evt.target.id}`).hide();
+        return true;
+    }
+    validateNotNumber(evt)
+    return false;
 }
 
 function validateNotNumber(evt) {
@@ -212,6 +212,42 @@ function specialcharacterValidation(input) {
   }
 }
 
+function checkLength(evt, max_Length) {
+    let id = evt.target.id;
+    var val = document.getElementById(id).value;
+    var length = val.length;
+    if (length >= max_Length) {
+        $(`#err_${id}`).text("Maximum " + max_Length + " character allowed!");
+        $(`#err_${id}`).show();
+    }else {
+        detection(evt);
+    }
+    
+}
+
+function detection(evt) {
+    id = evt.target.id;
+    document.getElementById(id).addEventListener('keydown', event => {
+       if(event.key == 'Backspace') {
+        $(`#err_${id}`).text("");
+        $(`#err_${id}`).hide();
+       }
+    })
+}
+
+
+function check_Mobile_Length(evt, max_Length) {
+    let id = evt.target.id;
+    var val = document.getElementById(id).value;
+    var length = val.length;
+    if (length !== max_Length) {
+        detection(evt);
+    } else {
+        console.log(length,max_Length)
+        $(`#err_${id}`).text("Minimum " + max_Length + " number allowed!");
+        $(`#err_${id}`).show();
+    }
+}
 
 function numberValidation(input) {
   var regex = /^([^0-9]*)$/;
@@ -330,16 +366,19 @@ function handleForm(event) {
     $("#err_field_DOB").hide();
   }
 
-  if (field_mobileNum.length === 0) {
-    $("#err_field_mobileNum").text('Field is empty');
-    $("#err_field_mobileNum").show();
-  } else if (!numMobile) {
-    $("#err_field_mobileNum").text('Only number is allowed!');
-    $("#err_field_mobileNum").show();
-  } else {
-    $("#err_field_mobileNum").text('');
-    $("#err_field_mobileNum").hide();
-  }
+    if (field_mobileNum.length === 0) {
+        $("#err_field_mobileNum").text('Field is empty');
+        $("#err_field_mobileNum").show();
+    } else if (!numMobile) {
+        $("#err_field_mobileNum").text('Only number is allowed!');
+        $("#err_field_mobileNum").show();
+    } else if (field_mobileNum.length !== 7) {
+        $("#err_field_mobileNum").text('Minimum 7 number allowed!');
+        $("#err_field_mobileNum").show();
+    } else {
+        $("#err_field_mobileNum").text('');
+        $("#err_field_mobileNum").hide();
+    }
 
   if (field_emailAddress.length === 0) {
     $("#err_field_emailAddress").text('Field is empty');
