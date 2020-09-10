@@ -223,6 +223,11 @@ input[type="radio"] {
   color: #fff;
 }
 
+.pickUp_btn {
+  background: #363e3f !important;
+  color: #fff;
+}
+
 @media (min-width: 576px) {
   .jumbotron {
     margin-bottom: 0;
@@ -656,6 +661,10 @@ svg > path {
   }
   .modal-sm {
     width: 300px; /* New width for small modal */
+  }
+  .popup {
+    width: 60%;
+    justify-content: flex-end;
   }
  
 }

@@ -8,6 +8,7 @@ var file4 = document.getElementById('file_Upload_4');
 var file5 = document.getElementById('file_Upload_5');
 var file6 = document.getElementById('file_Upload_6');
 var file7 = document.getElementById('file_Upload_7');
+var value = 1;
 
 $('#privacy_consent_1').prop('checked', true);
 $('#privacy_consent_2').prop('checked', true);
@@ -672,7 +673,7 @@ function handleForm(event) {
             $('#requirements')[0].scrollIntoView(true); */
             $('#payment').show();
             /* $('#payment')[0].scrollIntoView(true);  */
-            
+            $("#customer_Name").text(`Hi ${field_firstName} Hang in there as we are now processing your request. Kindly expect an update from us within 2 to 4 days on the status of your request.`);
             console.log('Data -> ', data)
     
     }else {
@@ -969,7 +970,7 @@ file5.onchange = async function (e) {
         $("#file_Upload_Tick_5").hide();
         $("#file_upload_cancle_5").show();
         $("#upload_warning").text(
-          "You may only upload documents that are in .jpg, .pdf, or formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+          "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
         );
         this.value = "";
     }
@@ -1127,13 +1128,20 @@ function buttonSubmitClicked(event) {
         insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
     }
 
-    $("#step2").addClass("active");
-    $("#step2>div").addClass("active");
-    $("#step2").addClass("done");
-    $('#requirements').hide();
-   /*  $('#payment').show();
-    $('#payment')[0].scrollIntoView(true); */
-    $('#process_confirmation').show(); 
+        if(value == 2){
+            $("#step2").addClass("active");
+            $("#step2>div").addClass("active");
+            $("#step2").addClass("done");
+            $('#requirements').hide();
+            $('#process_confirmation').show();
+        }else{
+            $("#step2").addClass("active");
+            $("#step2>div").addClass("active");
+            $("#step2").addClass("done");
+            $('#requirements').hide();
+            $('#process_confirmation').hide();
+            $("#pickUp").show();
+        }
 
     console.log('upload data --> ', upload_data);
 }
@@ -1152,7 +1160,8 @@ function handleAccountInfo(event) {
     var numAccountNumber = onlyNumberValidate(field_AccountNumber);
     var specCharBRANCH = specialcharacterValidation(field_Branch);
     var numBranch = numberValidation(field_Branch);
-
+    value = value+1;
+    
     if (field_AccountName.length === 0) {
         $("#err_field_AccountName").text('Field is empty');
         $("#err_field_AccountName").show();
@@ -1248,10 +1257,10 @@ function bankTranfer() {
 
 function pickUp() {
     $('#payment').hide();
-    $('#process_confirmation').show();
-    $("#step3").addClass("active");
-    $("#step3>div").addClass("active");
-    $("#step3").addClass("done");
+    $("#requirements").show();
+    $("#step2").addClass("active");
+    $("#step2>div").addClass("active");
+    $("#step2").addClass("done");
 }
 
 function goBack() {
@@ -1263,3 +1272,18 @@ function goBack() {
     $('#form_wrapper').show();
     /* $('#form_wrapper')[0].scrollIntoView(true); */
 }
+
+
+function pickup_Bpi() {
+    $("#pickUp").hide();
+    $('#process_confirmation').show();
+    $("#step3").addClass("active");
+    $("#step3>div").addClass("active");
+    $("#step3").addClass("done");
+  }
+
+  
+function openlink() {
+    window.open("https://www.google.com/maps/search/bpi+branch+locator/@14.6079731,120.9860096,14z/data=!3m1!4b1");
+  }
+  

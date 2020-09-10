@@ -454,6 +454,7 @@ function handleForm(event) {
     $("#step2").addClass("active");
     $("#step2>div").addClass("active");
     $("#requirements").show();
+    $("#customer_Name").text(`Hi ${field_firstName} Hang in there as we are now processing your request. Kindly expect an update from us within 2 to 4 days on the status of your request.`);
     /* $('#requirements')[0].scrollIntoView(true); */
 
     console.log("Data -> ", data);
@@ -902,8 +903,24 @@ function bankTranfer() {
 
 function pickUp() {
     $('#payment').hide();
+  /*   $('#process_confirmation').show(); */
+    $("#pickUp").show();
+    $("#step2").addClass("active");
+    $("#step2>div").addClass("active");
+    $("#step2").addClass("done");
+}
+
+function pickup_Bpi() {
+    $("#pickUp").hide();
     $('#process_confirmation').show();
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
     $("#step3").addClass("done");
-}
+  }
+
+  
+function openlink() {
+    window.open("https://www.google.com/maps/search/bpi+branch+locator/@14.6079731,120.9860096,14z/data=!3m1!4b1");
+  }
+  
+  

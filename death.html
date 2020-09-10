@@ -438,7 +438,7 @@
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryOccupation">What is the Beneficiary’s Occupation?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryOccupation" value="" tabindex="19" onkeypress="removeErr(event)" required />
+																<input type="text" class="input__box" id="field_BeneficiaryOccupation" value="" placeholder="Occupation Detail" tabindex="19" onkeypress="removeErr(event)" required />
 																<div id="err_field_BeneficiaryOccupation" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
@@ -703,7 +703,7 @@
 						<br />
 						<div class="row">
 							<div class="col-9">
-								<p class="font-weight-normal">Hi Alex. Hang in there as we are now processing your request. Kindly expect an update from us within 2 to 4 days on the status of your request.</p>
+								<p id="customer_Name" class="font-weight-normal">Hi Alex. Hang in there as we are now processing your request. Kindly expect an update from us within 2 to 4 days on the status of your request.</p>
 								<br />
 								<p class="font-weight-normal">If we would need additional documents to support your request, we will reach out to you immediately.</p>
 								<br />
@@ -1199,6 +1199,36 @@
 				</div>
 			</section>
 		</section>
+		        
+        <section class="hide" id="pickUp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-11 offset-md-1" style="margin-top: 2rem;">
+                        <p class="privacy_title">Pick up Anywhere</p>
+                        <p style="margin: 2rem 0 2rem 0;">
+                            If your request is approved, you can claim your benefit from any BPI or BPI Family Saving Branch.
+                        </p>
+                        <p style="margin: 2rem 0;">
+                           We will send you an SMS notification confirming the date on when you can claim your benefit as well as Reference code.Please present this Reference Code and one (1) valid, government-issued IDs at any branch of BPI or BPI Family Saving Bank.
+                        </p>
+                        <div class="col-12 col-md-12" style="margin: 0 0 0 1rem 0;">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="popup">
+                                        <button type="submit" onclick="openlink()" class="btn pickUp_btn" style="width: 100%; margin: 0 0 1rem 0;">CHECK OUT THE BPI BRANCH NEAREST YOU</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
+                                    <div  class="popup">
+                                        <button type="submit"  onclick="pickup_Bpi()" class="btn" style="width: 100%;">YES, I WOULD LIKE TO PICK UP MY BENEFIT THROUGH BPI</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 		
 		<section class="hide modal fade" id="popUp" tabindex="-1" role="dialog"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
