@@ -769,26 +769,26 @@
 													<label for="validation">What is your bank?</label>
 													<select class="custom-select-container mr-sm-2 " id="field_Bank">
 														<option value="" selected>--</option>
-														<option value="Bank of the Philippine Islands">BPI - Bank of the Philippine Islands</option>
-														<option value="BPI Family Savings Bank">BFB - BPI Family Savings Bank</option>
-														<option value="Banco de Oro">BDO - Banco de Oro</option>
-														<option value="China Banking Corporation">CBC - China Banking Corporation</option>
-														<option value="Citibank Philippines">CITI - Citibank Philippines</option>
-														<option value="Development Bank of the Phils">DBP - Development Bank of the Phils</option>
-														<option value="Eastwest Bank">EWB - Eastwest Bank</option>
-														<option value="Hongkong Shanghai Banking Corp. Phils">HSBC - Hongkong Shanghai Banking Corp. Phils</option>
-														<option value="Land Bank of the Philippines">LBP - Land Bank of the Philippines</option>
-														<option value="Metropolitan Banks and Trust Company">MBTC - Metropolitan Banks and Trust Company</option>
-														<option value="Philippine National Bank">PNB - Philippine National Bank</option>
-														<option value="Rizal Commercial Banking Corp">RCBC - Rizal Commercial Banking Corp</option>
-														<option value="Security Bank">SBTC - Security Bank</option>
-														<option value="Union Bank of the Philippines">UB- Union Bank of the Philippines</option>
+														<option value="Bank of the Philippine Islands">Bank of the Philippine Islands</option>
+														<option value="BPI Family Savings Bank">BPI Family Savings Bank</option>
+														<option value="Banco de Oro">Banco de Oro</option>
+														<option value="China Banking Corporation">China Banking Corporation</option>
+														<option value="Citibank Philippines">Citibank Philippines</option>
+														<option value="Development Bank of the Phils">Development Bank of the Phils</option>
+														<option value="Eastwest Bank">Eastwest Bank</option>
+														<option value="Hongkong Shanghai Banking Corp. Phils">Hongkong Shanghai Banking Corp. Phils</option>
+														<option value="Land Bank of the Philippines">Land Bank of the Philippines</option>
+														<option value="Metropolitan Banks and Trust Company">Metropolitan Banks and Trust Company</option>
+														<option value="Philippine National Bank">Philippine National Bank</option>
+														<option value="Rizal Commercial Banking Corp">Rizal Commercial Banking Corp</option>
+														<option value="Security Bank">Security Bank</option>
+														<option value="Union Bank of the Philippines">Union Bank of the Philippines</option>
 													</select>
 													<div id="err_field_Bank" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="validation">What is your bank’s branch?</label>
-													<input type="text" class="input__box" maxlength="50" id="field_Branch" value="" placeholder="Branch" tabindex="21" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 50)" required />
+													<input type="text" class="input__box" maxlength="50" id="field_Branch" value="" placeholder="Branch" tabindex="21" onkeypress="checkLength(event, 50)" required />
 													<div id="err_field_Branch" class="error"></div>
 												</div>
 											</div>
@@ -798,7 +798,7 @@
 												<div class="col-md-12 form__tags">
 													<label for="validation">What is your account’s currency?</label>
 													<select id="from_currency" class="custom-select-container mr-sm-2 " tabindex="19">
-														<option value="PHP" selected>PHP</option>
+														<option value="Peso" selected>Peso</option>
 														<option value="USD">USD</option>
 													</select>
 													<div id="err_field_Currency" class="error"></div>

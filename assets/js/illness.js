@@ -532,7 +532,7 @@ const fileCheck = (file,button) => {
       $(`#file_loader_icon_${button}`).hide();
       $(`#file_Upload_Tick_${button}`).hide();
       $(`#file_upload_cancle_${button}`).show();
-      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clear copy of a document to proceed.");
+      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
       console.log("Image is bad");
     } else {
       console.log("This is right JPG");
@@ -817,8 +817,8 @@ function handleAccountInfo(event) {
     var numAccountNumber = onlyNumberValidate(field_AccountNumber);
    /*  var specCharBank = specialcharacterValidation(field_Bank);
     var numBank = numberValidation(field_Bank); */
-    var specCharBRANCH = specialcharacterValidation(field_Branch);
-    var numBranch = numberValidation(field_Branch);
+  /*   var specCharBRANCH = specialcharacterValidation(field_Branch);
+    var numBranch = numberValidation(field_Branch); */
 
     if (field_AccountName.length === 0) {
         $("#err_field_AccountName").text('Field is empty');
@@ -857,13 +857,13 @@ function handleAccountInfo(event) {
     if (field_Branch.length === 0) {
         $("#err_field_Branch").text('Field is empty');
         $("#err_field_Branch").show();
-    } else if(specCharBRANCH) {
+    }/*  else if(specCharBRANCH) {
         $("#err_field_Branch").text('special character is not allowed');
         $("#err_field_Branch").show();
     } else if(numBranch) {
         $("#err_field_Branch").text('Number is not allowed');
         $("#err_field_Branch").show();
-    } else {
+    }  */else {
         $("#err_field_Branch").text('');
         $("#err_field_Branch").hide();
     }
@@ -873,7 +873,7 @@ function handleAccountInfo(event) {
         $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
     }
 
-    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && file6.length !== 0 && (speCharAccountName == false) && (numAccountName == false) && (numAccountNumber == true) && (specCharBRANCH == false) && (numBranch == false) &&  (file6.value && (!$('#file_Upload_Tick_6').is(":hidden"))) ) {
+    if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && file6.length !== 0 && (speCharAccountName == false) && (numAccountName == false) && (numAccountNumber == true) && (file6.value && (!$('#file_Upload_Tick_6').is(":hidden"))) ) {
         const data = {
             field_AccountName,
             field_AccountNumber,

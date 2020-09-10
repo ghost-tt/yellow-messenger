@@ -534,7 +534,7 @@ const fileCheck = (file, button) => {
       $(`#file_loader_icon_${button}`).hide();
       $(`#file_Upload_Tick_${button}`).hide();
       $(`#file_upload_cancle_${button}`).show();
-      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clear copy of a document to proceed.");
+      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
       console.log("Image is bad");
     } else {
       console.log("This is right JPG");
@@ -984,13 +984,13 @@ function handleAccountInfo(event) {
   if (field_Branch.length === 0) {
     $("#err_field_Branch").text('Field is empty');
     $("#err_field_Branch").show();
-  } else if (specCharBRANCH) {
+  }/*  else if (specCharBRANCH) {
     $("#err_field_Branch").text('special character is not allowed');
     $("#err_field_Branch").show();
   } else if (numBranch) {
     $("#err_field_Branch").text('Number not allowed');
     $("#err_field_Branch").show();
-  } else {
+  }  */else {
     $("#err_field_Branch").text('');
     $("#err_field_Branch").hide();
   }
@@ -1017,8 +1017,6 @@ function handleAccountInfo(event) {
     speCharAccountName == false &&
     numAccountName == false &&
     numAccountNumber == true &&
-    specCharBRANCH == false &&
-    numBranch == false &&
     file6.value &&
     !$("#file_Upload_Tick_6").is(":hidden")
   ) {
@@ -1157,13 +1155,13 @@ function handleAddBankInfo(event) {
   if (field_Branch1.length === 0) {
     $("#err_field_Branch1").text('Field is empty');
     $("#err_field_Branch1").show();
-  } else if (specCharAddBRANCH) {
+  }/*  else if (specCharAddBRANCH) {
     $("#err_field_Branch1").text('special character is not allowed');
     $("#err_field_Branch1").show();
   } else if (numAddBranch) {
     $("#err_field_Branch1").text('Number not allowed');
     $("#err_field_Branch1").show();
-  } else {
+  }  */else {
     $("#err_field_Branch1").text('');
     $("#err_field_Branch1").hide();
   }
@@ -1173,7 +1171,7 @@ function handleAddBankInfo(event) {
     $('#upload_feedback_label1').text('Please upload your Bank Account Ownership');
   }
 
-  if (field_AccountName1.length !== 0 && field_AccountNumber1.length !== 0 && field_currency1.length !== 0 && field_Bank1.length !== 0 && field_Branch1.length !== 0 && file7.length !== 0 && (speCharAddAccountName == false) && (numAddAccountName == false) && (numAddAccountNumber == true) && (specCharAddBRANCH == false) && (numAddBranch == false)) {
+  if (field_AccountName1.length !== 0 && field_AccountNumber1.length !== 0 && field_currency1.length !== 0 && field_Bank1.length !== 0 && field_Branch1.length !== 0 && file7.length !== 0 && (speCharAddAccountName == false) && (numAddAccountName == false) && (numAddAccountNumber == true) ) {
     const data = {
       field_AccountName1,
       field_AccountNumber1,
