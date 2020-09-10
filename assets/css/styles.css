@@ -662,14 +662,14 @@ svg > path {
   .modal-sm {
     width: 300px; /* New width for small modal */
   }
-  .popup {
-    width: 60%;
-    justify-content: flex-end;
-  }
- 
+  
 }
 @media screen and (min-width: 992px) {
   .modal-lg {
     width: 344px; /* New width for large modal */
+  }
+  .popup {
+    width: 70%;
+    justify-content: flex-end;
   }
 }
