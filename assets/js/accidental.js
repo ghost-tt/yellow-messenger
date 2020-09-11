@@ -463,7 +463,7 @@ function handleForm(event) {
       $("#step2>div").addClass("active");
       $('#requirements').show();
       /*  $('#requirements')[0].scrollIntoView(true); */
-      $("#customer_Name").text(`Hi ${field_firstName} Hang in there as we are now processing your request. Kindly expect an update from us within 2 to 4 days on the status of your request.`);
+      $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an update from us within 2 to 4 days on the status of your request.`);
       console.log('Data -> ', data)
     
   } else {
@@ -476,7 +476,7 @@ function removeErr(event) {
   $(`#err_${event.target.id}`).hide();
 }
 
-const proceedScan = async (fileObj, button) => {
+const proceedScan = async (fileObj, button, pageid) => {
   console.log(button);
   console.log("code is here");
   $(`#file_loader_icon_${button}`).show();
@@ -491,16 +491,27 @@ const proceedScan = async (fileObj, button) => {
       console.log(parsedJson);
       if (parsedJson.hasVirus) {
         console.log("Netering");
-        $("#warning_parent").show();
+
+        if(pageid == 1) {
+          $("#warning_parent").show();
+          $("#upload_warning").text(
+            "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
+          );
+        } 
+        if (pageid ==2) {
+          $("#warning_parent_acct").show();
+          $("#upload_fwarning_acct").text(
+            "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
+          );
+        }
+        
         $(`#file_loader_icon_${button}`).hide();
         $(`#file_Upload_Tick_${button}`).hide();
         $(`#file_upload_cancle_${button}`).show();
-        $("#upload_warning").text(
-          "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
-        );
         return;
       } else {
         $("#warning_parent").hide();
+        $("#warning_parent_acct").hide();
         $(`#file_loader_icon_${button}`).hide();
         $(`#file_Upload_Tick_${button}`).show();
         $(`#file_upload_cancle_${button}`).hide();
@@ -509,7 +520,12 @@ const proceedScan = async (fileObj, button) => {
     })
     .catch((error) => {
       console.log("error", error);
-      $("#warning_parent").show();
+      if(pageid == 1) {
+          $("#warning_parent").show();
+      }
+      if(pageid == 2) {
+          $("#warning_parent_acct").show();
+      }
       $(`#file_loader_icon_${button}`).hide();
       $(`#file_Upload_Tick_${button}`).hide();
       $(`#file_upload_cancle_${button}`).show();
@@ -520,7 +536,7 @@ const proceedScan = async (fileObj, button) => {
     });
 };
 
-const fileCheck = (file, button) => {
+const fileCheck = (file, button, pageid) => {
   console.log(button);
   var _URL = window.URL || window.webkitURL;
   console.log("FILE OBJECT -> ", file);
@@ -530,7 +546,15 @@ const fileCheck = (file, button) => {
     console.log("inside image load --> ");
     console.log(this.width + " " + this.height);
     if (this.width < 400 && this.height < 400) {
+    if(pageid == 1){
       $(`#warning_parent`).show();
+      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
+    }
+    if (pageid == 2){
+      $("#warning_parent_acct").show();
+      $("#uplaod_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
+    }
+   
       $(`#file_loader_icon_${button}`).hide();
       $(`#file_Upload_Tick_${button}`).hide();
       $(`#file_upload_cancle_${button}`).show();
@@ -565,13 +589,14 @@ file1.onchange = async function (e) {
     case "pdf":
       var file = this.files[0];
       var buttonNum = 1;
+      var pageID = 1
       var sizevalid = isFileSizeValid(file, buttonNum);
       if (sizevalid) {
         if (ext == "jpg") {
-          fileCheck(file, buttonNum);
+          fileCheck(file, buttonNum, pageID);
         }
         else {
-          proceedScan(file, buttonNum);
+          proceedScan(file, buttonNum, pageID);
         }
         file1Buffer = await toBase64(file);
         console.log("file buffer : ")
@@ -616,13 +641,14 @@ file2.onchange = async function (e) {
     case "pdf":
       var file = this.files[0];
       var buttonNum = 2;
+      var pageId = 1;
       var sizevalid = isFileSizeValid(file, buttonNum);
       if (sizevalid) {
         if (ext == "jpg") {
-          fileCheck(file, buttonNum);
+          fileCheck(file, buttonNum, pageId);
         }
         else {
-          proceedScan(file, buttonNum);
+          proceedScan(file, buttonNum, pageId);
         }
         file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
@@ -658,13 +684,14 @@ file3.onchange = async function (e) {
     case "pdf":
       var file = this.files[0];
       var buttonNum = 3;
+      var pageId = 1;
       var sizevalid = isFileSizeValid(file, buttonNum);
       if (sizevalid) {
         if (ext == "jpg") {
-          fileCheck(file, buttonNum);
+          fileCheck(file, buttonNum, pageId);
         }
         else {
-          proceedScan(file, buttonNum);
+          proceedScan(file, buttonNum, pageId);
         }
         file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
@@ -700,13 +727,14 @@ file4.onchange = async function (e) {
     case "pdf":
       var file = this.files[0];
       var buttonNum = 4;
+      var pageId = 1;
       var sizevalid = isFileSizeValid(file, buttonNum);
       if (sizevalid) {
         if (ext == "jpg") {
-          fileCheck(file, buttonNum);
+          fileCheck(file, buttonNum, pageId);
         }
         else {
-          proceedScan(file, buttonNum);
+          proceedScan(file, buttonNum, pageId);
         }
 
         file1Buffer = await getBuffer(file);
@@ -743,13 +771,14 @@ file5.onchange = async function (e) {
     case "pdf":
       var file = this.files[0];
       var buttonNum = 5;
+      var pageId = 1;
       var sizevalid = isFileSizeValid(file, buttonNum);
       if (sizevalid) {
         if (ext == "jpg") {
-          fileCheck(file, buttonNum);
+          fileCheck(file, buttonNum, pageId);
         }
         else {
-          proceedScan(file, buttonNum);
+          proceedScan(file, buttonNum, pageId);
         }
         file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
@@ -785,33 +814,34 @@ file6.onchange = async function (e) {
     case "pdf":
       var file = this.files[0];
       var buttonNum = 6;
+      var pageId = 2
       var sizevalid = isFileSizeValid(file, buttonNum);
       if (sizevalid) {
         if (ext == "jpg") {
-          fileCheck(file, buttonNum);
+          fileCheck(file, buttonNum, pageId);
         }
         else {
-          proceedScan(file, buttonNum);
+          proceedScan(file, buttonNum, pageId);
         }
         file1Buffer = await getBuffer(file);
         console.log("file buffer : ")
         console.log(file1Buffer);
         filesMap["file6"] = file1Buffer;
       } else {
-        $("#warning_parent").show();
+        $("#warning_parent_acct").show();
         $("#file_loader_icon_6").hide();
         $("#file_Upload_Tick_6").hide();
         $("#file_upload_cancle_6").show();
-        $("#upload_warning").text(
+        $("#upload_warning_acct").text(
           "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
         );
       }
       break;
     default:
-      $("#warning_parent").show();
+      $("#warning_parent_acct").show();
       $("#file_Upload_Tick_6").hide();
       $("#file_upload_cancle_6").show();
-      $("#upload_warning").text(
+      $("#upload_warning_acct").text(
         "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
       );
       this.value = "";

@@ -286,6 +286,10 @@ small {
   display: none;
 }
 
+#warning_parent_acct {
+  display: none;
+}
+
 .feedback_label {
   display: none;
   color: #b8123e;
