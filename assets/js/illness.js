@@ -29,6 +29,7 @@ form_Bank.addEventListener('submit', handleAccountInfo);
 
 $(document).ready(function(event){
     disableFutureDates();
+    disableFutureDatesDOB();
     setCountryCode();
 });
 
@@ -42,11 +43,27 @@ function disableFutureDates() {
     if(day < 10)
         day = '0' + day.toString();
     var maxDate = year + '-' + month + '-' + day;
-    $('#field_DOB').attr('max', maxDate);
     $('#field_DOA').attr('max', maxDate);
     $('#field_TOA').attr('max', maxDate);
     $('#field_POA').attr('max', maxDate);
 }
+
+
+function disableFutureDatesDOB() {
+    var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var dobDate = day -1;
+    var year = dtToday.getFullYear();
+    if (month < 10)
+      month = '0' + month.toString();
+    if (day < 10)
+      day = '0' + day.toString();
+    var maxDate = year + '-' + month + '-' + dobDate;
+    $('#field_DOB').attr('max', maxDate);
+  }
+  
+
 
 function setCountryCode() {
     $('#inlineFormCustomSelect').change(function() {
