@@ -36,10 +36,8 @@ function disableFutureDates() {
     if(day < 10)
         day = '0' + day.toString();
     var maxDate = year + '-' + month + '-' + day;
-   
     $('#field_DOID').attr('max', maxDate);
-    $('#field_addBeneficiaryDOB').attr('max', maxDate);
-    $('#field_BeneficiaryDOB').attr('max', maxDate);
+   
 }
 
 
@@ -55,6 +53,8 @@ function disableFutureDatesDOB() {
       day = '0' + day.toString();
     var maxDate = year + '-' + month + '-' + dobDate;
     $('#field_DOB').attr('max', maxDate);
+    $('#field_addBeneficiaryDOB').attr('max', maxDate);
+    $('#field_BeneficiaryDOB').attr('max', maxDate);
   }
   
 
@@ -186,6 +186,17 @@ function validateNotNumber(evt) {
     $(`#err_${id}`).show();
     return;
 }
+
+
+function fieldCheckLength(field, maxLength) {
+    var length = field.length;
+    if (length > maxLength ) {
+        return true;
+    }
+    else {
+        return false;
+    }
+  }
 
 function handleFormAddBeneficiary(event) {
     event.preventDefault();
@@ -444,9 +455,11 @@ function handleForm(event) {
     var specFirstName = specialcharacterValidation(field_firstName);
     var  specMiddleName = specialcharacterValidation(field_middleName);
     var specLastName = specialcharacterValidation(field_lastName);
+    var specLastNameSuffix = specialcharacterValidation(field_lastName_Suffix);
     var numFirstName = numberValidation(field_firstName);
     var numMiddleName = numberValidation(field_middleName)
     var numLastName = numberValidation(field_lastName);
+    var numLastNameSuffix = numberValidation(field_lastName_Suffix);
     var speciBeniFirstName = specialcharacterValidation(field_BeneficiaryFirstName);
     var numBeniFirstName = numberValidation(field_BeneficiaryFirstName);
     var numberMobile = onlyNumberValidate(field_BeneficiaryMobileNum);
@@ -454,6 +467,10 @@ function handleForm(event) {
     var numBeniMiddleName = numberValidation(field_BeneficiaryMiddleName);
     var speciBeniLastName = specialcharacterValidation(field_BeneficiaryLastName);
     var numBeniLastName = numberValidation(field_BeneficiaryLastName);
+    
+  
+    var lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
+
 
     if (field_firstName.length === 0) {
         $("#err_field_firstName").text('Field is empty');
@@ -497,6 +514,23 @@ function handleForm(event) {
         $("#err_field_lastName").hide();
     }
 
+    
+    if(field_lastName_Suffix.length === 0) {
+        $("#err_field_lastName_Suffix").text('');
+        $("#err_field_lastName_Suffix").hide();
+    } else if (lenLastNameSuffix){
+        $("#err_field_lastName_Suffix").text('Maximum 3 character allowed');
+        $("#err_field_lastName_Suffix").show();
+    } else if (specLastNameSuffix){
+        $("#err_field_lastName_Suffix").text('Special character is not allowed');
+        $("#err_field_lastName_Suffix").show();
+    } else if (numLastNameSuffix) {
+        $("#err_field_lastName_Suffix").text('Number not allowed');
+        $("#err_field_lastName_Suffix").show();
+    } else {
+        $("#err_field_lastName_Suffix").text('');
+        $("#err_field_lastName_Suffix").hide();
+    }
    
     if (field_DOB.length === 0) {
         $("#err_field_DOB").text('Field is empty');

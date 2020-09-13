@@ -33,6 +33,105 @@ $(document).ready(function(event){
     setCountryCode();
 });
 
+
+function futureDate(date) {
+    /*   let id = evt.target.id;
+      var date1 = document.getElementById(id).value; */
+     console.log(date)
+      var res = date.split('-');
+      var year = res[0];
+      var Month = res[1];
+      var day = res[2];
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      var day1 =  day.length;
+      console.log("Logged-In Date:" + year , Month, day) 
+      console.log("System Date:" + dd , mm, yyyy)
+      /* This is for safari, not good way to handle */
+      if (day.length == 4) {
+  
+        if (day < yyyy) {
+          return true;
+        } else if (day > yyyy)
+        {
+          return false
+        }
+        else {
+          if ((day = yyyy) && (Month <= mm) && (year <= dd)) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      } else {
+        if (year < yyyy) {
+          return true;
+        } else if (year > yyyy)
+        {
+          return false
+        }
+        else {
+          if ((year = yyyy) && (Month <= mm) && (day <= dd)) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      }
+    
+    }
+    
+  
+  
+    function futureDateDOB(date) {
+      /*   let id = evt.target.id;
+        var date1 = document.getElementById(id).value; */
+       console.log("This is date" + date)
+        var res = date.split('-');
+        var year = res[0];
+        var Month = res[1];
+        var day = res[2];
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+    
+        /* This is for safari, not good way to handle */
+        if (day.length == 4) {
+  
+          if (day < yyyy) {
+            return true;
+          } else if (day > yyyy)
+          {
+            return false
+          }
+          else {
+            if ((day = yyyy) && (Month <= mm) && (year < dd)) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        } else {
+          if (year < yyyy) {
+            return true;
+          } else if (year > yyyy)
+          {
+            return false
+          }
+          else {
+            if ((year = yyyy) && (Month <= mm) && (day < dd)) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        }
+      
+      }
+
 function disableFutureDates() {
     var dtToday = new Date();
     var month = dtToday.getMonth() + 1;
@@ -266,7 +365,15 @@ function onlyNumberValidate(input) {
     }
 } 
 
-
+function fieldCheckLength(field, maxLength) {
+    var length = field.length;
+    if (length > maxLength ) {
+        return true;
+    }
+    else {
+        return false;
+    }
+  }
 
 function handleForm(event) {
     event.preventDefault();
@@ -285,10 +392,32 @@ function handleForm(event) {
     var specFirstName = specialcharacterValidation(field_firstName);
     var  specMiddleName = specialcharacterValidation(field_middleName);
     var specLastName = specialcharacterValidation(field_lastName);
+    var specLastNameSuffix = specialcharacterValidation(field_lastName_Suffix);
     var numFirstName = numberValidation(field_firstName);
     var numMiddleName = numberValidation(field_middleName)
     var numLastName = numberValidation(field_lastName);
     var numMobile = onlyNumberValidate(field_mobileNum);
+    var numLastNameSuffix = numberValidation(field_lastName_Suffix);
+  
+    var lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
+
+    
+    if(field_DOB.length !== 0) {
+        var futDOB = futureDate(field_DOB);
+        var futExistDOB = futureDateDOB(field_DOB);
+    }
+
+    if(field_DOA.length !== 0) {
+        var futDOA = futureDate(field_DOA);
+    }
+
+    if(field_TOA.length !== 0) {
+        var futTOA = futureDate(field_TOA);
+    }
+
+    if(field_POA.length !== 0) {
+        var futPOA = futureDate(field_POA);
+    }
 
     if (field_firstName.length === 0) {
         $("#err_field_firstName").text('Field is empty');
@@ -340,9 +469,31 @@ function handleForm(event) {
         $("#err_field_lastName").hide();
     }
 
-    
+    if(field_lastName_Suffix.length === 0) {
+      $("#err_field_lastName_Suffix").text('');
+      $("#err_field_lastName_Suffix").hide();
+    } else if (lenLastNameSuffix){
+        $("#err_field_lastName_Suffix").text('Maximum 3 character allowed');
+        $("#err_field_lastName_Suffix").show();
+    } else if (specLastNameSuffix){
+        $("#err_field_lastName_Suffix").text('Special character is not allowed');
+        $("#err_field_lastName_Suffix").show();
+    } else if (numLastNameSuffix) {
+        $("#err_field_lastName_Suffix").text('Number not allowed');
+        $("#err_field_lastName_Suffix").show();
+    } else {
+        $("#err_field_lastName_Suffix").text('');
+        $("#err_field_lastName_Suffix").hide();
+    }
+
     if (field_DOB.length === 0) {
         $("#err_field_DOB").text('Field is empty');
+        $("#err_field_DOB").show();
+    }  else if(!futDOB){
+        $("#err_field_DOB").text('Future date is  not Accepted!');
+        $("#err_field_DOB").show();
+    } else if(!futExistDOB){
+        $("#err_field_DOB").text('Current date is  not Applicable!');
         $("#err_field_DOB").show();
     } else {
         $("#err_field_DOB").text('');
@@ -382,7 +533,10 @@ function handleForm(event) {
     if (field_DOA.length === 0) {
         $("#err_field_DOA").text('Field is empty');
         $("#err_field_DOA").show();
-    } else {
+    }  else if(!futDOA){
+        $("#err_field_DOA").text('Future date is  not Accepted!');
+        $("#err_field_DOA").show();
+    }   else {
         $("#err_field_DOA").text('');
         $("#err_field_DOA").hide();
     }
@@ -390,13 +544,19 @@ function handleForm(event) {
     if (field_TOA.length === 0) {
         $("#err_field_TOA").text('Field is empty');
         $("#err_field_TOA").show();
-    } else {
+    }  else if(!futTOA){
+        $("#err_field_TOA").text('Future date is  not Accepted!');
+        $("#err_field_TOA").show();
+    }  else {
         $("#err_field_TOA").text('');
         $("#err_field_TOA").hide();
     }
 
     if (field_POA.length === 0) {
         $("#err_field_POA").text('Field is empty');
+        $("#err_field_POA").show();
+    }  else if(!futPOA){
+        $("#err_field_POA").text('Future date is  not Accepted!');
         $("#err_field_POA").show();
     } else {
         $("#err_field_POA").text('');

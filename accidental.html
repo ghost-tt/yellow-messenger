@@ -11,6 +11,31 @@
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css"> -->
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Yellow Messenger</title>
+
+    <!-- custom datePicker for safari -->
+	<script type="text/javascript">
+        var datefield=document.createElement("input")
+        datefield.setAttribute("type", "date")
+        if (datefield.type!="date"){ //if browser doesn't support input type="date", load files for jQuery UI Date Picker
+            document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+            document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+            document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n')
+            document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />\n')
+            document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css" />\n')
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"><\/script>\n')
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"><\/script>\n')
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"><\/script>\n')
+        }
+    </script>
+    <script>
+        if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
+        jQuery(function($){ //on document.ready
+            $('#field_DOB').datepicker({maxDate:-1,changeMonth: true,changeYear:true,dateFormat: 'dd-mm-yy'}).val();
+            $('#field_DOA').datepicker({maxDate:0, changeMonth: true,changeYear:true,dateFormat: 'dd-mm-yy'}).val();
+            $('#field_TOA').timepicker({controlType: 'select', oneLine: true, timeInput: true,timeFormat: 'hh:mm tt'});
+        })
+    }
+    </script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -47,21 +72,21 @@
 							<div id="step1" class="md-step active">
 								<div class="md-step-circle active"><span>1</span>
 								</div>
-								<div class="md-step-title d-none d-sm-block">Fill out the form</div>
+								<div class="md-step-title">Fill out the form</div>
 								<div class="md-step-bar-left"></div>
 								<div class="md-step-bar-right"></div>
 							</div>
 							<div id="step2" class="md-step">
 								<div class="md-step-circle"><span>2</span>
 								</div>
-								<div class="md-step-title d-none d-sm-block">Submit your requirements</div>
+								<div class="md-step-title">Submit your requirements</div>
 								<div class="md-step-bar-left"></div>
 								<div class="md-step-bar-right"></div>
 							</div>
 							<div id="step3" class="md-step">
 								<div class="md-step-circle"><span>3</span>
 								</div>
-								<div class="md-step-title d-none d-sm-block">Get your reference number</div>
+								<div class="md-step-title">Get your reference number</div>
 								<div class="md-step-bar-left"></div>
 								<div class="md-step-bar-right"></div>
 							</div>
@@ -186,7 +211,7 @@
                                                         Insured’s
                                                         date of birth?</label>
                                                     <input type="date" class="input__box" id="field_DOB"
-                                                        value="" placeholder="Date of Birth" tabindex="5" />
+                                                        value="" placeholder="Date of Birth" onkeypress="return false" tabindex="5" />
                                                     <div id="err_field_DOB" class="error"></div>
                                                 </div>
                                                 <div class="col-md-12 form__tags">
@@ -838,6 +863,7 @@
                                                         happen?</label>
                                                     <input type="date" class="input__box" id="field_DOA"
                                                         value="" placeholder="Date of Accident"
+                                                        onkeypress="return false"
                                                         tabindex="11" required />
                                                     <div id="err_field_DOA" class="error"></div>
                                                 </div>
@@ -971,7 +997,7 @@
                                     law.
                                     A copy of Circular
                                     Letter No. 2016-54 may be accessed at the Insurance Commission’s website at
-                                    www.insurance.gov.ph.
+                                    <a href="https://www.insurance.gov.ph" target="_blank">www.insurance.gov.ph</a>
                                 </li>
 
                                 <li>
@@ -1000,7 +1026,7 @@
                                 </li>
 
                                 <li>
-                                    Please visit our website, www.philamlife.com for our Privacy Statement, which
+                                    Please visit our website, <a href="https://www.philamlife.com" target="_blank">www.philamlife.com</a> for our Privacy Statement, which
                                     provides
                                     further details on
                                     why your personal data is collected, how it is intended to be used, to whom your
@@ -1047,7 +1073,7 @@
                                         I/we may at anytime withdraw our consent by visiting Philam branches, calling
                                         the
                                         Company’s contact
-                                        center, or by emailing the request to phi.philamprivacy@aia.com. Upon receipt of
+                                        center, or by emailing the request to <a href="mailto:phi.philamprivacy@aia.com">phi.philamprivacy@aia.com</a>. Upon receipt of
                                         such
                                         withdrawal of
                                         consent, the Company will no longer approach me/us for promotions or products

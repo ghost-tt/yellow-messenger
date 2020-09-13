@@ -9,6 +9,32 @@
 	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css"> -->
 	<link rel="stylesheet" href="./assets/css/styles.css">
 	<title>Yellow Messenger</title>
+	<!-- custom datePicker for safari -->
+	<script type="text/javascript">
+        var datefield=document.createElement("input")
+        datefield.setAttribute("type", "date")
+        if (datefield.type!="date"){ //if browser doesn't support input type="date", load files for jQuery UI Date Picker
+            document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+            document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+            document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n')
+            document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />\n')
+            document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css" />\n')
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"><\/script>\n')
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"><\/script>\n')
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"><\/script>\n')
+        }
+    </script>
+    <script>
+        if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
+        jQuery(function($){ //on document.ready
+			$('#field_DOB').datepicker({maxDate:-1,changeMonth: true,changeYear:true,dateFormat: 'dd-mm-yy'}).val();
+			$('#field_BeneficiaryDOB').datepicker({maxDate:-1,changeMonth: true,changeYear:true,dateFormat: 'dd-mm-yy'}).val();
+			$('#field_addBeneficiaryDOB').datepicker({maxDate:-1,changeMonth: true,changeYear:true,dateFormat: 'dd-mm-yy'}).val();
+			$('#field_DOID').datepicker({maxDate:0, changeMonth: true,changeYear:true,dateFormat: 'dd-mm-yy'}).val();
+            $('#field_TOA').timepicker({controlType: 'select', oneLine: true, timeInput: true,timeFormat: 'hh:mm tt'});
+        })
+    }
+    </script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -43,21 +69,21 @@
 							<div id="step1" class="md-step active">
 								<div class="md-step-circle active"><span>1</span>
 								</div>
-								<div class="md-step-title d-none d-sm-block">Fill out the form</div>
+								<div class="md-step-title">Fill out the form</div>
 								<div class="md-step-bar-left"></div>
 								<div class="md-step-bar-right"></div>
 							</div>
 							<div id="step2" class="md-step">
 								<div class="md-step-circle"><span>2</span>
 								</div>
-								<div class="md-step-title d-none d-sm-block">Submit your requirements</div>
+								<div class="md-step-title">Submit your requirements</div>
 								<div class="md-step-bar-left"></div>
 								<div class="md-step-bar-right"></div>
 							</div>
 							<div id="step3" class="md-step">
 								<div class="md-step-circle"><span>3</span>
 								</div>
-								<div class="md-step-title d-none d-sm-block">Get your reference number</div>
+								<div class="md-step-title">Get your reference number</div>
 								<div class="md-step-bar-left"></div>
 								<div class="md-step-bar-right"></div>
 							</div>
@@ -125,12 +151,12 @@
 														<div class="form-row">
 															<div class="col-md-12 form__tags">
 																<label for="field_DOB">What is the Insured’s date of birth?</label>
-																<input type="date" class="input__box" id="field_DOB" value="" placeholder="Date of Birth" tabindex="5" />
+																<input type="date" class="input__box" id="field_DOB" value="" onkeypress="return false" placeholder="Date of Birth" tabindex="5" />
 																<div id="err_field_DOB" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_DOID">What is the date of the Insured’s death?</label>
-																<input type="date" class="input__box" id="field_DOID" value="" placeholder="Date of Insured’s Death" tabindex="6" />
+																<input type="date" class="input__box" id="field_DOID" value="" onkeypress="return false" placeholder="Date of Insured’s Death" tabindex="6" />
 																<div id="err_field_DOID" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
@@ -413,7 +439,7 @@
 														<div class="form-row">
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryDOB">What is the Beneficiary’s date of birth?</label>
-																<input type="date" class="input__box" id="field_BeneficiaryDOB" value="" placeholder="Date of Birth" tabindex="15" />
+																<input type="date" class="input__box" id="field_BeneficiaryDOB" value="" onkeypress="return false" placeholder="Date of Birth" tabindex="15" />
 																<div id="err_field_BeneficiaryDOB" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
@@ -485,10 +511,10 @@
 							<p class="privacy_title">PRIVACY NOTICE</p>
 							<ul class="privacy_ul">
 								<li>The Company values your privacy and we abide by the Principles of Transparency, Legitimate Purpose and Proportionality enshrined in the Philippine Data Privacy Act of 2012.</li>
-								<li>Accordingly, the Company processes, using any medium, any information pertaining to this application or insurance policy and all submitted documents, to provide our insurance and investment products and services. The information and documents is also disclosed to the Company’s affiliations (including but not limited to any of its subsidiaries/affiliates in the Asia Pacific Region), its Brokers, Agents, and their employees and staff and to accredited/affiliated third parties or independent/non-affiliated third parties, whether local or foreign. The Company will upload your medical information to a Medical Information Database accessible to life insurance companies for the purpose of enhancing risk assessment and preventing fraud. Once uploaded, all life insurance companies will only have limited access to the said medical information in order to protect my/our right to privacy in accordance with law. A copy of Circular Letter No. 2016-54 may be accessed at the Insurance Commission’s website at www.insurance.gov.ph.</li>
+								<li>Accordingly, the Company processes, using any medium, any information pertaining to this application or insurance policy and all submitted documents, to provide our insurance and investment products and services. The information and documents is also disclosed to the Company’s affiliations (including but not limited to any of its subsidiaries/affiliates in the Asia Pacific Region), its Brokers, Agents, and their employees and staff and to accredited/affiliated third parties or independent/non-affiliated third parties, whether local or foreign. The Company will upload your medical information to a Medical Information Database accessible to life insurance companies for the purpose of enhancing risk assessment and preventing fraud. Once uploaded, all life insurance companies will only have limited access to the said medical information in order to protect my/our right to privacy in accordance with law. A copy of Circular Letter No. 2016-54 may be accessed at the Insurance Commission’s website at <a href="https://www.insurance.gov.ph" target="_blank">www.insurance.gov.ph</a>.</li>
 								<li>Your information and documents are retained by the Company (a) from execution until seven (7) years after termination of your policy, for hard documents in paper form, and (b) from execution until ten (10) years after termination of your policy, for documents in electronic form; but in no case shorter than may be required by appropriate orders and regulations. Your information will be deleted/destroyed after this period.</li>
 								<li>The Company will use such information in the insurance policy and all related documents to conduct automated processing, data analytics, profiling, historical research (a) to improve the Company’s internal systems and processes, (b) for actuarial assumptions, © in internal and external company reports, and (d) to develop and implement business strategies.</li>
-								<li>Please visit our website, www.philamlife.com for our Privacy Statement, which provides further details on why your personal data is collected, how it is intended to be used, to whom your personal data may be transferred to, how to access, review and amend your personal data, and our policies on direct marketing.</li>
+								<li>Please visit our website, <a href="https://www.philamlife.com" target="_blank">www.philamlife.com</a> for our Privacy Statement, which provides further details on why your personal data is collected, how it is intended to be used, to whom your personal data may be transferred to, how to access, review and amend your personal data, and our policies on direct marketing.</li>
 							</ul>
 							<p class="privacy_title">PRIVACY CONSENT</p>
 							<ul class="privacy_consent">
@@ -507,7 +533,7 @@
 									<p id="err_privacy_consent2" class="error" style="margin-left: 5rem"></p>
 								</li>
 								<li>
-									<p style="margin-left: 1rem;">I/we may at anytime withdraw our consent by visiting Philam branches, calling the Company’s contact center, or by emailing the request to phi.philamprivacy@aia.com. Upon receipt of such withdrawal of consent, the Company will no longer approach me/us for promotions or products that may be suited to my/our insurance needs. I/We am/are assured that this will not affect the Company’s ability to provide quality service in relation to my/our existing policies</p>
+									<p style="margin-left: 1rem;">I/we may at anytime withdraw our consent by visiting Philam branches, calling the Company’s contact center, or by emailing the request to <a href="mailto:phi.philamprivacy@aia.com">phi.philamprivacy@aia.com</a>. Upon receipt of such withdrawal of consent, the Company will no longer approach me/us for promotions or products that may be suited to my/our insurance needs. I/We am/are assured that this will not affect the Company’s ability to provide quality service in relation to my/our existing policies</p>
 								</li>
 							</ul>
 						
@@ -1130,7 +1156,7 @@
 											<div class="form-row">
 												<div class="col-md-12 form__tags">
 													<label for="field_addBeneficiaryDOB">What is the Beneficiary’s date of birth?</label>
-													<input type="date" class="input__box" id="field_addBeneficiaryDOB" value="" placeholder="Date of Birth" tabindex="14" />
+													<input type="date" class="input__box" id="field_addBeneficiaryDOB" value="" onkeypress="return false" placeholder="Date of Birth" tabindex="14" />
 													<div id="err_field_addBeneficiaryDOB" class="error"></div>
 												</div>
 												<div class="col-md-12 form__tags">
