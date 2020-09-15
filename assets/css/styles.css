@@ -93,6 +93,20 @@ svg {
   margin: 2rem 0;
 }
 
+.form-check-pep {
+  padding: 0 0 0 2rem ;
+  margin: 0.5rem 0 2.1rem 0;
+}
+
+.pep-details {
+  padding: 0 0 0 1.5rem;
+}
+
+.text-decoration-pep {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .form-check-accidental {
   padding: 0 2rem;
   margin: 0 0;
@@ -270,6 +284,15 @@ small {
   font-size: 70%;
 }
 
+.small-pep-font {
+  font-size: 80%;
+}
+
+.small-modal-pep-font {
+  font-size: 70%;
+}
+
+
 .upload_btn_title {
   font-weight: 600;
   font-size: 1rem;
@@ -289,6 +312,16 @@ small {
 #warning_parent_acct {
   display: none;
 }
+
+
+#warning_parent_addBeneficiary {
+  display: none;
+}
+
+#warning_parent_addBeneficiaryacct {
+  display: none;
+}
+
 
 .feedback_label {
   display: none;
@@ -657,6 +690,10 @@ svg > path {
   color: #363e3f;
   font-family: "AIABody", Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 17px;
+}
+
+.m-modal-top-2 {
+  margin: 1rem 0;
 }
 
 @media screen and (min-width: 768px) {
