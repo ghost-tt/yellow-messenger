@@ -55,103 +55,111 @@ $(document).ready(function (event) {
 });
 
 
+/* Check Date should not be in future */
 function futureDate(date) {
   /*   let id = evt.target.id;
     var date1 = document.getElementById(id).value; */
-   console.log(date)
-    var res = date.split('-');
-    var year = res[0];
-    var Month = res[1];
-    var day = res[2];
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    var day1 =  day.length;
-    console.log("Logged-In Date:" + year , Month, day) 
-    console.log("System Date:" + dd , mm, yyyy)
-    /* This is for safari, not good way to handle */
-    if (day.length == 4) {
+  console.log(date)
+  var res = date.split('-');
+  var year = res[0];
+  var Month = res[1];
+  var day = res[2];
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  /*console.log("Logged-In Date:" + day, Month, year)
+  console.log("System Date:" + dd, mm, yyyy)*/
+  /* This is for safari, not good way to handle */
+  if (day.length == 4) {
 
-      if (day < yyyy) {
-        return true;
-      } else if (day > yyyy)
+    if (day < yyyy) {
+      return true;
+    } else if (day > yyyy)
+    {
+      return false
+    }
+    else {
+      if (year = yyyy)
       {
-        return false
+         if(Month > mm) {
+              return false;
+          }
+          else
+          {
+              if(year <= dd)
+              {
+                return true;
+              }else{
+                return false;
+              }
+          }
+        
       }
       else {
-        if ((day = yyyy) && (Month <= mm) && (year <= dd)) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    } else {
-      if (year < yyyy) {
-        return true;
-      } else if (year > yyyy)
-      {
-        return false
-      }
-      else {
-        if ((year = yyyy) && (Month <= mm) && (day <= dd)) {
-          return true;
-        } else {
-          return false;
-        }
+        return false;
       }
     }
-  
-  }
-  
-
-
-  function futureDateDOB(date) {
-    /*   let id = evt.target.id;
-      var date1 = document.getElementById(id).value; */
-     console.log("This is date" + date)
-      var res = date.split('-');
-      var year = res[0];
-      var Month = res[1];
-      var day = res[2];
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      var yyyy = today.getFullYear();
-  
-      /* This is for safari, not good way to handle */
-      if (day.length == 4) {
-
-        if (day < yyyy) {
-          return true;
-        } else if (day > yyyy)
-        {
-          return false
-        }
-        else {
-          if ((day = yyyy) && (Month <= mm) && (year < dd)) {
-            return true;
-          } else {
-            return false;
+  } else {
+    if (year < yyyy) {
+      return true;
+    } else if (year > yyyy)
+    {
+      return false
+    }
+    else {
+      if (year == yyyy)
+      {
+         if(Month > mm) {
+              return false;
           }
-        }
+          else
+          {
+              if(day <= dd)
+              {
+                return true;
+              }else{
+                return false;
+              }
+          }
       } else {
-        if (year < yyyy) {
-          return true;
-        } else if (year > yyyy)
-        {
-          return false
-        }
-        else {
-          if ((year = yyyy) && (Month <= mm) && (day < dd)) {
-            return true;
-          } else {
-            return false;
-          }
-        }
+        return false;
       }
-    
     }
+  }
+}
+
+
+function futureDateDOB(date) {
+/*   let id = evt.target.id;
+  var date1 = document.getElementById(id).value; */
+console.log("This is date" + date)
+var res = date.split('-');
+var year = res[0];
+var Month = res[1];
+var day = res[2];
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+/* This is for safari, not good way to handle */
+if (day.length == 4) {
+  if ((day == yyyy) && (Month == mm) && (year == dd)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+} else {
+  if ((year == yyyy) && (Month == mm) && (day == dd)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+}
+
 
 function disableFutureDates() {
   var dtToday = new Date();

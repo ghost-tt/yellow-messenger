@@ -2,11 +2,13 @@ var form = document.getElementById("death__form");
 var death__form_addBeneficiary = document.getElementById("death__form_addBeneficiary");
 var form_Bank = document.getElementById("bank_form");
 var addBeneficiaryform_Bank = document.getElementById("addBeneficiarybank_form");
-
 var buttonCount = 0;
 var optiondisable = 1;
 var optionAge = false;
 var relation = false;
+var addBeneficiaryRelation = false;
+var addBeneficiaryAge = false;
+
 
 var file1 = document.getElementById('file_Upload_1');
 var file2 = document.getElementById('file_Upload_2');
@@ -38,100 +40,110 @@ $(document).ready(function(event){
     setCountryCode();
 });
 
-
+/* Check Date should not be in future */
 function futureDate(date) {
     /*   let id = evt.target.id;
       var date1 = document.getElementById(id).value; */
-      var res = date.split('-');
-      var year = res[0];
-      var Month = res[1];
-      var day = res[2];
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      var yyyy = today.getFullYear();
-      var day1 =  day.length;
-      /* This is for safari, not good way to handle */
-      if (day.length == 4) {
+    console.log(date)
+    var res = date.split('-');
+    var year = res[0];
+    var Month = res[1];
+    var day = res[2];
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    /*console.log("Logged-In Date:" + day, Month, year)
+    console.log("System Date:" + dd, mm, yyyy)*/
+    /* This is for safari, not good way to handle */
+    if (day.length == 4) {
   
-        if (day < yyyy) {
-          return true;
-        } else if (day > yyyy)
+      if (day < yyyy) {
+        return true;
+      } else if (day > yyyy)
+      {
+        return false
+      }
+      else {
+        if (year = yyyy)
         {
-          return false
+           if(Month > mm) {
+                return false;
+            }
+            else
+            {
+                if(year <= dd)
+                {
+                  return true;
+                }else{
+                  return false;
+                }
+            }
+          
         }
         else {
-          if ((day = yyyy) && (Month <= mm) && (year <= dd)) {
-            return true;
-          } else {
-            return false;
-          }
-        }
-      } else {
-        if (year < yyyy) {
-          return true;
-        } else if (year > yyyy)
-        {
-          return false
-        }
-        else {
-          if ((year = yyyy) && (Month <= mm) && (day <= dd)) {
-            return true;
-          } else {
-            return false;
-          }
+          return false;
         }
       }
-    
-    }
-    
-  
-  
-    function futureDateDOB(date) {
-      /*   let id = evt.target.id;
-        var date1 = document.getElementById(id).value; */
-        var res = date.split('-');
-        var year = res[0];
-        var Month = res[1];
-        var day = res[2];
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-    
-        /* This is for safari, not good way to handle */
-        if (day.length == 4) {
-  
-          if (day < yyyy) {
-            return true;
-          } else if (day > yyyy)
-          {
-            return false
-          }
-          else {
-            if ((day = yyyy) && (Month <= mm) && (year < dd)) {
-              return true;
-            } else {
-              return false;
+    } else {
+      if (year < yyyy) {
+        return true;
+      } else if (year > yyyy)
+      {
+        return false
+      }
+      else {
+        if (year == yyyy)
+        {
+           if(Month > mm) {
+                return false;
             }
-          }
+            else
+            {
+                if(day <= dd)
+                {
+                  return true;
+                }else{
+                  return false;
+                }
+            }
         } else {
-          if (year < yyyy) {
-            return true;
-          } else if (year > yyyy)
-          {
-            return false
-          }
-          else {
-            if ((year = yyyy) && (Month <= mm) && (day < dd)) {
-              return true;
-            } else {
-              return false;
-            }
-          }
+          return false;
         }
-      
       }
+    }
+  }
+
+ 
+function futureDateDOB(date) {
+  /*   let id = evt.target.id;
+    var date1 = document.getElementById(id).value; */
+  console.log("This is date" + date)
+  var res = date.split('-');
+  var year = res[0];
+  var Month = res[1];
+  var day = res[2];
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  /* This is for safari, not good way to handle */
+  if (day.length == 4) {
+    if ((day == yyyy) && (Month == mm) && (year == dd)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  } else {
+    if ((year == yyyy) && (Month == mm) && (day == dd)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
 
 $('#popUp').on('hidden.bs.modal', function (e) {
     $('#pep-content').hide();
@@ -182,7 +194,7 @@ function disableFutureDatesDOB() {
 
   function checkKeyword(keyword){
     
-    if ((keyword == 'husband') || (keyword == 'wife') || (keyword == 'spouse') ) {
+    if ((keyword == 'husband') || (keyword == 'wife') || (keyword == 'spouse') || (keyword == 'Husband') || (keyword == 'Wife') || (keyword == 'Spouse') || (keyword == 'HUSBAND') || (keyword == 'WIFE') || (keyword == 'SPOUSE') ) {
         return true;
     }else {
         return false;
@@ -191,7 +203,6 @@ function disableFutureDatesDOB() {
 
 function currentDate(date)
 {
-    
     var dtToday = new Date();
     var month = dtToday.getMonth() + 1;
     var day = dtToday.getDate();
@@ -201,7 +212,7 @@ function currentDate(date)
     var userMonth = userDate[1];
     var userday = userDate[2];
     var age = year - userYear;
-    
+   
     if ( age <= 18) {
         return true;
     }else {
@@ -377,13 +388,25 @@ function handleFormAddBeneficiary(event) {
     var lenaddBeneficiaryRelationToDeceased = fieldCheckLength(field_addBeneficiaryRelationToDeceased, 50);
     var lenaddBeneficiaryEmployerName = fieldCheckLength(field_addBeneficiaryEmployerName, 30)
     var addEmail = validateEmail(field_addBeneficiaryEmailAddress);
+    var ageaddBeneficiaryDOB = currentDate(field_addBeneficiaryDOB);
+    var relationaddBeneficiaryRelation = checkKeyword(field_addBeneficiaryRelationToDeceased);
+
+    
+    if(ageaddBeneficiaryDOB) {
+        addBeneficiaryAge = true;
+    }else {
+        addBeneficiaryAge = false;
+    }
+   
+    if(relationaddBeneficiaryRelation) {
+        addBeneficiaryRelation  = true;
+    }
 
     if(field_addBeneficiaryDOB.length !== 0) {
         var futaddBeneficiaryDOB = futureDate(field_addBeneficiaryDOB);
         var futExisaddtBeneficiaryDOB = futureDateDOB(field_addBeneficiaryDOB);
     }
 
-    
     if (field_addBeneficiaryFirstName.length === 0) {
         $("#err_field_addBeneficiaryFirstName").text('Field is empty');
         $("#err_field_addBeneficiaryFirstName").show();
@@ -1809,20 +1832,24 @@ function addBeneficiaryNew(event) {
         return;
     }
 
-    if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
-        $('#warning_parent_addBeneficiary').show();
-        $('#addBeneficiary_upload_warning').text('Please upload your Valid Marriage Contract!');
-        $('#popUp').modal('show'); 
-        return;
+    if (addBeneficiaryAge) {
+        if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
+            $('#warning_parent_addBeneficiary').show();
+            $('#addBeneficiary_upload_warning').text('Please upload your Valid Marriage Contract!');
+            $('#popUp').modal('show'); 
+            return;
+        }
     }
 
-    if (!file12.value || ($('#file_Upload_Tick_12').is(":hidden"))) {
-        $('#warning_parent_addBeneficiary').show();
-        $('#addBeneficiary_upload_warning').text('Please upload your Valid Birth Certificate!');
-        $('#popUp').modal('show'); 
-        return;
+    if(addBeneficiaryRelation) {
+        if (!file12.value || ($('#file_Upload_Tick_12').is(":hidden"))) {
+            $('#warning_parent_addBeneficiary').show();
+            $('#addBeneficiary_upload_warning').text('Please upload your Valid Birth Certificate!');
+            $('#popUp').modal('show'); 
+            return;
+        }
     }
-    
+
     buttonCount = (buttonCount + 1);
     if( buttonCount > 6 ) {
         $('#warning_parent_addBeneficiary').show();
@@ -1963,11 +1990,13 @@ function addBeneficiaryButtonClicked(event) {
         return;
     }
 
-    if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
-        $('#warning_parent_addBeneficiary').show();
-        $('#addBeneficiary_upload_warning').text('Please upload your Valid Government ID (Front)');
-        $('#popUp').modal('show'); 
-        return;
+    if (addBeneficiaryAge) {
+        if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
+            $('#warning_parent_addBeneficiary').show();
+            $('#addBeneficiary_upload_warning').text('Please upload your Valid Marriage Contract!');
+            $('#popUp').modal('show'); 
+            return;
+        }
     }
 
     if (!file12.value || ($('#file_Upload_Tick_12').is(":hidden"))) {
@@ -2274,9 +2303,9 @@ function pickup_Bpi() {
     $("#addBeneficiaryPickUp").hide();
     $('#addBeneficiaryRequirements').show();
     /* $('#process_confirmation').show(); */
-    $("#step3").addClass("active");
-    $("#step3>div").addClass("active");
-    $("#step3").addClass("done");
+   /*  $("#step3").addClass("active");
+    $("#step3>div").addClass("active"); */
+  /*   $("#step3").addClass("done"); */
 }
 
 function openlink() {
