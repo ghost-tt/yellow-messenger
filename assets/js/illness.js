@@ -731,7 +731,7 @@ const fileCheck = (file,button, pageid) => {
 
         if(pageid == 2) {
             $('#warning_parent_acct').show();
-            $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
+            $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
             console.log("Image is bad");
         }
      

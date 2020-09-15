@@ -664,7 +664,7 @@ const proceedScan = async (fileObj, button, pageid) => {
         } 
         if (pageid ==2) {
           $("#warning_parent_acct").show();
-          $("#upload_fwarning_acct").text(
+          $("#upload_warning_acct").text(
             "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
           );
         }
@@ -716,13 +716,13 @@ const fileCheck = (file, button, pageid) => {
     }
     if (pageid == 2){
       $("#warning_parent_acct").show();
-      $("#uplaod_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
+      $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
     }
    
       $(`#file_loader_icon_${button}`).hide();
       $(`#file_Upload_Tick_${button}`).hide();
       $(`#file_upload_cancle_${button}`).show();
-      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
+      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
       console.log("Image is bad");
     } else {
       console.log("This is right JPG");
