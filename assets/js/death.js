@@ -678,12 +678,21 @@ function handleForm(event) {
     var numBeniMiddleName = numberValidation(field_BeneficiaryMiddleName);
     var speciBeniLastName = specialcharacterValidation(field_BeneficiaryLastName);
     var numBeniLastName = numberValidation(field_BeneficiaryLastName);
-    var specSuffix = specialcharacterValidation(field_lastName_Suffix);
-    var numSuffix = numberValidation(field_lastName_Suffix)
+
+    var specSuffix = false;
+    var numSuffix = false;
+    var lenLastNameSuffix = false;
+
+    if(field_lastName_Suffix  != 0) {
+    specSuffix = specialcharacterValidation(field_lastName_Suffix);
+    numSuffix = numberValidation(field_lastName_Suffix)
+    lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
+    }
+
     var lenFirstName = fieldCheckLength(field_firstName, 30);
     var lenMiddleName = fieldCheckLength(field_middleName, 30);
     var lenLastName = fieldCheckLength(field_lastName, 30);
-    var lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
+   
     var lenBeneficiaryFirstName = fieldCheckLength(field_BeneficiaryFirstName, 30);
     var lenBeneficiaryMiddleName = fieldCheckLength(field_BeneficiaryMiddleName, 30);
     var lenBeneficiaryLastName = fieldCheckLength(field_BeneficiaryLastName, 30);

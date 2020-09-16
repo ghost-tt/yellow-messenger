@@ -400,15 +400,19 @@ function handleForm(event) {
     var specFirstName = specialcharacterValidation(field_firstName);
     var  specMiddleName = specialcharacterValidation(field_middleName);
     var specLastName = specialcharacterValidation(field_lastName);
-    var specLastNameSuffix = specialcharacterValidation(field_lastName_Suffix);
     var numFirstName = numberValidation(field_firstName);
     var numMiddleName = numberValidation(field_middleName)
     var numLastName = numberValidation(field_lastName);
     var numMobile = onlyNumberValidate(field_mobileNum);
-    var numLastNameSuffix = numberValidation(field_lastName_Suffix);
-  
-    var lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
+    var specLastNameSuffix = false;
+    var numLastNameSuffix = false;
+    var lenLastNameSuffix = false;
 
+    if(field_lastName_Suffix  != 0) {
+    specLastNameSuffix = specialcharacterValidation(field_lastName_Suffix);
+    numLastNameSuffix = numberValidation(field_lastName_Suffix);
+    lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
+    }
     
     if(field_DOB.length !== 0) {
         var futDOB = futureDate(field_DOB);
