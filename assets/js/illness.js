@@ -613,7 +613,9 @@ function handleForm(event) {
     (futExistDOB == true) &&
     (futDOA == true) && 
     (futPOA == true) &&
-    (futTOA == true) 
+    (futTOA == true)  && 
+    (specLastNameSuffix == false) && 
+    (numLastNameSuffix == false)
   ) {
     const data = {
       field_firstName,
