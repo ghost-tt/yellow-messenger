@@ -6,8 +6,6 @@ var buttonCount = 0;
 var optiondisable = 1;
 var optionAge = false;
 var relation = false;
-var addBeneficiaryRelation = false;
-var addBeneficiaryAge = false;
 
 
 var file1 = document.getElementById('file_Upload_1');
@@ -393,13 +391,13 @@ function handleFormAddBeneficiary(event) {
 
     
     if(ageaddBeneficiaryDOB) {
-        addBeneficiaryAge = true;
-    }else {
-        addBeneficiaryAge = false;
+       /*  console.error(ageaddBeneficiaryDOB); */
+       optionAge = true;
     }
    
     if(relationaddBeneficiaryRelation) {
-        addBeneficiaryRelation  = true;
+        /* console.error(relationaddBeneficiaryRelation) */
+        relation  = true;
     }
 
     if(field_addBeneficiaryDOB.length !== 0) {
@@ -1806,7 +1804,8 @@ function addBeneficiary(event) {
     $('#addBeneficiary').show();
     $('#requirements').hide();
     
-
+    optionAge = false;
+    relation = false;
     console.log('upload data --> ', upload_data);
     
     
@@ -1832,7 +1831,7 @@ function addBeneficiaryNew(event) {
         return;
     }
 
-    if (addBeneficiaryAge) {
+    if (relation) {
         if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
             $('#warning_parent_addBeneficiary').show();
             $('#addBeneficiary_upload_warning').text('Please upload your Valid Marriage Contract!');
@@ -1841,7 +1840,7 @@ function addBeneficiaryNew(event) {
         }
     }
 
-    if(addBeneficiaryRelation) {
+    if(optionAge) {
         if (!file12.value || ($('#file_Upload_Tick_12').is(":hidden"))) {
             $('#warning_parent_addBeneficiary').show();
             $('#addBeneficiary_upload_warning').text('Please upload your Valid Birth Certificate!');
@@ -1851,6 +1850,8 @@ function addBeneficiaryNew(event) {
     }
 
     buttonCount = (buttonCount + 1);
+    optionAge = false;
+    relation = false;
     if( buttonCount > 6 ) {
         $('#warning_parent_addBeneficiary').show();
         $('#addBeneficiary_upload_warning').text('Sorry, you reached the maximum number of 6 beneficiaries for any claim request. You may review your policy details on ePlan or send us an e-mail at philamlife@aia.com for any concerns regarding your policy information.');
@@ -1990,7 +1991,7 @@ function addBeneficiaryButtonClicked(event) {
         return;
     }
 
-    if (addBeneficiaryAge) {
+    if (relation) {
         if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
             $('#warning_parent_addBeneficiary').show();
             $('#addBeneficiary_upload_warning').text('Please upload your Valid Marriage Contract!');
@@ -1999,13 +2000,17 @@ function addBeneficiaryButtonClicked(event) {
         }
     }
 
-    if (!file12.value || ($('#file_Upload_Tick_12').is(":hidden"))) {
-        $('#warning_parent_addBeneficiary').show();
-        $('#addBeneficiary_upload_warning').text('Please upload your Valid Government ID (Back)');
-        $('#popUp').modal('show'); 
-        return;
+    if(optionAge) {
+        if (!file12.value || ($('#file_Upload_Tick_12').is(":hidden"))) {
+            $('#warning_parent_addBeneficiary').show();
+            $('#addBeneficiary_upload_warning').text('Please upload your Valid Birth Certificate!');
+            $('#popUp').modal('show'); 
+            return;
+        }
     }
 
+    optionAge= false;
+    relation = false;
     $("#addBeneficiary_upload_warning").text('');
     $("#warning_parent_addBeneficiary").hide();
     const upload_data = {
@@ -2022,7 +2027,6 @@ function addBeneficiaryButtonClicked(event) {
     $("#step3").addClass("done");
     $('#addBeneficiaryRequirements').hide();
     $('#process_confirmation').show();
-
     console.log('upload data --> ', upload_data);
 }
 
