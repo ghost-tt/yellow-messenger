@@ -2054,7 +2054,7 @@
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryEmployerName">Name of Employer</label>
-																<input type="text" class="input__box" id="field_BeneficiaryEmployerName" value="" placeholder="Name of Employer" tabindex="21"  required />
+																<input type="text" class="input__box" maxlength="250" id="field_BeneficiaryEmployerName" value="" placeholder="Name of Employer" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 250)" tabindex="21"  required />
 																<div id="err_field_BeneficiaryEmployerName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
@@ -4386,7 +4386,7 @@
 													</div>
 													<div class="col-md-12 form__tags">
 														<label for="field_BeneficiaryEmployerName">Name of Employer</label>
-														<input type="text" class="input__box" id="field_addBeneficiaryEmployerName" value="" placeholder="Name of Employer" tabindex="20"  required />
+														<input type="text" maxlength="250" class="input__box" id="field_addBeneficiaryEmployerName" value="" placeholder="Name of Employer" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 250)" tabindex="20"  required />
 														<div id="err_field_addBeneficiaryEmployerName" class="error"></div>
 													</div>
 													<div class="col-md-12 form__tags">
@@ -4401,7 +4401,7 @@
 															<input class="form-check-input" type="radio" name="inlineRadioOptions1" id="field_addBeneficiaryinlineRadio2" value="option1" tabindex="22">
 															<label class="form-check-label" for="inlineRadio2">No</label>
 														</div>
-														<div id="err_field_BeneficiaryPEP" class="error"></div>
+														<div id="err_field_addBeneficiaryPEP" class="error"></div>
 														<div class="form-check-pep">
 															<p class="font-weight-lighter small-pep-font">A <span class="text-decoration-pep" onclick="showDetails()">Politically Exposed Person (PEP)</span> simply refers to an individual who</p>
 															<ul class="pep-details">
