@@ -478,7 +478,7 @@
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryOccupationDp">What is the Beneficiary’s Occupation</label>
-																<select name="abc" id="1" class="form-control" onmousedown="if(this.options.length>10){this.size=10;}" onchange='this.size=0;' >		
+																<select name="abc" id="field_BeneficiaryOccupation" class="form-control" onmousedown="if(this.options.length>10){this.size=10;}" onchange='this.size=0;' >		
 																	<option value="" selected>--</option>
 																	<option value="	3D ARTIST">3D ARTIST</option>
 																	<option value="	ABLE-BODIED (AB)">ABLE-BODIED (AB)</option>
@@ -2050,7 +2050,8 @@
 																	<option value="	ZOO HEAD KEEPER">ZOO HEAD KEEPER</option>
 																	<option value="	ZOO KEEPER">ZOO KEEPER</option>
 																	<option value="	ZUMBA INSTRUCTOR">ZUMBA INSTRUCTOR</option>
-																	</select>
+																</select>
+																<div id="err_field_BeneficiaryOccupation" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryEmployerName">Name of Employer</label>
@@ -2809,7 +2810,7 @@
 													</div>
 	
 													<div class="col-md-12 form__tags">
-														<label for="field_BeneficiaryOccupationDp">What is the Beneficiary’s Occupation</label>
+														<label for="field_addBeneficiaryOccupationDp">What is the Beneficiary’s Occupation</label>
 														<select name="abc" id="field_addBeneficiaryOccupation" class="form-control" onmousedown="if(this.options.length>10){this.size=10;}" onchange='this.size=0;' tabindex="19" >		
 															<option value="" selected>--</option>
 															<option value="	3D ARTIST">3D ARTIST</option>
@@ -4382,7 +4383,8 @@
 															<option value="	ZOO HEAD KEEPER">ZOO HEAD KEEPER</option>
 															<option value="	ZOO KEEPER">ZOO KEEPER</option>
 															<option value="	ZUMBA INSTRUCTOR">ZUMBA INSTRUCTOR</option>
-															</select>
+														</select>
+														<div id="err_field_addBeneficiaryOccupation" class="error"></div>
 													</div>
 													<div class="col-md-12 form__tags">
 														<label for="field_BeneficiaryEmployerName">Name of Employer</label>

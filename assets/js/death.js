@@ -45,11 +45,11 @@ function futureDate(date) {
     console.log(date)
     var res = date.split('-');
     var year = res[0];
-    var Month = res[1];
+    var Month = Number(res[1]);
     var day = res[2];
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var mm = Number(String(today.getMonth() + 1).padStart(2, '0')); //January is 0!
     var yyyy = today.getFullYear();
     /*console.log("Logged-In Date:" + day, Month, year)
     console.log("System Date:" + dd, mm, yyyy)*/
@@ -65,24 +65,28 @@ function futureDate(date) {
       else {
         if (year = yyyy)
         {
-           if(Month > mm) {
-                return false;
+           if(Month < mm) {
+                return true;
             }
-            else
-            {
-                if(year <= dd)
+            else if(Month == mm)
+                {
+                    if(year <= dd)
                 {
                   return true;
                 }else{
                   return false;
                 }
+                }else{
+                    return false;
+                }
+                
             }
-          
-        }
-        else {
+          else {
           return false;
         }
-      }
+          
+        }
+        
     } else {
       if (year < yyyy) {
         return true;
@@ -93,17 +97,19 @@ function futureDate(date) {
       else {
         if (year == yyyy)
         {
-           if(Month > mm) {
-                return false;
+           if(Month < mm) {
+                return true;
             }
-            else
+            else if (Month == mm)
             {
                 if(day <= dd)
-                {
+                {        
                   return true;
-                }else{
+                }else{      
                   return false;
                 }
+            }else{
+                return false;
             }
         } else {
           return false;
@@ -368,7 +374,8 @@ function handleFormAddBeneficiary(event) {
     var field_addBeneficiarySex = $("#field_addBeneficiarySex").val();
     var field_addBeneficiaryRelationToDeceased = $("#field_addBeneficiaryRelationToDeceased").val();
     var field_addBeneficiaryEmployerName = $("#field_addBeneficiaryEmployerName").val();
-    
+    var field_addBeneficiaryOccupation = $("#field_addBeneficiaryOccupation").val();
+
     var speciAddBeniFirstName = specialcharacterValidation(field_addBeneficiaryFirstName);
     var numAddBeniFirstName = numberValidation(field_addBeneficiaryFirstName);
     var numAddBeniMobile = onlyNumberValidate(field_addBeneficiaryMobileNum);
@@ -466,7 +473,10 @@ function handleFormAddBeneficiary(event) {
     } else if (!numAddBeniMobile){
         $("#err_field_addBeneficiaryMobileNum").text('Only number is allowed!');
         $("#err_field_addBeneficiaryMobileNum").show();
-    } else {
+    } else if (field_addBeneficiaryMobileNum.length !== 10) {
+        $("#err_field_addBeneficiaryMobileNum").text('Minimum 10 number required!');
+        $("#err_field_addBeneficiaryMobileNum").show();
+    }   else {
         $("#err_field_addBeneficiaryMobileNum").text('');
         $("#err_field_addBeneficiaryMobileNum").hide();
     }
@@ -548,6 +558,14 @@ function handleFormAddBeneficiary(event) {
         $("#err_field_addBeneficiaryRelationToDeceased").hide();
     }
 
+    if (field_addBeneficiaryOccupation.length === 0) {
+        $("#err_field_addBeneficiaryOccupation").text('Field is empty');
+        $("#err_field_addBeneficiaryOccupation").show();
+    } else {
+        $("#err_field_addBeneficiaryOccupation").text('');
+        $("#err_field_addBeneficiaryOccupation").hide();
+    }
+
     if (field_addBeneficiaryEmployerName.length === 0){
         $("#err_field_addBeneficiaryEmployerName").text('Field is empty');
         $("#err_field_addBeneficiaryEmployerName").show();
@@ -589,7 +607,7 @@ function handleFormAddBeneficiary(event) {
         $("#err_field_addBeneficiaryPEP").show();
     }
 
-    if (field_addBeneficiaryFirstName.length !== 0 && field_addBeneficiaryMiddleName.length !== 0 && field_addBeneficiaryLastName.length !== 0 && field_addBeneficiaryMobileNum.length!==0 && field_addBeneficiaryEmailAddress.length !== 0 && field_addBeneficiaryHomeAddress.length !== 0 && field_addBeneficiaryDOB.length !== 0 && field_addBeneficiaryPOB.length !== 0 && field_addBeneficiaryNationality.length !== 0 && field_addBeneficiarySex.length !== 0 && field_addBeneficiaryRelationToDeceased.length !== 0 && $('#invalidCheck_basicAddBeneficiary').is(':checked') && $('#invalidCheck_privacyAddBeneficiary').is(':checked') && (addEmail == true) && (numAddBeniFirstName== false) && (speciAddBeniFirstName == false ) && (numAddBeniMiddleName == false) && (speciAddBeniMiddleName == false) && (numAddBeniLastName == false) && (speciAddBeniLastName == false) && (numAddBeniMobile == true) && (futaddBeneficiaryDOB == true) && (futExisaddtBeneficiaryDOB == true)&& ($('#field_addBeneficiaryinlineRadio1').is(':checked') || $('#field_addBeneficiaryinlineRadio2').is(':checked'))  && (specAddBeniEmployerName == false) && (numAddBeniEmployerName == false)) {
+    if (field_addBeneficiaryFirstName.length !== 0 && field_addBeneficiaryMiddleName.length !== 0 && field_addBeneficiaryLastName.length !== 0 && field_addBeneficiaryMobileNum.length == 10 && field_addBeneficiaryEmailAddress.length !== 0 && field_addBeneficiaryHomeAddress.length !== 0 && field_addBeneficiaryDOB.length !== 0 && field_addBeneficiaryPOB.length !== 0 && field_addBeneficiaryNationality.length !== 0 && field_addBeneficiarySex.length !== 0 && field_addBeneficiaryRelationToDeceased.length !== 0 && field_addBeneficiaryOccupation !== 0 && $('#invalidCheck_basicAddBeneficiary').is(':checked') && $('#invalidCheck_privacyAddBeneficiary').is(':checked') && (addEmail == true) && (numAddBeniFirstName== false) && (speciAddBeniFirstName == false ) && (numAddBeniMiddleName == false) && (speciAddBeniMiddleName == false) && (numAddBeniLastName == false) && (speciAddBeniLastName == false) && (numAddBeniMobile == true) && (futaddBeneficiaryDOB == true) && (futExisaddtBeneficiaryDOB == true)&& ($('#field_addBeneficiaryinlineRadio1').is(':checked') || $('#field_addBeneficiaryinlineRadio2').is(':checked'))  && (specAddBeniEmployerName == false) && (numAddBeniEmployerName == false)) {
         
         const data = {
             field_addBeneficiaryFirstName,
@@ -666,6 +684,7 @@ function handleForm(event) {
     var field_lastName_Suffix = $("#field_lastName_Suffix").val();
     var field_DOB = $("#field_DOB").val();
     var field_DOID = $("#field_DOID").val();
+    var field_NatureLoss = $('#nature_Loss').val();
     var field_BeneficiaryFirstName = $("#field_BeneficiaryFirstName").val();
     var field_BeneficiaryMiddleName = $("#field_BeneficiaryMiddleName").val();
     var field_BeneficiaryLastName = $("#field_BeneficiaryLastName").val();
@@ -847,6 +866,14 @@ function handleForm(event) {
         $("#err_field_DOID").text('');
         $("#err_field_DOID").hide();
     }
+
+    if(field_NatureLoss.length === 0) {
+        $("#err_natural_loss").text('Field is empty');
+        $("#err_natural_loss").show();
+    } else {
+        $("#err_natural_loss").text('');
+        $("#err_natural_loss").hide();
+    }
     
     if (field_BeneficiaryFirstName.length === 0) {
         $("#err_field_BeneficiaryFirstName").text('Field is empty');
@@ -911,7 +938,7 @@ function handleForm(event) {
     } else if (field_BeneficiaryMobileNum.length !== 10) {
         $("#err_field_BeneficiaryMobileNum").text('Minimum 10 number required!');
         $("#err_field_BeneficiaryMobileNum").show();
-    }   else {
+    } else {
         $("#err_field_BeneficiaryMobileNum").text('');
         $("#err_field_BeneficiaryMobileNum").hide();
     }
@@ -982,14 +1009,14 @@ function handleForm(event) {
         $("#err_field_BeneficiarySex").hide();
     }
 
-   /*  if (field_BenificiaryOccupation.length === 0) {
+   if (field_BenificiaryOccupation.length === 0) {
         $("#err_field_BeneficiaryOccupation").text('Field is empty');
         $("#err_field_BeneficiaryOccupation").show();
     } else {
         $("#err_field_BeneficiaryOccupation").text('');
         $("#err_field_BeneficiaryOccupation").hide();
     }
- */
+
     if (field_BeneficiaryRelationToDeceased.length === 0) {
         $("#err_field_BeneficiaryRelationToDeceased").text('Field is empty');
         $("#err_field_BeneficiaryRelationToDeceased").show();
@@ -1042,7 +1069,7 @@ function handleForm(event) {
         $("#err_field_BeneficiaryPEP").show();
     }
 
-    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryMobileNum.length == 10 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && (email == true) && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (speciBeniFirstName == false) && (numBeniFirstName == false) && (numberMobile == true) && (speciBeniMiddleName == false) && (numBeniMiddleName == false) && (speciBeniLastName == false) && (numBeniLastName == false) && (futDOB  == true) && (futExistDOB  == true) && (futDOID == true) && (numSuffix == false) && (specSuffix == false) && ($('#inlineRadio1').is(':checked') || $('#inlineRadio2').is(':checked')) && (numEmployerName == false) && (specEmployerName == false) ) {
+    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_NatureLoss.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryMobileNum.length == 10 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && field_BenificiaryOccupation.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && (email == true) && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (speciBeniFirstName == false) && (numBeniFirstName == false) && (numberMobile == true) && (speciBeniMiddleName == false) && (numBeniMiddleName == false) && (speciBeniLastName == false) && (numBeniLastName == false) && (futDOB  == true) && (futExistDOB  == true) && (futDOID == true) && (numSuffix == false) && (specSuffix == false) && ($('#inlineRadio1').is(':checked') || $('#inlineRadio2').is(':checked')) && (numEmployerName == false) && (specEmployerName == false) ) {
         
     
             const data = {

@@ -62,11 +62,11 @@ function futureDate(date) {
   console.log(date)
   var res = date.split('-');
   var year = res[0];
-  var Month = res[1];
+  var Month = Number(res[1]);
   var day = res[2];
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var mm = Number(String(today.getMonth() + 1).padStart(2, '0')); //January is 0!
   var yyyy = today.getFullYear();
   /*console.log("Logged-In Date:" + day, Month, year)
   console.log("System Date:" + dd, mm, yyyy)*/
@@ -82,24 +82,28 @@ function futureDate(date) {
     else {
       if (year = yyyy)
       {
-         if(Month > mm) {
-              return false;
+         if(Month < mm) {
+              return true;
           }
-          else
-          {
-              if(year <= dd)
+          else if(Month == mm)
+              {
+                  if(year <= dd)
               {
                 return true;
               }else{
                 return false;
               }
+              }else{
+                  return false;
+              }
+              
           }
-        
-      }
-      else {
+        else {
         return false;
       }
-    }
+        
+      }
+      
   } else {
     if (year < yyyy) {
       return true;
@@ -110,17 +114,19 @@ function futureDate(date) {
     else {
       if (year == yyyy)
       {
-         if(Month > mm) {
-              return false;
+         if(Month < mm) {
+              return true;
           }
-          else
+          else if (Month == mm)
           {
               if(day <= dd)
-              {
+              {        
                 return true;
-              }else{
+              }else{      
                 return false;
               }
+          }else{
+              return false;
           }
       } else {
         return false;
@@ -441,7 +447,7 @@ function handleForm(event) {
   var numMobile = onlyNumberValidate(field_mobileNum);
   /* Future Date and Current Date Validation */
   
-  var specLastNameSuffix = false;
+    var specLastNameSuffix = false;
     var numLastNameSuffix = false;
     var lenLastNameSuffix = false;
 
