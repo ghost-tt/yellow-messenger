@@ -18,7 +18,7 @@
 }
 
 .display-4 {
-  font-size: 2.5rem;
+  font-size: 2.5rem !important;
 }
 
 .hide {
@@ -26,7 +26,7 @@
 }
 
 .lead {
-  font-size: 1rem;
+  font-size: 1.15rem !important;
 }
 
 p {
@@ -723,7 +723,7 @@ svg > path {
     }
 }*/
 
-
+/* 
 @media screen and (max-width: 570px ) {
     .container{
         padding-top: 5%;
@@ -773,4 +773,4 @@ margin-top: 19px;
 font-size: 0.9rem;
 margin-top: 5px;      
   }
-}
+} */
