@@ -1161,6 +1161,6 @@ function openlink() {
 
   function intent() {
     var mailClient = new Intent(Intent.ACTION_SEND);
-    mailClient.setClassName("com.google.android.gm", "com.google.android.gm.ConversationListActivity");
+    mailClient.setClassName("com.google.android.gm", "phi.philamprivacy@aia.com");
     startActivity(mailClient);
   }
