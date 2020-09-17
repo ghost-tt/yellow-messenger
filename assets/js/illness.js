@@ -1156,11 +1156,4 @@ function pickup_Bpi() {
   
 function openlink() {
     window.open("https://www.google.com/maps/search/bpi+branch+locator/@14.6079731,120.9860096,14z/data=!3m1!4b1");
-  }
-  
-
-  function intent() {
-    var mailClient = new Intent(Intent.ACTION_SEND);
-    mailClient.setClassName("com.google.android.gm", "phi.philamprivacy@aia.com");
-    startActivity(mailClient);
-  }
+}
