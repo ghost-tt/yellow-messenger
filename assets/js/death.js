@@ -51,8 +51,6 @@ function futureDate(date) {
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = Number(String(today.getMonth() + 1).padStart(2, '0')); //January is 0!
     var yyyy = today.getFullYear();
-    /*console.log("Logged-In Date:" + day, Month, year)
-    console.log("System Date:" + dd, mm, yyyy)*/
     /* This is for safari, not good way to handle */
     if (day.length == 4) {
   
@@ -63,7 +61,7 @@ function futureDate(date) {
         return false
       }
       else {
-        if (year = yyyy)
+        if (day = yyyy)
         {
            if(Month < mm) {
                 return true;
@@ -76,16 +74,17 @@ function futureDate(date) {
                 }else{
                   return false;
                 }
-                }else{
-                    return false;
-                }
-                
             }
           else {
           return false;
         }
           
         }
+        else{
+          return false;
+      }
+  
+      }
         
     } else {
       if (year < yyyy) {
@@ -117,9 +116,9 @@ function futureDate(date) {
       }
     }
   }
-
- 
-function futureDateDOB(date) {
+  
+  
+  function futureDateDOB(date) {
   /*   let id = evt.target.id;
     var date1 = document.getElementById(id).value; */
   console.log("This is date" + date)
@@ -131,14 +130,17 @@ function futureDateDOB(date) {
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = today.getFullYear();
-
+  
+  console.log("Logged-In Date:" + day, Month, year)
+  console.log("System Date:" + dd, mm, yyyy)
+  
   /* This is for safari, not good way to handle */
   if (day.length == 4) {
     if ((day == yyyy) && (Month == mm) && (year == dd)) {
-      return true;
+      return false;
     }
     else {
-      return false;
+      return true;
     }
   } else {
     if ((year == yyyy) && (Month == mm) && (day == dd)) {
@@ -147,7 +149,7 @@ function futureDateDOB(date) {
       return true;
     }
   }
-}
+  }
 
 $('#popUp').on('hidden.bs.modal', function (e) {
     $('#pep-content').hide();
