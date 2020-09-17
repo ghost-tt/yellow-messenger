@@ -774,9 +774,3 @@ font-size: 0.9rem;
 margin-top: 5px;      
   }
 }
-
-@media screen and (min-width: 360px ) {
-  #step2{
-    padding: 14px;  
-  }
-}
