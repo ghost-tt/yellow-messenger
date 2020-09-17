@@ -425,7 +425,7 @@ svg > path {
 .md-stepper-horizontal .md-step {
   display: table-cell;
   position: relative;
-  padding: 24px;
+ /*  padding: 24px; */
 }
 
 /* .md-stepper-horizontal .md-step:hover,
@@ -775,9 +775,14 @@ margin-top: 5px;
   }
 } 
 
-
 @media screen and (min-width: 360px ) {
-  #step2{
+  .scroll{
+    padding: 24px;  
+  }
+}
+
+@media screen and (max-width: 360px ) {
+  .scroll{
     padding: 14px;  
   }
 }
