@@ -42,7 +42,6 @@ $(document).ready(function(event){
 function futureDate(date) {
     /*   let id = evt.target.id;
       var date1 = document.getElementById(id).value; */
-    console.log(date)
     var res = date.split('-');
     var year = res[0];
     var Month = Number(res[1]);
@@ -677,6 +676,34 @@ function onlyNumberValidate(input) {
     }
 } 
 
+function process(date){
+   var parts = date.split("-");
+    if(parts[2].length == 4)
+    {
+         return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+    else{
+        return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+}
+
+//comparing two dates
+function compareFun(DOB, DOID){    
+  if((DOB.length != 0) && (DOID.length != 0))
+  {
+      if(process(DOB) <= process(DOID)){  
+          return true;
+
+        }else{
+            return false;
+        }
+  }
+  else{
+    return false;
+  }
+}
+
+
 
 function handleForm(event) {
     event.preventDefault();
@@ -725,6 +752,7 @@ function handleForm(event) {
     numSuffix = numberValidation(field_lastName_Suffix)
     lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
     }
+    var comapareDates = compareFun(field_DOB, field_DOID);
 
     var lenFirstName = fieldCheckLength(field_firstName, 30);
     var lenMiddleName = fieldCheckLength(field_middleName, 30);
@@ -863,6 +891,9 @@ function handleForm(event) {
         $("#err_field_DOID").show();
     }  else if (!futDOID) {
         $("#err_field_DOID").text('Future date is  not Accepted!');
+        $("#err_field_DOID").show();
+    } else if(!comapareDates){
+        $("#err_field_DOID").text('Insured\'s death date can not be smaller than DOB');
         $("#err_field_DOID").show();
     } else {
         $("#err_field_DOID").text('');
@@ -1071,7 +1102,7 @@ function handleForm(event) {
         $("#err_field_BeneficiaryPEP").show();
     }
 
-    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_NatureLoss.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryMobileNum.length == 10 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && field_BenificiaryOccupation.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && (email == true) && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (speciBeniFirstName == false) && (numBeniFirstName == false) && (numberMobile == true) && (speciBeniMiddleName == false) && (numBeniMiddleName == false) && (speciBeniLastName == false) && (numBeniLastName == false) && (futDOB  == true) && (futExistDOB  == true) && (futDOID == true) && (numSuffix == false) && (specSuffix == false) && ($('#inlineRadio1').is(':checked') || $('#inlineRadio2').is(':checked')) && (numEmployerName == false) && (specEmployerName == false) ) {
+    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_NatureLoss.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryMobileNum.length == 10 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && field_BenificiaryOccupation.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && (email == true) && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (speciBeniFirstName == false) && (numBeniFirstName == false) && (numberMobile == true) && (speciBeniMiddleName == false) && (numBeniMiddleName == false) && (speciBeniLastName == false) && (numBeniLastName == false) && (futDOB  == true) && (futExistDOB  == true) && (futDOID == true) && (numSuffix == false) && (specSuffix == false) && ($('#inlineRadio1').is(':checked') || $('#inlineRadio2').is(':checked')) && (numEmployerName == false) && (specEmployerName == false) && (comapareDates == true)) {
         
     
             const data = {

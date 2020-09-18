@@ -37,7 +37,6 @@ $(document).ready(function(event){
 function futureDate(date) {
     /*   let id = evt.target.id;
       var date1 = document.getElementById(id).value; */
-    console.log(date)
     var res = date.split('-');
     var year = res[0];
     var Month = Number(res[1]);
@@ -116,7 +115,6 @@ function futureDate(date) {
   function futureDateDOB(date) {
   /*   let id = evt.target.id;
     var date1 = document.getElementById(id).value; */
-  console.log("This is date" + date)
   var res = date.split('-');
   var year = res[0];
   var Month = res[1];
@@ -126,8 +124,8 @@ function futureDate(date) {
   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = today.getFullYear();
   
-  console.log("Logged-In Date:" + day, Month, year)
-  console.log("System Date:" + dd, mm, yyyy)
+//   console.log("Logged-In Date:" + day, Month, year)
+//   console.log("System Date:" + dd, mm, yyyy)
   
   /* This is for safari, not good way to handle */
   if (day.length == 4) {
@@ -390,6 +388,62 @@ function fieldCheckLength(field, maxLength) {
     }
   }
 
+function process(date){
+   var parts = date.split("-");
+    if(parts[2].length == 4)
+    {
+         return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+    else{
+        return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+}
+
+//function passing all dates
+function checkDob(dob, date1, date2, date3)
+{
+    if(process(dob) <= process(date1))// && (process(dob) >= process(date2)) && (process(dob) >= process(date3)))       
+    {
+        if(process(dob) <= process(date2))
+        {   
+            if(process(dob) <= process(date3))
+            {   
+                if(process(date1) <= process(date2))
+                {
+                    if(process(date1) <= process(date3))
+                    { 
+                        if(process(date3) <= process(date2))
+                        {
+                            return 1;
+                        }
+                        else{
+                            return 2;
+                        }
+                    }
+                    else{
+                        return 3;
+                    }
+                }
+                else{
+                    return 4;
+                }
+                
+            }
+            else{
+                return 5;
+            }
+        }
+        else{
+            return 6;
+        }
+    }
+    else{
+        return 7;
+    }
+    return 
+}
+
+
 function handleForm(event) {
     event.preventDefault();
     var field_firstName = $("#field_firstName").val();
@@ -598,6 +652,45 @@ function handleForm(event) {
         $("#err_invalidCheck_privacy").hide();
     }
 
+    var comparingDob = 0;
+    if((field_DOB.length != 0) && (field_DOA.length != 0) && (field_TOA.length != 0) && (field_POA.length != 0))
+    {
+        comparingDob = checkDob(field_DOB, field_DOA, field_TOA, field_POA);
+            if(comparingDob == 0){
+                /*nothing to do*/
+        }else
+            if(comparingDob == 1){
+                /*nothing to do*/
+            }else
+                if(comparingDob == 2){
+                    $("#err_field_TOA").text('Root cause date can not be lesser than doctor visit date');
+                                        $("#err_field_TOA").show();
+
+                }else
+                    if(comparingDob == 3){
+                        $("#err_field_POA").text('Doctor visit Date can not be lesser than symptom date');
+                                        $("#err_field_POA").show();
+
+                    }else
+                        if(comparingDob == 4){
+                            $("#err_field_TOA").text('Root cause date can not be lesser than symptom date');
+                                        $("#err_field_TOA").show();
+
+                        }else
+                            if(comparingDob == 5){
+                                        $("#err_field_POA").text('Doctor visit date can not be lesser than DOB');
+                                        $("#err_field_POA").show();
+
+                            }else
+                                if(comparingDob == 6){
+                                        $("#err_field_TOA").text('Root cause date can not be lesser than DOB');
+                                        $("#err_field_TOA").show();
+                                }else
+                                    if(comparingDob == 7){
+                                        $("#err_field_DOA").text('Symptom date can not be lesser than DOB');
+                                        $("#err_field_DOA").show();
+                                    }else{}
+    }
   if (
     field_firstName.length !== 0 &&
     field_middleName.length !== 0 &&
@@ -626,7 +719,8 @@ function handleForm(event) {
     (futPOA == true) &&
     (futTOA == true)  && 
     (specLastNameSuffix == false) && 
-    (numLastNameSuffix == false)
+    (numLastNameSuffix == false) &&
+    (comparingDob == 1)
   ) {
     const data = {
       field_firstName,
