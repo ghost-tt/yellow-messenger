@@ -247,7 +247,7 @@ listCheckBox.onchange = function () {
     })
 }
  */
-
+/* 
  function validateEmail(emailField) {
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     if (reg.test(emailField) == false) {
@@ -258,7 +258,7 @@ listCheckBox.onchange = function () {
     $("#err_field_emailAddress").text('');
     $("#err_field_emailAddress").hide();
     return true;
-}
+} */
 
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
@@ -1251,4 +1251,70 @@ function pickup_Bpi() {
   
 function openlink() {
     window.open("https://www.google.com/maps/search/bpi+branch+locator/@14.6079731,120.9860096,14z/data=!3m1!4b1");
+}
+
+
+
+function validateEmail(my_email)
+{
+var ind0=my_email.indexOf("@");
+var my_username=my_email.slice(0,ind0);
+var ind=my_email.indexOf("@");
+var my_domain=my_email.substr((ind+1));
+var ind3 = my_domain.indexOf(".");
+var my_final_domain = my_domain.slice(0,ind3);
+var ind1=my_domain.indexOf(".");
+var my_extension=my_domain.slice((ind1+1),my_domain.length);
+
+var usernamesize = stringlength(my_username,2,30);
+var domainsize = stringlength(my_final_domain,2,10);
+var extension = stringlength(my_extension,2,3);
+    
+
+ var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  if (reg.test(my_email) == false) {
+    $("#err_field_emailAddress").text('Invalid Email');
+    $("#err_field_emailAddress").show();
+    return false;
+  }else{
+    if(!usernamesize)
+        {
+            $("#err_field_emailAddress").text('UserName should have minimum 2 and maximum 30 character');
+            $("#err_field_emailAddress").show();
+            return false;
+        }else if(!domainsize)
+        {
+            $("#err_field_emailAddress").text('Domain should have minimum 2 and maximum 10 character');
+            $("#err_field_emailAddress").show();
+            return false;
+        }else if(!extension)
+        {
+            $("#err_field_emailAddress").text('Extension should have minimum 2 and maximum 3 characters');
+            $("#err_field_emailAddress").show();
+            return false;
+        }else {
+          $("#err_field_emailAddress").text('');
+          $("#err_field_emailAddress").hide();
+          return true;
+        }
+
+  }
+  
+}
+
+
+function stringlength(inputtxt, minlength, maxlength)
+{ 
+var field = inputtxt; 
+var mnlen = minlength;
+var mxlen = maxlength;
+
+if(field.length<mnlen || field.length> mxlen)
+{ 
+return false;
+}
+else
+{ 
+return true;
+}
 }
