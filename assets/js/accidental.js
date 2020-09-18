@@ -216,6 +216,9 @@ listCheckBox.onchange = function () {
     })
 } */
 
+
+
+/* 
 function validateEmail(emailField) {
   var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
   if (reg.test(emailField) == false) {
@@ -227,7 +230,7 @@ function validateEmail(emailField) {
   $("#err_field_emailAddress").hide();
   return true;
 }
-
+ */
 function isNumber(evt) {
   evt = (evt) ? evt : window.event;
   var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -286,16 +289,24 @@ function specialcharacterValidation(input) {
 }
 
 function checkLength(evt, max_Length) {
-    let id = evt.target.id;
-    var val = document.getElementById(id).value;
-    var length = val.length;
-    if (length >= max_Length) {
-        $(`#err_${id}`).text("Maximum " + max_Length + " character allowed!");
-        $(`#err_${id}`).show();
-    }else {
-        detection(evt);
-    }
-    
+  let id = evt.target.id;
+  var val = document.getElementById(id).value;
+  var length = val.length;
+  if (length >= max_Length) {
+    $(`#err_${id}`).text("Maximum " + max_Length + " character allowed!");
+    $(`#err_${id}`).show();
+  } else {
+    detection(evt);
+  }
+}
+
+function fieldCheckLength(field, maxLength) {
+  var length = field.length;
+  if (length > maxLength) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function detection(evt) {
@@ -496,11 +507,9 @@ function handleForm(event) {
   var numMiddleName = numberValidation(field_middleName)
   var numLastName = numberValidation(field_lastName);
   var numMobile = onlyNumberValidate(field_mobileNum);
-  /* Future Date and Current Date Validation */
-  
-    var specLastNameSuffix = false;
-    var numLastNameSuffix = false;
-    var lenLastNameSuffix = false;
+  var specLastNameSuffix = false;
+  var numLastNameSuffix = false;
+  var lenLastNameSuffix = false;
 
     if(field_lastName_Suffix  != 0) {
     specLastNameSuffix = specialcharacterValidation(field_lastName_Suffix);
@@ -508,6 +517,13 @@ function handleForm(event) {
     lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
     }
 
+  var lenFirstName = fieldCheckLength(field_firstName, 30);
+  var lenMiddleName = fieldCheckLength(field_middleName, 30);
+  var leninjury = fieldCheckLength(field_injury, 500);
+  var lenLastName = fieldCheckLength(field_lastName, 30);
+  var lenMobileNum = fieldCheckLength(field_mobileNum, 10);
+  var lenHomeAddress = fieldCheckLength(field_homeAddress, 250);
+  var lenPOA = fieldCheckLength(field_POA, 120);
 
   if(field_DOB.length !== 0) {
     var futDOB = futureDate(field_DOB);
@@ -527,6 +543,9 @@ function handleForm(event) {
   if (field_firstName.length === 0) {
     $("#err_field_firstName").text('Field is empty');
     $("#err_field_firstName").show();
+  } else if (lenFirstName) {
+    $("#err_field_firstName").text("Maximum 30 character allowed!");
+    $("#err_field_firstName").show();
   } else if (specFirstName == true) {
     $("#err_field_firstName").text('Special character is not allowed');
     $("#err_field_firstName").show();
@@ -540,6 +559,9 @@ function handleForm(event) {
 
   if (field_middleName.length === 0) {
     $("#err_field_middleName").text('Field is empty');
+    $("#err_field_middleName").show();
+  } else if (lenMiddleName) {
+    $("#err_field_middleName").text("Maximum 30 character allowed!");
     $("#err_field_middleName").show();
   } else if (specMiddleName) {
     $("#err_field_middleName").text('Special character is not allowed');
@@ -555,6 +577,9 @@ function handleForm(event) {
   if (field_injury.length === 0) {
     $("#err_field_injury").text('Field is empty');
     $("#err_field_injury").show();
+  } else if (leninjury) {
+    $("#err_field_injury").text("Maximum 500 character allowed!");
+    $("#err_field_injury").show();
   } else {
     $("#err_field_injury").text('');
     $("#err_field_injury").hide();
@@ -562,6 +587,9 @@ function handleForm(event) {
 
   if (field_lastName.length === 0) {
     $("#err_field_lastName").text('Field is empty');
+    $("#err_field_lastName").show();
+  } else if (lenLastName) {
+    $("#err_field_lastName").text("Maximum 30 character allowed!");
     $("#err_field_lastName").show();
   } else if (specLastName) {
     $("#err_field_lastName").text('Special character is not allowed');
@@ -611,6 +639,9 @@ function handleForm(event) {
     if (field_mobileNum.length === 0) {
         $("#err_field_mobileNum").text('Field is empty');
         $("#err_field_mobileNum").show();
+  } else if (lenMobileNum) {
+    $("#err_field_mobileNum").text("Maximum 10 character allowed!");
+    $("#err_field_mobileNum").show();
     } else if (!numMobile) {
         $("#err_field_mobileNum").text('Only number is allowed!');
         $("#err_field_mobileNum").show();
@@ -631,6 +662,9 @@ function handleForm(event) {
 
   if (field_homeAddress.length === 0) {
     $("#err_field_homeAddress").text('Field is empty');
+    $("#err_field_homeAddress").show();
+  } else if (lenHomeAddress) {
+    $("#err_field_homeAddress").text("Maximum 250 character allowed!");
     $("#err_field_homeAddress").show();
   } else {
     $("#err_field_homeAddress").text('');
@@ -663,6 +697,9 @@ function handleForm(event) {
   if (field_POA.length === 0) {
     $("#err_field_POA").text('Field is empty');
     $("#err_field_POA").show();
+  } else if (lenPOA) {
+    $("#err_field_POA").text("Maximum 120 character allowed!");
+    $("#err_field_POA").show();
   } else {
     $("#err_field_POA").text('');
     $("#err_field_POA").hide();
@@ -684,25 +721,60 @@ function handleForm(event) {
     $("#err_invalidCheck_privacy").hide();
   }
 
-  if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_injury.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_mobileNum.length == 10 && field_emailAddress.length !== 0 && field_homeAddress.length !== 0 && field_DOA.length !== 0 && field_TOA.length !== 0 && field_POA.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && validateEmail(field_emailAddress) && (specFirstName == false) && (specMiddleName == false) && (specLastName == false) && (numFirstName == false) && (numMiddleName == false) && (numLastName == false) && (numMobile == true) && (specLastNameSuffix == false) && (numLastNameSuffix == false) && (comapareDates == true) && (timeCompare == true) && (futDOA == true)) {
-
-      const data = {
-        field_firstName,
-        field_middleName,
-        field_injury,
-        field_lastName,
-        field_lastName_Suffix,
-        field_DOB,
-        country_code: $("select#inlineFormCustomSelect option").filter(":selected").val(),
-        field_mobileNum,
-        field_emailAddress,
-        field_homeAddress,
-        field_DOA,
-        field_TOA,
-        field_POA,
-        basic_checkbox: $('#invalidCheck_basic').is(':checked'),
-        privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
-      }
+  if (
+    field_firstName.length !== 0 &&
+    field_middleName.length !== 0 &&
+    field_injury.length !== 0 &&
+    field_lastName.length !== 0 &&
+    field_DOB.length !== 0 &&
+    field_mobileNum.length == 10 &&
+    field_emailAddress.length !== 0 &&
+    field_homeAddress.length !== 0 &&
+    field_DOA.length !== 0 &&
+    field_TOA.length !== 0 &&
+    field_POA.length !== 0 &&
+    $("#invalidCheck_basic").is(":checked") &&
+    $("#invalidCheck_privacy").is(":checked") &&
+    validateEmail(field_emailAddress) &&
+    specFirstName == false &&
+    specMiddleName == false &&
+    specLastName == false &&
+    numFirstName == false &&
+    numMiddleName == false &&
+    numLastName == false &&
+    numMobile == true &&
+    specLastNameSuffix == false &&
+    numLastNameSuffix == false &&
+    (comapareDates == true) && 
+    (timeCompare == true) && 
+    (futDOA == true) &&
+    lenLastNameSuffix ==false &&
+    lenFirstName == false && 
+    lenMiddleName == false && 
+    leninjury == false && 
+    lenMobileNum == false && 
+    lenHomeAddress == false && 
+    lenPOA == false
+  ) {
+    const data = {
+      field_firstName,
+      field_middleName,
+      field_injury,
+      field_lastName,
+      field_lastName_Suffix,
+      field_DOB,
+      country_code: $("select#inlineFormCustomSelect option")
+        .filter(":selected")
+        .val(),
+      field_mobileNum,
+      field_emailAddress,
+      field_homeAddress,
+      field_DOA,
+      field_TOA,
+      field_POA,
+      basic_checkbox: $("#invalidCheck_basic").is(":checked"),
+      privacy_checkbox: $("#invalidCheck_privacy").is(":checked"),
+    };
 
       $('#form_wrapper').hide();
       $('#stepper_intro').hide();
@@ -1224,11 +1296,16 @@ function handleAccountInfo(event) {
   var numAccountName = numberValidation(field_AccountName);
   var specAccountNumber = specialcharacterValidation(field_AccountNumber);
   var numAccountNumber = onlyNumberValidate(field_AccountNumber);
-  var specCharBRANCH = specialcharacterValidation(field_Branch);
-  var numBranch = numberValidation(field_Branch);
+
+  var lenAccountName = fieldCheckLength(field_AccountName, 90);
+  var lenAccountNumber =  fieldCheckLength(field_AccountNumber, 20);
+  var lenBranch = fieldCheckLength(field_Branch, 50);
 
   if (field_AccountName.length === 0) {
     $("#err_field_AccountName").text('Field is empty');
+    $("#err_field_AccountName").show();
+  } else if (lenAccountName) {
+    $("#err_field_AccountName").text("Maximum 90 character allowed!");
     $("#err_field_AccountName").show();
   } else if (speCharAccountName) {
     $("#err_field_AccountName").text('special character is not allowed');
@@ -1244,8 +1321,11 @@ function handleAccountInfo(event) {
   if (field_AccountNumber.length === 0) {
     $("#err_field_AccountNumber").text('Field is empty');
     $("#err_field_AccountNumber").show();
-  } else if ((!numAccountNumber) || (specAccountNumber)) {
-    $("#err_field_AccountNumber").text('Only number is allowed');
+  } else if (lenAccountNumber) {
+    $("#err_field_AccountNumber").text("Maximum 20 character allowed!");
+    $("#err_field_AccountNumber").show();
+  } else if (!numAccountNumber || specAccountNumber) {
+    $("#err_field_AccountNumber").text("Only number is allowed");
     $("#err_field_AccountNumber").show();
   } else {
     $("#err_field_AccountNumber").text('');
@@ -1263,14 +1343,11 @@ function handleAccountInfo(event) {
   if (field_Branch.length === 0) {
     $("#err_field_Branch").text('Field is empty');
     $("#err_field_Branch").show();
-  }/*  else if (specCharBRANCH) {
-    $("#err_field_Branch").text('special character is not allowed');
+  } else if (lenBranch) {
+    $("#err_field_Branch").text("Maximum 50 character allowed!");
     $("#err_field_Branch").show();
-  } else if (numBranch) {
-    $("#err_field_Branch").text('Number not allowed');
-    $("#err_field_Branch").show();
-  }  */else {
-    $("#err_field_Branch").text('');
+  } else {
+    $("#err_field_Branch").text("");
     $("#err_field_Branch").hide();
   }
 
@@ -1295,7 +1372,10 @@ function handleAccountInfo(event) {
     file6.length !== 0 &&
     speCharAccountName == false &&
     numAccountName == false &&
-    numAccountNumber == true &&
+    numAccountNumber == true && 
+    lenAccountName == false && 
+    lenAccountNumber == false && 
+    lenBranch == flase &&
     file6.value &&
     !$("#file_Upload_Tick_6").is(":hidden")
   ) {
@@ -1471,4 +1551,74 @@ function handleAddBankInfo(event) {
 
 function openlink() {
   window.open("https://www.google.com/maps/search/bpi+branch+locator/@14.6079731,120.9860096,14z/data=!3m1!4b1");
+}
+
+
+
+function validateEmail(my_email)
+{
+var ind0=my_email.indexOf("@");
+var my_username=my_email.slice(0,ind0);
+var ind=my_email.indexOf("@");
+var my_domain=my_email.substr((ind+1));
+var ind3 = my_domain.indexOf(".");
+var my_final_domain = my_domain.slice(0,ind3);
+var ind1=my_domain.indexOf(".");
+var my_extension=my_domain.slice((ind1+1),my_domain.length);
+
+var usernamesize = stringlength(my_username,2,30);
+var domainsize = stringlength(my_final_domain,2,10);
+var extension = stringlength(my_extension,2,3);
+    
+
+ var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  if (reg.test(my_email) == false) {
+    $("#err_field_emailAddress").text('Invalid Email');
+    $("#err_field_emailAddress").show();
+    return false;
+  }else{
+    if(!usernamesize)
+        {
+            $("#err_field_emailAddress").text('UserName should have minimum 2 and maximum 30 character');
+            $("#err_field_emailAddress").show();
+            return false;
+        }else if(!domainsize)
+        {
+            $("#err_field_emailAddress").text('Domain should have minimum 2 and maximum 10 character');
+            $("#err_field_emailAddress").show();
+            return false;
+        }else if(!extension)
+        {
+            $("#err_field_emailAddress").text('Extension should have minimum 2 and maximum 3 characters');
+            $("#err_field_emailAddress").show();
+            return false;
+        }else {
+          $("#err_field_emailAddress").text('');
+          $("#err_field_emailAddress").hide();
+          return true;
+        }
+
+  }
+  
+
+//return true;
+}
+
+
+function stringlength(inputtxt, minlength, maxlength)
+{ 
+var field = inputtxt; 
+var mnlen = minlength;
+var mxlen = maxlength;
+
+if(field.length<mnlen || field.length> mxlen)
+{ 
+//alert("Please input the userid between " +mnlen+ " and " +mxlen+ " characters");
+return false;
+}
+else
+{ 
+//alert('Your userid have accepted.');
+return true;
+}
 }
