@@ -57,88 +57,30 @@ $(document).ready(function (event) {
 
 /* Check Date should not be in future */
 function futureDate(date) {
-  /*   let id = evt.target.id;
-    var date1 = document.getElementById(id).value; */
-  console.log(date)
-  var res = date.split('-');
-  var year = res[0];
-  var Month = Number(res[1]);
-  var day = res[2];
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
-  var mm = Number(String(today.getMonth() + 1).padStart(2, '0')); //January is 0!
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = today.getFullYear();
-  /* This is for safari, not good way to handle */
-  if (day.length == 4) {
-
-    if (day < yyyy) {
-      return true;
-    } else if (day > yyyy)
+  var systemdate = dd + "-" + mm +"-" + yyyy;
+  if(date.length != 0)
+  {
+    if(process(date) > process(systemdate))
     {
-      return false
+      return false;
     }
-    else {
-      if (day = yyyy)
-      {
-         if(Month < mm) {
-              return true;
-          }
-          else if(Month == mm)
-              {
-                  if(year <= dd)
-              {
-                return true;
-              }else{
-                return false;
-              }
-          }
-        else {
-        return false;
-      }
-        
-      }
-      else{
-        return false;
-    }
-
-    }
-      
-  } else {
-    if (year < yyyy) {
+    else{
       return true;
-    } else if (year > yyyy)
-    {
-      return false
     }
-    else {
-      if (year == yyyy)
-      {
-         if(Month < mm) {
-              return true;
-          }
-          else if (Month == mm)
-          {
-              if(day <= dd)
-              {        
-                return true;
-              }else{      
-                return false;
-              }
-          }else{
-              return false;
-          }
-      } else {
-        return false;
-      }
-    }
+  }
+  else{
+    return false;
   }
 }
 
 
+
 function futureDateDOB(date) {
-/*   let id = evt.target.id;
-  var date1 = document.getElementById(id).value; */
-console.log("This is date" + date)
+/*   let id = evt.target.id;*/
 var res = date.split('-');
 var year = res[0];
 var Month = res[1];
@@ -148,8 +90,8 @@ var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
 
-console.log("Logged-In Date:" + day, Month, year)
-console.log("System Date:" + dd, mm, yyyy)
+// console.log("Logged-In Date:" + day, Month, year)
+// console.log("System Date:" + dd, mm, yyyy)
 
 /* This is for safari, not good way to handle */
 if (day.length == 4) {
@@ -410,6 +352,110 @@ function fieldCheckLength(field, maxLength) {
   }
 }
 
+function checkActualTime(field2_TOA, field3_DOA) {
+  var today = new Date();
+  var currentYear = today.getFullYear();
+  var currentMonth = today.getMonth() + 1;
+  var currentDate = today.getDate();
+  var CurrentHour = today.getHours();
+  var CurrentMinute = today.getMinutes();
+
+  var UserEnterDate = field3_DOA.split("-");
+  var userYear = UserEnterDate[0];
+  var userMonth = UserEnterDate[1];
+  var userDay = UserEnterDate[2];
+  var istimeMatched = false;
+
+  var UserTime = field2_TOA.split(":");
+  var userEnterHours = UserTime[0];
+  var userEnterMinute = UserTime[1];
+
+  if (userDay.length == 4) {
+    if (UserTime.length != 0) {
+      var minSplit = userEnterMinute.split(" ");
+      userEnterMinute = minSplit[0];
+      var userAmPm = minSplit[1];
+      var isAmPm = userAmPm == "am" ? "am" : "pm";
+      if (isAmPm == "pm") {
+        userEnterHours = (userEnterHours % 12) + 12;
+      } else {
+        userEnterHours = userEnterHours % 12;
+      }
+    }
+  }
+
+  if (field2_TOA.length != 0 && field3_DOA.length != 0) {
+    /* This is for safari, not good way to handle */
+    if (userDay.length == 4) {
+      if (
+        userDay == currentYear &&
+        userMonth == currentMonth &&
+        userYear == currentDate
+      ) {
+        istimeMatched = true;
+      } else {
+        return true;
+      }
+    } else {
+      if (
+        userYear == currentYear &&
+        userMonth == currentMonth &&
+        userDay == currentDate
+      ) {
+        istimeMatched = true;
+      } else {
+        return true;
+      }
+    }
+    if (istimeMatched == true) {
+      if (userEnterHours > CurrentHour) {
+        return false;
+      } else if (userEnterHours < CurrentHour) {
+        return true;
+      } else if (userEnterHours == CurrentHour) {
+        if (userEnterMinute <= CurrentMinute) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+}
+
+
+function process(date){
+   var parts = date.split("-");
+    if(parts[2].length == 4)  // it is for safari
+    {                   //day     , mm          , yyyy
+         return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+    else{                 //yyyy     , mm          , dd
+        return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+}
+
+
+function compareFun(DOB, DOA){
+  if((DOB.length != 0) && (DOA.length != 0))
+  {
+  if(process(DOB) <= process(DOA)){  
+      return true;
+      
+    }else{
+        return false;
+    }
+  }
+  else{
+    return false;
+  }
+}
+
+
 function handleForm(event) {
   event.preventDefault();
   var field_firstName = $("#field_firstName").val();
@@ -425,6 +471,9 @@ function handleForm(event) {
   var field_TOA = $("#field_TOA").val();
   var field_POA = $("#field_POA").val();
 
+
+  var comapareDates = compareFun(field_DOB, field_DOA);
+  
   InsuredInformation["FirstName"] = field_firstName;
   InsuredInformation["MiddleName"] = field_firstName;
   InsuredInformation["LastName"] = field_firstName;
@@ -464,12 +513,17 @@ function handleForm(event) {
     var futDOB = futureDate(field_DOB);
     var futExistDOB = futureDateDOB(field_DOB);
   }
-
-  if(field_DOA.length !== 0) {
-    var futDOA = futureDate(field_DOA);
+  var timeCompare= false;
+  var futDOA = false;
+    
+  if(field_DOA.length != 0) {
+    futDOA = futureDate(field_DOA);
+    if(field_TOA.length != 0)
+    {
+      timeCompare = checkActualTime(field_TOA,field_DOA);
+    }
   }
-
-
+    
   if (field_firstName.length === 0) {
     $("#err_field_firstName").text('Field is empty');
     $("#err_field_firstName").show();
@@ -546,7 +600,10 @@ function handleForm(event) {
   } else if(!futExistDOB){
     $("#err_field_DOB").text('Current date is  not Applicable!');
     $("#err_field_DOB").show();
-  } else {
+  } else if (!comapareDates) {
+      $("#err_field_DOB").text('Insured DOB can not be greater than accident date');
+    $("#err_field_DOB").show();
+  }  else {
     $("#err_field_DOB").text('');
     $("#err_field_DOB").hide();
   }
@@ -594,7 +651,11 @@ function handleForm(event) {
   if (field_TOA.length === 0) {
     $("#err_field_TOA").text('Field is empty');
     $("#err_field_TOA").show();
-  } else {
+  } 
+  else if (timeCompare == false) {
+      $("#err_field_TOA").text('Time can not be greater than current time');
+    $("#err_field_TOA").show();
+  }else {
     $("#err_field_TOA").text('');
     $("#err_field_TOA").hide();
   }
@@ -623,7 +684,7 @@ function handleForm(event) {
     $("#err_invalidCheck_privacy").hide();
   }
 
-  if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_injury.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_mobileNum.length == 10 && field_emailAddress.length !== 0 && field_homeAddress.length !== 0 && field_DOA.length !== 0 && field_TOA.length !== 0 && field_POA.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && validateEmail(field_emailAddress) && (specFirstName == false) && (specMiddleName == false) && (specLastName == false) && (numFirstName == false) && (numMiddleName == false) && (numLastName == false) && (numMobile == true) && (specLastNameSuffix == false) && (numLastNameSuffix == false)) {
+  if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_injury.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_mobileNum.length == 10 && field_emailAddress.length !== 0 && field_homeAddress.length !== 0 && field_DOA.length !== 0 && field_TOA.length !== 0 && field_POA.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && validateEmail(field_emailAddress) && (specFirstName == false) && (specMiddleName == false) && (specLastName == false) && (numFirstName == false) && (numMiddleName == false) && (numLastName == false) && (numMobile == true) && (specLastNameSuffix == false) && (numLastNameSuffix == false) && (comapareDates == true) && (timeCompare == true) && (futDOA == true)) {
 
       const data = {
         field_firstName,
