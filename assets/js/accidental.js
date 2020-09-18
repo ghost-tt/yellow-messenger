@@ -736,11 +736,11 @@ const fileCheck = (file, button, pageid) => {
     if (this.width < 400 && this.height < 400) {
     if(pageid == 1){
       $(`#warning_parent`).show();
-      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
+      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
     }
     if (pageid == 2){
       $("#warning_parent_acct").show();
-      $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
+      $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
     }
    
       $(`#file_loader_icon_${button}`).hide();

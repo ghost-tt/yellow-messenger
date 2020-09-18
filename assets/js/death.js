@@ -778,7 +778,7 @@ function handleForm(event) {
     if (field_firstName.length === 0) {
         $("#err_field_firstName").text('Field is empty');
         $("#err_field_firstName").show();
-    }   else if (lenFirstName) {
+    }  else if (lenFirstName) {
         $("#err_field_firstName").text('Maximum 30 character allowed!');
         $("#err_field_firstName").show();
     } else if(specFirstName == true ){
@@ -1273,17 +1273,17 @@ const fileCheck = (file, button, pageid) => {
 
         if(pageid == 1) {
             $(`#warning_parent`).show();
-            $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
+            $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
             console.log("Image is bad");
         }
         if(pageid == 2) {
             $(`#warning_parent_acct`).show();
-            $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
+            $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
             console.log("Image is bad");
         }
         if(pageid = 3) {
             $(`#warning_parent_addBeneficiaryacct`).show();
-            $("#upload_warning_addBeneficiaryacct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of a document to proceed.");
+            $("#upload_warning_addBeneficiaryacct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
             console.log("Image is bad");
         }
         if(pageid = 4) {
