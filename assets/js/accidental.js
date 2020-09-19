@@ -1375,7 +1375,7 @@ function handleAccountInfo(event) {
     numAccountNumber == true && 
     lenAccountName == false && 
     lenAccountNumber == false && 
-    lenBranch == flase &&
+    lenBranch == false &&
     file6.value &&
     !$("#file_Upload_Tick_6").is(":hidden")
   ) {
