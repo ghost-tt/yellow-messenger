@@ -1600,8 +1600,6 @@ var extension = stringlength(my_extension,2,3);
 
   }
   
-
-//return true;
 }
 
 
@@ -1613,12 +1611,10 @@ var mxlen = maxlength;
 
 if(field.length<mnlen || field.length> mxlen)
 { 
-//alert("Please input the userid between " +mnlen+ " and " +mxlen+ " characters");
 return false;
 }
 else
 { 
-//alert('Your userid have accepted.');
 return true;
 }
 }
