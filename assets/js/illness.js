@@ -325,7 +325,7 @@ function checkLength(evt, max_Length) {
     var val = document.getElementById(id).value;
     var length = val.length;
     if (length >= max_Length) {
-        $(`#err_${id}`).text("Maximum " + max_Length + " character allowed!");
+        $(`#err_${id}`).text("Maximum " + max_Length + " characters allowed!");
         $(`#err_${id}`).show();
     }else {
         detection(evt);
@@ -546,7 +546,7 @@ function handleForm(event) {
       $("#err_field_lastName_Suffix").text('');
       $("#err_field_lastName_Suffix").hide();
     } else if (lenLastNameSuffix){
-        $("#err_field_lastName_Suffix").text('Maximum 3 character allowed');
+        $("#err_field_lastName_Suffix").text('Maximum 3 characters allowed!');
         $("#err_field_lastName_Suffix").show();
     } else if (specLastNameSuffix){
         $("#err_field_lastName_Suffix").text('Special character is not allowed');
@@ -751,7 +751,7 @@ function handleForm(event) {
     $("#step2").addClass("active");
     $("#step2>div").addClass("active");
     $("#requirements").show();
-    $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an update from us within 2 to 4 days on the status of your request.`);
+    $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an update from us within 1 to 2 working days on the status of your request.`);
     /* $('#requirements')[0].scrollIntoView(true); */
 
     console.log("Data -> ", data);
@@ -1127,7 +1127,6 @@ function buttonSubmitClicked(event) {
 
     $("#step2").addClass("active");
     $("#step2>div").addClass("active");
-    $("#step2").addClass("done");
     $('#requirements').hide();
     $('#payment').show();
     /* $('#payment')[0].scrollIntoView(true); */
@@ -1212,6 +1211,7 @@ function handleAccountInfo(event) {
             field_Currency: $("select#from_currency option").filter(":selected").val(),
             upload_file_6: file6.value
         }
+        $("#step2").addClass("done");
         $("#step3").addClass("active");
         $("#step3>div").addClass("active");
         $("#step3").addClass("done");
@@ -1227,8 +1227,8 @@ function handleAccountInfo(event) {
 function bankTranfer() {
     $('#payment').hide();
     $('#account_details').show();
-    $("#step3").addClass("active");
-    $("#step3>div").addClass("active");
+    $("#step2").addClass("active");
+    $("#step2>div").addClass("active");
 }
 
 function pickUp() {
@@ -1237,12 +1237,12 @@ function pickUp() {
     $("#pickUp").show();
     $("#step2").addClass("active");
     $("#step2>div").addClass("active");
-    $("#step2").addClass("done");
 }
 
 function pickup_Bpi() {
     $("#pickUp").hide();
     $('#process_confirmation').show();
+    $("#step2").addClass("done");
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
     $("#step3").addClass("done");
