@@ -429,7 +429,7 @@
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryEmailAddress">What is the Beneficiary’s email address?</label>
-																<input type="text" class="input__box" maxlength="40" id="field_BeneficiaryEmailAddress" value="" placeholder="Email Address" tabindex="13" onkeypress="removeErr(event) || checkLength(event, 40)" required />
+																<input type="text" class="input__box" maxlength="45" id="field_BeneficiaryEmailAddress" value="" placeholder="Email Address" tabindex="13" onkeypress="removeErr(event) || checkLength(event, 45)" required />
 																<div id="err_field_BeneficiaryEmailAddress" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
@@ -473,7 +473,7 @@
 															</div> -->
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryRelationToDeceased">What is the Beneficiary’s relationship to the deceased?</label>
-																<input type="text" class="input__box" id="field_BeneficiaryRelationToDeceased" value="" placeholder="Relationship to the Deceased" tabindex="19" required />
+																<input type="text"  maxlength="50" class="input__box" id="field_BeneficiaryRelationToDeceased" value="" placeholder="Relationship to the Deceased" tabindex="19" onkeypress="removeErr(event) || checkLength(event, 50)" required />
 																<div id="err_field_BeneficiaryRelationToDeceased" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
@@ -2055,7 +2055,7 @@
 															</div>
 															<div class="col-md-12 form__tags">
 																<label for="field_BeneficiaryEmployerName">Name of Employer</label>
-																<input type="text" class="input__box" maxlength="250" id="field_BeneficiaryEmployerName" value="" placeholder="Name of Employer" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 250)" tabindex="21"  required />
+																<input type="text" class="input__box" maxlength="250" id="field_BeneficiaryEmployerName" value="" placeholder="Name of Employer" onkeypress="return checkLength(event, 250)" tabindex="21"  required />
 																<div id="err_field_BeneficiaryEmployerName" class="error"></div>
 															</div>
 															<div class="col-md-12 form__tags">
@@ -2298,7 +2298,7 @@
 						<div class="col-md-11 offset-md-1" style="margin-top: 4rem;">
 							<p class="privacy_title">SECTION 251 OF THE INSURANCE CODE</p>
 							<p style="margin: 2rem 0 2rem 0;">Section 251 of the Insurance Code, as amended, imposes a fine not exceeding twice the amount claimed and/or imprisonment of two (2) years, or both, at the discretion of the court, to any person who presents or causes to be presented any fraudulent claim for the payment of a loss under a contract of insurance, and who fraudulently prepares, makes or subscribes any writing with intent to present or use the same, or to allow it to be presented in support of any claim.</p>
-							<p style="margin: 2rem 0;">A copy of Circular Letter No. 2016-50 may be accessed at the Insurance Commission’s website at   <a href="# www.insurance.gov.ph.">www.insurance.gov.ph.</a></p>
+							<p style="margin: 2rem 0;">A copy of Circular Letter No. 2016-50 may be accessed at the Insurance Commission’s website at   <a href="https://www.insurance.gov.ph." target="_blank">www.insurance.gov.ph.</a></p>
 						</div>
 					</div>
 				</div>
@@ -2339,7 +2339,7 @@
 						<br />
 						<div class="row">
 							<div class="col-9">
-								<p id="customer_Name" class="font-weight-normal">Hi Alex. Hang in there as we are now processing your request. Kindly expect an update from us within 2 to 4 days on the status of your request.</p>
+								<p id="customer_Name" class="font-weight-normal">Hi Alex. Hang in there as we are now processing your request. Kindly expect an update from us within 1 to 2 working days on the status of your request.</p>
 								<br />
 								<p class="font-weight-normal">If we would need additional documents to support your request, we will reach out to you immediately.</p>
 								<br />
@@ -2354,7 +2354,7 @@
 									<br />
 									<div class="time_duration">
 										<div>Turnaround Time</div>
-										<div class="font-weight-bold">2-4 days</div>
+										<div class="font-weight-bold">1-2 working days</div>
 									</div>
 								</div>
 							</div>
@@ -2765,7 +2765,7 @@
 													</div>
 													<div class="col-md-12 form__tags">
 														<label for="field_addBeneficiaryEmailAddress">What is the Beneficiary’s email address?</label>
-														<input type="text" class="input__box" maxlength="40" id="field_addBeneficiaryEmailAddress" value="" placeholder="Email Address" tabindex="12" onkeypress="removeErr(event) || checkLength(event, 40)" required />
+														<input type="text" class="input__box" maxlength="45" id="field_addBeneficiaryEmailAddress" value="" placeholder="Email Address" tabindex="12" onkeypress="removeErr(event) || checkLength(event, 45)" required />
 														<div id="err_field_addBeneficiaryEmailAddress" class="error"></div>
 													</div>
 													<div class="col-md-12 form__tags">
@@ -4388,7 +4388,7 @@
 													</div>
 													<div class="col-md-12 form__tags">
 														<label for="field_BeneficiaryEmployerName">Name of Employer</label>
-														<input type="text" maxlength="250" class="input__box" id="field_addBeneficiaryEmployerName" value="" placeholder="Name of Employer" onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event, 250)" tabindex="20"  required />
+														<input type="text" maxlength="250" class="input__box" id="field_addBeneficiaryEmployerName" value="" placeholder="Name of Employer" onkeypress="return checkLength(event, 250)" tabindex="20"  required />
 														<div id="err_field_addBeneficiaryEmployerName" class="error"></div>
 													</div>
 													<div class="col-md-12 form__tags">
@@ -4489,7 +4489,7 @@
                     <div class="col-md-11 offset-md-1" style="margin-top: 2rem;">
                         <p class="privacy_title">Pick up Anywhere</p>
                         <p style="margin: 2rem 0 2rem 0;">
-                            If your request is approved, you can claim your benefit from any BPI or BPI Family Saving bank Branch.
+                            If your request is approved, you can claim your benefit from any BPI or BPI Family Savings bank Branch.
                         </p>
                         <p style="margin: 2rem 0;">
                            We will send you an SMS notification confirming the date on when you can claim your benefit as well as Reference code.Please present this Reference Code and one (1) valid, government-issued IDs at any branch of BPI or BPI Family Saving Bank.
@@ -4635,7 +4635,7 @@
                     <div class="col-md-11 offset-md-1" style="margin-top: 2rem;">
                         <p class="privacy_title">Pick up Anywhere</p>
                         <p style="margin: 2rem 0 2rem 0;">
-                            If your request is approved, you can claim your benefit from any BPI or BPI Family Saving bank branch.
+                            If your request is approved, you can claim your benefit from any BPI or BPI Family Savings bank branch.
                         </p>
                         <p style="margin: 2rem 0;">
                            We will send you an SMS notification confirming the date on when you can claim your benefit as well as Reference code.Please present this Reference Code and one (1) valid, government-issued IDs at any branch of BPI or BPI Family Saving Bank.
