@@ -748,6 +748,8 @@ function handleForm(event) {
     (comapareDates == true) && 
     (timeCompare == true) && 
     (futDOA == true) &&
+    (futDOB == true) && 
+    (futExistDOB == true) &&
     lenLastNameSuffix ==false &&
     lenFirstName == false && 
     lenMiddleName == false && 
