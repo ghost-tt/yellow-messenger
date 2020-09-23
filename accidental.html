@@ -1718,13 +1718,6 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 50%; margin: 0 auto 3rem auto;">Ok</button>
         </div>
         </section>
-
-
-       
-    
-
-
-
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -1739,40 +1732,6 @@
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
-        function renderProgress(progress) {
-            progress = Math.floor(progress);
-            if(progress<25){
-                var angle = -90 + (progress/100)*360;
-                $(".animate-0-25-b").css("transform","rotate("+angle+"deg)");
-            }
-            else if(progress>=25 && progress<50){
-                var angle = -90 + ((progress-25)/100)*360;
-                $(".animate-0-25-b").css("transform","rotate(0deg)");
-                $(".animate-25-50-b").css("transform","rotate("+angle+"deg)");
-            }
-            else if(progress>=50 && progress<75){
-                var angle = -90 + ((progress-50)/100)*360;
-                $(".animate-25-50-b, .animate-0-25-b").css("transform","rotate(0deg)");
-                $(".animate-50-75-b").css("transform","rotate("+angle+"deg)");
-            }
-            else if(progress>=75 && progress<=100){
-                var angle = -90 + ((progress-75)/100)*360;
-                $(".animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
-                                                    .css("transform","rotate(0deg)");
-                $(".animate-75-100-b").css("transform","rotate("+angle+"deg)");
-            }
-            $(".text").html(progress+"%");
-        }
-        var i=0
-        let cleartime = setInterval(() => {
-         renderProgress(i);
-         if(i === 100) {
-            console.log("cleartime");
-            clearTimeout(cleartime)
-        }
-        i++;
-        }, 30);
-        
     </script>
 </body>
 
