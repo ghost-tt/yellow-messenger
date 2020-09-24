@@ -15,6 +15,10 @@ var file5 = document.getElementById('file_Upload_5');
 var file6 = document.getElementById('proof_BAO');
 var file7 = document.getElementById('proof_addBAO');
 
+let url = new URL(window.location.href);
+let referenceNumber = url.searchParams.get('refNumber');
+let uid = url.searchParams.get('sender');
+let botId = url.searchParams.get('botId');
 
 $('#privacy_consent_1').prop('checked', true);
 $('#privacy_consent_2').prop('checked', true);
@@ -61,18 +65,16 @@ function futureDate(date) {
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = today.getFullYear();
-  var systemdate = dd + "-" + mm +"-" + yyyy;
-  if(date.length != 0)
-  {
-    if(process(date) > process(systemdate))
-    {
+  var systemdate = dd + "-" + mm + "-" + yyyy;
+  if (date.length != 0) {
+    if (process(date) > process(systemdate)) {
       return false;
     }
-    else{
+    else {
       return true;
     }
   }
-  else{
+  else {
     return false;
   }
 }
@@ -80,34 +82,34 @@ function futureDate(date) {
 
 
 function futureDateDOB(date) {
-/*   let id = evt.target.id;*/
-var res = date.split('-');
-var year = res[0];
-var Month = res[1];
-var day = res[2];
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
+  /*   let id = evt.target.id;*/
+  var res = date.split('-');
+  var year = res[0];
+  var Month = res[1];
+  var day = res[2];
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
 
-// console.log("Logged-In Date:" + day, Month, year)
-// console.log("System Date:" + dd, mm, yyyy)
+  // console.log("Logged-In Date:" + day, Month, year)
+  // console.log("System Date:" + dd, mm, yyyy)
 
-/* This is for safari, not good way to handle */
-if (day.length == 4) {
-  if ((day == yyyy) && (Month == mm) && (year == dd)) {
-    return false;
-  }
-  else {
-    return true;
-  }
-} else {
-  if ((year == yyyy) && (Month == mm) && (day == dd)) {
-    return false;
+  /* This is for safari, not good way to handle */
+  if (day.length == 4) {
+    if ((day == yyyy) && (Month == mm) && (year == dd)) {
+      return false;
+    }
+    else {
+      return true;
+    }
   } else {
-    return true;
+    if ((year == yyyy) && (Month == mm) && (day == dd)) {
+      return false;
+    } else {
+      return true;
+    }
   }
-}
 }
 
 
@@ -129,7 +131,7 @@ function disableFutureDatesDOB() {
   var dtToday = new Date();
   var month = dtToday.getMonth() + 1;
   var day = dtToday.getDate();
-  var dobDate = day -1;
+  var dobDate = day - 1;
   var year = dtToday.getFullYear();
   if (month < 10)
     month = '0' + month.toString();
@@ -148,6 +150,67 @@ function setCountryCode() {
   });
 }
 
+
+/**
+ * Code refactor for this function
+ * instead of sending list of file as input, for final list of files, send the form data with all the files in it
+ * Along with that, send the file name that needs to be saved.
+ */
+const handleImageUpload = (formData, fileName) => {
+  // const files = event.target.files
+  // const formData = new FormData()
+  fetch('https://staging.yellowmessenger.com/components/tataAia/upload', {
+    method: 'POST',
+    body: formData
+  })
+    .then((response) => response.json())
+    .then(response => {
+      console.log(response)
+      var decoded = atob(response.data);
+      var saveByteArray = function (data, name) {
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        var blob = new Blob(data, { type: "application/pdf" }),
+          url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = name;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      };
+      var byteNumbers = Array(decoded.length);
+      for (i = 0; i < decoded.length; i++) {
+        byteNumbers[i] = decoded.charCodeAt(i);
+      }
+      var byteArray = new Uint8Array(byteNumbers);
+      saveByteArray([byteArray], fileName + ".pdf");
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
+
+/**
+ * 
+ * New function
+ * instead of giving a PDF the as result
+ * you will be getting the cdn link to the file in the bot
+ */
+const handleFileUpload = (formData, fileName) => {
+  console.log("file upload new");
+  var myHeaders = new Headers();
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: formData,
+    redirect: 'follow'
+  };
+  fetch(`https://app.yellowmessenger.com/api/chat/upload-file?bot=${botId}&uid=${fileName}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
 const getBuffer = file => new Promise((resolve, reject) => {
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
@@ -244,32 +307,32 @@ function isNumber(evt) {
   return true;
 }
 
-function checkSpcialChar(evt){
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if(!((evt.charCode >= 65) && (evt.charCode <= 90) || (evt.charCode >= 97) 
-    && (evt.charCode <= 122)|| (evt.charCode >= 48) && (evt.charCode <= 57) || (evt.charCode == 32) || (evt.charCode == 13))){
-        $(`#err_${evt.target.id}`).text("special character is not allowed");
-        $(`#err_${evt.target.id}`).show(); 
-       return false;
-    }
-    $(`#err_${evt.target.id}`).text("");
-    $(`#err_${evt.target.id}`).hide();
-    return true;
- } 
+function checkSpcialChar(evt) {
+  evt = (evt) ? evt : window.event;
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+  if (!((evt.charCode >= 65) && (evt.charCode <= 90) || (evt.charCode >= 97)
+    && (evt.charCode <= 122) || (evt.charCode >= 48) && (evt.charCode <= 57) || (evt.charCode == 32) || (evt.charCode == 13))) {
+    $(`#err_${evt.target.id}`).text("special character is not allowed");
+    $(`#err_${evt.target.id}`).show();
+    return false;
+  }
+  $(`#err_${evt.target.id}`).text("");
+  $(`#err_${evt.target.id}`).hide();
+  return true;
+}
 
 function isNotNumber(evt) {
-    $(`#err_${evt.target.id}`).text("");
+  $(`#err_${evt.target.id}`).text("");
+  $(`#err_${evt.target.id}`).hide();
+  evt = (evt) ? evt : window.event;
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57) || (evt.charCode == 13)) {
+    $(`#err_${evt.target.id}`).text('');
     $(`#err_${evt.target.id}`).hide();
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57) || (evt.charCode == 13)) {
-        $(`#err_${evt.target.id}`).text('');
-        $(`#err_${evt.target.id}`).hide();
-        return true;
-    }
-    validateNotNumber(evt)
-    return false;
+    return true;
+  }
+  validateNotNumber(evt)
+  return false;
 }
 
 function validateNotNumber(evt) {
@@ -310,27 +373,27 @@ function fieldCheckLength(field, maxLength) {
 }
 
 function detection(evt) {
-    id = evt.target.id;
-    document.getElementById(id).addEventListener('keydown', event => {
-       if(event.key == 'Backspace') {
-        $(`#err_${id}`).text("");
-        $(`#err_${id}`).hide();
-       }
-    })
+  id = evt.target.id;
+  document.getElementById(id).addEventListener('keydown', event => {
+    if (event.key == 'Backspace') {
+      $(`#err_${id}`).text("");
+      $(`#err_${id}`).hide();
+    }
+  })
 }
 
 
 function check_Mobile_Length(evt, max_Length) {
-    let id = evt.target.id;
-    var val = document.getElementById(id).value;
-    var length = val.length;
-    if (length !== max_Length) {
-        detection(evt);
-    } else {
-        console.log(length,max_Length)
-        $(`#err_${id}`).text("Maximum " + max_Length + " number allowed!");
-        $(`#err_${id}`).show();
-    }
+  let id = evt.target.id;
+  var val = document.getElementById(id).value;
+  var length = val.length;
+  if (length !== max_Length) {
+    detection(evt);
+  } else {
+    console.log(length, max_Length)
+    $(`#err_${id}`).text("Maximum " + max_Length + " number allowed!");
+    $(`#err_${id}`).show();
+  }
 }
 
 function numberValidation(input) {
@@ -355,11 +418,11 @@ function onlyNumberValidate(input) {
 
 function fieldCheckLength(field, maxLength) {
   var length = field.length;
-  if (length > maxLength ) {
-      return true;
+  if (length > maxLength) {
+    return true;
   }
   else {
-      return false;
+    return false;
   }
 }
 
@@ -439,29 +502,28 @@ function checkActualTime(field2_TOA, field3_DOA) {
 }
 
 
-function process(date){
-   var parts = date.split("-");
-    if(parts[2].length == 4)  // it is for safari
-    {                   //day     , mm          , yyyy
-         return new Date(parts[2], parts[1] - 1, parts[0]);
-    }
-    else{                 //yyyy     , mm          , dd
-        return new Date(parts[0], parts[1] - 1, parts[2]);
-    }
+function process(date) {
+  var parts = date.split("-");
+  if (parts[2].length == 4)  // it is for safari
+  {                   //day     , mm          , yyyy
+    return new Date(parts[2], parts[1] - 1, parts[0]);
+  }
+  else {                 //yyyy     , mm          , dd
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  }
 }
 
 
-function compareFun(DOB, DOA){
-  if((DOB.length != 0) && (DOA.length != 0))
-  {
-  if(process(DOB) <= process(DOA)){  
+function compareFun(DOB, DOA) {
+  if ((DOB.length != 0) && (DOA.length != 0)) {
+    if (process(DOB) <= process(DOA)) {
       return true;
-      
-    }else{
-        return false;
+
+    } else {
+      return false;
     }
   }
-  else{
+  else {
     return false;
   }
 }
@@ -484,7 +546,7 @@ function handleForm(event) {
 
 
   var comapareDates = compareFun(field_DOB, field_DOA);
-  
+
   InsuredInformation["FirstName"] = field_firstName;
   InsuredInformation["MiddleName"] = field_firstName;
   InsuredInformation["LastName"] = field_firstName;
@@ -511,11 +573,11 @@ function handleForm(event) {
   var numLastNameSuffix = false;
   var lenLastNameSuffix = false;
 
-    if(field_lastName_Suffix  != 0) {
+  if (field_lastName_Suffix != 0) {
     specLastNameSuffix = specialcharacterValidation(field_lastName_Suffix);
     numLastNameSuffix = numberValidation(field_lastName_Suffix);
     lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
-    }
+  }
 
   var lenFirstName = fieldCheckLength(field_firstName, 30);
   var lenMiddleName = fieldCheckLength(field_middleName, 30);
@@ -525,21 +587,20 @@ function handleForm(event) {
   var lenHomeAddress = fieldCheckLength(field_homeAddress, 250);
   var lenPOA = fieldCheckLength(field_POA, 120);
 
-  if(field_DOB.length !== 0) {
+  if (field_DOB.length !== 0) {
     var futDOB = futureDate(field_DOB);
     var futExistDOB = futureDateDOB(field_DOB);
   }
-  var timeCompare= false;
+  var timeCompare = false;
   var futDOA = false;
-    
-  if(field_DOA.length != 0) {
+
+  if (field_DOA.length != 0) {
     futDOA = futureDate(field_DOA);
-    if(field_TOA.length != 0)
-    {
-      timeCompare = checkActualTime(field_TOA,field_DOA);
+    if (field_TOA.length != 0) {
+      timeCompare = checkActualTime(field_TOA, field_DOA);
     }
   }
-    
+
   if (field_firstName.length === 0) {
     $("#err_field_firstName").text('Field is empty');
     $("#err_field_firstName").show();
@@ -602,13 +663,13 @@ function handleForm(event) {
     $("#err_field_lastName").hide();
   }
 
-  if(field_lastName_Suffix.length === 0) {
+  if (field_lastName_Suffix.length === 0) {
     $("#err_field_lastName_Suffix").text('');
     $("#err_field_lastName_Suffix").hide();
-  } else if (lenLastNameSuffix){
+  } else if (lenLastNameSuffix) {
     $("#err_field_lastName_Suffix").text('Maximum 3 characters allowed');
     $("#err_field_lastName_Suffix").show();
-  } else if (specLastNameSuffix){
+  } else if (specLastNameSuffix) {
     $("#err_field_lastName_Suffix").text('Special character is not allowed');
     $("#err_field_lastName_Suffix").show();
   } else if (numLastNameSuffix) {
@@ -622,36 +683,36 @@ function handleForm(event) {
   if (field_DOB.length === 0) {
     $("#err_field_DOB").text('Field is empty');
     $("#err_field_DOB").show();
-  } else if(!futDOB){
+  } else if (!futDOB) {
     $("#err_field_DOB").text('Future date is  not Accepted!');
     $("#err_field_DOB").show();
-  } else if(!futExistDOB){
+  } else if (!futExistDOB) {
     $("#err_field_DOB").text('Current date is  not Applicable!');
     $("#err_field_DOB").show();
   } else if (!comapareDates) {
-      $("#err_field_DOB").text('Insured DOB can not be greater than accident date');
+    $("#err_field_DOB").text('Insured DOB can not be greater than accident date');
     $("#err_field_DOB").show();
-  }  else {
+  } else {
     $("#err_field_DOB").text('');
     $("#err_field_DOB").hide();
   }
 
-    if (field_mobileNum.length === 0) {
-        $("#err_field_mobileNum").text('Field is empty');
-        $("#err_field_mobileNum").show();
+  if (field_mobileNum.length === 0) {
+    $("#err_field_mobileNum").text('Field is empty');
+    $("#err_field_mobileNum").show();
   } else if (lenMobileNum) {
     $("#err_field_mobileNum").text("Maximum 10 characters allowed!");
     $("#err_field_mobileNum").show();
-    } else if (!numMobile) {
-        $("#err_field_mobileNum").text('Only number is allowed!');
-        $("#err_field_mobileNum").show();
-    } else if (field_mobileNum.length !== 10) {
-        $("#err_field_mobileNum").text('Minimum 10 number allowed!');
-        $("#err_field_mobileNum").show();
-    } else {
-        $("#err_field_mobileNum").text('');
-        $("#err_field_mobileNum").hide();
-    }
+  } else if (!numMobile) {
+    $("#err_field_mobileNum").text('Only number is allowed!');
+    $("#err_field_mobileNum").show();
+  } else if (field_mobileNum.length !== 10) {
+    $("#err_field_mobileNum").text('Minimum 10 number allowed!');
+    $("#err_field_mobileNum").show();
+  } else {
+    $("#err_field_mobileNum").text('');
+    $("#err_field_mobileNum").hide();
+  }
 
   if (field_emailAddress.length === 0) {
     $("#err_field_emailAddress").text('Field is empty');
@@ -674,7 +735,7 @@ function handleForm(event) {
   if (field_DOA.length === 0) {
     $("#err_field_DOA").text('Field is empty');
     $("#err_field_DOA").show();
-  } else if (!futDOA){
+  } else if (!futDOA) {
     $("#err_field_DOA").text('Future date is not accepted');
     $("#err_field_DOA").show();
   } else {
@@ -685,11 +746,11 @@ function handleForm(event) {
   if (field_TOA.length === 0) {
     $("#err_field_TOA").text('Field is empty');
     $("#err_field_TOA").show();
-  } 
+  }
   else if (timeCompare == false) {
-      $("#err_field_TOA").text('Time can not be greater than current time');
+    $("#err_field_TOA").text('Time can not be greater than current time');
     $("#err_field_TOA").show();
-  }else {
+  } else {
     $("#err_field_TOA").text('');
     $("#err_field_TOA").hide();
   }
@@ -745,17 +806,17 @@ function handleForm(event) {
     numMobile == true &&
     specLastNameSuffix == false &&
     numLastNameSuffix == false &&
-    (comapareDates == true) && 
-    (timeCompare == true) && 
+    (comapareDates == true) &&
+    (timeCompare == true) &&
     (futDOA == true) &&
-    (futDOB == true) && 
+    (futDOB == true) &&
     (futExistDOB == true) &&
-    lenLastNameSuffix ==false &&
-    lenFirstName == false && 
-    lenMiddleName == false && 
-    leninjury == false && 
-    lenMobileNum == false && 
-    lenHomeAddress == false && 
+    lenLastNameSuffix == false &&
+    lenFirstName == false &&
+    lenMiddleName == false &&
+    leninjury == false &&
+    lenMobileNum == false &&
+    lenHomeAddress == false &&
     lenPOA == false
   ) {
     const data = {
@@ -778,17 +839,45 @@ function handleForm(event) {
       privacy_checkbox: $("#invalidCheck_privacy").is(":checked"),
     };
 
-      $('#form_wrapper').hide();
-      $('#stepper_intro').hide();
-      $('#accidental_data_privacy').hide();
-      $("#step1").addClass("done");
-      $("#step2").addClass("active");
-      $("#step2>div").addClass("active");
-      $('#requirements').show();
-      /*  $('#requirements')[0].scrollIntoView(true); */
-      $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an update from us within 1 to 2 working days on the status of your request.`);
-      console.log('Data -> ', data)
-    
+    $('#form_wrapper').hide();
+    $('#stepper_intro').hide();
+    $('#accidental_data_privacy').hide();
+    $("#step1").addClass("done");
+    $("#step2").addClass("active");
+    $("#step2>div").addClass("active");
+    $('#requirements').show();
+    /*  $('#requirements')[0].scrollIntoView(true); */
+    $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an update from us within 1 to 2 working days on the status of your request.`);
+    console.log('Data -> ', data)
+
+    InsuredInformation["FirstName"] = field_firstName;
+    InsuredInformation["MiddleName"] = field_middleName;
+    InsuredInformation["LastName"] = field_lastName;
+    InsuredInformation["Suffix"] = field_lastName_Suffix;
+    InsuredInformation["DateOfBirth"] = field_DOB;
+    InsuredInformation["CountryCode"] = $("select#inlineFormCustomSelect option").filter(":selected").val();
+    InsuredInformation["PhoneNumber"] = field_mobileNum;
+    InsuredInformation["EmailAddress"] = field_emailAddress;
+    InsuredInformation["HomeAddress"] = field_homeAddress;
+    InsuredInformation["InjuryDetails"] = field_injury;
+    InsuredInformation["AccidentDate"] = field_DOA;
+    InsuredInformation["AccidentTime"] = field_TOA;
+    InsuredInformation["AccidentPlace"] = field_POA;
+
+    let stageOneData = {
+      stageOne: true,
+      type: "Accident",
+      referenceNumber: referenceNumber,
+      data: InsuredInformation
+    }
+    window.parent.postMessage(JSON.stringify({
+      event_code: 'ym-client-event', data: JSON.stringify({
+        event: {
+          code: "personalinfo",
+          data: JSON.stringify(stageOneData)
+        }
+      })
+    }), '*');
   } else {
     $('#popUp').modal('show');
   }
@@ -815,19 +904,19 @@ const proceedScan = async (fileObj, button, pageid) => {
       if (parsedJson.hasVirus) {
         console.log("Netering");
 
-        if(pageid == 1) {
+        if (pageid == 1) {
           $("#warning_parent").show();
           $("#upload_warning").text(
             "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
           );
-        } 
-        if (pageid ==2) {
+        }
+        if (pageid == 2) {
           $("#warning_parent_acct").show();
           $("#upload_warning_acct").text(
             "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
           );
         }
-        
+
         $(`#file_loader_icon_${button}`).hide();
         $(`#file_Upload_Tick_${button}`).hide();
         $(`#file_upload_cancle_${button}`).show();
@@ -843,11 +932,11 @@ const proceedScan = async (fileObj, button, pageid) => {
     })
     .catch((error) => {
       console.log("error", error);
-      if(pageid == 1) {
-          $("#warning_parent").show();
+      if (pageid == 1) {
+        $("#warning_parent").show();
       }
-      if(pageid == 2) {
-          $("#warning_parent_acct").show();
+      if (pageid == 2) {
+        $("#warning_parent_acct").show();
       }
       $(`#file_loader_icon_${button}`).hide();
       $(`#file_Upload_Tick_${button}`).hide();
@@ -869,15 +958,15 @@ const fileCheck = (file, button, pageid) => {
     console.log("inside image load --> ");
     console.log(this.width + " " + this.height);
     if (this.width < 400 && this.height < 400) {
-    if(pageid == 1){
-      $(`#warning_parent`).show();
-      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
-    }
-    if (pageid == 2){
-      $("#warning_parent_acct").show();
-      $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
-    }
-   
+      if (pageid == 1) {
+        $(`#warning_parent`).show();
+        $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
+      }
+      if (pageid == 2) {
+        $("#warning_parent_acct").show();
+        $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
+      }
+
       $(`#file_loader_icon_${button}`).hide();
       $(`#file_Upload_Tick_${button}`).hide();
       $(`#file_upload_cancle_${button}`).show();
@@ -903,6 +992,8 @@ const isFileSizeValid = (file) => {
 };
 
 file1.onchange = async function (e) {
+  docType = "LIDC001";
+  tranType = "CIF";
   $("#file_upload_cancle_1").hide();
   $("#file_Upload_Tick_1").hide();
   console.log("Starting");
@@ -921,19 +1012,22 @@ file1.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum, pageID);
         }
-        file1Buffer = await toBase64(file);
-        console.log("file buffer : ")
-        console.log(file1Buffer);
-        filesMap["file1"] = file1Buffer;
+        let fileName = referenceNumber.toString() + "_" + docType + "_" + tranType;
 
-        window.parent.postMessage(JSON.stringify({
-          event_code: 'ym-client-event', data: JSON.stringify({
-            event: {
-              code: "personalinfo",
-              data: JSON.stringify(filesMap)
-            }
-          })
-        }), '*');
+        console.log("setting file data : ");
+        let accident = {};
+        accident['LIDC001Front'] = {
+          "Filename": `${fileName}.pdf`,
+          "DocType": "PDF",
+          "DocTypeCode": "LIDC001",
+          "DocumentDescription": "Front copy of doc"
+        }
+
+        filesList.push(accident);
+        const formData = new FormData()
+        formData.append('file', file, fileName + `.${ext}`);
+        handleFileUpload(formData, fileName);
+
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_1").hide();
@@ -956,6 +1050,8 @@ file1.onchange = async function (e) {
 };
 
 file2.onchange = async function (e) {
+  docType = "LIDC001";
+  tranType = "CIB";
   $("#file_upload_cancle_2").hide();
   $("#file_Upload_Tick_2").hide();
   var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -973,10 +1069,21 @@ file2.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum, pageId);
         }
-        file1Buffer = await getBuffer(file);
-        console.log("file buffer : ")
-        console.log(file1Buffer);
-        filesMap["file2"] = file1Buffer;
+
+        let fileName = referenceNumber.toString() + "_" + docType + "_" + tranType;
+
+        let accident = {};
+        accident['LIDC001Front'] = {
+          "Filename": `${fileName}.pdf`,
+          "DocType": "PDF",
+          "DocTypeCode": "LIDC001",
+          "DocumentDescription": "Back copy of doc"
+        }
+
+        filesList.push(accident);
+        const formData = new FormData()
+        formData.append('file', file, fileName + `.${ext}`)
+        handleFileUpload(formData, fileName);
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_2").hide();
@@ -999,6 +1106,8 @@ file2.onchange = async function (e) {
 };
 
 file3.onchange = async function (e) {
+  docType = "LIDC034";
+  tranType = "APSF";
   $("#file_upload_cancle_3").hide();
   $("#file_Upload_Tick_3").hide();
   var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -1016,10 +1125,20 @@ file3.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum, pageId);
         }
-        file1Buffer = await getBuffer(file);
-        console.log("file buffer : ")
-        console.log(file1Buffer);
-        filesMap["file3"] = file1Buffer;
+        let fileName = referenceNumber.toString() + "_" + docType + "_" + tranType;
+
+        let accident = {};
+        accident[docType] = {
+          "Filename": `${fileName}.pdf`,
+          "DocType": "PDF",
+          "DocTypeCode": docType,
+          "DocumentDescription": "Attending Physician’s Statement"
+        }
+
+        filesList.push(accident);
+        const formData = new FormData()
+        formData.append('file', file, fileName + `.${ext}`)
+        handleFileUpload(formData, fileName);
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_3").hide();
@@ -1042,6 +1161,8 @@ file3.onchange = async function (e) {
 };
 
 file4.onchange = async function (e) {
+  docType = "LIDC036";
+  tranType = "PIR";
   $("#file_upload_cancle_4").hide();
   $("#file_Upload_Tick_4").hide();
   var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -1060,10 +1181,20 @@ file4.onchange = async function (e) {
           proceedScan(file, buttonNum, pageId);
         }
 
-        file1Buffer = await getBuffer(file);
-        console.log("file buffer : ")
-        console.log(file1Buffer);
-        filesMap["file4"] = file1Buffer;
+        let fileName = referenceNumber.toString() + "_" + docType + "_" + tranType;
+
+        let accident = {};
+        accident[docType] = {
+          "Filename": `${fileName}.pdf`,
+          "DocType": "PDF",
+          "DocTypeCode": docType,
+          "DocumentDescription": "Police or Narration Report"
+        }
+
+        filesList.push(accident);
+        const formData = new FormData()
+        formData.append('file', file, fileName + `.${ext}`)
+        handleFileUpload(formData, fileName);
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_4").hide();
@@ -1086,6 +1217,8 @@ file4.onchange = async function (e) {
 };
 
 file5.onchange = async function (e) {
+  docType = "LIDC035";
+  tranType = "MR";
   $("#file_upload_cancle_5").hide();
   $("#file_Upload_Tick_5").hide();
   var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -1103,10 +1236,22 @@ file5.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum, pageId);
         }
-        file1Buffer = await getBuffer(file);
-        console.log("file buffer : ")
-        console.log(file1Buffer);
-        filesMap["file5"] = file1Buffer;
+
+        let fileName = referenceNumber.toString() + "_" + docType + "_" + tranType;
+
+        let accident = {};
+        accident[docType] = {
+          "Filename": `${fileName}.pdf`,
+          "DocType": "PDF",
+          "DocTypeCode": docType,
+          "DocumentDescription": "Police or Narration Report"
+        }
+
+        filesList.push(accident);
+
+        const formData = new FormData()
+        formData.append('file', file, fileName + `.${ext}`)
+        handleFileUpload(formData, fileName);
       } else {
         $("#warning_parent").show();
         $("#file_loader_icon_5").hide();
@@ -1263,7 +1408,7 @@ function buttonSubmitClicked(event) {
     $("#warning_parent").show();
     $('#popUp').modal('show');
     return;
-}
+  }
 
   const upload_data = {
     upload_file_1: file1.value,
@@ -1272,7 +1417,7 @@ function buttonSubmitClicked(event) {
     upload_file_4: file4.value,
     upload_file_5: file5.value,
     aia_Philam_Life_Checkbox: $('#upload_invalidCheck_1').is(':checked'),
-    insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked') 
+    insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
   }
 
   $("#step2").addClass("active");
@@ -1283,6 +1428,18 @@ function buttonSubmitClicked(event) {
   /*   $('#payment')[0].scrollIntoView(true); */
 
   console.log('upload data --> ', upload_data);
+  let stageTwoData = {
+    stageTwo: true,
+    referenceNumber: referenceNumber
+  }
+  window.parent.postMessage(JSON.stringify({
+    event_code: 'ym-client-event', data: JSON.stringify({
+      event: {
+        code: "fileuploads",
+        data: JSON.stringify(stageTwoData)
+      }
+    })
+  }), '*');
 }
 
 
@@ -1300,7 +1457,7 @@ function handleAccountInfo(event) {
   var numAccountNumber = onlyNumberValidate(field_AccountNumber);
 
   var lenAccountName = fieldCheckLength(field_AccountName, 90);
-  var lenAccountNumber =  fieldCheckLength(field_AccountNumber, 20);
+  var lenAccountNumber = fieldCheckLength(field_AccountNumber, 20);
   var lenBranch = fieldCheckLength(field_Branch, 50);
 
   if (field_AccountName.length === 0) {
@@ -1374,9 +1531,9 @@ function handleAccountInfo(event) {
     file6.length !== 0 &&
     speCharAccountName == false &&
     numAccountName == false &&
-    numAccountNumber == true && 
-    lenAccountName == false && 
-    lenAccountNumber == false && 
+    numAccountNumber == true &&
+    lenAccountName == false &&
+    lenAccountNumber == false &&
     lenBranch == false &&
     file6.value &&
     !$("#file_Upload_Tick_6").is(":hidden")
@@ -1398,21 +1555,29 @@ function handleAccountInfo(event) {
     BankDetails["AccountNumber"] = field_AccountNumber;
     BankDetails["AccountCurrency"] = $("select#from_currency option").filter(":selected").val();
 
+    let filesObject = {};
+    filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
+    filesObject["FileList"] = filesList;
+
+    filesMap["Accident"] = accident
     finalPayload["BasicInformation"] = basicInformation;
     finalPayload["InsuredInformation"] = InsuredInformation;
     finalPayload["BankDetails"] = BankDetails;
-    finalPayload["FileList"] = filesMap;
+    finalPayload["FileList"] = filesObject;
+    finalPayload["stageThree"] = true;
+    finalPayload["referenceNumber"] = referenceNumber;
 
     console.log("FPB : ")
     console.log(finalPayload)
     window.parent.postMessage(JSON.stringify({
       event_code: 'ym-client-event', data: JSON.stringify({
         event: {
-          code: "personalinfo",
+          code: "finalEvent",
           data: JSON.stringify(finalPayload)
         }
       })
     }), '*');
+
     $("#step2").addClass("done");
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
@@ -1436,6 +1601,27 @@ function bankTranfer() {
 }
 
 function pickUp() {
+  filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
+  filesObject["FileList"] = filesList;
+
+  filesMap["Accident"] = accident
+  finalPayload["BasicInformation"] = basicInformation;
+  finalPayload["InsuredInformation"] = InsuredInformation;
+  finalPayload["BankDetails"] = BankDetails;
+  finalPayload["FileList"] = filesObject;
+  finalPayload["stageThree"] = true;
+  finalPayload["referenceNumber"] = referenceNumber;
+
+  console.log("pick up payload : ")
+  console.log(finalPayload)
+  window.parent.postMessage(JSON.stringify({
+    event_code: 'ym-client-event', data: JSON.stringify({
+      event: {
+        code: "finalEvent",
+        data: JSON.stringify(finalPayload)
+      }
+    })
+  }), '*');
   $('#payment').hide();
   /* $('#process_confirmation').show(); */
   $("#pickUp").show();
@@ -1470,7 +1656,7 @@ function handleAddBankInfo(event) {
   var speCharAddAccountName = specialcharacterValidation(field_AccountName1);
   var numAddAccountName = numberValidation(field_AccountName1);
   var numAddAccountNumber = onlyNumberValidate(field_AccountNumber1);
- 
+
 
   if (field_AccountName1.length === 0) {
     $("#err_field_AccountName1").text('Field is empty');
@@ -1532,7 +1718,7 @@ function handleAddBankInfo(event) {
     $('#upload_feedback_label1').text('Please upload your Bank Account Ownership');
   }
 
-  if (field_AccountName1.length !== 0 && field_AccountNumber1.length !== 0 && field_currency1.length !== 0 && field_Bank1.length !== 0 && field_Branch1.length !== 0 && file7.length !== 0 && (speCharAddAccountName == false) && (numAddAccountName == false) && (numAddAccountNumber == true) ) {
+  if (field_AccountName1.length !== 0 && field_AccountNumber1.length !== 0 && field_currency1.length !== 0 && field_Bank1.length !== 0 && field_Branch1.length !== 0 && file7.length !== 0 && (speCharAddAccountName == false) && (numAddAccountName == false) && (numAddAccountNumber == true)) {
     const data = {
       field_AccountName1,
       field_AccountNumber1,
@@ -1557,66 +1743,59 @@ function openlink() {
 
 
 
-function validateEmail(my_email)
-{
-var ind0=my_email.indexOf("@");
-var my_username=my_email.slice(0,ind0);
-var ind=my_email.indexOf("@");
-var my_domain=my_email.substr((ind+1));
-var ind3 = my_domain.indexOf(".");
-var my_final_domain = my_domain.slice(0,ind3);
-var ind1=my_domain.indexOf(".");
-var my_extension=my_domain.slice((ind1+1),my_domain.length);
+function validateEmail(my_email) {
+  var ind0 = my_email.indexOf("@");
+  var my_username = my_email.slice(0, ind0);
+  var ind = my_email.indexOf("@");
+  var my_domain = my_email.substr((ind + 1));
+  var ind3 = my_domain.indexOf(".");
+  var my_final_domain = my_domain.slice(0, ind3);
+  var ind1 = my_domain.indexOf(".");
+  var my_extension = my_domain.slice((ind1 + 1), my_domain.length);
 
-var usernamesize = stringlength(my_username,2,30);
-var domainsize = stringlength(my_final_domain,2,10);
-var extension = stringlength(my_extension,2,3);
-    
+  var usernamesize = stringlength(my_username, 2, 30);
+  var domainsize = stringlength(my_final_domain, 2, 10);
+  var extension = stringlength(my_extension, 2, 3);
 
- var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
   if (reg.test(my_email) == false) {
     $("#err_field_emailAddress").text('Invalid Email');
     $("#err_field_emailAddress").show();
     return false;
-  }else{
-    if(!usernamesize)
-        {
-            $("#err_field_emailAddress").text('UserName should have minimum 2 and maximum 30 character');
-            $("#err_field_emailAddress").show();
-            return false;
-        }else if(!domainsize)
-        {
-            $("#err_field_emailAddress").text('Domain should have minimum 2 and maximum 10 character');
-            $("#err_field_emailAddress").show();
-            return false;
-        }else if(!extension)
-        {
-            $("#err_field_emailAddress").text('Extension should have minimum 2 and maximum 3 characters');
-            $("#err_field_emailAddress").show();
-            return false;
-        }else {
-          $("#err_field_emailAddress").text('');
-          $("#err_field_emailAddress").hide();
-          return true;
-        }
+  } else {
+    if (!usernamesize) {
+      $("#err_field_emailAddress").text('UserName should have minimum 2 and maximum 30 character');
+      $("#err_field_emailAddress").show();
+      return false;
+    } else if (!domainsize) {
+      $("#err_field_emailAddress").text('Domain should have minimum 2 and maximum 10 character');
+      $("#err_field_emailAddress").show();
+      return false;
+    } else if (!extension) {
+      $("#err_field_emailAddress").text('Extension should have minimum 2 and maximum 3 characters');
+      $("#err_field_emailAddress").show();
+      return false;
+    } else {
+      $("#err_field_emailAddress").text('');
+      $("#err_field_emailAddress").hide();
+      return true;
+    }
 
   }
-  
+
 }
 
 
-function stringlength(inputtxt, minlength, maxlength)
-{ 
-var field = inputtxt; 
-var mnlen = minlength;
-var mxlen = maxlength;
+function stringlength(inputtxt, minlength, maxlength) {
+  var field = inputtxt;
+  var mnlen = minlength;
+  var mxlen = maxlength;
 
-if(field.length<mnlen || field.length> mxlen)
-{ 
-return false;
-}
-else
-{ 
-return true;
-}
+  if (field.length < mnlen || field.length > mxlen) {
+    return false;
+  }
+  else {
+    return true;
+  }
 }
