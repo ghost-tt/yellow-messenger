@@ -1073,7 +1073,7 @@ file2.onchange = async function (e) {
         let fileName = referenceNumber + "_" + docType + "_" + tranType;
 
         let accident = {};
-        accident['LIDC001Front'] = {
+        accident['LIDC001Back'] = {
           "Filename": `${fileName}.pdf`,
           "DocType": "PDF",
           "DocTypeCode": "LIDC001",
