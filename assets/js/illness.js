@@ -751,7 +751,7 @@ function handleForm(event) {
     $("#step2").addClass("active");
     $("#step2>div").addClass("active");
     $("#requirements").show();
-    $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an update from us within 1 to 2 working days on the status of your request.`);
+    $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an SMS update from us within 1 to 2 working days on the status of your request.`);
     /* $('#requirements')[0].scrollIntoView(true); */
 
     console.log("Data -> ", data);
