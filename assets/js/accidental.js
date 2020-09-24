@@ -1559,7 +1559,7 @@ function handleAccountInfo(event) {
     filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
     filesObject["FileList"] = filesList;
 
-    filesMap["Accident"] = accident
+    // filesMap["Accident"] = accident
     finalPayload["BasicInformation"] = basicInformation;
     finalPayload["InsuredInformation"] = InsuredInformation;
     finalPayload["BankDetails"] = BankDetails;
@@ -1604,7 +1604,7 @@ function pickUp() {
   filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
   filesObject["FileList"] = filesList;
 
-  filesMap["Accident"] = accident
+  // filesMap["Accident"] = accident
   finalPayload["BasicInformation"] = basicInformation;
   finalPayload["InsuredInformation"] = InsuredInformation;
   finalPayload["BankDetails"] = BankDetails;
