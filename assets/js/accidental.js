@@ -1012,7 +1012,7 @@ file1.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum, pageID);
         }
-        let fileName = referenceNumber.toString() + "_" + docType + "_" + tranType;
+        let fileName = referenceNumber + "_" + docType + "_" + tranType;
 
         console.log("setting file data : ");
         let accident = {};
@@ -1070,7 +1070,7 @@ file2.onchange = async function (e) {
           proceedScan(file, buttonNum, pageId);
         }
 
-        let fileName = referenceNumber.toString() + "_" + docType + "_" + tranType;
+        let fileName = referenceNumber + "_" + docType + "_" + tranType;
 
         let accident = {};
         accident['LIDC001Front'] = {
@@ -1125,7 +1125,7 @@ file3.onchange = async function (e) {
         else {
           proceedScan(file, buttonNum, pageId);
         }
-        let fileName = referenceNumber.toString() + "_" + docType + "_" + tranType;
+        let fileName = referenceNumber + "_" + docType + "_" + tranType;
 
         let accident = {};
         accident[docType] = {
@@ -1181,7 +1181,7 @@ file4.onchange = async function (e) {
           proceedScan(file, buttonNum, pageId);
         }
 
-        let fileName = referenceNumber.toString() + "_" + docType + "_" + tranType;
+        let fileName = referenceNumber + "_" + docType + "_" + tranType;
 
         let accident = {};
         accident[docType] = {
@@ -1237,7 +1237,7 @@ file5.onchange = async function (e) {
           proceedScan(file, buttonNum, pageId);
         }
 
-        let fileName = referenceNumber.toString() + "_" + docType + "_" + tranType;
+        let fileName = referenceNumber + "_" + docType + "_" + tranType;
 
         let accident = {};
         accident[docType] = {
