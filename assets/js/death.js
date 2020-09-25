@@ -178,6 +178,8 @@ function disableFutureDates() {
         day = '0' + day.toString();
     var maxDate = year + '-' + month + '-' + day;
     $('#field_DOID').attr('max', maxDate);
+    $('#field_addBeneficiaryDOB').attr('max', maxDate);
+    $('#field_BeneficiaryDOB').attr('max', maxDate);
 }
 
 function disableFutureDatesDOB() {
@@ -192,8 +194,7 @@ function disableFutureDatesDOB() {
       day = '0' + day.toString();
     var maxDate = year + '-' + month + '-' + dobDate;
     $('#field_DOB').attr('max', maxDate);
-    $('#field_BeneficiaryDOB').attr('max', maxDate);
-    $('#field_addBeneficiaryDOB').attr('max', maxDate);
+   /*  $('#field_addBeneficiaryDOB').attr('max', maxDate); */
   }
   
 
@@ -377,6 +378,8 @@ function handleFormAddBeneficiary(event) {
     var field_addBeneficiaryRelationToDeceased = $("#field_addBeneficiaryRelationToDeceased").val();
     var field_addBeneficiaryEmployerName = $("#field_addBeneficiaryEmployerName").val();
     var field_addBeneficiaryOccupation = $("#field_addBeneficiaryOccupation").val();
+    var field_addBeneficiary_relatives1 = $('#field_addBeneficiary_relatives1').val();
+    var field_add_Beneficiary_add_relatives2 = $('#field_add_Beneficiary_add_relatives2').val();
 
     var speciAddBeniFirstName = specialcharacterValidation(field_addBeneficiaryFirstName);
     var numAddBeniFirstName = numberValidation(field_addBeneficiaryFirstName);
@@ -411,7 +414,6 @@ function handleFormAddBeneficiary(event) {
 
     if(field_addBeneficiaryDOB.length !== 0) {
         var futaddBeneficiaryDOB = futureDate(field_addBeneficiaryDOB);
-        var futExisaddtBeneficiaryDOB = futureDateDOB(field_addBeneficiaryDOB);
     }
 
     if (field_addBeneficiaryFirstName.length === 0) {
@@ -506,10 +508,7 @@ function handleFormAddBeneficiary(event) {
     } else if(!futaddBeneficiaryDOB){
         $("#err_field_addBeneficiaryDOB").text('Future date is  not Accepted!');
         $("#err_field_addBeneficiaryDOB").show();
-    } else if(!futExisaddtBeneficiaryDOB){
-        $("#err_field_addBeneficiaryDOB").text('Current date is  not Applicable!');
-        $("#err_field_addBeneficiaryDOB").show();
-    }    else {
+    } else {
         $("#err_field_addBeneficiaryDOB").text('');
         $("#err_field_addBeneficiaryDOB").hide();
     }
@@ -566,18 +565,28 @@ function handleFormAddBeneficiary(event) {
     if (field_addBeneficiaryEmployerName.length === 0){
         $("#err_field_addBeneficiaryEmployerName").text('Field is empty');
         $("#err_field_addBeneficiaryEmployerName").show();
-    }/*   else if(specAddBeniEmployerName) {
-        $("#err_field_addBeneficiaryEmployerName").text('Special character is not allowed');
-        $("#err_field_addBeneficiaryEmployerName").show();
-    } else if (numAddBeniEmployerName) {
-        $("#err_field_addBeneficiaryEmployerName").text('Number is not allowed');
-        $("#err_field_addBeneficiaryEmployerName").show();
-    }  */else if (lenaddBeneficiaryEmployerName){
+    }else if (lenaddBeneficiaryEmployerName){
         $("#err_field_addBeneficiaryEmployerName").text('Maximum 250 characters allowed!');
         $("#err_field_addBeneficiaryEmployerName").show();
     }  else {
         $("#err_field_addBeneficiaryEmployerName").text('');
         $("#err_field_addBeneficiaryEmployerName").show();
+    }
+
+    if (field_addBeneficiary_relatives1.length === 0){
+        $("#err_field_add_Beneficiary_relatives1").text('Field is empty');
+        $("#err_field_add_Beneficiary_relatives1").show();
+    }  else {
+        $("#err_field_add_Beneficiary_relatives1").text('');
+        $("#err_field_add_Beneficiary_relatives1").show();
+    }
+
+    if (field_add_Beneficiary_add_relatives2.length === 0){
+        $("#err_field_add_Beneficiary_relatives2").text('Field is empty');
+        $("#err_field_add_Beneficiary_relatives2").show();
+    }  else {
+        $("#err_field_add_Beneficiary_relatives2").text('');
+        $("#err_field_add_Beneficiary_relatives2").show();
     }
 
     if (!$('#invalidCheck_basicAddBeneficiary').is(':checked')) {
@@ -604,7 +613,7 @@ function handleFormAddBeneficiary(event) {
         $("#err_field_addBeneficiaryPEP").show();
     }
 
-    if (field_addBeneficiaryFirstName.length !== 0 && field_addBeneficiaryMiddleName.length !== 0 && field_addBeneficiaryLastName.length !== 0 && field_addBeneficiaryMobileNum.length == 10 && field_addBeneficiaryEmailAddress.length !== 0 && field_addBeneficiaryHomeAddress.length !== 0 && field_addBeneficiaryDOB.length !== 0 && field_addBeneficiaryPOB.length !== 0 && field_addBeneficiaryNationality.length !== 0 && field_addBeneficiarySex.length !== 0 && field_addBeneficiaryRelationToDeceased.length !== 0 && (field_addBeneficiaryEmployerName.length !== 0)  && field_addBeneficiaryOccupation.length !== 0 && $('#invalidCheck_basicAddBeneficiary').is(':checked') && $('#invalidCheck_privacyAddBeneficiary').is(':checked') && validateEmailAddBeneficiary(field_addBeneficiaryEmailAddress)  && (numAddBeniFirstName== false) && (speciAddBeniFirstName == false ) && (numAddBeniMiddleName == false) && (speciAddBeniMiddleName == false) && (numAddBeniLastName == false) && (speciAddBeniLastName == false) && (numAddBeniMobile == true) && (futaddBeneficiaryDOB == true) && (futExisaddtBeneficiaryDOB == true)&& ($('#field_addBeneficiaryinlineRadio1').is(':checked') || $('#field_addBeneficiaryinlineRadio2').is(':checked')) ) {
+    if (field_addBeneficiaryFirstName.length !== 0 && field_addBeneficiaryMiddleName.length !== 0 && field_addBeneficiaryLastName.length !== 0 && field_addBeneficiaryMobileNum.length == 10 && field_addBeneficiaryEmailAddress.length !== 0 && field_addBeneficiaryHomeAddress.length !== 0 && field_addBeneficiaryDOB.length !== 0 && field_addBeneficiaryPOB.length !== 0 && field_addBeneficiaryNationality.length !== 0 && field_addBeneficiarySex.length !== 0 && field_addBeneficiaryRelationToDeceased.length !== 0 && field_addBeneficiaryOccupation.length !== 0 && field_addBeneficiaryEmployerName.length !== 0 && field_addBeneficiary_relatives1.length !== 0 && field_add_Beneficiary_add_relatives2.length !== 0 && $('#invalidCheck_basicAddBeneficiary').is(':checked') && $('#invalidCheck_privacyAddBeneficiary').is(':checked') && validateEmailAddBeneficiary(field_addBeneficiaryEmailAddress)  && (numAddBeniFirstName== false) && (speciAddBeniFirstName == false ) && (numAddBeniMiddleName == false) && (speciAddBeniMiddleName == false) && (numAddBeniLastName == false) && (speciAddBeniLastName == false) && (numAddBeniMobile == true) && (futaddBeneficiaryDOB == true) ){
         
         const data = {
             field_addBeneficiaryFirstName,
@@ -723,6 +732,8 @@ function handleForm(event) {
     var field_BenificiaryOccupation = $("#field_BeneficiaryOccupation").val();
     var field_BeneficiaryRelationToDeceased = $("#field_BeneficiaryRelationToDeceased").val();
     var field_BeneficiaryEmployerName = $('#field_BeneficiaryEmployerName').val();
+    var field_Beneficiary_relatives1 =$('#field_Beneficiary_relatives1').val();
+    var field_Beneficiary_relatives2 =$('#field_Beneficiary_relatives2').val();
     
     var specFirstName = specialcharacterValidation(field_firstName);
     var  specMiddleName = specialcharacterValidation(field_middleName);
@@ -777,7 +788,7 @@ function handleForm(event) {
 
     if(field_BeneficiaryDOB.length !== 0) {
         var futBeneficiaryDOB = futureDate(field_BeneficiaryDOB);
-        var futExistBeneficiaryDOB = futureDateDOB(field_BeneficiaryDOB);
+       /*  var futExistBeneficiaryDOB = futureDateDOB(field_BeneficiaryDOB); */
     }
 
     var field_NatureOfLoss = $("select#nature_Loss option").filter(":selected").val()
@@ -995,10 +1006,7 @@ function handleForm(event) {
     } else if(!futBeneficiaryDOB){
         $("#err_field_BeneficiaryDOB").text('Future date is  not Accepted!');
         $("#err_field_BeneficiaryDOB").show();
-    } else if(!futExistBeneficiaryDOB){
-        $("#err_field_BeneficiaryDOB").text('Current date is  not Applicable!');
-        $("#err_field_BeneficiaryDOB").show();
-    }  else {
+    } else {
         $("#err_field_BeneficiaryDOB").text('');
         $("#err_field_BeneficiaryDOB").hide();
     }
@@ -1032,13 +1040,29 @@ function handleForm(event) {
         $("#err_field_BeneficiarySex").text('');
         $("#err_field_BeneficiarySex").hide();
     }
-
+    
    if (field_BenificiaryOccupation.length === 0) {
         $("#err_field_BeneficiaryOccupation").text('Field is empty');
         $("#err_field_BeneficiaryOccupation").show();
     } else {
         $("#err_field_BeneficiaryOccupation").text('');
         $("#err_field_BeneficiaryOccupation").hide();
+    }
+    
+    if (field_Beneficiary_relatives1.length === 0) {
+        $("#err_field_Beneficiary_relatives1").text('Field is empty');
+        $("#err_field_Beneficiary_relatives1").show();
+    } else {
+        $("#err_field_Beneficiary_relatives1").text('');
+        $("#err_field_Beneficiary_relatives1").hide();
+    }
+
+    if (field_Beneficiary_relatives2.length === 0) {
+        $("#err_field_Beneficiary_relatives2").text('Field is empty');
+        $("#err_field_Beneficiary_relatives2").show();
+    } else {
+        $("#err_field_Beneficiary_relatives2").text('');
+        $("#err_field_Beneficiary_relatives2").hide();
     }
 
     if (field_BeneficiaryRelationToDeceased.length === 0) {
@@ -1093,7 +1117,7 @@ function handleForm(event) {
         $("#err_field_BeneficiaryPEP").show();
     }
 
-    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_NatureLoss.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryMobileNum.length == 10 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && field_BeneficiaryEmployerName.length !== 0 && field_BenificiaryOccupation.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && validateEmail(field_BeneficiaryEmailAddress) && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (speciBeniFirstName == false) && (numBeniFirstName == false) && (numberMobile == true) && (speciBeniMiddleName == false) && (numBeniMiddleName == false) && (speciBeniLastName == false) && (numBeniLastName == false) && (futDOB  == true) && (futExistDOB  == true) && (futDOID == true) && (numSuffix == false) && (specSuffix == false) && ($('#inlineRadio1').is(':checked') || $('#inlineRadio2').is(':checked')) && (comapareDates == true)) {
+    if (field_firstName.length !== 0 && field_middleName.length !== 0 && field_lastName.length !== 0 && field_DOB.length !== 0 && field_DOID.length !== 0 && field_NatureLoss.length !== 0 && field_BeneficiaryFirstName.length !== 0 && field_BeneficiaryMiddleName.length !== 0 && field_BeneficiaryLastName.length !== 0 && field_BeneficiaryMobileNum.length == 10 && field_BeneficiaryEmailAddress.length !== 0 && field_BeneficiaryHomeAddress.length !== 0 && field_BeneficiaryDOB.length !== 0 && field_BeneficiaryPOB.length !== 0 && field_BeneficiaryNationality.length !== 0 && field_BeneficiarySex.length !== 0 && field_BeneficiaryRelationToDeceased.length !== 0 && field_BenificiaryOccupation.length !== 0 && field_BeneficiaryEmployerName.length !== 0 && $('#invalidCheck_basic').is(':checked') && $('#invalidCheck_privacy').is(':checked') && validateEmail(field_BeneficiaryEmailAddress) && (specFirstName == false)  && (specMiddleName == false)  && (specLastName == false) && (numFirstName == false)  && (numMiddleName == false) && (numLastName == false) && (speciBeniFirstName == false) && (numBeniFirstName == false) && (numberMobile == true) && (speciBeniMiddleName == false) && (numBeniMiddleName == false) && (speciBeniLastName == false) && (numBeniLastName == false) && (futDOB  == true) && (futExistDOB  == true) && (futDOID == true) && (numSuffix == false) && (specSuffix == false) && field_Beneficiary_relatives1.length !== 0 && field_Beneficiary_relatives2.length !== 0 && (comapareDates == true) ) {
         
     
             const data = {
@@ -1120,7 +1144,7 @@ function handleForm(event) {
                 privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
             }
 
-            dataReset("field_firstName", "field_firstName", "field_middleName", "field_lastName", "field_lastName_Suffix", "field_DOB", "field_DOID", "field_BeneficiaryFirstName", "field_BeneficiaryMiddleName", "field_BeneficiaryLastName", "field_BeneficiaryMobileNum", "field_BeneficiaryEmailAddress", "field_BeneficiaryHomeAddress", "field_BeneficiaryDOB", "field_BeneficiaryPOB", "field_BeneficiaryNationality", "field_BeneficiarySex", "field_BeneficiaryRelationToDeceased")
+            dataReset("field_firstName", "field_firstName", "field_middleName", "field_lastName", "field_lastName_Suffix", "field_DOB", "field_DOID", "field_BeneficiaryFirstName", "field_BeneficiaryMiddleName", "field_BeneficiaryLastName", "field_BeneficiaryMobileNum", "field_BeneficiaryEmailAddress", "field_BeneficiaryHomeAddress", "field_BeneficiaryDOB", "field_BeneficiaryPOB", "field_BeneficiaryNationality", "field_BeneficiarySex", "field_BeneficiaryRelationToDeceased","field_Beneficiary_relatives1","field_Beneficiary_relatives2")
 
 
             $("#step1").addClass("done");
@@ -2046,17 +2070,10 @@ function buttonSubmitClicked(event) {
         insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
     }
 
-        
-          /*   $("#step2").addClass("active");
-            $("#step2>div").addClass("active");
-            $("#step2").addClass("done");
-            $('#requirements').hide();
-            $('#process_confirmation').show(); */
-
             $("#step2").addClass("done");
             $("#step3").addClass("active");
             $("#step3>div").addClass("active");
-            $("#step3").addClass("done");
+           /*  $("#step3").addClass("done"); */
             $('#requirements').hide();
             $('#process_confirmation').show();
     
@@ -2113,7 +2130,7 @@ function addBeneficiaryButtonClicked(event) {
     $("#step2").addClass("done");
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
-    $("#step3").addClass("done");
+   /*  $("#step3").addClass("done"); */
     $('#addBeneficiaryRequirements').hide();
     $('#process_confirmation').show();
     console.log('upload data --> ', upload_data);
@@ -2324,7 +2341,7 @@ function addBenificiaryAccountInfo(event) {
         $('#addBeneficiaryRequirements').show();
         console.log('Data -> ', data)
 
-        dataReset("field_addBenificiaryAccountName", "field_addBenificiaryAccountNumber", "field_addBenificiaryBank", "field_addBeneficiaryBranch", "field_addBeneficiaryCurrency", "upload_file_8");
+        dataReset("field_addBenificiaryAccountName", "field_addBenificiaryAccountNumber", "field_addBenificiaryBank", "field_addBeneficiaryBranch", "field_addBeneficiaryCurrency", "upload_file_8","field_addBeneficiary_relatives1","field_add_Beneficiary_add_relatives2");
         
         addBeneficiaryuploadDataReset()
     }else {

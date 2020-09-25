@@ -1338,7 +1338,7 @@ function handleAccountInfo(event) {
         $("#step2").addClass("done");
         $("#step3").addClass("active");
         $("#step3>div").addClass("active");
-        $("#step3").addClass("done");
+        /* $("#step3").addClass("done"); */
         $('#account_details').hide();
         $('#process_confirmation').show();
         console.log('Data -> ', data)
@@ -1398,8 +1398,8 @@ function pickup_Bpi() {
     $("#step2").addClass("done");
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
-    $("#step3").addClass("done");
-}
+   /*  $("#step3").addClass("done"); */
+  }
 
 
 function openlink() {
