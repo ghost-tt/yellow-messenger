@@ -14,7 +14,7 @@ var file4 = document.getElementById('file_Upload_4');
 var file5 = document.getElementById('file_Upload_5');
 var file6 = document.getElementById('proof_BAO');
 var file7 = document.getElementById('proof_addBAO');
-
+var trackBenificiary;
 let url = new URL(window.location.href);
 let referenceNumber = url.searchParams.get('refNumber');
 let uid = url.searchParams.get('sender');
@@ -518,7 +518,6 @@ function compareFun(DOB, DOA) {
   if ((DOB.length != 0) && (DOA.length != 0)) {
     if (process(DOB) <= process(DOA)) {
       return true;
-
     } else {
       return false;
     }
@@ -1628,6 +1627,7 @@ function pickUp() {
   $("#pickUp").show();
   $("#step2").addClass("active");
   $("#step2>div").addClass("active");
+  $("#step2").addClass("done");
 }
 
 function pickup_Bpi() {
@@ -1731,7 +1731,7 @@ function handleAddBankInfo(event) {
 
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
-    $("#step3").addClass("done");
+    /* $("#step3").addClass("done"); */
     $('#account_details1').hide();
     $('#process_confirmation').show();
     console.log('bank data -> ', data)
@@ -1799,4 +1799,31 @@ function stringlength(inputtxt, minlength, maxlength) {
   else {
     return true;
   }
+}
+
+
+function goBack() {
+  console.log('go back!!!');
+  $("#step2").removeClass("active");
+  $("#step2>div").removeClass("active");
+  $("#step2").removeClass("done");
+  $('#requirements').hide();
+  $('#form_wrapper').show();
+  /* $('#form_wrapper')[0].scrollIntoView(true); */
+}
+
+function goBackPickup(){
+  $("#step3").removeClass("done");
+    $('#pickUp').hide();
+    $('#requirements').show();
+}
+
+function goBack1() {
+  console.log('go back!!!');
+    $("#step3").removeClass("done");
+    $('#account_details').hide();
+    $('#requirements').show();
+  
+ 
+  /* $('#form_wrapper')[0].scrollIntoView(true); */
 }

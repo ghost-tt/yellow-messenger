@@ -1464,3 +1464,35 @@ function stringlength(inputtxt, minlength, maxlength) {
         return true;
     }
 }
+
+
+
+function goBack() {
+    console.log('go back!!!');
+    $("#step2").removeClass("active");
+    $("#step2>div").removeClass("active");
+    $("#step2").removeClass("done");
+    $('#requirements').hide();
+    $('#form_wrapper').show();
+    /* $('#form_wrapper')[0].scrollIntoView(true); */
+  }
+  
+  function goBackPickup() {
+    console.log('go back!!!');
+    $("#step3").removeClass("active");
+    $("#step3>div").removeClass("active"); 
+   /*  $("#step3").removeClass("done"); */
+    $('#pickUp').hide();
+    $('#requirements').show();
+  }
+
+  
+function goBack1() {
+    console.log('go back!!!');
+    $("#step3").removeClass("active");
+    $("#step3>div").removeClass("active"); 
+   /*  $("#step3").removeClass("done"); */
+    $('#account_details').hide();
+    $('#requirements').show();
+    /* $('#form_wrapper')[0].scrollIntoView(true); */
+  }
