@@ -38,6 +38,123 @@ $(document).ready(function(event){
     setCountryCode();
 });
 
+  function myDisable() {
+    document.getElementById("submit9").disabled = true;
+    document.getElementById("submit9").style.cursor = "no-drop";
+    document.getElementById("file_Upload_1"). disabled = true; 
+    document.getElementById("file_Upload_1").style.cursor = "no-drop";
+    document.getElementById("file_Upload_2").disabled = true;  
+    document.getElementById("file_Upload_2").style.cursor = "no-drop";
+    document.getElementById("file_Upload_3").disabled = true;
+    document.getElementById("file_Upload_3").style.cursor = "no-drop";
+    document.getElementById("file_Upload_4").disabled = true;
+    document.getElementById("file_Upload_4").style.cursor = "no-drop";
+    document.getElementById("file_Upload_5").disabled = true;
+    document.getElementById("file_Upload_5").style.cursor = "no-drop";
+    document.getElementById("file_Upload_6").disabled = true;
+    document.getElementById("file_Upload_6").style.cursor = "no-drop";
+    document.getElementById("addBeneficiary1").disabled = true;
+    document.getElementById("addBeneficiary1").style.cursor = "no-drop";
+    document.getElementById("upload_invalidCheck_2").disabled = true;
+    document.getElementById("upload_invalidCheck_2").style.cursor = "no-drop"; 
+   /*  document.getElementById("link_Beneficiary").style.pointerEvents = "none";
+    document.getElementById("link2_Beneficiary").style.pointerEvents = "none"; */
+    document.getElementById("form_Beneficiary").style.cursor = "no-drop";
+  } 
+
+function timer() {
+    var random = Math.floor(Math.random() * 5) + 1  
+    return new Promise((resolve, reject) => {
+      var i=0
+      let cleartime = setInterval(() => {
+       i = random + i;
+       renderProgress(i)
+       if(i == 99){
+        i = 100;
+        renderProgress(i)
+       }
+       if(i == 100 )  {
+     
+          console.log("cleartime");
+          clearTimeout(cleartime);
+          resolve("cleartime")
+      }
+    //  i++;
+     }, 500);
+    })
+  }
+
+  function myDisable2() {
+    document.getElementById("submit10").disabled = true;
+    document.getElementById("submit10").style.cursor = "no-drop";
+    document.getElementById("file_Upload_9"). disabled = true; 
+    document.getElementById("file_Upload_9").style.cursor = "no-drop";
+    document.getElementById("file_Upload_10").disabled = true;  
+    document.getElementById("file_Upload_10").style.cursor = "no-drop";
+    document.getElementById("file_Upload_11").disabled = true;
+    document.getElementById("file_Upload_11").style.cursor = "no-drop";
+    document.getElementById("file_Upload_12").disabled = true;
+    document.getElementById("file_Upload_12").style.cursor = "no-drop";
+    document.getElementById("addBeneficiary_submit"). disabled = true; 
+    document.getElementById("addBeneficiary_submit").style.cursor = "no-drop";
+  
+  /*   document.getElementById("upload_invalidCheck_2").disabled = true;
+    document.getElementById("upload_invalidCheck_2").style.cursor = "no-drop"; 
+    document.getElementById("link_Beneficiary").style.pointerEvents = "none";
+    document.getElementById("link2_Beneficiary").style.pointerEvents = "none";
+    document.getElementById("form_Beneficiary").style.cursor = "no-drop"; */
+  }  
+
+function timer2() {
+    var random = Math.floor(Math.random() * 5) + 1  
+    return new Promise((resolve, reject) => {
+      var i=0
+      let cleartime = setInterval(() => {
+       i = 3 + i;
+       renderProgress(i)
+       if(i == 99){
+        i = 100;
+        renderProgress(i)
+       }
+       if(i == 100 )  {
+     
+          console.log("cleartime");
+          clearTimeout(cleartime);
+          resolve("cleartime")
+      }
+    //  i++;
+     }, 500);
+    })
+  }
+  
+  function renderProgress(progress) {
+    progress = Math.floor(progress);
+    if(progress<25){
+        var angle = -90 + (progress/100)*360;
+        $(".animate-0-25-b").css("transform","rotate("+angle+"deg)");
+    }
+    else if(progress>=25 && progress<50){
+        var angle = -90 + ((progress-25)/100)*360;
+        $(".animate-0-25-b").css("transform","rotate(0deg)");
+        $(".animate-25-50-b").css("transform","rotate("+angle+"deg)");
+    }
+    else if(progress>=50 && progress<75){
+        var angle = -90 + ((progress-50)/100)*360;
+        $(".animate-25-50-b, .animate-0-25-b").css("transform","rotate(0deg)");
+        $(".animate-50-75-b").css("transform","rotate("+angle+"deg)");
+    }
+    else if(progress>=75 && progress<=100){
+        var angle = -90 + ((progress-75)/100)*360;
+        $(".animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
+                                            .css("transform","rotate(0deg)");
+        $(".animate-75-100-b").css("transform","rotate("+angle+"deg)");
+    }
+    $(".text").html(progress+"%");
+  }
+  
+  
+
+
 /* Check Date should not be in future */
 function futureDate(date) {
     /*   let id = evt.target.id;
@@ -2069,15 +2186,16 @@ function buttonSubmitClicked(event) {
         upload_file_6: file6.value,
         insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
     }
-
+            myDisable()
+            timer().then( async () => { 
             $("#step2").addClass("done");
-            $("#step3").addClass("active");
-            $("#step3>div").addClass("active");
+           /*  $("#step3").addClass("active");
+            $("#step3>div").addClass("active"); */
            /*  $("#step3").addClass("done"); */
             $('#requirements').hide();
             $('#process_confirmation').show();
     
-
+            });
     console.log('upload data --> ', upload_data);
 }
 
@@ -2127,13 +2245,16 @@ function addBeneficiaryButtonClicked(event) {
        /*  insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked') */
     }
 
+    myDisable2()
+    timer2().then( async () => { 
     $("#step2").addClass("done");
-    $("#step3").addClass("active");
-    $("#step3>div").addClass("active");
+   /*  $("#step3").addClass("active");
+    $("#step3>div").addClass("active"); */
    /*  $("#step3").addClass("done"); */
     $('#addBeneficiaryRequirements').hide();
     $('#process_confirmation').show();
     console.log('upload data --> ', upload_data);
+    });
 }
 
 function handleAccountInfo(event) {

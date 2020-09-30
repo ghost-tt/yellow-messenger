@@ -35,6 +35,80 @@ form_Bank.addEventListener('submit', handleAccountInfo);
         animation: true
     })
 }) */
+  function myDisable() {
+  document.getElementById("submit9").disabled = true;
+  document.getElementById("submit9").style.cursor = "no-drop";
+  document.getElementById("field_AccountName"). disabled = true; 
+  document.getElementById("field_AccountName").style.cursor = "no-drop";
+  document.getElementById("field_AccountNumber").disabled = true;  
+  document.getElementById("field_AccountNumber").style.cursor = "no-drop";
+  document.getElementById("field_Bank").disabled = true;
+  document.getElementById("field_Bank").style.cursor = "no-drop";
+  document.getElementById("field_Branch").disabled = true;
+  document.getElementById("field_Branch").style.cursor = "no-drop";
+  document.getElementById("from_currency").disabled = true;
+  document.getElementById("from_currency").style.cursor = "no-drop";
+  document.getElementById("proof_BAO").disabled = true;
+  document.getElementById("proof_BAO").style.cursor = "no-drop";
+  document.getElementById("back_btn1").style.cursor = "no-drop";
+  document.getElementById("back_btn1").style.pointerEvents = "none";
+  document.getElementById("bank_form").style.cursor = "no-drop";
+}
+
+function timer() {
+  var random = Math.floor(Math.random() * 5) + 1  
+  return new Promise((resolve, reject) => {
+    var i=0
+    let cleartime = setInterval(() => {
+     i = random + i;
+     renderProgress(i)
+     if(i == 99){
+      i = 100;
+      renderProgress(i)
+     }
+     if(i == 100 )  {
+   
+        console.log("cleartime");
+        clearTimeout(cleartime);
+        resolve("cleartime")
+    }
+  //  i++;
+   }, 500);
+  })
+}
+
+function renderProgress(progress) {
+  progress = Math.floor(progress);
+  if(progress<25){
+      var angle = -90 + (progress/100)*360;
+      $(".animate-0-25-b").css("transform","rotate("+angle+"deg)");
+  }
+  else if(progress>=25 && progress<50){
+      var angle = -90 + ((progress-25)/100)*360;
+      $(".animate-0-25-b").css("transform","rotate(0deg)");
+      $(".animate-25-50-b").css("transform","rotate("+angle+"deg)");
+  }
+  else if(progress>=50 && progress<75){
+      var angle = -90 + ((progress-50)/100)*360;
+      $(".animate-25-50-b, .animate-0-25-b").css("transform","rotate(0deg)");
+      $(".animate-50-75-b").css("transform","rotate("+angle+"deg)");
+  }
+  else if(progress>=75 && progress<=100){
+      var angle = -90 + ((progress-75)/100)*360;
+      $(".animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
+                                          .css("transform","rotate(0deg)");
+      $(".animate-75-100-b").css("transform","rotate("+angle+"deg)");
+  }
+  $(".text").html(progress+"%");
+}
+
+
+
+
+
+
+
+
 
 let finalPayload = {};
 let accidentPayload = {};
@@ -1576,7 +1650,8 @@ function handleAccountInfo(event) {
         }
       })
     }), '*');
-
+    myDisable()
+    timer().then( async () => { 
     $("#step2").addClass("done");
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
@@ -1584,7 +1659,7 @@ function handleAccountInfo(event) {
     $("#account_details").hide();
     $("#process_confirmation").show();
     console.log("Data -> ", data);
-
+    });
   } else {
     $("#popUp").modal("show");
   }
@@ -1634,8 +1709,8 @@ function pickup_Bpi() {
   $("#pickUp").hide();
   $('#process_confirmation').show();
   $("#step2").addClass("done");
-  $("#step3").addClass("active");
-  $("#step3>div").addClass("active");
+  /* $("#step3").addClass("active"); */
+ /*  $("#step3>div").addClass("active"); */
  /*  $("#step3").addClass("done"); */
 }
 
@@ -1729,8 +1804,8 @@ function handleAddBankInfo(event) {
       upload_file_6: file7.value
     }
 
-    $("#step3").addClass("active");
-    $("#step3>div").addClass("active");
+    /* $("#step3").addClass("active"); */
+    /* $("#step3>div").addClass("active"); */
     /* $("#step3").addClass("done"); */
     $('#account_details1').hide();
     $('#process_confirmation').show();
