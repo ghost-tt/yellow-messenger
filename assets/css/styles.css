@@ -838,3 +838,10 @@ margin-top: 5px;
 .lable_relatives2{
 margin-top: 1rem;
 }
+.md-step-step3-circle {
+  border: 2px solid rgb(33, 150, 243) !important;
+ }
+
+ .md-step3-span {
+   color: rgb(33, 150, 243) !important;
+ }

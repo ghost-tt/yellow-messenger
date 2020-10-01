@@ -1270,7 +1270,7 @@ function handleForm(event) {
             $('#form_wrapper').hide();
             $('#death_data_privacy').hide();
             $('#payment').show();
-            $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an SMS update from us within 1 to 2 working days on the status of your request.`);
+            $("#customer_Name").text(`Hi ${field_BeneficiaryFirstName}, Hang in there as we are now processing your request. Kindly expect an SMS update from us within 1 to 2 working days on the status of your request.`);
             console.log('Data -> ', data)
     
     }else {
@@ -2189,6 +2189,9 @@ function buttonSubmitClicked(event) {
             myDisable()
             timer().then( async () => { 
             $("#step2").addClass("done");
+            $("#step3_circle").addClass("md-step-step3-circle ");
+            $("#step3_span").addClass("md-step3-span");
+            $("#step3_reference").addClass("md-step3-span")
            /*  $("#step3").addClass("active");
             $("#step3>div").addClass("active"); */
            /*  $("#step3").addClass("done"); */
@@ -2248,6 +2251,9 @@ function addBeneficiaryButtonClicked(event) {
     myDisable2()
     timer2().then( async () => { 
     $("#step2").addClass("done");
+    $("#step3_circle").addClass("md-step-step3-circle ");
+    $("#step3_span").addClass("md-step3-span");
+    $("#step3_reference").addClass("md-step3-span")
    /*  $("#step3").addClass("active");
     $("#step3>div").addClass("active"); */
    /*  $("#step3").addClass("done"); */
@@ -2532,6 +2538,9 @@ function pickup_Bpi() {
   function addBeneficiaryPickup_Bpi() {
     $("#addBeneficiaryPickUp").hide();
     $('#addBeneficiaryRequirements').show();
+    $("#step3_circle").addClass("md-step-step3-circle ");
+    $("#step3_span").addClass("md-step3-span");
+    $("#step3_reference").addClass("md-step3-span")
     /* $('#process_confirmation').show(); */
    /*  $("#step3").addClass("active");
     $("#step3>div").addClass("active"); */
