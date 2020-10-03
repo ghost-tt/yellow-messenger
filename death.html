@@ -82,7 +82,7 @@
 								</div>
 								<div class="md-step-title">Submit your requirements</div>
 								<div class="md-step-bar-left"></div>
-								<div class="md-step-bar-right"></div>
+								<div class="md-step-bar-right"></div>   
 							</div>
 							<div id="step3" class="md-step">
 								<div class="md-step-circle" id="step3_circle"><span id="step3_span">3</span>
@@ -2278,7 +2278,7 @@
 											<button type="submit" id="addBeneficiary1" onclick="addBeneficiary(event)" class="btn">ADD ANOTHER BENEFICIARY</button>
 										</div>
                                         <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
-                                           <!--  <a href="#" onclick="goBack()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0.5rem;">Back</a> -->
+                                           <a href="#" onclick="goBack1()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0.5rem;">Back</a>
 											<div style="width: 50%;">
 												<p>For sole beneficiary</p>
 												<button type="submit" id="submit9" onclick="buttonSubmitClicked(event)" class="btn" style="width: 100%;">Submit
@@ -2506,7 +2506,14 @@
         
                                                 </div>
                                             </div>
-											<button type="submit" class="btn submit__btn" style="width: 50%; margin: 3rem 0;" tabindex="23">Submit</button>
+											<!-- <button type="submit" class="btn submit__btn" style="width: 50%; margin: 3rem 0;" tabindex="23">Submit</button> -->
+
+											<div class="col-md-12" style="display: flex; justify-content: flex-end;">
+                                                <a href="#" onclick="goBack()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0">Back</a>
+                                                <button type="submit" class="btn submit__btn"
+                                                style="width: 50%;">Submit</button>
+                                            </div>
+
 										</div>
 									</div>
 								</div>
@@ -4455,8 +4462,14 @@
 																<div id="err_invalidCheck_privacyAddBeneficiary" class="error">You must agree before submitting.</div>
 															</div>
 														</div>
-														<button type="submit" class="btn btn-next-form submit__btn" tabindex="25" style="width: 50%; margin: 4rem 0 2rem 0;">NEXT</button>
+														<!-- <button type="submit" class="btn btn-next-form submit__btn" tabindex="25" style="width: 50%; margin: 4rem 0 2rem 0;">NEXT</button> -->
 													</div>
+
+													<div class="col-md-12" style="display: flex; justify-content: flex-end; margin: 4rem 0 2rem 0;">
+														<a href="#" onclick="goBackAddBeneficiary()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0">Back</a>
+														<button type="submit" class="btn submit__btn" style="width: 50%;">Submit</button>
+													</div>
+
 												</div>
 											</div>
 										</div>
@@ -4524,7 +4537,8 @@
                                         <button type="submit" onclick="openlink()" class="btn pickUp_btn" style="width: 100%; margin: 0 0 1rem 0;">CHECK OUT THE BPI BRANCH NEAREST YOU</button>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
+								<div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;">
+									<a href="#" onclick="goBackPickUp()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0.5rem 0.7rem 0.5rem;">Back</a> 
                                     <div  class="popup">
                                         <button type="submit"  onclick="pickup_Bpi()" class="btn" style="width: 100%;">YES, I WOULD LIKE TO PICK UP MY BENEFIT THROUGH BPI</button>
                                     </div>
@@ -4637,7 +4651,7 @@
 											<button type="submit" id="addBeneficiary_submit" onclick="addBeneficiaryNew(event)" class="btn">ADD ANOTHER BENEFICIARY</button>
 										</div>
                                         <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
-                                           <!--  <a href="#" onclick="goBack()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0.5rem;">Back</a> -->
+                                          <a href="#" onclick="goBack3()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0.5rem;">Back</a>
 											<div style="width: 50%;">
 												<p>For sole beneficiary</p>
 												<button type="submit" id="submit10" onclick="addBeneficiaryButtonClicked(event)" class="btn" style="width: 100%;">Submit
@@ -4696,7 +4710,8 @@
                                         <button type="submit" onclick="openlink()" class="btn pickUp_btn" style="width: 100%; margin: 0 0 1rem 0;">CHECK OUT THE BPI BRANCH NEAREST YOU</button>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
+								<div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
+									<a href="#" onclick="goBackAddPickup()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0.5rem 0.7rem 0.5rem;">Back</a>
                                     <div  class="popup">
                                         <button type="submit"  onclick="addBeneficiaryPickup_Bpi()" class="btn" style="width: 100%;">YES, I WOULD LIKE TO PICK UP MY BENEFIT THROUGH BPI</button>
                                     </div>
@@ -4815,7 +4830,7 @@
 											<div class="form-row">
 												<div style="padding: 0; margin: 1.5rem 0;">
 													<p class="upload_btn_title">Proof of Bank Account Ownership</p> <span class="btn btn-file" tabindex="22">
-                                                        Upload<input type="file" id="file_Upload_8" />
+                                                        Upload<input type="file" id="file_Upload_8" onclick="acctButton()"/>
                                                         <span id="file_Upload_Tick_8"
 															class="upload_btn_span">&#10004;</span>
 															<span id="file_loader_icon_8" class="loader"></span>
@@ -4850,7 +4865,14 @@
         
                                                 </div>
                                             </div>
-											<button type="submit" class="btn submit__btn" style="width: 50%; margin: 3rem 0;">Submit</button>
+											<!-- <button type="submit" class="btn submit__btn" style="width: 50%; margin: 3rem 0;">Submit</button> -->
+
+											<div class="col-md-12" style="display: flex; justify-content: flex-end;">
+                                                <a href="#" onclick="goBack2()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0">Back</a>
+                                                <button type="submit" class="btn submit__btn" 
+                                                style="width: 50%;">Submit</button>
+                                            </div>
+
 										</div>
 									</div>
 								</div>
@@ -4859,6 +4881,18 @@
 					</div>
 				</div>
 			</div>
+		</section>
+
+		<section class="hide modal fade" id="missingDetails" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-body">
+                    <p id="p1">Missing or incomplete details...
+					</p>
+					<div id="pep-content"></div>
+                </div>
+                    <button type="button" onclick="screen()" class="btn btn-danger" data-dismiss="modal" style="width: 50%; margin: 0 auto 3rem auto;">OK</button>
+            </div>
 		</section>
 		
 

@@ -3,9 +3,24 @@ var death__form_addBeneficiary = document.getElementById("death__form_addBenefic
 var form_Bank = document.getElementById("bank_form");
 var addBeneficiaryform_Bank = document.getElementById("addBeneficiarybank_form");
 var buttonCount = 0;
+var bCount;
 var optiondisable = 1;
 var optionAge = false;
 var relation = false;
+var dataBen = null;
+var addBenAccountInfo = null;
+var addBeni_upload_data = null;
+var data1, data2,data3 ,data4,data5,data6;
+var acct_data1, acct_data2, acct_data3, acct_data4, acct_data5, acct_data6;
+var uppload_data1, uppload_data2, uppload_data3, uppload_data4, uppload_data5, uppload_data6;
+var trackBenificiary = 0;
+var trackaddBenificiary ;
+var trackaddBenificiary1, trackaddBenificiary2, trackaddBenificiary3, trackaddBenificiary4, trackaddBenificiary5, trackaddBenificiary6;
+var screenCount = 0;
+var bpiCount = 0;
+var acctButtonCount = 0;
+var traverse;
+var currSeconds = 0; 
 
 
 var file1 = document.getElementById('file_Upload_1');
@@ -36,7 +51,32 @@ $(document).ready(function(event){
     disableFutureDates();
     disableFutureDatesDOB();
     setCountryCode();
+
+    /* Increment the idle time counter every second */ 
+    let idleInterval = setInterval(timerIncrement, 1000); 
+
+    /* Zero the idle timer on mouse movement */ 
+    $(this).mousemove(resetTimer); 
+    $(this).keypress(resetTimer); 
 });
+
+
+function resetTimer() { 
+    /* Hide the timer text */ 
+   
+    currSeconds = 0; 
+  } 
+  
+  function timerIncrement() { 
+    currSeconds = currSeconds + 1; 
+    console.log(currSeconds)
+    /* Set the timer and condition */ 
+    if(currSeconds == 1800) {
+        /*  alert('Bye Bye time'); */
+        window.location.href = "http://www.philamlife.com";
+    }
+  } 
+  
 
   function myDisable() {
     document.getElementById("submit9").disabled = true;
@@ -303,17 +343,18 @@ function disableFutureDatesDOB() {
     var dtToday = new Date();
     var month = dtToday.getMonth() + 1;
     var day = dtToday.getDate();
-    var dobDate = day -1;
+    var dobdate = day-1
     var year = dtToday.getFullYear();
     if (month < 10)
       month = '0' + month.toString();
     if (day < 10)
       day = '0' + day.toString();
-    var maxDate = year + '-' + month + '-' + dobDate;
+    var maxDate = year + '-' + month + '-' + dobdate;
+    if( day <= 10) {
+        maxDate = year + '-' + month + '-' + '0'+ dobdate;
+    } 
     $('#field_DOB').attr('max', maxDate);
-   /*  $('#field_addBeneficiaryDOB').attr('max', maxDate); */
   }
-  
 
   function checkKeyword(keyword){
     
@@ -482,6 +523,7 @@ function validateNotNumber(evt) {
 
 function handleFormAddBeneficiary(event) {
     event.preventDefault();
+    traverse = 1;
     var field_addBeneficiaryFirstName = $("#field_addBeneficiaryFirstName").val();
     var field_addBeneficiaryMiddleName = $("#field_addBeneficiaryMiddleName").val();
     var field_addBeneficiaryLastName = $("#field_addBeneficiaryLastName").val();
@@ -520,7 +562,6 @@ function handleFormAddBeneficiary(event) {
     var specAddBeniEmployerName = specialcharacterValidation(field_addBeneficiaryEmployerName); */
 
     if(ageaddBeneficiaryDOB) {
-       /*  console.error(ageaddBeneficiaryDOB); */
        optionAge = true;
     }
    
@@ -732,7 +773,7 @@ function handleFormAddBeneficiary(event) {
 
     if (field_addBeneficiaryFirstName.length !== 0 && field_addBeneficiaryMiddleName.length !== 0 && field_addBeneficiaryLastName.length !== 0 && field_addBeneficiaryMobileNum.length == 10 && field_addBeneficiaryEmailAddress.length !== 0 && field_addBeneficiaryHomeAddress.length !== 0 && field_addBeneficiaryDOB.length !== 0 && field_addBeneficiaryPOB.length !== 0 && field_addBeneficiaryNationality.length !== 0 && field_addBeneficiarySex.length !== 0 && field_addBeneficiaryRelationToDeceased.length !== 0 && field_addBeneficiaryOccupation.length !== 0 && field_addBeneficiaryEmployerName.length !== 0 && field_addBeneficiary_relatives1.length !== 0 && field_add_Beneficiary_add_relatives2.length !== 0 && $('#invalidCheck_basicAddBeneficiary').is(':checked') && $('#invalidCheck_privacyAddBeneficiary').is(':checked') && validateEmailAddBeneficiary(field_addBeneficiaryEmailAddress)  && (numAddBeniFirstName== false) && (speciAddBeniFirstName == false ) && (numAddBeniMiddleName == false) && (speciAddBeniMiddleName == false) && (numAddBeniLastName == false) && (speciAddBeniLastName == false) && (numAddBeniMobile == true) && (futaddBeneficiaryDOB == true) ){
         
-        const data = {
+        dataBen = {
             field_addBeneficiaryFirstName,
             field_addBeneficiaryMiddleName,
             field_addBeneficiaryLastName,
@@ -744,12 +785,47 @@ function handleFormAddBeneficiary(event) {
             field_addBeneficiaryNationality,
             field_addBeneficiarySex,
             field_addBeneficiaryRelationToDeceased,
+            field_addBeneficiaryEmployerName,
+            field_addBeneficiaryOccupation,
+            field_addBeneficiary_relatives1,
+            field_add_Beneficiary_add_relatives2,
             country_code: $("select#field_addBeneficiaryMobileNumberSelect option").filter(":selected").val(),
             basic_checkbox: $('#invalidCheck_basicAddBeneficiary').is(':checked'),
             privacy_checkbox: $('#invalidCheck_privacyAddBeneficiary').is(':checked')
             }
 
-            dataReset("field_addBeneficiaryFirstName", "field_addBeneficiaryMiddleName", "field_addBeneficiaryLastName", "field_addBeneficiaryMobileNum", "field_addBeneficiaryEmailAddress", "field_addBeneficiaryHomeAddress", "field_addBeneficiaryDOB", "field_addBeneficiaryPOB", "field_addBeneficiaryNationality", "field_addBeneficiarySex", "field_addBeneficiaryRelationToDeceased", "field_addBeneficiaryEmployerName", "field_addBeneficiaryOccupation");
+            
+        if  (buttonCount == 1) {
+            data1 = dataBen;
+            console.log('data1',data1);
+        }
+
+        if (buttonCount == 2) {
+            data2 = dataBen;
+            console.log('data2',data2)
+        }
+
+        if (buttonCount == 3) {
+            data3 = dataBen;
+            console.log('data3',data3)
+        }
+        
+        if (buttonCount == 4) {
+            data4 = dataBen;
+            console.log('data4',data4)
+        }
+
+        if (buttonCount == 5) {
+            data5 = dataBen;
+            console.log('data5',data5)
+        }
+
+        if (buttonCount == 6) {
+            data6 = dataBen;
+            console.log('data6',data6)
+        }
+
+        dataReset("field_addBeneficiaryFirstName", "field_addBeneficiaryMiddleName", "field_addBeneficiaryLastName", "field_addBeneficiaryMobileNum", "field_addBeneficiaryEmailAddress", "field_addBeneficiaryHomeAddress", "field_addBeneficiaryDOB", "field_addBeneficiaryPOB", "field_addBeneficiaryNationality", "field_addBeneficiarySex", "field_addBeneficiaryRelationToDeceased", "field_addBeneficiaryEmployerName", "field_addBeneficiaryOccupation", "field_addBeneficiary_relatives1", "field_add_Beneficiary_add_relatives2");
             uploadDataReset();
             // $('#stepper_intro').hide();
             $('#death_data_privacy').hide();
@@ -760,7 +836,7 @@ function handleFormAddBeneficiary(event) {
             $("#step3").remove("active");
            /*  $('#requirements')[0].scrollIntoView(true); */
 
-            console.log('Data -> ', data)
+        console.log('Data -> ', dataBen)
         
     }else {
         $('#popUp').modal('show'); 
@@ -1260,10 +1336,7 @@ function handleForm(event) {
                 basic_checkbox: $('#invalidCheck_basic').is(':checked'),
                 privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
             }
-
-            dataReset("field_firstName", "field_firstName", "field_middleName", "field_lastName", "field_lastName_Suffix", "field_DOB", "field_DOID", "field_BeneficiaryFirstName", "field_BeneficiaryMiddleName", "field_BeneficiaryLastName", "field_BeneficiaryMobileNum", "field_BeneficiaryEmailAddress", "field_BeneficiaryHomeAddress", "field_BeneficiaryDOB", "field_BeneficiaryPOB", "field_BeneficiaryNationality", "field_BeneficiarySex", "field_BeneficiaryRelationToDeceased","field_Beneficiary_relatives1","field_Beneficiary_relatives2")
-
-
+           /*  dataReset("field_firstName", "field_firstName", "field_middleName", "field_lastName", "field_lastName_Suffix", "field_DOB", "field_DOID", "field_BeneficiaryFirstName", "field_BeneficiaryMiddleName", "field_BeneficiaryLastName", "field_BeneficiaryMobileNum", "field_BeneficiaryEmailAddress", "field_BeneficiaryHomeAddress", "field_BeneficiaryDOB", "field_BeneficiaryPOB", "field_BeneficiaryNationality", "field_BeneficiarySex", "field_BeneficiaryRelationToDeceased","field_Beneficiary_relatives1","field_Beneficiary_relatives2") */
             $("#step1").addClass("done");
             $("#step2").addClass("active");
             $("#step2>div").addClass("active");
@@ -1299,13 +1372,13 @@ function uploadDataReset() {
     $('#warning_parent').hide();
     $('#upload_warning').text('');
 
-    $('input[name="inlineRadioOptions1"]').prop('checked', false);
-    $('input[name="inlineRadioOptions2"]').prop('checked', false);
 
     $("#invalidCheck_basicAddBeneficiary").prop("checked", false);
     $("#invalidCheck_privacyAddBeneficiary").prop("checked", false);
-}
 
+    $('#field_addBeneficiary_relatives1').prop('checked', false);
+    $('#field_add_Beneficiary_add_relatives2').prop('checked', false);
+}
 
 function fileUploadDataReset() {
     $('#file_Upload_Tick_9').hide();
@@ -1323,13 +1396,10 @@ function fileUploadDataReset() {
     $("#addBeneficiary_upload_warning").text("");
 }
 
-
- 
 function removeErr(event) {
     $(`#err_${event.target.id}`).text('');
     $(`#err_${event.target.id}`).hide();
 }
-
 
 const proceedScan = async (fileObj, button, pageid) => {
     console.log(button);
@@ -1466,7 +1536,7 @@ const fileCheck = (file, button, pageid) => {
   };
   img.onerror = function () {
     console.log("inside image error");
-    alert("not a valid file: " + file.type);
+   /*  alert("not a valid file: " + file.type); */
   };
   img.src = _URL.createObjectURL(file);
 };
@@ -1950,144 +2020,740 @@ file12.onchange = async function (e) {
     }
 };
 
+function dataResetInfo(data) {
+    for (const [key, value] of Object.entries(data)) {
+        $(`#${key}`).val('')
+      }
+}
 
 function addBeneficiary(event) {
+
     event.preventDefault();
-    if (!file1.value || ($('#file_Upload_Tick_1').is(":hidden"))) {
-        $('#warning_parent').show();
-        $('#upload_warning').text('Please upload your Death Certificate of the Deceased');
-        $('#popUp').modal('show'); 
-        return;
-    }
+    if(screenCount !== 0 && traverse == 0) {
+        $('#missingDetails').modal('show');
+    }else {
+        if (!file1.value || ($('#file_Upload_Tick_1').is(":hidden"))) {
+            $('#warning_parent').show();
+            $('#upload_warning').text('Please upload your Death Certificate of the Deceased');
+            $('#popUp').modal('show'); 
+            return;
+        }
 
-    if (optiondisable == 1) {
+        if (optiondisable == 1) {
+            
+        if (!file2.value || $("#file_Upload_Tick_2").is(":hidden")) {
+            $("#warning_parent").show();
+            $("#upload_warning").text(
+            "Please upload your Police or Narration Report!"
+            );
+            $("#popUp").modal("show");
+            return;
+        }
+        }
+
+        if (!file3.value || ($('#file_Upload_Tick_3').is(":hidden"))) {
+            $('#warning_parent').show();
+            $('#upload_warning').text('Please upload your Valid Government ID (Front)');
+            $('#popUp').modal('show'); 
+            return;
+        }
+
+        if (!file4.value || ($('#file_Upload_Tick_4').is(":hidden"))) {
+            $('#warning_parent').show();
+            $('#upload_warning').text('Please upload your Valid Government ID (Back)');
+            $('#popUp').modal('show'); 
+            return;
+        }
+
+        if (relation == true) {
+            if (!file5.value || $("#file_Upload_Tick_5").is(":hidden")) {
+            $("#warning_parent").show();
+            $("#upload_warning").text("Please upload your Marriage Contract");
+            $("#popUp").modal("show");
+            return;
+            }
+        }
+
+        if (optionAge == true) {
+            if (!file6.value || $("#file_Upload_Tick_6").is(":hidden")) {
+            $("#warning_parent").show();
+            $("#upload_warning").text("Please upload your Birth Certificate");
+            $("#popUp").modal("show");
+            return;
+            }
+        }
+
+        if (!$('#upload_invalidCheck_2').is(':checked')) {
+            $("#upload_warning").text('Please don’t forget to tick the box is certify the accuracy of the documents submitted');
+            $("#warning_parent").show();
+            $('#popUp').modal('show'); 
+            return;
+        }
+
+        $("#upload_warning").text('');
+        $("#warning_parent").hide();
+        const upload_data = {
+            upload_file_1: file1.value,
+            upload_file_2: file2.value,
+            upload_file_3: file3.value,
+            upload_file_4: file4.value,
+            upload_file_5: file5.value,
+            upload_file_6: file6.value,
+            insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
+        }
+
+        buttonCount = (buttonCount + 1);
+        $('#privacy_consent_1').prop('checked', false);
+        $('#privacy_consent_2').prop('checked', false);
+
+        $("#step1").addClass("active");
+        $("#step2").removeClass("active");
+        $("#step2>div").removeClass("active");
+        $('#addBeneficiary').show();
+        $('#requirements').hide();
         
-      if (!file2.value || $("#file_Upload_Tick_2").is(":hidden")) {
-        $("#warning_parent").show();
-        $("#upload_warning").text(
-          "Please upload your Police or Narration Report!"
-        );
-        $("#popUp").modal("show");
-        return;
-      }
-    }
-
-    if (!file3.value || ($('#file_Upload_Tick_3').is(":hidden"))) {
-        $('#warning_parent').show();
-        $('#upload_warning').text('Please upload your Valid Government ID (Front)');
-        $('#popUp').modal('show'); 
-        return;
-    }
-
-    if (!file4.value || ($('#file_Upload_Tick_4').is(":hidden"))) {
-        $('#warning_parent').show();
-        $('#upload_warning').text('Please upload your Valid Government ID (Back)');
-        $('#popUp').modal('show'); 
-        return;
-    }
-
-    if (relation == true) {
-        if (!file5.value || $("#file_Upload_Tick_5").is(":hidden")) {
-          $("#warning_parent").show();
-          $("#upload_warning").text("Please upload your Marriage Contract");
-          $("#popUp").modal("show");
-          console.log(" You ENtered Keyword ");
-          return;
-        }
-      }
-
-      if (optionAge == true) {
-        if (!file6.value || $("#file_Upload_Tick_6").is(":hidden")) {
-          $("#warning_parent").show();
-          $("#upload_warning").text("Please upload your Birth Certificate");
-          $("#popUp").modal("show");
-          return;
-        }
-      }
-
-    if (!$('#upload_invalidCheck_2').is(':checked')) {
-        $("#upload_warning").text('Please don’t forget to tick the box is certify the accuracy of the documents submitted');
-        $("#warning_parent").show();
-        $('#popUp').modal('show'); 
-        return;
-    }
-
-    $("#upload_warning").text('');
-    $("#warning_parent").hide();
-    const upload_data = {
-        upload_file_1: file1.value,
-        upload_file_2: file2.value,
-        upload_file_3: file3.value,
-        upload_file_4: file4.value,
-        upload_file_5: file5.value,
-        upload_file_6: file6.value,
-        insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
-    }
-
-    buttonCount = (buttonCount + 1);
-    $('#privacy_consent_1').prop('checked', false);
-    $('#privacy_consent_2').prop('checked', false);
-
-    $("#step1").addClass("active");
-    $("#step2").removeClass("active");
-    $("#step2>div").removeClass("active");
-    $('#addBeneficiary').show();
-    $('#requirements').hide();
+        optionAge = false;
+        relation = false;
+        console.log('upload data --> ', upload_data);
+        /*  $('#addBeneficiary')[0].scrollIntoView(true); */
+        
     
-    optionAge = false;
-    relation = false;
-    console.log('upload data --> ', upload_data);
-    
-    
-   /*  $('#addBeneficiary')[0].scrollIntoView(true); */
-} 
+    } 
+}
 
 
 function addBeneficiaryNew(event) {
     event.preventDefault();
    
+    if(screenCount !== 0 && traverse == 0) {
+        $('#missingDetails').modal('show');
+    }else {
+        if (screenCount !== 0 && traverse !== 0 ) {
+            screenCount = 0
+        }
     
-    if (!file9.value || ($('#file_Upload_Tick_9').is(":hidden"))) {
-        $('#warning_parent_addBeneficiary').show();
-        $('#addBeneficiary_upload_warning').text('Please upload your Valid Government ID (Font)!');
-        $('#popUp').modal('show'); 
-        return;
-    }
-
-    if (!file10.value || ($('#file_Upload_Tick_10').is(":hidden"))) {
-        $('#warning_parent_addBeneficiary').show();
-        $('#addBeneficiary_upload_warning').text('Please upload your Valid Government ID (Back)!');
-        $('#popUp').modal('show'); 
-        return;
-    }
-
-    if (relation) {
-        if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
+        if (!file9.value || ($('#file_Upload_Tick_9').is(":hidden"))) {
             $('#warning_parent_addBeneficiary').show();
-            $('#addBeneficiary_upload_warning').text('Please upload your Valid Marriage Contract!');
+            $('#addBeneficiary_upload_warning').text('Please upload your Valid Government ID (Font)!');
             $('#popUp').modal('show'); 
             return;
         }
-    }
 
-    if(optionAge) {
-        if (!file12.value || ($('#file_Upload_Tick_12').is(":hidden"))) {
+        if (!file10.value || ($('#file_Upload_Tick_10').is(":hidden"))) {
             $('#warning_parent_addBeneficiary').show();
-            $('#addBeneficiary_upload_warning').text('Please upload your Valid Birth Certificate!');
+            $('#addBeneficiary_upload_warning').text('Please upload your Valid Government ID (Back)!');
             $('#popUp').modal('show'); 
             return;
         }
-    }
 
-    buttonCount = (buttonCount + 1);
-    optionAge = false;
-    relation = false;
-    if( buttonCount > 6 ) {
-        $('#warning_parent_addBeneficiary').show();
-        $('#addBeneficiary_upload_warning').text('Sorry, you reached the maximum number of 6 beneficiaries for any claim request. You may review your policy details on ePlan or send us an e-mail at philamlife@aia.com for any concerns regarding your policy information.');
-        $('.btn2').prop("disable",true);
-        $('#popUp').modal('show'); 
-    }else{
+        if (relation) {
+            if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
+                $('#warning_parent_addBeneficiary').show();
+                $('#addBeneficiary_upload_warning').text('Please upload your Valid Marriage Contract!');
+                $('#popUp').modal('show'); 
+                return;
+            }
+        }
+
+        if(optionAge) {
+            if (!file12.value || ($('#file_Upload_Tick_12').is(":hidden"))) {
+                $('#warning_parent_addBeneficiary').show();
+                $('#addBeneficiary_upload_warning').text('Please upload your Valid Birth Certificate!');
+                $('#popUp').modal('show'); 
+                return;
+            }
+        }
+
+        buttonCount = (buttonCount + 1);
+            bCount = buttonCount-1;
+        optionAge = false;
+        relation = false;
+        if( buttonCount > 6 ) {
+                buttonCount = 6
+            $('#warning_parent_addBeneficiary').show();
+            $('#addBeneficiary_upload_warning').text('Sorry, you reached the maximum number of 6 beneficiaries for any claim request. You may review your policy details on ePlan or send us an e-mail at philamlife@aia.com for any concerns regarding your policy information.');
+            $('.btn2').prop("disable",true);
+            $('#popUp').modal('show'); 
+        }else{
+            $("#addBeneficiary_upload_warning").text('');
+            $("#warning_parent_addBeneficiary").hide();
+                addBeni_upload_data = {
+                upload_file_9: file9.value,
+                upload_file_10: file10.value,
+                upload_file_11: file11.value,
+                upload_file_12: file12.value,
+                }
+                
+                if  (bCount == 1) {
+                    uppload_data1 = addBeni_upload_data;
+                    console.log('uppload_data1',uppload_data1)
+                }
+        
+                if (bCount == 2) {
+                    uppload_data2 = addBeni_upload_data;
+                    console.log('uppload_data2',uppload_data2)
+                }
+        
+                if (bCount == 3) {
+                    uppload_data3 = addBeni_upload_data;
+                    console.log('uppload_data3',uppload_data3)
+                }
+                
+                if (bCount == 4) {
+                    uppload_data4 = addBeni_upload_data;
+                    console.log('uppload_data4',uppload_data4)
+                }
+        
+                if (bCount == 5) {
+                    uppload_data5 = addBeni_upload_data;
+                    console.log('uppload_data5',uppload_data5)
+                }
+        
+                if (bCount == 6) {
+                    uppload_data6 = addBeni_upload_data
+                    setDataUpload(uppload_data6);
+                    console.log('uppload_data6',uppload_data6)
+                }
+                
+                dataReset("field_addBenificiaryAccountName", "field_addBenificiaryAccountNumber", "field_addBenificiaryBank", "field_addBeneficiaryBranch", "field_addBeneficiaryCurrency", "upload_file_8");
+                fileUploadDataReset(); 
+
+            $('#privacy_consent_1').prop('checked', false);
+            $('#privacy_consent_2').prop('checked', false);
+                $("#step1").addClass("active");
+            $("#step2").removeClass("active");
+            $("#step2>div").removeClass("active");
+            $('#addBeneficiary').show();
+            $('#addBeneficiaryRequirements').hide();
+        }
+    }
+} 
+
+
+function screen() {
+    buttonCount = screenCount;
+    screenCount = 0;
+  
+    if(isEmpty(dataBen) == false){
+        dataResetInfo(dataBen);
+    }   
+
+   if(isEmpty(addBenAccountInfo) == false) {
+        dataResetInfo(addBenAccountInfo);
+   }
+   
+   /*  dataResetInfo(addBeni_upload_data); */
+    fileUploadDataReset();
+    addBeneficiaryuploadDataReset();
+
+
+    if (buttonCount == 1 ){
+        if(isEmpty(data1) == true){
+            $('#privacy_consent_1').prop('checked', false);
+            $('#privacy_consent_2').prop('checked', false);
+            $('#invalidCheck_privacyAddBeneficiary').prop('checked', false);
+            $('#invalidCheck_basicAddBeneficiary').prop('checked', false);
+            $("#step2").removeClass("active");
+            $("#step2>div").removeClass("active");
+            $('#addBeneficiary').show();
+            $('#addBeneficiaryRequirements').hide();
+            $('#requirements').hide();
+        }else if(isEmpty(acct_data1) == true){
+            if(trackaddBenificiary1 == 0){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+               /*  $("#step2").removeClass("active");
+                $("#step2>div").removeClass("active"); */
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+
+                $('#addBeneficiaryaccount_details').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            }else if ((trackaddBenificiary1 == 1) && (bpiCount == 0)){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+
+                $('#addBeneficiaryPickUp').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+               
+            } else{
+                bpiCount = 0;
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+                $('#file_Upload_Tick_9').hide();
+                $('#file_Upload_Tick_10').hide();
+                $('#file_Upload_Tick_11').hide();
+                $('#file_Upload_Tick_12').hide();
+                $('#addBeneficiaryRequirements').show();
+                $('#requirements').hide();
+            }
+        }else if(isEmpty(uppload_data1) == true){
+            $("#step2").addClass("active");
+            $("#step2>div").addClass("active");
+            $("#step3").remove("active");
+            $('#file_Upload_Tick_9').hide();
+            $('#file_Upload_Tick_10').hide();
+            $('#file_Upload_Tick_11').hide();
+            $('#file_Upload_Tick_12').hide();
+            $('#addBeneficiaryRequirements').show();
+            $('#requirements').hide();
+            
+        } else {
+            console.log('In condition')
+        }
+    } else if (buttonCount == 2 ){
+        if(isEmpty(data2) == true){
+            $('#privacy_consent_1').prop('checked', false);
+            $('#privacy_consent_2').prop('checked', false);
+            $('#invalidCheck_privacyAddBeneficiary').prop('checked', false);
+            $('#invalidCheck_basicAddBeneficiary').prop('checked', false);
+            $("#step2").removeClass("active");
+            $("#step2>div").removeClass("active");
+            $('#addBeneficiary').show();
+            $('#addBeneficiaryRequirements').hide();
+            $('#requirements').hide();
+        }else if(isEmpty(acct_data2) == true){
+            if(trackaddBenificiary2 == 0){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+               /*  $("#step2").removeClass("active");
+                $("#step2>div").removeClass("active"); */
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+
+                $('#addBeneficiaryaccount_details').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            }else if ((trackaddBenificiary2 == 1)  && (bpiCount == 0)){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+               /*  $("#step2").removeClass("active");
+                $("#step2>div").removeClass("active"); */
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+
+                $('#addBeneficiaryPickUp').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            } else{
+                bpiCount = 0;
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+                $('#file_Upload_Tick_9').hide();
+                $('#file_Upload_Tick_10').hide();
+                $('#file_Upload_Tick_11').hide();
+                $('#file_Upload_Tick_12').hide();
+                $('#addBeneficiaryRequirements').show();
+                $('#requirements').hide();
+            }
+        }else if(isEmpty(uppload_data2) == true){
+            $('#privacy_consent_1').prop('checked', false);
+            $('#privacy_consent_2').prop('checked', false);
+            $("#step2").addClass("active");
+            $("#step2>div").addClass("active");
+            $("#step3").remove("active");
+            $('#file_Upload_Tick_9').hide();
+            $('#file_Upload_Tick_10').hide();
+            $('#file_Upload_Tick_11').hide();
+            $('#file_Upload_Tick_12').hide();
+            $('#addBeneficiaryRequirements').show();
+            $('#requirements').hide();
+            
+        } else {
+            console.log('In condition')
+        }
+    } else if (buttonCount == 3 ){
+        if(isEmpty(data3) == true){
+            $('#privacy_consent_1').prop('checked', false);
+            $('#privacy_consent_2').prop('checked', false);
+            $('#invalidCheck_privacyAddBeneficiary').prop('checked', false);
+            $('#invalidCheck_basicAddBeneficiary').prop('checked', false);
+            $("#step2").removeClass("active");
+            $("#step2>div").removeClass("active");
+            $('#addBeneficiary').show();
+            $('#addBeneficiaryRequirements').hide();
+            $('#requirements').hide();
+        }else if(isEmpty(acct_data3) == true){
+            if(trackaddBenificiary3 == 0){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+               /*  $("#step2").removeClass("active");
+                $("#step2>div").removeClass("active"); */
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+
+                $('#addBeneficiaryaccount_details').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            }else if ((trackaddBenificiary3 == 1)  && (bpiCount == 0)){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+               /*  $("#step2").removeClass("active");
+                $("#step2>div").removeClass("active"); */
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+                $('#addBeneficiaryPickUp').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            } else{
+                bpiCount = 0;
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+                $('#file_Upload_Tick_9').hide();
+                $('#file_Upload_Tick_10').hide();
+                $('#file_Upload_Tick_11').hide();
+                $('#file_Upload_Tick_12').hide();
+                $('#addBeneficiaryRequirements').show();
+                $('#requirements').hide();
+            }
+        }else if(isEmpty(uppload_data3) == true){
+            $('#privacy_consent_1').prop('checked', false);
+            $('#privacy_consent_2').prop('checked', false);
+            $("#step2").addClass("active");
+            $("#step2>div").addClass("active");
+            $("#step3").remove("active");
+            $('#file_Upload_Tick_9').hide();
+            $('#file_Upload_Tick_10').hide();
+            $('#file_Upload_Tick_11').hide();
+            $('#file_Upload_Tick_12').hide();
+            $('#addBeneficiaryRequirements').show();
+            $('#requirements').hide();
+
+        } else {
+            console.log('IN condition')
+        }
+    } else if (buttonCount == 4 ){
+        if(isEmpty(data4) == true){
+            $('#privacy_consent_1').prop('checked', false);
+            $('#privacy_consent_2').prop('checked', false);
+            $('#invalidCheck_privacyAddBeneficiary').prop('checked', false);
+            $('#invalidCheck_basicAddBeneficiary').prop('checked', false);
+            $("#step2").removeClass("active");
+            $("#step2>div").removeClass("active");
+            $('#addBeneficiary').show();
+            $('#addBeneficiaryRequirements').hide();
+            $('#requirements').hide();
+        }else if(isEmpty(acct_data4) == true){
+            if(trackaddBenificiary4 == 0){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+
+                $('#addBeneficiaryaccount_details').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            }else if ((trackaddBenificiary4 == 1)  && (bpiCount == 0)){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+
+                $('#addBeneficiaryPickUp').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            } else{
+                bpiCount = 0;
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+                $('#file_Upload_Tick_9').hide();
+                $('#file_Upload_Tick_10').hide();
+                $('#file_Upload_Tick_11').hide();
+                $('#file_Upload_Tick_12').hide();
+                $('#addBeneficiaryRequirements').show();
+                $('#requirements').hide();
+            }
+        } else if(isEmpty(uppload_data4) == true){
+            $("#step2").addClass("active");
+            $("#step2>div").addClass("active");
+            $("#step3").remove("active");
+            $('#file_Upload_Tick_9').hide();
+            $('#file_Upload_Tick_10').hide();
+            $('#file_Upload_Tick_11').hide();
+            $('#file_Upload_Tick_12').hide();
+            $('#addBeneficiaryRequirements').show();
+            $('#requirements').hide();
+        } else {
+            console.log('In condition')
+        }
+    } else if (buttonCount == 5 ){
+
+        if(isEmpty(data5) == true){
+            $('#privacy_consent_1').prop('checked', false);
+            $('#privacy_consent_2').prop('checked', false);
+            $('#invalidCheck_privacyAddBeneficiary').prop('checked', false);
+            $('#invalidCheck_basicAddBeneficiary').prop('checked', false);
+            $("#step2").removeClass("active");
+            $("#step2>div").removeClass("active");
+            $('#addBeneficiary').show();
+            $('#addBeneficiaryRequirements').hide();
+            $('#requirements').hide();
+        }else if(isEmpty(acct_data5) == true){
+            if(trackaddBenificiary5 == 0){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+               /*  $("#step2").removeClass("active");
+                $("#step2>div").removeClass("active"); */
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+                $('#addBeneficiaryaccount_details').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            }else if ((trackaddBenificiary5 == 1)  && (bpiCount == 0)){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+                $('#addBeneficiaryPickUp').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            } else{
+                bpiCount = 0;
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+                $('#file_Upload_Tick_9').hide();
+                $('#file_Upload_Tick_10').hide();
+                $('#file_Upload_Tick_11').hide();
+                $('#file_Upload_Tick_12').hide();
+                $('#addBeneficiaryRequirements').show();
+                $('#requirements').hide();
+            }
+        }else if(isEmpty(uppload_data5) == true){
+            $('#privacy_consent_1').prop('checked', false);
+            $('#privacy_consent_2').prop('checked', false);
+            $("#step2").addClass("active");
+            $("#step2>div").addClass("active");
+            $("#step3").remove("active");
+            $('#file_Upload_Tick_9').hide();
+            $('#file_Upload_Tick_10').hide();
+            $('#file_Upload_Tick_11').hide();
+            $('#file_Upload_Tick_12').hide();
+            $('#addBeneficiaryRequirements').show();
+            $('#requirements').hide();
+        }  else {
+            console.log( 'IN condition')
+        }
+    } else if (buttonCount == 6 ){
+        if(isEmpty(data6) == true){
+            $('#privacy_consent_1').prop('checked', false);
+            $('#privacy_consent_2').prop('checked', false);
+            $('#invalidCheck_privacyAddBeneficiary').prop('checked', false);
+            $('#invalidCheck_basicAddBeneficiary').prop('checked', false);
+            $("#step2").removeClass("active");
+            $("#step2>div").removeClass("active");
+            $('#addBeneficiary').show();
+            $('#addBeneficiaryRequirements').hide();
+            $('#requirements').hide();
+        }else if(isEmpty(acct_data6) == true){
+            if(trackaddBenificiary6 == 0){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+
+                $('#addBeneficiaryaccount_details').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            }else if ((trackaddBenificiary6 == 1) && (bpiCount == 0)){
+                $('#privacy_consent_1').prop('checked', false);
+                $('#privacy_consent_2').prop('checked', false);
+               /*  $("#step2").removeClass("active");
+                $("#step2>div").removeClass("active"); */
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+
+                $('#addBeneficiaryPickUp').show();
+                $('#addBeneficiaryRequirements').hide();
+                $('#requirements').hide();
+            } else{
+                bpiCount = 0;
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $("#step3").remove("active");
+                $('#file_Upload_Tick_9').hide();
+                $('#file_Upload_Tick_10').hide();
+                $('#file_Upload_Tick_11').hide();
+                $('#file_Upload_Tick_12').hide();
+                $('#addBeneficiaryRequirements').show();
+                $('#requirements').hide();
+            }
+        }else if(isEmpty(uppload_data6) == true){
+            $("#step2").addClass("active");
+            $("#step2>div").addClass("active");
+            $("#step3").remove("active");
+            $('#file_Upload_Tick_9').hide();
+            $('#file_Upload_Tick_10').hide();
+            $('#file_Upload_Tick_11').hide();
+            $('#file_Upload_Tick_12').hide();
+            $('#addBeneficiaryRequirements').show();
+            $('#requirements').hide();
+            
+        }  else {
+            console.log('In Condition')
+        }
+    }
+}
+
+
+function buttonSubmitClicked(event) {
+    event.preventDefault();
+    if(screenCount !== 0 && traverse == 0) {
+        $('#missingDetails').modal('show');
+   }else {
+
+        if (!file1.value || ($('#file_Upload_Tick_1').is(":hidden"))) {
+            $('#warning_parent').show();
+            $('#upload_warning').text('Please upload your Death Certificate of the Deceased');
+            $('#popUp').modal('show'); 
+            return;
+        }
+
+        if (optiondisable == 1) {
+        if (!file2.value || $("#file_Upload_Tick_2").is(":hidden")) {
+            $("#warning_parent").show();
+            $("#upload_warning").text(
+            "Please upload your Police or Narration Report!"
+            );
+            $("#popUp").modal("show");
+            return;
+        }
+        }
+
+        if (!file3.value || ($('#file_Upload_Tick_3').is(":hidden"))) {
+            $('#warning_parent').show();
+            $('#upload_warning').text('Please upload your Valid Government ID (Front)');
+            $('#popUp').modal('show'); 
+            return;
+        }
+
+        if (!file4.value || ($('#file_Upload_Tick_4').is(":hidden"))) {
+            $('#warning_parent').show();
+            $('#upload_warning').text('Please upload your Valid Government ID (Back)');
+            $('#popUp').modal('show'); 
+            return;
+        }
+
+        if (relation == true) {
+        if (!file5.value || $("#file_Upload_Tick_5").is(":hidden")) {
+            $("#warning_parent").show();
+            $("#upload_warning").text("Please upload your Marriage Contract");
+            $("#popUp").modal("show");
+            console.log(" You ENtered Keyword ");
+            return;
+        }
+        }
+
+        if (optionAge == true) {
+        if (!file6.value || $("#file_Upload_Tick_6").is(":hidden")) {
+            $("#warning_parent").show();
+            $("#upload_warning").text("Please upload your Birth Certificate");
+            $("#popUp").modal("show");
+            return;
+        }
+        }
+
+        if (!$('#upload_invalidCheck_2').is(':checked')) {
+            $("#upload_warning").text('Please don’t forget to tick the box is certify the accuracy of the documents submitted');
+            $("#warning_parent").show();
+            $('#popUp').modal('show'); 
+            return;
+        }
+
+        $("#upload_warning").text('');
+        $("#warning_parent").hide();
+        const upload_data = {
+            upload_file_1: file1.value,
+            upload_file_2: file2.value,
+            upload_file_3: file3.value,
+            upload_file_4: file4.value,
+            upload_file_5: file5.value,
+            upload_file_6: file6.value,
+            insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
+        }
+        myDisable()
+        timer().then( async () => { 
+        $("#step2").addClass("done");
+        $("#step3_circle").addClass("md-step-step3-circle ");
+        $("#step3_span").addClass("md-step3-span");
+        $("#step3_reference").addClass("md-step3-span")
+        /*  $("#step3").addClass("active");
+        $("#step3>div").addClass("active"); */
+        /*  $("#step3").addClass("done"); */
+        $('#requirements').hide();
+        $('#process_confirmation').show();
+
+        });
+        console.log('upload data --> ', upload_data);
+    }
+}
+
+function addBeneficiaryButtonClicked(event) {
+    event.preventDefault();
+
+    if(screenCount !== 0 && traverse == 0) {
+        $('#missingDetails').modal('show');
+   }else {
+        if (!file9.value || ($('#file_Upload_Tick_9').is(":hidden"))) {
+            $('#warning_parent_addBeneficiary').show();
+            $('#addBeneficiary_upload_warning').text('Please upload your Valid Government ID (Front)!');
+            $('#popUp').modal('show'); 
+            return;
+        }
+
+        if (!file10.value || ($('#file_Upload_Tick_10').is(":hidden"))) {
+            $('#warning_parent_addBeneficiary').show();
+            $('#addBeneficiary_upload_warning').text('Please upload your Valid Government ID (Back)!');
+            $('#popUp').modal('show'); 
+            return;
+        }
+
+        if (relation) {
+            if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
+                $('#warning_parent_addBeneficiary').show();
+                $('#addBeneficiary_upload_warning').text('Please upload your Valid Marriage Contract!');
+                $('#popUp').modal('show'); 
+                return;
+            }
+        }
+
+        if(optionAge) {
+            if (!file12.value || ($('#file_Upload_Tick_12').is(":hidden"))) {
+                $('#warning_parent_addBeneficiary').show();
+                $('#addBeneficiary_upload_warning').text('Please upload your Valid Birth Certificate!');
+                $('#popUp').modal('show'); 
+                return;
+            }
+        }
+
+        optionAge= false;
+        relation = false;
         $("#addBeneficiary_upload_warning").text('');
         $("#warning_parent_addBeneficiary").hide();
         const upload_data = {
@@ -2098,169 +2764,20 @@ function addBeneficiaryNew(event) {
         /*  insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked') */
         }
 
-        $('#privacy_consent_1').prop('checked', false);
-        $('#privacy_consent_2').prop('checked', false);
-        $("#step2").removeClass("active");
-        $("#step2>div").removeClass("active");
-        $('#addBeneficiary').show();
-        $('#addBeneficiaryRequirements').hide();
-
-        console.log('upload data --> ', upload_data);
-        fileUploadDataReset();
-
-    }
-
-    
-    
-   /*  $('#addBeneficiary')[0].scrollIntoView(true); */
-} 
-
-function buttonSubmitClicked(event) {
-    event.preventDefault();
-    if (!file1.value || ($('#file_Upload_Tick_1').is(":hidden"))) {
-        $('#warning_parent').show();
-        $('#upload_warning').text('Please upload your Death Certificate of the Deceased');
-        $('#popUp').modal('show'); 
-        return;
-    }
-
-    if (optiondisable == 1) {
-      if (!file2.value || $("#file_Upload_Tick_2").is(":hidden")) {
-        $("#warning_parent").show();
-        $("#upload_warning").text(
-          "Please upload your Police or Narration Report!"
-        );
-        $("#popUp").modal("show");
-        return;
-      }
-    }
-
-    if (!file3.value || ($('#file_Upload_Tick_3').is(":hidden"))) {
-        $('#warning_parent').show();
-        $('#upload_warning').text('Please upload your Valid Government ID (Front)');
-        $('#popUp').modal('show'); 
-        return;
-    }
-
-    if (!file4.value || ($('#file_Upload_Tick_4').is(":hidden"))) {
-        $('#warning_parent').show();
-        $('#upload_warning').text('Please upload your Valid Government ID (Back)');
-        $('#popUp').modal('show'); 
-        return;
-    }
-
-    if (relation == true) {
-      if (!file5.value || $("#file_Upload_Tick_5").is(":hidden")) {
-        $("#warning_parent").show();
-        $("#upload_warning").text("Please upload your Marriage Contract");
-        $("#popUp").modal("show");
-        console.log(" You ENtered Keyword ");
-        return;
-      }
-    }
-
-    if (optionAge == true) {
-      if (!file6.value || $("#file_Upload_Tick_6").is(":hidden")) {
-        $("#warning_parent").show();
-        $("#upload_warning").text("Please upload your Birth Certificate");
-        $("#popUp").modal("show");
-        return;
-      }
-    }
-
-    if (!$('#upload_invalidCheck_2').is(':checked')) {
-        $("#upload_warning").text('Please don’t forget to tick the box is certify the accuracy of the documents submitted');
-        $("#warning_parent").show();
-        $('#popUp').modal('show'); 
-        return;
-    }
-
-    $("#upload_warning").text('');
-    $("#warning_parent").hide();
-    const upload_data = {
-        upload_file_1: file1.value,
-        upload_file_2: file2.value,
-        upload_file_3: file3.value,
-        upload_file_4: file4.value,
-        upload_file_5: file5.value,
-        upload_file_6: file6.value,
-        insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
-    }
-            myDisable()
-            timer().then( async () => { 
-            $("#step2").addClass("done");
-            $("#step3_circle").addClass("md-step-step3-circle ");
-            $("#step3_span").addClass("md-step3-span");
-            $("#step3_reference").addClass("md-step3-span")
-           /*  $("#step3").addClass("active");
+        myDisable2()
+        timer2().then( async () => { 
+        $("#step2").addClass("done");
+        $("#step3_circle").addClass("md-step-step3-circle ");
+        $("#step3_span").addClass("md-step3-span");
+        $("#step3_reference").addClass("md-step3-span")
+        /*  $("#step3").addClass("active");
             $("#step3>div").addClass("active"); */
-           /*  $("#step3").addClass("done"); */
-            $('#requirements').hide();
-            $('#process_confirmation').show();
-    
-            });
-    console.log('upload data --> ', upload_data);
-}
-
-function addBeneficiaryButtonClicked(event) {
-    event.preventDefault();
-    if (!file9.value || ($('#file_Upload_Tick_9').is(":hidden"))) {
-        $('#warning_parent_addBeneficiary').show();
-        $('#addBeneficiary_upload_warning').text('Please upload your Valid Government ID (Front)!');
-        $('#popUp').modal('show'); 
-        return;
+        /*  $("#step3").addClass("done"); */
+        $('#addBeneficiaryRequirements').hide();
+        $('#process_confirmation').show();
+        console.log('upload data --> ', upload_data);
+        });
     }
-
-    if (!file10.value || ($('#file_Upload_Tick_10').is(":hidden"))) {
-        $('#warning_parent_addBeneficiary').show();
-        $('#addBeneficiary_upload_warning').text('Please upload your Valid Government ID (Back)!');
-        $('#popUp').modal('show'); 
-        return;
-    }
-
-    if (relation) {
-        if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
-            $('#warning_parent_addBeneficiary').show();
-            $('#addBeneficiary_upload_warning').text('Please upload your Valid Marriage Contract!');
-            $('#popUp').modal('show'); 
-            return;
-        }
-    }
-
-    if(optionAge) {
-        if (!file12.value || ($('#file_Upload_Tick_12').is(":hidden"))) {
-            $('#warning_parent_addBeneficiary').show();
-            $('#addBeneficiary_upload_warning').text('Please upload your Valid Birth Certificate!');
-            $('#popUp').modal('show'); 
-            return;
-        }
-    }
-
-    optionAge= false;
-    relation = false;
-    $("#addBeneficiary_upload_warning").text('');
-    $("#warning_parent_addBeneficiary").hide();
-    const upload_data = {
-        upload_file_9: file9.value,
-        upload_file_10: file10.value,
-        upload_file_11: file11.value,
-        upload_file_12: file12.value,
-       /*  insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked') */
-    }
-
-    myDisable2()
-    timer2().then( async () => { 
-    $("#step2").addClass("done");
-    $("#step3_circle").addClass("md-step-step3-circle ");
-    $("#step3_span").addClass("md-step3-span");
-    $("#step3_reference").addClass("md-step3-span")
-   /*  $("#step3").addClass("active");
-    $("#step3>div").addClass("active"); */
-   /*  $("#step3").addClass("done"); */
-    $('#addBeneficiaryRequirements').hide();
-    $('#process_confirmation').show();
-    console.log('upload data --> ', upload_data);
-    });
 }
 
 function handleAccountInfo(event) {
@@ -2362,7 +2879,7 @@ function handleAccountInfo(event) {
        /* $('#requirements')[0].scrollIntoView(true);  */
         console.log('Data -> ', data);
     }else {
-       
+        $('#popUp').modal('show'); 
     }
 }
 
@@ -2441,38 +2958,99 @@ function addBenificiaryAccountInfo(event) {
         $("#err_field_addBeneficiaryBranch").hide();
     }
 
-    if (!file8.value) {
-        $('#upload_feedback_label8').show();
-        $('#upload_feedback_label8').text('Please upload your Bank Account Ownership');
-        $('#popUp').modal('show'); 
-        return;
-    } 
 
-    if (field_addBenificiaryAccountName.length !== 0 && field_addBenificiaryAccountNumber.length !== 0 && field_addBenificiaryBank.length !== 0 && field_addBeneficiaryBranch.length !== 0  && (speCharAccountName == false) && (numAccountName == false) &&(numAccountNumber == true) 	&&  (file8.value && (!$('#file_Upload_Tick_8').is(":hidden")))  ) {
-        const data = {
-            field_addBenificiaryAccountName,
-            field_addBenificiaryAccountNumber,
-            field_addBenificiaryBank,
-            field_addBeneficiaryBranch,
-            field_addBeneficiaryCurrency: $("select#from_addBeneficiarycurrency option").filter(":selected").val(),
-            upload_file_8: file8.value 
-          
+    if ((screenCount !== 0) && (acctButtonCount == 0)) {
+        if (field_addBenificiaryAccountName.length !== 0 && field_addBenificiaryAccountNumber.length !== 0 && field_addBenificiaryBank.length !== 0 && field_addBeneficiaryBranch.length !== 0  && (speCharAccountName == false) && (numAccountName == false) &&(numAccountNumber == true)  ) {            
+            if  (buttonCount == 1) {
+                console.log(acct_data1)
+            }
+            if (buttonCount == 2) {
+                acct_data2 = addBenAccountInfo;
+                console.log(acct_data2)
+            }
+            if (buttonCount == 3) {
+                acct_data3 = addBenAccountInfo;
+                console.log(acct_data3)
+            }
+            if (buttonCount == 4) {
+                acct_data4 = addBenAccountInfo;
+                console.log(acct_data3)
+            }
+            if (buttonCount == 5) {
+                acct_data5 = addBenAccountInfo;
+                console.log(acct_data5)
+            }
+            if (buttonCount == 6) {
+                console.log(acct_data6)
+            }      
+            $("#step1").addClass("done");
+            $("#step2").addClass("active");
+            $("#step2>div").addClass("active");
+            $('#addBeneficiaryaccount_details').hide();
+            $('#addBeneficiaryRequirements').show();
+            console.log('Data -> ', addBenAccountInfo)
+            dataReset("field_addBenificiaryAccountName", "field_addBenificiaryAccountNumber", "field_addBenificiaryBank", "field_addBeneficiaryBranch", "field_addBeneficiaryCurrency", "upload_file_8");
+            addBeneficiaryuploadDataReset()
         }
 
-        
-        /* accountUploadDataReset(); */
-        $("#step1").addClass("done");
-        $("#step2").addClass("active");
-        $("#step2>div").addClass("active");
-        $('#addBeneficiaryaccount_details').hide();
-        $('#addBeneficiaryRequirements').show();
-        console.log('Data -> ', data)
-
-        dataReset("field_addBenificiaryAccountName", "field_addBenificiaryAccountNumber", "field_addBenificiaryBank", "field_addBeneficiaryBranch", "field_addBeneficiaryCurrency", "upload_file_8","field_addBeneficiary_relatives1","field_add_Beneficiary_add_relatives2");
-        
-        addBeneficiaryuploadDataReset()
     }else {
-        $('#popUp').modal('show');
+        if (!file8.value) {
+            $('#upload_feedback_label8').show();
+            $('#upload_feedback_label8').text('Please upload your Bank Account Ownership');
+            $('#popUp').modal('show'); 
+            return;
+        } 
+
+        if (field_addBenificiaryAccountName.length !== 0 && field_addBenificiaryAccountNumber.length !== 0 && field_addBenificiaryBank.length !== 0 && field_addBeneficiaryBranch.length !== 0  && (speCharAccountName == false) && (numAccountName == false) &&(numAccountNumber == true) 	&&  (file8.value && (!$('#file_Upload_Tick_8').is(":hidden")))  ) {
+                addBenAccountInfo = {
+                field_addBenificiaryAccountName,
+                field_addBenificiaryAccountNumber,
+                field_addBenificiaryBank,
+                field_addBeneficiaryBranch,
+                field_addBeneficiaryCurrency: $("select#from_addBeneficiarycurrency option").filter(":selected").val(),
+                upload_file_8: file8.value 
+                }
+                
+                if  (buttonCount == 1) {
+                    acct_data1 = addBenAccountInfo;
+                    console.log('acct_data1',acct_data1)
+                }
+        
+                if (buttonCount == 2) {
+                    acct_data2 = addBenAccountInfo;
+                    console.log('acct_data2',acct_data2)
+                }
+        
+                if (buttonCount == 3) {
+                    acct_data3 = addBenAccountInfo;
+                    console.log('acct_data3',acct_data3)
+                }
+                
+                if (buttonCount == 4) {
+                    acct_data4 = addBenAccountInfo;
+                    console.log('acct_data4',acct_data3)
+                }
+        
+                if (buttonCount == 5) {
+                    acct_data5 = addBenAccountInfo;
+                    console.log('acct_data5',acct_data5)
+                }
+        
+                if (buttonCount == 6) {
+                    acct_data6 = addBenAccountInfo
+                    console.log('acct_data6',acct_data6)
+                }      
+                $("#step1").addClass("done");
+                $("#step2").addClass("active");
+                $("#step2>div").addClass("active");
+                $('#addBeneficiaryaccount_details').hide();
+                $('#addBeneficiaryRequirements').show();
+                /*  console.log('Data -> ', addBenAccountInfo) */
+                dataReset("field_addBenificiaryAccountName", "field_addBenificiaryAccountNumber", "field_addBenificiaryBank", "field_addBeneficiaryBranch", "field_addBeneficiaryCurrency", "upload_file_8","field_addBeneficiary_relatives1","field_add_Beneficiary_add_relatives2");
+                addBeneficiaryuploadDataReset()
+        }else {
+                $('#popUp').modal('show');
+        }
     }
 }
 
@@ -2483,10 +3061,10 @@ function addBeneficiaryuploadDataReset() {
     $("#warning_parent_addBeneficiaryacct").hide();
     $("#upload_feedback_label8").hide();
     $("#upload_warning_addBeneficiaryacct").text('');
-
 }
 
 function bankTranfer() {
+    trackBenificiary = 0;
     $('#payment').hide();
     $('#account_details').show();
     $("#step1").addClass("done");
@@ -2495,6 +3073,29 @@ function bankTranfer() {
 }
 
 function addBeneficiarybankTranfer() {
+    trackaddBenificiary = 0;
+    if (buttonCount == 1){
+        trackaddBenificiary1 = trackaddBenificiary;
+    }
+    if (buttonCount == 2){
+        trackaddBenificiary2 = trackaddBenificiary;
+    }
+    if (buttonCount == 3){
+        trackaddBenificiary3 = trackaddBenificiary;
+    }
+    if (buttonCount == 4){
+        trackaddBenificiary4 = trackaddBenificiary;
+    }
+    if (buttonCount == 5){
+        trackaddBenificiary5 = trackaddBenificiary;
+    }
+    if (buttonCount == 6){
+        trackaddBenificiary6 = trackaddBenificiary;
+    }
+    $('#addBeneficiarypayment').hide();
+    $('#addBeneficiaryaccount_details').show();
+    $("#step2").addClass("active");
+    $("#step2>div").addClass("active");
     $('#addBeneficiarypayment').hide();
     $('#addBeneficiaryaccount_details').show();
     $("#step2").addClass("active");
@@ -2502,6 +3103,7 @@ function addBeneficiarybankTranfer() {
 }
 
 function pickUp() {
+    trackBenificiary = 1;
     $('#payment').hide();
     $("#pickUp").show();
     $("#step1").addClass("done");
@@ -2510,20 +3112,296 @@ function pickUp() {
 }
 
 function addBeneficiaryPickup() {
+    trackaddBenificiary = 1;
+    if (buttonCount == 1){
+        trackaddBenificiary1 = trackaddBenificiary;
+    }
+    if (buttonCount == 2){
+        trackaddBenificiary2 = trackaddBenificiary;
+    }
+    if (buttonCount == 3){
+        trackaddBenificiary3 = trackaddBenificiary;
+    }
+    if (buttonCount == 4){
+        trackaddBenificiary4 = trackaddBenificiary;
+    }
+    if (buttonCount == 5){
+        trackaddBenificiary5 = trackaddBenificiary;
+    }
+    if (buttonCount == 6){
+        trackaddBenificiary6 = trackaddBenificiary;
+    }
     $('#addBeneficiarypayment').hide();
     $("#addBeneficiaryPickUp").show();
     $("#step2").addClass("active");
     $("#step2>div").addClass("active");
 }
+   /*  Go Back from Current Pages */
 
 function goBack() {
     console.log('go back!!!');
     $("#step2").removeClass("active");
     $("#step2>div").removeClass("active");
     $("#step2").removeClass("done");
-    $('#requirements').hide();
+    $('#account_details').hide();
     $('#form_wrapper').show();
     /* $('#form_wrapper')[0].scrollIntoView(true); */
+}
+
+function goBack1() {
+    if(trackBenificiary == 0) {
+        console.log('go back!!!');
+        $("#step2").removeClass("active");
+        $("#step2>div").removeClass("active");
+        $("#step2").removeClass("done");
+        $('#requirements').hide();
+        $('#account_details').show();
+        $('#file_Upload_Tick_7').show();
+    }else{
+        console.log('go back!!!');
+        $("#step2").removeClass("active");
+        $("#step2>div").removeClass("active");
+        $("#step2").removeClass("done");
+        $('#requirements').hide();
+        $("#pickUp").show();
+    }
+}
+
+function goBackPickUp() {
+    $("#step2").removeClass("active");
+    $("#step2>div").removeClass("active");
+    $("#step2").removeClass("done");
+    $('#pickUp').hide();
+    $('#form_wrapper').show();
+}
+
+function goBackAddBeneficiary () {
+    traverse = 0 ;
+
+    if ( screenCount < 1){
+        screenCount = buttonCount;
+    }
+    console.log('go AddBeneficiary');
+    buttonCount = buttonCount-1; 
+     $('input').attr('title', '');
+    
+    if(buttonCount == 0) {
+        $("#step1").removeClass("done");
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
+        $('#requirements').show();
+        $('#addBeneficiary').hide();
+        $('#file_Upload_Tick_1').show();
+        $('#file_Upload_Tick_2').show();
+        $('#file_Upload_Tick_3').show();
+        $('#file_Upload_Tick_4').show();
+        $('#file_Upload_Tick_5').show();
+        $('#file_Upload_Tick_6').show();
+    }
+    if( (buttonCount > 0) && (buttonCount <7) ) {
+        $("#step1").removeClass("done");
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
+        $('#addBeneficiaryRequirements').show();
+        $('#addBeneficiary').hide();
+ 
+        if(buttonCount == 1) {
+            fileUploadDataReset();
+            setDataUpload(uppload_data1);
+            $('#file_Upload_Tick_9').show();
+            $('#file_Upload_Tick_10').show();
+            $('#file_Upload_Tick_11').show();
+            $('#file_Upload_Tick_12').show();
+        }
+    
+        if(buttonCount == 2) {
+            fileUploadDataReset();
+            setDataUpload(uppload_data2);
+            $('#file_Upload_Tick_9').show();
+            $('#file_Upload_Tick_10').show();
+            $('#file_Upload_Tick_11').show();
+            $('#file_Upload_Tick_12').show();
+        }
+    
+        if(buttonCount == 3) {
+            fileUploadDataReset();
+            setDataUpload(uppload_data3);
+            $('#file_Upload_Tick_9').show();
+            $('#file_Upload_Tick_10').show();
+            $('#file_Upload_Tick_11').show();
+            $('#file_Upload_Tick_12').show();
+        }
+    
+        if(buttonCount == 4) {
+            fileUploadDataReset();
+            setDataUpload(uppload_data4);
+            $('#file_Upload_Tick_9').show();
+            $('#file_Upload_Tick_10').show();
+            $('#file_Upload_Tick_11').show();
+            $('#file_Upload_Tick_12').show();
+        }
+    
+        if(buttonCount == 5) {
+            fileUploadDataReset();
+            setDataUpload(uppload_data5);
+            $('#file_Upload_Tick_9').show();
+            $('#file_Upload_Tick_10').show();
+            $('#file_Upload_Tick_11').show();
+            $('#file_Upload_Tick_12').show();
+        }
+    }
+}
+
+function goBack2() {
+    $("#step2").removeClass("active");
+    $("#step2>div").removeClass("active");
+    $("#step2").removeClass("done");
+    $('#addBeneficiaryaccount_details').hide();
+    $('#addBeneficiary').show();
+    $('#invalidCheck_privacyAddBeneficiary').prop('checked', true);
+    $('#invalidCheck_basicAddBeneficiary').prop('checked', true);
+    if ( screenCount < 1){
+        screenCount = buttonCount;
+        console.log('GET IT SCREEN COUNT');
+    }
+    if(buttonCount == 1) {
+        setDataBeneficiary(data1);
+    }
+
+    if(buttonCount == 2) {
+    setDataBeneficiary(data2);
+    }
+
+    if(buttonCount == 3) {
+    setDataBeneficiary(data3);
+    }
+
+    if(buttonCount == 4) {
+    setDataBeneficiary(data4);
+    }
+
+    if(buttonCount == 5) {
+    setDataBeneficiary(data5);
+    }
+
+    if(buttonCount == 6) {
+    setDataBeneficiary(data6);
+    }
+}
+
+function goBackAddPickup() {
+    $("#step2").removeClass("active");
+    $("#step2>div").removeClass("active");
+    $("#step2").removeClass("done");
+    $('#addBeneficiaryPickUp').hide();
+    $('#addBeneficiary').show();
+    $('#invalidCheck_privacyAddBeneficiary').prop('checked', true);
+    $('#invalidCheck_basicAddBeneficiary').prop('checked', true);
+    if ( screenCount < 1){
+        screenCount = buttonCount;
+        console.log('GET IT SCREEN COUNT');
+    }
+    if(buttonCount == 1) {
+        setDataBeneficiary(data1);
+    }
+
+    if(buttonCount == 2) {
+    setDataBeneficiary(data2);
+    }
+
+    if(buttonCount == 3) {
+    setDataBeneficiary(data3);
+    }
+
+    if(buttonCount == 4) {
+    setDataBeneficiary(data4);
+    }
+
+    if(buttonCount == 5) {
+    setDataBeneficiary(data5);
+    }
+
+    if(buttonCount == 6) {
+    setDataBeneficiary(data6);
+    }
+}
+
+function goBack3() {
+    if ( screenCount < 1){
+        screenCount = buttonCount;
+        console.log('GET IT SCREEN COUNT');
+    }
+    $('input').attr('title', '');
+
+    if((buttonCount == 1) && (trackaddBenificiary1 == 0)) {
+        setDataBeneficiary(acct_data1);
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
+        $('#addBeneficiaryRequirements').hide();
+        $('#addBeneficiaryaccount_details').show();
+        $("#file_Upload_Tick_8").show();
+    }else if((buttonCount == 2) && (trackaddBenificiary2 == 0)) {
+        setDataBeneficiary(acct_data2);
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
+        $('#addBeneficiaryRequirements').hide();
+        $('#addBeneficiaryaccount_details').show();
+        $("#file_Upload_Tick_8").show();
+    }else if((buttonCount == 3) && (trackaddBenificiary3 == 0)) {
+        setDataBeneficiary(acct_data3);
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
+        $('#addBeneficiaryRequirements').hide();
+        $('#addBeneficiaryaccount_details').show();
+        $("#file_Upload_Tick_8").show();
+    }else if((buttonCount == 4) && (trackaddBenificiary4 == 0)) {
+        setDataBeneficiary(acct_data4);
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
+        $('#addBeneficiaryRequirements').hide();
+        $('#addBeneficiaryaccount_details').show();
+        $("#file_Upload_Tick_8").show();
+    }else if((buttonCount == 5) && (trackaddBenificiary5 == 0)) {
+        setDataBeneficiary(acct_data5);
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
+        $('#addBeneficiaryRequirements').hide();
+        $('#addBeneficiaryaccount_details').show();
+        $("#file_Upload_Tick_8").show();
+    }else if((buttonCount == 6) && (trackaddBenificiary6 == 0)) {
+        setDataBeneficiary(acct_data6);
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
+        $('#addBeneficiaryRequirements').hide();
+        $('#addBeneficiaryaccount_details').show();
+        $("#file_Upload_Tick_8").show();
+    }else {
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
+        $('#addBeneficiaryRequirements').hide();
+        $('#addBeneficiaryPickUp').show();
+    }
+}
+
+function setDataUpload(data) {
+    for (const [key, value] of Object.entries(data)) {
+        $(`#${key}`).val(`${value}`);
+      }
+}
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
+function setDataBeneficiary(data) {
+    for (const [key, value] of Object.entries(data)) {
+        console.log(`${key}: ${value}`);
+        $(`#${key}`).val(`${value}`)
+      }
 }
 
 function pickup_Bpi() {
@@ -2535,86 +3413,74 @@ function pickup_Bpi() {
     $("#step2>div").addClass("active");
 }
 
-  function addBeneficiaryPickup_Bpi() {
+function addBeneficiaryPickup_Bpi() {
+    bpiCount = 1;
     $("#addBeneficiaryPickUp").hide();
     $('#addBeneficiaryRequirements').show();
-    $("#step3_circle").addClass("md-step-step3-circle ");
-    $("#step3_span").addClass("md-step3-span");
-    $("#step3_reference").addClass("md-step3-span")
-    /* $('#process_confirmation').show(); */
-   /*  $("#step3").addClass("active");
-    $("#step3>div").addClass("active"); */
-  /*   $("#step3").addClass("done"); */
 }
 
 function openlink() {
     window.open("https://www.google.com/maps/search/bpi+branch+locator/@14.6079731,120.9860096,14z/data=!3m1!4b1");
 }
 
+function validateEmailAddBeneficiary(my_email){
+    var ind0=my_email.indexOf("@");
+    var my_username=my_email.slice(0,ind0);
+    var ind=my_email.indexOf("@");
+    var my_domain=my_email.substr((ind+1));
+    var ind3 = my_domain.indexOf(".");
+    var my_final_domain = my_domain.slice(0,ind3);
+    var ind1=my_domain.indexOf(".");
+    var my_extension=my_domain.slice((ind1+1),my_domain.length);
 
-function validateEmailAddBeneficiary(my_email)
-{
-var ind0=my_email.indexOf("@");
-var my_username=my_email.slice(0,ind0);
-var ind=my_email.indexOf("@");
-var my_domain=my_email.substr((ind+1));
-var ind3 = my_domain.indexOf(".");
-var my_final_domain = my_domain.slice(0,ind3);
-var ind1=my_domain.indexOf(".");
-var my_extension=my_domain.slice((ind1+1),my_domain.length);
-
-var usernamesize = stringlength(my_username,2,30);
-var domainsize = stringlength(my_final_domain,2,10);
-var extension = stringlength(my_extension,2,3);
+    var usernamesize = stringlength(my_username,2,30);
+    var domainsize = stringlength(my_final_domain,2,10);
+    var extension = stringlength(my_extension,2,3);
     
 
- var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-  if (reg.test(my_email) == false) {
-    $("#err_field_addBeneficiaryEmailAddress").text('Invalid Email');
-    $("#err_field_addBeneficiaryEmailAddress").show();
-    return false;
-  }else{
-    if(!usernamesize)
-        {
-            $("#err_field_addBeneficiaryEmailAddress").text('UserName should have minimum 2 and maximum 30 character');
-            $("#err_field_addBeneficiaryEmailAddress").show();
-            return false;
-        }else if(!domainsize)
-        {
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (reg.test(my_email) == false) {
+        $("#err_field_addBeneficiaryEmailAddress").text('Invalid Email');
+        $("#err_field_addBeneficiaryEmailAddress").show();
+        return false;
+    }else{
+        if(!usernamesize){
+                $("#err_field_addBeneficiaryEmailAddress").text('UserName should have minimum 2 and maximum 30 character');
+                $("#err_field_addBeneficiaryEmailAddress").show();
+                return false;
+        }else if(!domainsize){
             $("#err_field_addBeneficiaryEmailAddress").text('Domain should have minimum 2 and maximum 10 character');
             $("#err_field_addBeneficiaryEmailAddress").show();
             return false;
-        }else if(!extension)
-        {
+        }else if(!extension){
             $("#err_field_addBeneficiaryEmailAddress").text('Extension should have minimum 2 and maximum 3 characters');
             $("#err_field_addBeneficiaryEmailAddress").show();
             return false;
         }else {
-          $("#err_field_addBeneficiaryEmailAddress").text('');
-          $("#err_field_addBeneficiaryEmailAddress").hide();
-          return true;
+            $("#err_field_addBeneficiaryEmailAddress").text('');
+            $("#err_field_addBeneficiaryEmailAddress").hide();
+            return true;
         }
 
-  }
-  
+    }
 } 
 
 
-function validateEmail(my_email)
-{
-var ind0=my_email.indexOf("@");
-var my_username=my_email.slice(0,ind0);
-var ind=my_email.indexOf("@");
-var my_domain=my_email.substr((ind+1));
-var ind3 = my_domain.indexOf(".");
-var my_final_domain = my_domain.slice(0,ind3);
-var ind1=my_domain.indexOf(".");
-var my_extension=my_domain.slice((ind1+1),my_domain.length);
+function validateEmail(my_email){
 
-var usernamesize = stringlength(my_username,2,30);
-var domainsize = stringlength(my_final_domain,2,10);
-var extension = stringlength(my_extension,2,3);
-    
+    var ind0=my_email.indexOf("@");
+    var my_username=my_email.slice(0,ind0);
+    var ind=my_email.indexOf("@");
+    var my_domain=my_email.substr((ind+1));
+    var ind3 = my_domain.indexOf(".");
+    var my_final_domain = my_domain.slice(0,ind3);
+    var ind1=my_domain.indexOf(".");
+    var my_extension=my_domain.slice((ind1+1),my_domain.length);
+
+    var usernamesize = stringlength(my_username,2,30);
+    var domainsize = stringlength(my_final_domain,2,10);
+    var extension = stringlength(my_extension,2,3);
+        
 
  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
   if (reg.test(my_email) == false) {
@@ -2647,19 +3513,24 @@ var extension = stringlength(my_extension,2,3);
   
 }
 
-
 function stringlength(inputtxt, minlength, maxlength)
 { 
-var field = inputtxt; 
-var mnlen = minlength;
-var mxlen = maxlength;
+    var field = inputtxt; 
+    var mnlen = minlength;
+    var mxlen = maxlength;
 
-if(field.length<mnlen || field.length> mxlen)
-{ 
-return false;
+    if(field.length<mnlen || field.length> mxlen)
+    { 
+        return false;
+    }
+    else
+    { 
+        return true;
+    }
 }
-else
-{ 
-return true;
-}
+
+function acctButton() {
+  if (screenCount !== 0) {
+    acctButtonCount = 1;
+  }
 }
