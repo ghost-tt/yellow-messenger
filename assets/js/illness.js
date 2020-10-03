@@ -138,7 +138,7 @@ function resetTimer() {
     currSeconds = currSeconds + 1; 
     console.log(currSeconds);
     /* Set the timer and condition */ 
-    if(currSeconds == 1800) {
+    if(currSeconds == 60) {
       window.location.replace("http://www.philamlife.com");
     }
   } 
