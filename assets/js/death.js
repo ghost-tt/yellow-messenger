@@ -51,7 +51,6 @@ $(document).ready(function(event){
     disableFutureDates();
     disableFutureDatesDOB();
     setCountryCode();
-
     let idleInterval = setInterval(timerIncrement, 1000); 
     $(this).mousemove(resetTimer); 
     $(this).keypress(resetTimer); 

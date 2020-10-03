@@ -119,26 +119,19 @@ $(document).ready(function (event) {
     disableFutureDates();
     disableFutureDatesDOB();
     setCountryCode();
-
-    /* Increment the idle time counter every second */ 
     let idleInterval = setInterval(timerIncrement, 1000); 
-
-    /* Zero the idle timer on mouse movement */ 
     $(this).mousemove(resetTimer); 
     $(this).keypress(resetTimer); 
 });
 
 
 function resetTimer() { 
-    /* Hide the timer text */ 
     currSeconds = 0; 
   } 
   
   function timerIncrement() { 
     currSeconds = currSeconds + 1; 
-    console.log(currSeconds);
-    /* Set the timer and condition */ 
-    if(currSeconds == 60) {
+    if(currSeconds == 1800) {
       window.open('http://www.philamlife.com', '_blank');
     }
   } 
