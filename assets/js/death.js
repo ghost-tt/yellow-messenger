@@ -3142,17 +3142,15 @@ function goBack() {
 function goBack1() {
     if(trackBenificiary == 0) {
         console.log('go back!!!');
-        $("#step2").removeClass("active");
-        $("#step2>div").removeClass("active");
-        $("#step2").removeClass("done");
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
         $('#requirements').hide();
         $('#account_details').show();
         $('#file_Upload_Tick_7').show();
     }else{
         console.log('go back!!!');
-        $("#step2").removeClass("active");
-        $("#step2>div").removeClass("active");
-        $("#step2").removeClass("done");
+        $("#step2").addClass("active");
+        $("#step2>div").addClass("active");
         $('#requirements').hide();
         $("#pickUp").show();
     }
