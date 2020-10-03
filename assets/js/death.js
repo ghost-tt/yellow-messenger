@@ -52,27 +52,20 @@ $(document).ready(function(event){
     disableFutureDatesDOB();
     setCountryCode();
 
-    /* Increment the idle time counter every second */ 
     let idleInterval = setInterval(timerIncrement, 1000); 
-
-    /* Zero the idle timer on mouse movement */ 
     $(this).mousemove(resetTimer); 
     $(this).keypress(resetTimer); 
 });
 
 
 function resetTimer() { 
-    /* Hide the timer text */ 
-   
     currSeconds = 0; 
   } 
   
   function timerIncrement() { 
     currSeconds = currSeconds + 1; 
-    /* Set the timer and condition */ 
     if(currSeconds == 1800) {
-        /*  alert('Bye Bye time'); */
-        window.location.replace("http://www.philamlife.com");
+        window.open('http://www.philamlife.com', '_blank');
     }
   } 
   

@@ -139,7 +139,7 @@ function resetTimer() {
     console.log(currSeconds);
     /* Set the timer and condition */ 
     if(currSeconds == 60) {
-      window.location.replace("http://www.philamlife.com");
+      window.open('http://www.philamlife.com', '_blank');
     }
   } 
   
