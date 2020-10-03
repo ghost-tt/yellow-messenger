@@ -81,10 +81,8 @@ function timer() {
         renderProgress(i)
        }
        if(i == 100 )  {
-     
-          console.log("cleartime");
-          clearTimeout(cleartime);
-          resolve("cleartime")
+        clearTimeout(cleartime);
+        resolve("cleartime")
       }
     //  i++;
      }, 500);
@@ -138,11 +136,10 @@ function resetTimer() {
   
   function timerIncrement() { 
     currSeconds = currSeconds + 1; 
-    console.log(currSeconds)
+    console.log(currSeconds);
     /* Set the timer and condition */ 
     if(currSeconds == 1800) {
-        /*  alert('Bye Bye time'); */
-        window.location.href = "http://www.philamlife.com";
+      window.location.replace("http://www.philamlife.com");
     }
   } 
   

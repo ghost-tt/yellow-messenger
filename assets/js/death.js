@@ -69,11 +69,10 @@ function resetTimer() {
   
   function timerIncrement() { 
     currSeconds = currSeconds + 1; 
-    console.log(currSeconds)
     /* Set the timer and condition */ 
     if(currSeconds == 1800) {
         /*  alert('Bye Bye time'); */
-        window.location.href = "http://www.philamlife.com";
+        window.location.replace("http://www.philamlife.com");
     }
   } 
   
