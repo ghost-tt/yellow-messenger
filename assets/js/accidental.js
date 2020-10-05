@@ -121,6 +121,7 @@ let PaymentOption = {};
 let BankDetails = {};
 let FilesInformation = {};
 let filesList = [];
+let beneficiaryCount = 1;
 let filesMap = {};
 let claimType, causeOfLoss, govIdFront, govIdBack, apsFile, narrationReport, officialReceipts;
 let file1Buffer, file2Buffer, file3Buffer, file4Buffer, file5Buffer, file6Buffer, file7Buffer, file8Buffer;
@@ -1110,12 +1111,13 @@ file1.onchange = async function (e) {
 
         console.log("setting file data : ");
         let accident = {};
-        accident['LIDC001Front'] = {
-          "Filename": `${fileName}.pdf`,
-          "DocType": "PDF",
-          "DocTypeCode": "LIDC001",
-          "DocumentDescription": "Front copy of doc"
-        }
+        // accident['LIDC001Front'] = {
+          accident['BeneficiaryNo'] = beneficiaryCount,
+          accident["Filename"] = `${fileName}.pdf`,
+          accident["DocType"]= "PDF",
+          accident["DocTypeCode"]= "LIDC001",
+          accident["DocumentDescription"]= "Front copy of doc"
+        // }
 
         filesList.push(accident);
         const formData = new FormData()
@@ -1167,12 +1169,11 @@ file2.onchange = async function (e) {
         let fileName = referenceNumber + "_" + docType + "_" + tranType;
 
         let accident = {};
-        accident['LIDC001Back'] = {
-          "Filename": `${fileName}.pdf`,
-          "DocType": "PDF",
-          "DocTypeCode": "LIDC001",
-          "DocumentDescription": "Back copy of doc"
-        }
+        accident['BeneficiaryNo'] = beneficiaryCount,
+        accident["Filename"] = `${fileName}.pdf`,
+        accident["DocType"]= "PDF",
+        accident["DocTypeCode"]= "LIDC001",
+        accident["DocumentDescription"]= "Back copy of doc"
 
         filesList.push(accident);
         const formData = new FormData()
@@ -1222,12 +1223,12 @@ file3.onchange = async function (e) {
         let fileName = referenceNumber + "_" + docType + "_" + tranType;
 
         let accident = {};
-        accident[docType] = {
-          "Filename": `${fileName}.pdf`,
-          "DocType": "PDF",
-          "DocTypeCode": docType,
-          "DocumentDescription": "Attending Physician’s Statement"
-        }
+
+        accident['BeneficiaryNo'] = beneficiaryCount,
+        accident["Filename"] = `${fileName}.pdf`,
+        accident["DocType"]= "PDF",
+        accident["DocTypeCode"]= docType,
+        accident["DocumentDescription"]= "Attending Physician’s Statement"
 
         filesList.push(accident);
         const formData = new FormData()
@@ -1278,12 +1279,12 @@ file4.onchange = async function (e) {
         let fileName = referenceNumber + "_" + docType + "_" + tranType;
 
         let accident = {};
-        accident[docType] = {
-          "Filename": `${fileName}.pdf`,
-          "DocType": "PDF",
-          "DocTypeCode": docType,
-          "DocumentDescription": "Police or Narration Report"
-        }
+
+        accident['BeneficiaryNo'] = beneficiaryCount,
+        accident["Filename"] = `${fileName}.pdf`,
+        accident["DocType"]= "PDF",
+        accident["DocTypeCode"]= docType,
+        accident["DocumentDescription"]= "Police or Narration Report"
 
         filesList.push(accident);
         const formData = new FormData()
@@ -1334,12 +1335,12 @@ file5.onchange = async function (e) {
         let fileName = referenceNumber + "_" + docType + "_" + tranType;
 
         let accident = {};
-        accident[docType] = {
-          "Filename": `${fileName}.pdf`,
-          "DocType": "PDF",
-          "DocTypeCode": docType,
-          "DocumentDescription": "Police or Narration Report"
-        }
+
+        accident['BeneficiaryNo'] = beneficiaryCount,
+        accident["Filename"] = `${fileName}.pdf`,
+        accident["DocType"]= "PDF",
+        accident["DocTypeCode"]= docType,
+        accident["DocumentDescription"]= "Police or Narration Report"
 
         filesList.push(accident);
 
