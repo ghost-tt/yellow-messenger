@@ -88,6 +88,7 @@ function resetTimer() {
     document.getElementById("addBeneficiary1").style.cursor = "no-drop";
     document.getElementById("upload_invalidCheck_2").disabled = true;
     document.getElementById("upload_invalidCheck_2").style.cursor = "no-drop"; 
+    document.getElementById("goBack1").style.pointerEvents = "none";
    /*  document.getElementById("link_Beneficiary").style.pointerEvents = "none";
     document.getElementById("link2_Beneficiary").style.pointerEvents = "none"; */
     document.getElementById("form_Beneficiary").style.cursor = "no-drop";
@@ -128,7 +129,8 @@ function timer() {
     document.getElementById("file_Upload_12").style.cursor = "no-drop";
     document.getElementById("addBeneficiary_submit"). disabled = true; 
     document.getElementById("addBeneficiary_submit").style.cursor = "no-drop";
-  
+    document.getElementById("goBack3").style.pointerEvents = "none";
+    document.getElementById("addBeneficiaryRequirements").style.cursor = "no-drop";
   /*   document.getElementById("upload_invalidCheck_2").disabled = true;
     document.getElementById("upload_invalidCheck_2").style.cursor = "no-drop"; 
     document.getElementById("link_Beneficiary").style.pointerEvents = "none";
@@ -2173,6 +2175,8 @@ function addBeneficiaryNew(event) {
                 upload_file_10: file10.value,
                 upload_file_11: file11.value,
                 upload_file_12: file12.value,
+
+                
                 }
                 
                 if  (bCount == 1) {
