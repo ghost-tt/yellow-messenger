@@ -2450,7 +2450,8 @@ function screen() {
    /*  dataResetInfo(addBeni_upload_data); */
     fileUploadDataReset();
     addBeneficiaryuploadDataReset();
-
+    $('#invalidCheck_privacyAddBeneficiary').prop('checked', false);
+    $('#invalidCheck_basicAddBeneficiary').prop('checked', false);
 
     if (buttonCount == 1 ){
         if(isEmpty(data1) == true){
@@ -3108,6 +3109,9 @@ function handleAccountInfo(event) {
         $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
         $('#popUp').modal('show'); 
         return;
+    }else {
+        $('#upload_feedback_label').hide();
+        $('#upload_feedback_label').text('');
     }
 
     if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0  && (speCharAccountName == false) && (numAccountName == false) &&(numAccountNumber == true) &&  (file7.value && (!$('#file_Upload_Tick_7').is(":hidden")))  ) {
@@ -3257,7 +3261,10 @@ function addBenificiaryAccountInfo(event) {
             $('#upload_feedback_label8').text('Please upload your Bank Account Ownership');
             $('#popUp').modal('show'); 
             return;
-        } 
+        } else {    
+            $('#upload_feedback_label8').hide();
+            $('#upload_feedback_label8').text('');
+        }
 
         if (field_addBenificiaryAccountName.length !== 0 && field_addBenificiaryAccountNumber.length !== 0 && field_addBenificiaryBank.length !== 0 && field_addBeneficiaryBranch.length !== 0  && (speCharAccountName == false) && (numAccountName == false) &&(numAccountNumber == true) 	&&  (file8.value && (!$('#file_Upload_Tick_8').is(":hidden")))  ) {
                 addBenAccountInfo = {

@@ -1616,6 +1616,9 @@ function handleAccountInfo(event) {
   if (!file6.value) {
     $('#upload_feedback_label').show();
     $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
+  }else {
+    $('#upload_feedback_label').hide();
+    $('#upload_feedback_label').text('');
   }
 
   if (

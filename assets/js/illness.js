@@ -1409,7 +1409,10 @@ function handleAccountInfo(event) {
     if (!file6.value) {
         $('#upload_feedback_label').show();
         $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
-    }
+    }else {
+        $('#upload_feedback_label').hide();
+        $('#upload_feedback_label').text('');
+      }
 
     if (field_AccountName.length !== 0 && field_AccountNumber.length !== 0 && field_Bank.length !== 0 && field_Branch.length !== 0 && file6.length !== 0 && (speCharAccountName == false) && (numAccountName == false) && (numAccountNumber == true) && (file6.value && (!$('#file_Upload_Tick_6').is(":hidden")))) {
         const data = {
