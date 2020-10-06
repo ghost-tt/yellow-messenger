@@ -1435,21 +1435,27 @@ function handleAccountInfo(event) {
         $('#account_details').hide();
         $('#process_confirmation').show();
         console.log('Data -> ', data)
-
+        
+        BankDetails["BeneficiaryNo"] = 1;
         BankDetails["BankName"] = field_Bank;
         BankDetails["BankBranch"] = field_Branch;
         BankDetails["AccountName"] = field_AccountName;
         BankDetails["AccountNumber"] = field_AccountNumber;
         BankDetails["AccountCurrency"] = $("select#from_currency option").filter(":selected").val();
 
+        let BankDetailsList = [];
+        BankDetailsList.push(BankDetails);
+
         let filesObject = {};
         filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
         filesObject["FileList"] = filesList;
 
         // filesMap["Accident"] = accident
+        
+
         finalPayload["BasicInformation"] = basicInformation;
         finalPayload["InsuredInformation"] = InsuredInformation;
-        finalPayload["BankDetails"] = BankDetails;
+        finalPayload["BankDetails"] = BankDetailsList;
         finalPayload["FileList"] = filesObject;
         finalPayload["stageThree"] = true;
         finalPayload["referenceNumber"] = referenceNumber;

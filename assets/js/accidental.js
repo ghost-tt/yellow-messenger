@@ -1647,11 +1647,14 @@ function handleAccountInfo(event) {
       upload_file_6: file6.value,
     };
 
+    BankDetails["BeneficiaryNo"] = 1;
     BankDetails["BankName"] = field_Bank;
     BankDetails["BankBranch"] = field_Branch;
     BankDetails["AccountName"] = field_AccountName;
     BankDetails["AccountNumber"] = field_AccountNumber;
     BankDetails["AccountCurrency"] = $("select#from_currency option").filter(":selected").val();
+    let BankDetailsList = [];
+    BankDetailsList.push(BankDetails);
 
     let filesObject = {};
     filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
