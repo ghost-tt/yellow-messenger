@@ -873,15 +873,15 @@ function handleForm(event) {
         InsuredInformation["MiddleName"] = field_middleName;
         InsuredInformation["LastName"] = field_lastName;
         InsuredInformation["Suffix"] = field_lastName_Suffix;
-        InsuredInformation["DateOfBirth"] = field_DOB;
+        InsuredInformation["DateOfBirth"] = field_DOB.split('-')[2]+'-'+field_DOB.split('-')[1]+'-'+field_DOB.split('-')[0];
         InsuredInformation["CountryCode"] = $("select#inlineFormCustomSelect option").filter(":selected").val();
         InsuredInformation["PhoneNumber"] = field_mobileNum;
         InsuredInformation["EmailAddress"] = field_emailAddress;
         InsuredInformation["HomeAddress"] = field_homeAddress;
-        InsuredInformation["DateOfSymtomps"] = field_DOA;
-        InsuredInformation["RootCauseDate"] = field_TOA;
-        InsuredInformation["DoctorVisitDate"] = field_POA;
-        InsuredInformation["medicalConsultation"] = field_MedicalConsultation;
+        InsuredInformation["FirstSymptomsDate"] =  field_DOA.split('-')[2]+'-'+field_DOA.split('-')[1]+'-'+field_DOA.split('-')[0];
+        InsuredInformation["DiagnosisConfinementDate"] = field_TOA.split('-')[2]+'-'+field_TOA.split('-')[1]+'-'+field_TOA.split('-')[0];
+        InsuredInformation["FirstConsultationDate"] =  field_POA.split('-')[2]+'-'+field_POA.split('-')[1]+'-'+field_POA.split('-')[0];
+        InsuredInformation["InjuryDetails"] = field_MedicalConsultation;
 
         let stageOneData = {
             stageOne: true,
@@ -1489,7 +1489,7 @@ function pickUp() {
 
     // filesMap["Accident"] = accident
     InsuredInformation["PayoutOption"] = "PUA";
-    
+
     finalPayload["BasicInformation"] = basicInformation;
     finalPayload["InsuredInformation"] = InsuredInformation;
     finalPayload["BankDetails"] = BankDetailsList;
