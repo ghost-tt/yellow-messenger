@@ -26,6 +26,7 @@ let botId = url.searchParams.get('botId');
 form.addEventListener('submit', handleForm);
 form_Bank.addEventListener('submit', handleAccountInfo);
 
+let beneficiaryCount =1;
 let finalPayload = {};
 let accidentPayload = {};
 let basicInformation = {};
