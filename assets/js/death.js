@@ -1387,6 +1387,36 @@ function handleForm(event) {
                 basic_checkbox: $('#invalidCheck_basic').is(':checked'),
                 privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
             }
+            InsuredInformation["FirstName"] = field_firstName;
+        InsuredInformation["MiddleName"] = field_middleName;
+        InsuredInformation["LastName"] = field_lastName;
+        InsuredInformation["Suffix"] = field_lastName_Suffix;
+        InsuredInformation["DateOfBirth"] = field_DOB.split('-')[2] + "/" + field_DOB.split('-')[1] + "/" + field_DOB.split('-')[0];
+        InsuredInformation["InsuredsDeath"] = field_DOID.split('-')[2] + "/" + field_DOID.split('-')[1] + "/" + field_DOID.split('-')[0];
+
+        basicInformation["CauseOfLoss"] = field_NatureLoss;
+
+        let beneficiary = {};
+
+        beneficiary["BeneficiaryNo"] = beneficiaryCount,
+            beneficiary["FirstName"] = field_BeneficiaryFirstName,
+            beneficiary["MiddleName"] = field_BeneficiaryMiddleName,
+            beneficiary["LastName"] = field_BeneficiaryLastName,
+            beneficiary["DateOfBirth"] = field_BeneficiaryDOB.split('-')[2] + "/" + field_BeneficiaryDOB.split('-')[1] + "/" + field_BeneficiaryDOB.split('-')[0],
+            beneficiary["CountryCode"] = $("select#field_BeneficiaryMobileNumberSelect option").filter(":selected").val(),
+            beneficiary["PhoneNumber"] = field_BeneficiaryMobileNum,
+            beneficiary["EmailAddress"] = field_BeneficiaryEmailAddress,
+            beneficiary["HomeAddress"] = field_BeneficiaryHomeAddress,
+            beneficiary["PlaceOfBirth"] = field_BeneficiaryPOB,
+            beneficiary["Nationality"] = field_BeneficiaryNationality,
+            beneficiary["Sex"] = $("select#field_BeneficiarySex option").filter(":selected").val(),
+            beneficiary["Relationship"] = field_BeneficiaryRelationToDeceased,
+            beneficiary["DocumentFolder"] = `/home/accounts/Claims/${referenceNumber}`,
+            beneficiary["PayoutOption"] = "CTA",
+            beneficiary["GovernmentOfficial"] = $("select#field_Beneficiary_relatives1 option").filter(":selected").val(),
+            beneficiary["GovernmentOfficialRelative"] = $("select#field_Beneficiary_relatives2 option").filter(":selected").val(),
+            beneficiary["Occupation"] = field_BenificiaryOccupation
+        BeneficiaryList.push(beneficiary);
            /*  dataReset("field_firstName", "field_firstName", "field_middleName", "field_lastName", "field_lastName_Suffix", "field_DOB", "field_DOID", "field_BeneficiaryFirstName", "field_BeneficiaryMiddleName", "field_BeneficiaryLastName", "field_BeneficiaryMobileNum", "field_BeneficiaryEmailAddress", "field_BeneficiaryHomeAddress", "field_BeneficiaryDOB", "field_BeneficiaryPOB", "field_BeneficiaryNationality", "field_BeneficiarySex", "field_BeneficiaryRelationToDeceased","field_Beneficiary_relatives1","field_Beneficiary_relatives2") */
             $("#step1").addClass("done");
             $("#step2").addClass("active");
