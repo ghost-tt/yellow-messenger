@@ -125,7 +125,8 @@ let beneficiaryCount = 1;
 let filesMap = {};
 let claimType, causeOfLoss, govIdFront, govIdBack, apsFile, narrationReport, officialReceipts;
 let file1Buffer, file2Buffer, file3Buffer, file4Buffer, file5Buffer, file6Buffer, file7Buffer, file8Buffer;
-basicInformation["CompanyCode"] = "PAL/BPLAC";
+basicInformation["WebReferenceNumber"] = referenceNumber;
+basicInformation["CompanyCode"] = "PAL";
 basicInformation["Claim Type "] = "LIVING";
 basicInformation["CauseOfLoss"] = "Accident";
 
@@ -1653,6 +1654,7 @@ function handleAccountInfo(event) {
     BankDetails["AccountName"] = field_AccountName;
     BankDetails["AccountNumber"] = field_AccountNumber;
     BankDetails["AccountCurrency"] = $("select#from_currency option").filter(":selected").val();
+
     let BankDetailsList = [];
     BankDetailsList.push(BankDetails);
 
@@ -1709,10 +1711,10 @@ function pickUp() {
   let filesObject = {};
   filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
   filesObject["FileList"] = filesList;
-
-  // filesMap["Accident"] = accident
   let BankDetailsList = [];
   BankDetailsList.push(BankDetails);
+
+  // filesMap["Accident"] = accident
   finalPayload["BasicInformation"] = basicInformation;
   finalPayload["InsuredInformation"] = InsuredInformation;
   finalPayload["BankDetailsList"] = BankDetailsList;
