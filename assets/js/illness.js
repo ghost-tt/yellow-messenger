@@ -1455,7 +1455,7 @@ function handleAccountInfo(event) {
 
         finalPayload["BasicInformation"] = basicInformation;
         finalPayload["InsuredInformation"] = InsuredInformation;
-        finalPayload["BankDetails"] = BankDetailsList;
+        finalPayload["BankDetailsList"] = BankDetailsList;
         finalPayload["FileList"] = filesObject;
         finalPayload["stageThree"] = true;
         finalPayload["referenceNumber"] = referenceNumber;

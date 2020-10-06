@@ -1663,7 +1663,7 @@ function handleAccountInfo(event) {
     // filesMap["Accident"] = accident
     finalPayload["BasicInformation"] = basicInformation;
     finalPayload["InsuredInformation"] = InsuredInformation;
-    finalPayload["BankDetails"] = BankDetails;
+    finalPayload["BankDetailsList"] = BankDetailsList;
     finalPayload["FileList"] = filesObject;
     finalPayload["stageThree"] = true;
     finalPayload["referenceNumber"] = referenceNumber;
@@ -1711,9 +1711,11 @@ function pickUp() {
   filesObject["FileList"] = filesList;
 
   // filesMap["Accident"] = accident
+  let BankDetailsList = [];
+  BankDetailsList.push(BankDetails);
   finalPayload["BasicInformation"] = basicInformation;
   finalPayload["InsuredInformation"] = InsuredInformation;
-  finalPayload["BankDetails"] = BankDetails;
+  finalPayload["BankDetailsList"] = BankDetailsList;
   finalPayload["FileList"] = filesObject;
   finalPayload["stageThree"] = true;
   finalPayload["referenceNumber"] = referenceNumber;
