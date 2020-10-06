@@ -1446,6 +1446,9 @@ function handleAccountInfo(event) {
             filesObject["FileList"] = filesList;
 
             // filesMap["Accident"] = accident
+            InsuredInformation["PayoutOption"] = "CTA";
+
+
             finalPayload["BasicInformation"] = basicInformation;
             finalPayload["InsuredInformation"] = InsuredInformation;
             finalPayload["BankDetails"] = BankDetailsList;
@@ -1485,6 +1488,8 @@ function pickUp() {
     BankDetailsList.push(BankDetails);
 
     // filesMap["Accident"] = accident
+    InsuredInformation["PayoutOption"] = "PUA";
+    
     finalPayload["BasicInformation"] = basicInformation;
     finalPayload["InsuredInformation"] = InsuredInformation;
     finalPayload["BankDetails"] = BankDetailsList;

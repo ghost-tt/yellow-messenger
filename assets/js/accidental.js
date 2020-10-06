@@ -1662,6 +1662,7 @@ function handleAccountInfo(event) {
     filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
     filesObject["FileList"] = filesList;
 
+    InsuredInformation["PayoutOption"] = "CTA";
     // filesMap["Accident"] = accident
     finalPayload["BasicInformation"] = basicInformation;
     finalPayload["InsuredInformation"] = InsuredInformation;
@@ -1715,6 +1716,7 @@ function pickUp() {
   BankDetailsList.push(BankDetails);
 
   // filesMap["Accident"] = accident
+  InsuredInformation["PayoutOption"] = "PUA";
   finalPayload["BasicInformation"] = basicInformation;
   finalPayload["InsuredInformation"] = InsuredInformation;
   finalPayload["BankDetailsList"] = BankDetailsList;
