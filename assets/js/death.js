@@ -863,7 +863,7 @@ function handleFormAddBeneficiary(event) {
             beneficiary["Nationality"] = field_addBeneficiaryNationality,
             beneficiary["Sex"] = field_addBeneficiarySex,
             beneficiary["Relationship"] = field_addBeneficiaryRelationToDeceased,
-            beneficiary["DocumentFolder"] = `/home/accounts/Claims/${referenceNumber}`,
+            beneficiary["DocumentFolder"] = `/D:/CLAIMS/${referenceNumber}`,
             beneficiary["PayoutOption"] = "CTA"
         BeneficiaryList.push(beneficiary);
 
@@ -1400,7 +1400,7 @@ function handleForm(event) {
             beneficiary["Nationality"] = field_BeneficiaryNationality,
             beneficiary["Sex"] = $("select#field_BeneficiarySex option").filter(":selected").val(),
             beneficiary["Relationship"] = field_BeneficiaryRelationToDeceased,
-            beneficiary["DocumentFolder"] = `/home/accounts/Claims/${referenceNumber}`,
+            beneficiary["DocumentFolder"] = `/D:/CLAIMS/${referenceNumber}`,
             beneficiary["PayoutOption"] = "CTA",
             beneficiary["GovernmentOfficial"] = $("select#field_Beneficiary_relatives1 option").filter(":selected").val(),
             beneficiary["GovernmentOfficialRelative"] = $("select#field_Beneficiary_relatives2 option").filter(":selected").val(),
@@ -2923,7 +2923,7 @@ function buttonSubmitClicked(event) {
             insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
         }
         let FilesInformation = {};
-        FilesInformation["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
+        FilesInformation["FolderName"] = `/D:/CLAIMS/${referenceNumber}`
         FilesInformation["FileList"] = filesList;
 
         finalPayload["BasicInformation"] = basicInformation;
@@ -3025,7 +3025,7 @@ function addBeneficiaryButtonClicked(event) {
 
             //build final payload here
             let FilesInformation = {};
-            FilesInformation["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
+            FilesInformation["FolderName"] = `/D:/CLAIMS/${referenceNumber}`
             FilesInformation["FileList"] = filesList;
 
             finalPayload["BasicInformation"] = basicInformation;

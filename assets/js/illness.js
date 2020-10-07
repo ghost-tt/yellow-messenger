@@ -41,7 +41,7 @@ let claimType, causeOfLoss, govIdFront, govIdBack, apsFile, narrationReport, off
 let file1Buffer, file2Buffer, file3Buffer, file4Buffer, file5Buffer, file6Buffer, file7Buffer, file8Buffer;
 basicInformation["WebReferenceNumber"] = referenceNumber;
 basicInformation["CompanyCode"] = "PAL";
-basicInformation["Claim Type "] = "LIVING";
+basicInformation["ClaimType"] = "Living";
 basicInformation["CauseOfLoss"] = "Illness";
 
 /* document.addEventListener('DOMContentLoaded', function () {
@@ -879,7 +879,7 @@ function handleForm(event) {
         InsuredInformation["EmailAddress"] = field_emailAddress;
         InsuredInformation["HomeAddress"] = field_homeAddress;
         InsuredInformation["FirstSymptomsDate"] =  field_DOA.split('-')[2]+'/'+field_DOA.split('-')[1]+'/'+field_DOA.split('-')[0];
-        InsuredInformation["DiagnosisConfinementDate"] = field_TOA.split('-')[2]+'/'+field_TOA.split('-')[1]+'/'+field_TOA.split('-')[0];
+        InsuredInformation["AccidentDate"] = field_TOA.split('-')[2]+'/'+field_TOA.split('-')[1]+'/'+field_TOA.split('-')[0];
         InsuredInformation["FirstConsultationDate"] =  field_POA.split('-')[2]+'/'+field_POA.split('-')[1]+'/'+field_POA.split('-')[0];
         InsuredInformation["InjuryDetails"] = field_MedicalConsultation;
 
@@ -1442,7 +1442,7 @@ function handleAccountInfo(event) {
             BankDetailsList.push(BankDetails);
 
             let filesObject = {};
-            filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
+            filesObject["FolderName"] = `/D:/CLAIMS/${referenceNumber}`
             filesObject["FileList"] = filesList;
 
             // filesMap["Accident"] = accident
@@ -1451,10 +1451,10 @@ function handleAccountInfo(event) {
 
             finalPayload["BasicInformation"] = basicInformation;
             finalPayload["InsuredInformation"] = InsuredInformation;
-            finalPayload["BankDetails"] = BankDetailsList;
-            finalPayload["FileList"] = filesObject;
-            finalPayload["stageThree"] = true;
-            finalPayload["referenceNumber"] = referenceNumber;
+            finalPayload["BankDetailsList"] = BankDetailsList;
+            finalPayload["FilesInformation"] = filesObject;
+            // finalPayload["stageThree"] = true;
+            // finalPayload["referenceNumber"] = referenceNumber;
 
             console.log("FPB : ")
             console.log(finalPayload)
@@ -1482,7 +1482,7 @@ function bankTranfer() {
 
 function pickUp() {
     let filesObject = {};
-    filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
+    filesObject["FolderName"] = `/D:/CLAIMS/${referenceNumber}`
     filesObject["FileList"] = filesList;
     let BankDetailsList = [];
     BankDetailsList.push(BankDetails);
@@ -1492,10 +1492,10 @@ function pickUp() {
 
     finalPayload["BasicInformation"] = basicInformation;
     finalPayload["InsuredInformation"] = InsuredInformation;
-    finalPayload["BankDetails"] = BankDetailsList;
-    finalPayload["FileList"] = filesObject;
-    finalPayload["stageThree"] = true;
-    finalPayload["referenceNumber"] = referenceNumber;
+    finalPayload["BankDetailsList"] = BankDetailsList;
+    finalPayload["FilesInformation"] = filesObject;
+    // finalPayload["stageThree"] = true;
+    // finalPayload["referenceNumber"] = referenceNumber;
 
     console.log("pick up payload : ")
     console.log(finalPayload)
