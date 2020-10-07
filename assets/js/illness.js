@@ -133,7 +133,7 @@ function resetTimer() {
 
 function timerIncrement() {
     currSeconds = currSeconds + 1;
-    if (currSeconds == 10) {
+    if (currSeconds == 1800) {
         window.top.location = 'http://www.philamlife.com'
     }
 }
