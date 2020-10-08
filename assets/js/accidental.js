@@ -675,10 +675,10 @@ function handleForm(event) {
     lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
   }
 
-  var lenFirstName = fieldCheckLength(field_firstName, 30);
-  var lenMiddleName = fieldCheckLength(field_middleName, 30);
+  var lenFirstName = fieldCheckLength(field_firstName, 25);
+  var lenMiddleName = fieldCheckLength(field_middleName, 25);
   var leninjury = fieldCheckLength(field_injury, 500);
-  var lenLastName = fieldCheckLength(field_lastName, 30);
+  var lenLastName = fieldCheckLength(field_lastName, 25);
   var lenMobileNum = fieldCheckLength(field_mobileNum, 10);
   var lenHomeAddress = fieldCheckLength(field_homeAddress, 250);
   var lenPOA = fieldCheckLength(field_POA, 120);
@@ -701,7 +701,7 @@ function handleForm(event) {
     $("#err_field_firstName").text('Field is empty');
     $("#err_field_firstName").show();
   } else if (lenFirstName) {
-    $("#err_field_firstName").text("Maximum 30 characters allowed!");
+    $("#err_field_firstName").text("Maximum 25 characters allowed!");
     $("#err_field_firstName").show();
   } else if (specFirstName == true) {
     $("#err_field_firstName").text('Special character is not allowed');
@@ -718,7 +718,7 @@ function handleForm(event) {
     $("#err_field_middleName").text('Field is empty');
     $("#err_field_middleName").show();
   } else if (lenMiddleName) {
-    $("#err_field_middleName").text("Maximum 30 characters allowed!");
+    $("#err_field_middleName").text("Maximum 25 characters allowed!");
     $("#err_field_middleName").show();
   } else if (specMiddleName) {
     $("#err_field_middleName").text('Special character is not allowed');
@@ -746,7 +746,7 @@ function handleForm(event) {
     $("#err_field_lastName").text('Field is empty');
     $("#err_field_lastName").show();
   } else if (lenLastName) {
-    $("#err_field_lastName").text("Maximum 30 characters allowed!");
+    $("#err_field_lastName").text("Maximum 25 characters allowed!");
     $("#err_field_lastName").show();
   } else if (specLastName) {
     $("#err_field_lastName").text('Special character is not allowed');
