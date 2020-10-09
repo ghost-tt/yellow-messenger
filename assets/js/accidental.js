@@ -950,13 +950,13 @@ function handleForm(event) {
     InsuredInformation["MiddleName"] = field_middleName;
     InsuredInformation["LastName"] = field_lastName;
     InsuredInformation["Suffix"] = field_lastName_Suffix;
-    InsuredInformation["DateOfBirth"] = field_DOB.split('-')[2]+'/'+field_DOB.split('-')[1]+'/'+field_DOB.split('-')[0];
+    InsuredInformation["DateOfBirth"] = field_DOB.split('-')[1]+'/'+field_DOB.split('-')[2]+'/'+field_DOB.split('-')[0];
     InsuredInformation["CountryCode"] = $("select#inlineFormCustomSelect option").filter(":selected").val();
     InsuredInformation["PhoneNumber"] = field_mobileNum;
     InsuredInformation["EmailAddress"] = field_emailAddress;
     InsuredInformation["HomeAddress"] = field_homeAddress;
     InsuredInformation["InjuryDetails"] = field_injury;
-    InsuredInformation["AccidentDate"] =  field_DOA.split('-')[2]+'/'+field_DOA.split('-')[1]+'/'+field_DOA.split('-')[0];
+    InsuredInformation["AccidentDate"] =  field_DOA.split('-')[1]+'/'+field_DOA.split('-')[2]+'/'+field_DOA.split('-')[0];
     InsuredInformation["AccidentTime"] = field_TOA;
     InsuredInformation["AccidentPlace"] = field_POA;
 
@@ -1718,7 +1718,7 @@ function pickUp() {
   finalPayload["BasicInformation"] = basicInformation;
   finalPayload["InsuredInformation"] = InsuredInformation;
   finalPayload["BankDetailsList"] = BankDetailsList;
-  finalPayload["FileList"] = filesObject;
+  finalPayload["FilesInformation"] = filesObject;
   // finalPayload["stageThree"] = true;
   // finalPayload["referenceNumber"] = referenceNumber;
 
