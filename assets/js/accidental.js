@@ -487,7 +487,6 @@ function check_Mobile_Length(evt, max_Length) {
   if (length !== max_Length) {
     detection(evt);
   } else {
-    console.log(length, max_Length)
     $(`#err_${id}`).text("Maximum " + max_Length + " number allowed!");
     $(`#err_${id}`).show();
   }
@@ -625,6 +624,21 @@ function compareFun(DOB, DOA) {
 }
 
 
+function formatAMPM(date) {
+  var time = date;
+  var full_Time = time.split(':');
+  var hours, minutes;
+  hours = full_Time[0];
+  minutes = full_Time[1];
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; 
+  minutes = minutes < 10 ? minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  
+  return strTime
+}
+
 function handleForm(event) {
   event.preventDefault();
   var field_firstName = $("#field_firstName").val();
@@ -639,7 +653,7 @@ function handleForm(event) {
   var field_DOA = $("#field_DOA").val();
   var field_TOA = $("#field_TOA").val();
   var field_POA = $("#field_POA").val();
-
+  var full_TOA = formatAMPM(field_TOA);
 
   var comapareDates = compareFun(field_DOB, field_DOA);
 
@@ -929,7 +943,8 @@ function handleForm(event) {
       field_emailAddress,
       field_homeAddress,
       field_DOA,
-      field_TOA,
+      full_TOA,
+      /* field_TOA, */
       field_POA,
       basic_checkbox: $("#invalidCheck_basic").is(":checked"),
       privacy_checkbox: $("#invalidCheck_privacy").is(":checked"),
