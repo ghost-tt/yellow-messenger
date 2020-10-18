@@ -1543,7 +1543,7 @@ function buttonSubmitClicked(event) {
     referenceNumber: referenceNumber
   }
   $('#otpPopUp').modal('show');
-  otpTimer(120);
+  otpTimer();
   window.parent.postMessage(JSON.stringify({
     event_code: 'ym-client-event', data: JSON.stringify({
       event: {
@@ -1964,36 +1964,38 @@ function goBack1() {
 
 
 //drop-2 methods
-let timerOn = true;
-let resendCount = 0;
+var duration;
+var otpTimerRunning = true;
+var remaining = 12;
+var resendCount = 0;
+function otpTimer() {
 
-function otpTimer(remaining) {
-
-  // console.log('remainig' + remaining);
-  timerOn = true;
+  if (remaining == 12) {
+    duration = setInterval(otpTimer, 1000);
+  }
   var m = Math.floor(remaining / 60);
   var s = remaining % 60;
-
   m = m < 10 ? '0' + m : m;
   s = s < 10 ? '0' + s : s;
   document.getElementById('otpTimer').innerHTML = m + ':' + s;
   remaining -= 1;
-
-  if (remaining >= 0 && timerOn) {
-    setTimeout(function () {
-      otpTimer(remaining);
-    }, 1000);
-    return;
+  if (remaining == 0) {
+    removeTimer();
+    //  timeout stuff here
+    $('#otpPopUp').modal('hide'); // to hide otp modal on timer exceed
+    $('#otpExpiry').modal('show'); //show otp expiry  modal on timer exceed
   }
+}
 
-  if (!timerOn) {
+function resendOtpDummy() {
+  removeTimer();
+  otpTimer();
+}
 
-    return;
-  }
-
-  //  timeout stuff here
-  $('#otpPopUp').modal('hide'); // to hide otp modal on timer exceed
-  timerOn ?? $('#otpExpiry').modal('show'); //show otp expiry  modal on timer exceed
+function removeTimer() {
+  clearInterval(duration);
+  document.getElementById('otpTimer').innerHTML = "";
+  remaining = 12;
 }
 
 // otpTimer(120);
@@ -2003,19 +2005,19 @@ function resendOtp() {
 
   // document.getElementById('otpTimer').innerHTML.remove();
   $('#otpPopUp').modal('show');
-
+  removeTimer();
   resendCount++;
   if (resendCount > 3) {
-
     $('#otpPopUp').modal('hide');
     $('#maxResendOtp').modal('show');
-    otpTimer(0);
+
   }
   else {
     $('#invalidOtp').modal('hide');
     $('#otpPopUp').modal('show');
     document.getElementById('otp').value = ''
-    otpTimer(120);
+
+    otpTimer();
     //api call for resend otp
   }
   $('#otpExpiry').modal('hide');
