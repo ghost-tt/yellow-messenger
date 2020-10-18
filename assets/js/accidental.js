@@ -20,7 +20,7 @@ let referenceNumber = url.searchParams.get('refNumber');
 let uid = url.searchParams.get('sender');
 let botId = url.searchParams.get('botId');
 
-var currSeconds = 0; 
+var currSeconds = 0;
 
 $('#privacy_consent_1').prop('checked', true);
 $('#privacy_consent_2').prop('checked', true);
@@ -37,12 +37,12 @@ form_Bank.addEventListener('submit', handleAccountInfo);
         animation: true
     })
 }) */
-  function myDisable() {
+function myDisable() {
   document.getElementById("submit9").disabled = true;
   document.getElementById("submit9").style.cursor = "no-drop";
-  document.getElementById("field_AccountName"). disabled = true; 
+  document.getElementById("field_AccountName").disabled = true;
   document.getElementById("field_AccountName").style.cursor = "no-drop";
-  document.getElementById("field_AccountNumber").disabled = true;  
+  document.getElementById("field_AccountNumber").disabled = true;
   document.getElementById("field_AccountNumber").style.cursor = "no-drop";
   document.getElementById("field_Bank").disabled = true;
   document.getElementById("field_Bank").style.cursor = "no-drop";
@@ -58,50 +58,50 @@ form_Bank.addEventListener('submit', handleAccountInfo);
 }
 
 function timer() {
-  var random = Math.floor(Math.random() * 5) + 1  
+  var random = Math.floor(Math.random() * 5) + 1
   return new Promise((resolve, reject) => {
-    var i=0
+    var i = 0
     let cleartime = setInterval(() => {
-     i = random + i;
-     renderProgress(i)
-     if(i == 99){
-      i = 100;
+      i = random + i;
       renderProgress(i)
-     }
-     if(i == 100 )  {
-   
+      if (i == 99) {
+        i = 100;
+        renderProgress(i)
+      }
+      if (i == 100) {
+
         console.log("cleartime");
         clearTimeout(cleartime);
         resolve("cleartime")
-    }
-  //  i++;
-   }, 500);
+      }
+      //  i++;
+    }, 500);
   })
 }
 
 function renderProgress(progress) {
   progress = Math.floor(progress);
-  if(progress<25){
-      var angle = -90 + (progress/100)*360;
-      $(".animate-0-25-b").css("transform","rotate("+angle+"deg)");
+  if (progress < 25) {
+    var angle = -90 + (progress / 100) * 360;
+    $(".animate-0-25-b").css("transform", "rotate(" + angle + "deg)");
   }
-  else if(progress>=25 && progress<50){
-      var angle = -90 + ((progress-25)/100)*360;
-      $(".animate-0-25-b").css("transform","rotate(0deg)");
-      $(".animate-25-50-b").css("transform","rotate("+angle+"deg)");
+  else if (progress >= 25 && progress < 50) {
+    var angle = -90 + ((progress - 25) / 100) * 360;
+    $(".animate-0-25-b").css("transform", "rotate(0deg)");
+    $(".animate-25-50-b").css("transform", "rotate(" + angle + "deg)");
   }
-  else if(progress>=50 && progress<75){
-      var angle = -90 + ((progress-50)/100)*360;
-      $(".animate-25-50-b, .animate-0-25-b").css("transform","rotate(0deg)");
-      $(".animate-50-75-b").css("transform","rotate("+angle+"deg)");
+  else if (progress >= 50 && progress < 75) {
+    var angle = -90 + ((progress - 50) / 100) * 360;
+    $(".animate-25-50-b, .animate-0-25-b").css("transform", "rotate(0deg)");
+    $(".animate-50-75-b").css("transform", "rotate(" + angle + "deg)");
   }
-  else if(progress>=75 && progress<=100){
-      var angle = -90 + ((progress-75)/100)*360;
-      $(".animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
-                                          .css("transform","rotate(0deg)");
-      $(".animate-75-100-b").css("transform","rotate("+angle+"deg)");
+  else if (progress >= 75 && progress <= 100) {
+    var angle = -90 + ((progress - 75) / 100) * 360;
+    $(".animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
+      .css("transform", "rotate(0deg)");
+    $(".animate-75-100-b").css("transform", "rotate(" + angle + "deg)");
   }
-  $(".text").html(progress+"%");
+  $(".text").html(progress + "%");
 }
 
 
@@ -134,22 +134,22 @@ $(document).ready(function (event) {
   disableFutureDates();
   disableFutureDatesDOB();
   setCountryCode();
-  let idleInterval = setInterval(timerIncrement, 1000); 
-  $(this).mousemove(resetTimer); 
-  $(this).keypress(resetTimer); 
+  let idleInterval = setInterval(timerIncrement, 1000);
+  $(this).mousemove(resetTimer);
+  $(this).keypress(resetTimer);
 
 });
 
-function resetTimer() { 
-  currSeconds = 0; 
-} 
+function resetTimer() {
+  currSeconds = 0;
+}
 
-function timerIncrement() { 
-  currSeconds = currSeconds + 1; 
-  if(currSeconds == 1800) {
+function timerIncrement() {
+  currSeconds = currSeconds + 1;
+  if (currSeconds == 1800) {
     window.top.location = 'http://www.philamlife.com'
   }
-} 
+}
 
 
 
@@ -225,16 +225,16 @@ function disableFutureDatesDOB() {
   var dtToday = new Date();
   var month = dtToday.getMonth() + 1;
   var day = dtToday.getDate();
-  var dobdate = day-1
+  var dobdate = day - 1
   var year = dtToday.getFullYear();
   if (month < 10)
     month = '0' + month.toString();
   if (day < 10)
     day = '0' + day.toString();
   var maxDate = year + '-' + month + '-' + dobdate;
-  if( day <= 10) {
-      maxDate = year + '-' + month + '-' + '0'+ dobdate;
-  } 
+  if (day <= 10) {
+    maxDate = year + '-' + month + '-' + '0' + dobdate;
+  }
   $('#field_DOB').attr('max', maxDate);
 }
 
@@ -632,10 +632,10 @@ function formatAMPM(date) {
   minutes = full_Time[1];
   var ampm = hours >= 12 ? 'pm' : 'am';
   hours = hours % 12;
-  hours = hours ? hours : 12; 
+  hours = hours ? hours : 12;
   minutes = minutes < 10 ? minutes : minutes;
   var strTime = hours + ':' + minutes + ' ' + ampm;
-  
+
   return strTime
 }
 
@@ -958,20 +958,20 @@ function handleForm(event) {
     $("#step2>div").addClass("active");
     $('#requirements').show();
     /*  $('#requirements')[0].scrollIntoView(true); */
-      $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an SMS update from us within 1 to 2 working days on the status of your request.`);
+    $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an SMS update from us within 1 to 2 working days on the status of your request.`);
     console.log('Data -> ', data)
 
     InsuredInformation["FirstName"] = field_firstName;
     InsuredInformation["MiddleName"] = field_middleName;
     InsuredInformation["LastName"] = field_lastName;
     InsuredInformation["Suffix"] = field_lastName_Suffix;
-    InsuredInformation["DateOfBirth"] = field_DOB.split('-')[1]+'/'+field_DOB.split('-')[2]+'/'+field_DOB.split('-')[0];
+    InsuredInformation["DateOfBirth"] = field_DOB.split('-')[1] + '/' + field_DOB.split('-')[2] + '/' + field_DOB.split('-')[0];
     InsuredInformation["CountryCode"] = $("select#inlineFormCustomSelect option").filter(":selected").val();
     InsuredInformation["PhoneNumber"] = field_mobileNum;
     InsuredInformation["EmailAddress"] = field_emailAddress;
     InsuredInformation["HomeAddress"] = field_homeAddress;
     InsuredInformation["InjuryDetails"] = field_injury;
-    InsuredInformation["AccidentDate"] =  field_DOA.split('-')[1]+'/'+field_DOA.split('-')[2]+'/'+field_DOA.split('-')[0];
+    InsuredInformation["AccidentDate"] = field_DOA.split('-')[1] + '/' + field_DOA.split('-')[2] + '/' + field_DOA.split('-')[0];
     InsuredInformation["AccidentTime"] = field_TOA;
     InsuredInformation["AccidentPlace"] = field_POA;
 
@@ -1128,11 +1128,11 @@ file1.onchange = async function (e) {
         console.log("setting file data : ");
         let accident = {};
         // accident['LIDC001Front'] = {
-          accident['BeneficiaryNo'] = beneficiaryCount,
+        accident['BeneficiaryNo'] = beneficiaryCount,
           accident["Filename"] = `${fileName}.pdf`,
-          accident["DocType"]= "PDF",
-          accident["DocTypeCode"]= "LIDC001",
-          accident["DocumentDescription"]= "Front copy of doc"
+          accident["DocType"] = "PDF",
+          accident["DocTypeCode"] = "LIDC001",
+          accident["DocumentDescription"] = "Front copy of doc"
         // }
 
         filesList.push(accident);
@@ -1186,10 +1186,10 @@ file2.onchange = async function (e) {
 
         let accident = {};
         accident['BeneficiaryNo'] = beneficiaryCount,
-        accident["Filename"] = `${fileName}.pdf`,
-        accident["DocType"]= "PDF",
-        accident["DocTypeCode"]= "LIDC001",
-        accident["DocumentDescription"]= "Back copy of doc"
+          accident["Filename"] = `${fileName}.pdf`,
+          accident["DocType"] = "PDF",
+          accident["DocTypeCode"] = "LIDC001",
+          accident["DocumentDescription"] = "Back copy of doc"
 
         filesList.push(accident);
         const formData = new FormData()
@@ -1241,10 +1241,10 @@ file3.onchange = async function (e) {
         let accident = {};
 
         accident['BeneficiaryNo'] = beneficiaryCount,
-        accident["Filename"] = `${fileName}.pdf`,
-        accident["DocType"]= "PDF",
-        accident["DocTypeCode"]= docType,
-        accident["DocumentDescription"]= "Attending Physician’s Statement"
+          accident["Filename"] = `${fileName}.pdf`,
+          accident["DocType"] = "PDF",
+          accident["DocTypeCode"] = docType,
+          accident["DocumentDescription"] = "Attending Physician’s Statement"
 
         filesList.push(accident);
         const formData = new FormData()
@@ -1297,10 +1297,10 @@ file4.onchange = async function (e) {
         let accident = {};
 
         accident['BeneficiaryNo'] = beneficiaryCount,
-        accident["Filename"] = `${fileName}.pdf`,
-        accident["DocType"]= "PDF",
-        accident["DocTypeCode"]= docType,
-        accident["DocumentDescription"]= "Police or Narration Report"
+          accident["Filename"] = `${fileName}.pdf`,
+          accident["DocType"] = "PDF",
+          accident["DocTypeCode"] = docType,
+          accident["DocumentDescription"] = "Police or Narration Report"
 
         filesList.push(accident);
         const formData = new FormData()
@@ -1353,10 +1353,10 @@ file5.onchange = async function (e) {
         let accident = {};
 
         accident['BeneficiaryNo'] = beneficiaryCount,
-        accident["Filename"] = `${fileName}.pdf`,
-        accident["DocType"]= "PDF",
-        accident["DocTypeCode"]= docType,
-        accident["DocumentDescription"]= "Police or Narration Report"
+          accident["Filename"] = `${fileName}.pdf`,
+          accident["DocType"] = "PDF",
+          accident["DocTypeCode"] = docType,
+          accident["DocumentDescription"] = "Police or Narration Report"
 
         filesList.push(accident);
 
@@ -1533,16 +1533,17 @@ function buttonSubmitClicked(event) {
 
   $("#step2").addClass("active");
   $("#step2>div").addClass("active");
-  /* $("#step2").addClass("done"); */
-  $('#requirements').hide();
-  $('#payment').show();
-  /*   $('#payment')[0].scrollIntoView(true); */
+
+
+
 
   console.log('upload data --> ', upload_data);
   let stageTwoData = {
     stageTwo: true,
     referenceNumber: referenceNumber
   }
+  $('#otpPopUp').modal('show');
+  otpTimer(120);
   window.parent.postMessage(JSON.stringify({
     event_code: 'ym-client-event', data: JSON.stringify({
       event: {
@@ -1551,6 +1552,9 @@ function buttonSubmitClicked(event) {
       }
     })
   }), '*');
+
+
+
 }
 
 
@@ -1632,7 +1636,7 @@ function handleAccountInfo(event) {
   if (!file6.value) {
     $('#upload_feedback_label').show();
     $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
-  }else {
+  } else {
     $('#upload_feedback_label').hide();
     $('#upload_feedback_label').text('');
   }
@@ -1695,17 +1699,17 @@ function handleAccountInfo(event) {
       })
     }), '*');
     myDisable()
-    timer().then( async () => { 
-    $("#step2").addClass("done");
-   /*  $("#step3").addClass("active");
-    $("#step3>div").addClass("active"); */
-    /* $("#step3").addClass("done"); */
-    $("#step3_circle").addClass("md-step-step3-circle ");
-    $("#step3_span").addClass("md-step3-span");
-    $("#step3_reference").addClass("md-step3-span")
-    $("#account_details").hide();
-    $("#process_confirmation").show();
-    console.log("Data -> ", data);
+    timer().then(async () => {
+      $("#step2").addClass("done");
+      /*  $("#step3").addClass("active");
+       $("#step3>div").addClass("active"); */
+      /* $("#step3").addClass("done"); */
+      $("#step3_circle").addClass("md-step-step3-circle ");
+      $("#step3_span").addClass("md-step3-span");
+      $("#step3_reference").addClass("md-step3-span")
+      $("#account_details").hide();
+      $("#process_confirmation").show();
+      console.log("Data -> ", data);
     });
   } else {
     $("#popUp").modal("show");
@@ -1762,9 +1766,9 @@ function pickup_Bpi() {
   $("#step3_circle").addClass("md-step-step3-circle ");
   $("#step3_span").addClass("md-step3-span");
   $("#step3_reference").addClass("md-step3-span")
- /*  $("#step3").addClass("active");
-  $("#step3>div").addClass("active"); */
- /*  $("#step3").addClass("done"); */
+  /*  $("#step3").addClass("active");
+   $("#step3>div").addClass("active"); */
+  /*  $("#step3").addClass("done"); */
 }
 
 function addBank(event) {
@@ -1942,18 +1946,100 @@ function goBack() {
   /* $('#form_wrapper')[0].scrollIntoView(true); */
 }
 
-function goBackPickup(){
+function goBackPickup() {
   $("#step3").removeClass("done");
-    $('#pickUp').hide();
-    $('#requirements').show();
+  $('#pickUp').hide();
+  $('#requirements').show();
 }
 
 function goBack1() {
   console.log('go back!!!');
-    $("#step3").removeClass("done");
-    $('#account_details').hide();
-    $('#requirements').show();
-  
- 
+  $("#step3").removeClass("done");
+  $('#account_details').hide();
+  $('#requirements').show();
+
+
   /* $('#form_wrapper')[0].scrollIntoView(true); */
 }
+
+
+//drop-2 methods
+let timerOn = true;
+let resendCount = 0;
+
+function otpTimer(remaining) {
+
+  // console.log('remainig' + remaining);
+  timerOn = true;
+  var m = Math.floor(remaining / 60);
+  var s = remaining % 60;
+
+  m = m < 10 ? '0' + m : m;
+  s = s < 10 ? '0' + s : s;
+  document.getElementById('otpTimer').innerHTML = m + ':' + s;
+  remaining -= 1;
+
+  if (remaining >= 0 && timerOn) {
+    setTimeout(function () {
+      otpTimer(remaining);
+    }, 1000);
+    return;
+  }
+
+  if (!timerOn) {
+
+    return;
+  }
+
+  //  timeout stuff here
+  $('#otpPopUp').modal('hide'); // to hide otp modal on timer exceed
+  timerOn ?? $('#otpExpiry').modal('show'); //show otp expiry  modal on timer exceed
+}
+
+// otpTimer(120);
+
+function resendOtp() {
+  // $('#otpExpiry').modal('hide');
+
+  // document.getElementById('otpTimer').innerHTML.remove();
+  $('#otpPopUp').modal('show');
+
+  resendCount++;
+  if (resendCount > 3) {
+
+    $('#otpPopUp').modal('hide');
+    $('#maxResendOtp').modal('show');
+    otpTimer(0);
+  }
+  else {
+    $('#invalidOtp').modal('hide');
+    $('#otpPopUp').modal('show');
+    document.getElementById('otp').value = ''
+    otpTimer(120);
+    //api call for resend otp
+  }
+  $('#otpExpiry').modal('hide');
+}
+
+
+function submitOtp() {
+  //api call fro submit otp
+
+  var dummy_otp = '1234'
+  otpTimer(0)
+  resendCount = 0;
+  if (document.getElementById('otp').value != dummy_otp) {
+    $('#invalidOtp').modal('show');
+  }
+  else {
+    $('#otpPopUp').modal('hide');
+    $('#requirements').hide();
+    $('#payment').show();
+
+  }
+
+}
+
+
+
+//drop-2 methods
