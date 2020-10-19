@@ -1542,7 +1542,7 @@ function buttonSubmitClicked(event) {
     stageTwo: true,
     referenceNumber: referenceNumber
   }
-  $('#otpPopUp').modal('show');
+
   otpTimer();
   window.parent.postMessage(JSON.stringify({
     event_code: 'ym-client-event', data: JSON.stringify({
@@ -1965,60 +1965,60 @@ function goBack1() {
 
 //drop-2 methods
 var duration;
-var otpTimerRunning = true;
-var remaining = 12;
+var remaining = 120; // 2 mins timer 
 var resendCount = 0;
 function otpTimer() {
-
-  if (remaining == 12) {
-    duration = setInterval(otpTimer, 1000);
+  if (resendCount <= 3) {
+    $('#otpPopUp').modal('show');
+    if (remaining == 120) {
+      duration = setInterval(otpTimer, 1000);
+    }
+    var m = Math.floor(remaining / 60);
+    var s = remaining % 60;
+    m = m < 10 ? '0' + m : m;
+    s = s < 10 ? '0' + s : s;
+    document.getElementById('otpTimer').innerHTML = m + ':' + s;
+    remaining -= 1;
+    if (remaining == 0) {
+      //  timeout stuff here
+      removeTimer();
+      $('#otpPopUp').modal('hide'); // to hide otp modal on timer exceed
+      $('#otpExpiry').modal('show'); //show otp expiry  modal on timer exceed
+    }
   }
-  var m = Math.floor(remaining / 60);
-  var s = remaining % 60;
-  m = m < 10 ? '0' + m : m;
-  s = s < 10 ? '0' + s : s;
-  document.getElementById('otpTimer').innerHTML = m + ':' + s;
-  remaining -= 1;
-  if (remaining == 0) {
-    removeTimer();
-    //  timeout stuff here
-    $('#otpPopUp').modal('hide'); // to hide otp modal on timer exceed
-    $('#otpExpiry').modal('show'); //show otp expiry  modal on timer exceed
+  else {
+    $('#otpExpiry').modal('hide');
+    $('#invalidOtp').modal('hide');
+    $('#maxResendOtp').modal('show');
   }
 }
 
-function resendOtpDummy() {
-  removeTimer();
-  otpTimer();
-}
+
+// to refresh the otp otp timer
 
 function removeTimer() {
   clearInterval(duration);
   document.getElementById('otpTimer').innerHTML = "";
-  remaining = 12;
+  remaining = 120;
 }
 
-// otpTimer(120);
+function resendOtp(type) {
+  //api call for resend otp
 
-function resendOtp() {
-  // $('#otpExpiry').modal('hide');
-
-  // document.getElementById('otpTimer').innerHTML.remove();
-  $('#otpPopUp').modal('show');
   removeTimer();
   resendCount++;
   if (resendCount > 3) {
     $('#otpPopUp').modal('hide');
+    $('#invalidOtp').modal('hide');
     $('#maxResendOtp').modal('show');
 
   }
   else {
     $('#invalidOtp').modal('hide');
-    $('#otpPopUp').modal('show');
+    if (type != 'resend') { $('#otpPopUp').modal('show'); }
     document.getElementById('otp').value = ''
-
     otpTimer();
-    //api call for resend otp
+
   }
   $('#otpExpiry').modal('hide');
 }
@@ -2026,10 +2026,10 @@ function resendOtp() {
 
 function submitOtp() {
   //api call fro submit otp
-
+  document.getElementById('otp').value = ''
   var dummy_otp = '1234'
-  otpTimer(0)
-  resendCount = 0;
+  removeTimer();
+
   if (document.getElementById('otp').value != dummy_otp) {
     $('#invalidOtp').modal('show');
   }
@@ -2041,7 +2041,5 @@ function submitOtp() {
   }
 
 }
-
-
 
 //drop-2 methods

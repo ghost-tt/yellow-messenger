@@ -1595,7 +1595,7 @@
                             <br> Kindly enter the OTP in the space below.</p>
                         <p id="otp-text">Your OTP expires after two minutes.
                             <br> Click
-                            <a style="color:#1b89f0 ;cursor: pointer;"  onclick="resendOtp()">here</a> to resend another one.</p>
+                            <a style="color:#1b89f0 ;cursor: pointer;"  onclick="resendOtp('resend')">here</a> to resend another one.</p>
                         <p id="otp-text">If your current mobile number does not
                             <br> match our records, kindly update your
                             <br> contact details via
@@ -1638,7 +1638,7 @@
                     <div class="modal-body">
                         <p id="modal-text" style="text-align:center;">Sorry, you have entered an invalid
                             <br> One-Time PIN. To have another OTP sent to your mobile number, please click
-                            <a style="color:#1b89f0 ;cursor: pointer;" onclick="resendOtp()">here</a>.
+                            <a style="color:#1b89f0 ;cursor: pointer;" onclick="resendOtp('invalidInput')">here</a>.
                         </p>
 
                         <br>
@@ -1658,7 +1658,7 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <p id="modal-text">Sorry, your 2 minutes to enter the OTP is up. To have another OTP sent to your mobile number,please click
-                            <a style="color:#1b89f0;cursor: pointer;" onclick="resendOtp()">here</a>.
+                            <a style="color:#1b89f0;cursor: pointer;" onclick="resendOtp('otpExpire')">here</a>.
                         </p>
 
                     </div>
