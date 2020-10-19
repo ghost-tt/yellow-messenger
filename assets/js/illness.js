@@ -882,7 +882,9 @@ function handleForm(event) {
         InsuredInformation["AccidentDate"] = field_TOA.split('-')[1] + '/' + field_TOA.split('-')[2] + '/' + field_TOA.split('-')[0];
         InsuredInformation["FirstConsultationDate"] = field_POA.split('-')[1] + '/' + field_POA.split('-')[2] + '/' + field_POA.split('-')[0];
         InsuredInformation["InjuryDetails"] = field_MedicalConsultation;
-
+        // for otp screen
+        document.getElementById('user_mobile').innerHTML = field_mobileNum.replace(/.(?=.{4})/g, '*')
+        // for otp screen
         let stageOneData = {
             stageOne: true,
             type: "Accident",

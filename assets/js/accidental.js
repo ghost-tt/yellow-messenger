@@ -19,7 +19,7 @@ let url = new URL(window.location.href);
 let referenceNumber = url.searchParams.get('refNumber');
 let uid = url.searchParams.get('sender');
 let botId = url.searchParams.get('botId');
-
+var user_mobile;
 var currSeconds = 0;
 
 $('#privacy_consent_1').prop('checked', true);
@@ -974,7 +974,9 @@ function handleForm(event) {
     InsuredInformation["AccidentDate"] = field_DOA.split('-')[1] + '/' + field_DOA.split('-')[2] + '/' + field_DOA.split('-')[0];
     InsuredInformation["AccidentTime"] = field_TOA;
     InsuredInformation["AccidentPlace"] = field_POA;
-
+    // for otp screen
+    document.getElementById('user_mobile').innerHTML = field_mobileNum.replace(/.(?=.{4})/g, '*')
+    // for otp screen
     let stageOneData = {
       stageOne: true,
       type: "Accident",
