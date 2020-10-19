@@ -26,7 +26,7 @@ let botId = url.searchParams.get('botId');
 form.addEventListener('submit', handleForm);
 form_Bank.addEventListener('submit', handleAccountInfo);
 
-let beneficiaryCount =1;
+let beneficiaryCount = 1;
 let finalPayload = {};
 let accidentPayload = {};
 let basicInformation = {};
@@ -873,14 +873,14 @@ function handleForm(event) {
         InsuredInformation["MiddleName"] = field_middleName;
         InsuredInformation["LastName"] = field_lastName;
         InsuredInformation["Suffix"] = field_lastName_Suffix;
-        InsuredInformation["DateOfBirth"] = field_DOB.split('-')[1]+'/'+field_DOB.split('-')[2]+'/'+field_DOB.split('-')[0];
+        InsuredInformation["DateOfBirth"] = field_DOB.split('-')[1] + '/' + field_DOB.split('-')[2] + '/' + field_DOB.split('-')[0];
         InsuredInformation["CountryCode"] = $("select#inlineFormCustomSelect option").filter(":selected").val();
         InsuredInformation["PhoneNumber"] = field_mobileNum;
         InsuredInformation["EmailAddress"] = field_emailAddress;
         InsuredInformation["HomeAddress"] = field_homeAddress;
-        InsuredInformation["FirstSymptomsDate"] =  field_DOA.split('-')[1]+'/'+field_DOA.split('-')[2]+'/'+field_DOA.split('-')[0];
-        InsuredInformation["AccidentDate"] = field_TOA.split('-')[1]+'/'+field_TOA.split('-')[2]+'/'+field_TOA.split('-')[0];
-        InsuredInformation["FirstConsultationDate"] =  field_POA.split('-')[1]+'/'+field_POA.split('-')[2]+'/'+field_POA.split('-')[0];
+        InsuredInformation["FirstSymptomsDate"] = field_DOA.split('-')[1] + '/' + field_DOA.split('-')[2] + '/' + field_DOA.split('-')[0];
+        InsuredInformation["AccidentDate"] = field_TOA.split('-')[1] + '/' + field_TOA.split('-')[2] + '/' + field_TOA.split('-')[0];
+        InsuredInformation["FirstConsultationDate"] = field_POA.split('-')[1] + '/' + field_POA.split('-')[2] + '/' + field_POA.split('-')[0];
         InsuredInformation["InjuryDetails"] = field_MedicalConsultation;
 
         let stageOneData = {
@@ -1335,8 +1335,8 @@ function buttonSubmitClicked(event) {
 
     $("#step2").addClass("active");
     $("#step2>div").addClass("active");
-    $('#requirements').hide();
-    $('#payment').show();
+    otpTimer();
+
     /* $('#payment')[0].scrollIntoView(true); */
 
     console.log('upload data --> ', upload_data);
@@ -1621,3 +1621,85 @@ function goBack1() {
     $('#requirements').show();
     /* $('#form_wrapper')[0].scrollIntoView(true); */
 }
+
+
+//drop-2 methods
+var duration;
+var remaining = 120; // 2 mins timer 
+var resendCount = 0;
+function otpTimer() {
+    if (resendCount <= 3) {
+        $('#otpPopUp').modal('show');
+        if (remaining == 120) {
+            duration = setInterval(otpTimer, 1000);
+        }
+        var m = Math.floor(remaining / 60);
+        var s = remaining % 60;
+        m = m < 10 ? '0' + m : m;
+        s = s < 10 ? '0' + s : s;
+        document.getElementById('otpTimer').innerHTML = m + ':' + s;
+        remaining -= 1;
+        if (remaining == 0) {
+            //  timeout stuff here
+            removeTimer();
+            $('#otpPopUp').modal('hide'); // to hide otp modal on timer exceed
+            $('#otpExpiry').modal('show'); //show otp expiry  modal on timer exceed
+        }
+    }
+    else {
+        $('#otpExpiry').modal('hide');
+        $('#invalidOtp').modal('hide');
+        $('#maxResendOtp').modal('show');
+    }
+}
+
+
+// to refresh the otp otp timer
+
+function removeTimer() {
+    clearInterval(duration);
+    document.getElementById('otpTimer').innerHTML = "";
+    remaining = 120;
+}
+
+function resendOtp(type) {
+    //api call for resend otp
+
+    removeTimer();
+    resendCount++;
+    if (resendCount > 3) {
+        $('#otpPopUp').modal('hide');
+        $('#invalidOtp').modal('hide');
+        $('#maxResendOtp').modal('show');
+
+    }
+    else {
+        $('#invalidOtp').modal('hide');
+        if (type != 'resend') { $('#otpPopUp').modal('show'); }
+        document.getElementById('otp').value = ''
+        otpTimer();
+
+    }
+    $('#otpExpiry').modal('hide');
+}
+
+
+function submitOtp() {
+    //api call fro submit otp
+    document.getElementById('otp').value = ''
+    var dummy_otp = '1234'
+    removeTimer();
+
+    if (document.getElementById('otp').value != dummy_otp) {
+        $('#invalidOtp').modal('show');
+    }
+    else {
+        $('#otpPopUp').modal('hide');
+        $('#requirements').hide();
+        $('#payment').show();
+
+    }
+
+}
+
+//drop-2 methods
