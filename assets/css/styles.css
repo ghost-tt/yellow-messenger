@@ -781,6 +781,49 @@ svg>path {
 }
 
 
+/* ===========================
+   ======Reference Search Box ====== 
+   =========================== */
+
+.search
+{
+	border: 2px solid rgb(211, 211, 211);
+	overflow: auto;
+	border-radius: 5px;
+
+}
+
+.search input[type="text"]
+{
+	border: 0px;
+	width: 67%;
+    padding: 20px 10px;
+    background: white;
+}
+
+.search input[type="text"]:focus
+{
+	outline: 0;
+}
+
+.search input[type="submit"]
+{
+	border: 0px;
+	background: none;
+	background-color: #b8123e;
+	color: white;
+	float: right;
+    padding: 20px;
+font-weight: bold;
+	/* font-size: 25px; */
+    cursor:pointer;
+}
+
+.search-field{
+    background-color: white;
+}
+
+
 
 .m-modal-top-2 {
     margin: 1rem 0;

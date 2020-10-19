@@ -131,12 +131,56 @@
             </div>
         </div>
     </section>
+<section class="jumbotron jumbotron-fluid " style="background-color: rgb(206, 236, 247);">
+    <div class="container">
+        <div class="row justifyCenter">
+            <div class="col-12 text-center">
+                <p class="md-2" style="font-weight: bold;font-size: 2.00rem;">CHECK YOUR CLAIM STATUS
+                </p>
+            </div>
+            <div class="col-12 text-center" style="padding-bottom: 2rem;">
+                <p  style="font-size: 1.30rem;">Type your reference number below.
+                </p>
+            </div>
+           
+        <div class="col-12 ">
+
+            <div class="search">
+                <div class="search-field">
+                    <input  type="text" placeholder="Reference Number">
+                    <input   type="submit" value="Go">
+                </div>
+            </div>
+          
+             <div  align="left" style=" color:#b8123e;text-decoration:underline;font-style:italic;padding-top: 1rem;">  <a >Where can i find my reference number?</a></div>
+            </div>  
+          
+        </div>
+
+        <div  style="padding-top: 1rem;padding-bottom: 4rem;"><div class=" g-recaptcha"  data-sitekey="6LeG9NgZAAAAAARdmaXDSdFwHHbZD5BMXVdWZ09Y"></div></div>
+    </div>
+</section>
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <!-- To make recaptcha responsive -->
+        <script>
+            var width = $('.g-recaptcha').parent().width();
+                if (width < 302) {
+                    var scale = width / 302;
+                    $('.g-recaptcha').css('transform', 'scale(' + scale + ')');
+                    $('.g-recaptcha').css('-webkit-transform', 'scale(' + scale + ')');
+                    $('.g-recaptcha').css('transform-origin', '0 0');
+                    $('.g-recaptcha').css('-webkit-transform-origin', '0 0');
+                }
+        </script>
+    <!-- To make recaptcha responsive -->
     <script>
         function getAccidentPage() {
             console.log('get accident page ');

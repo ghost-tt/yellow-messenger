@@ -1976,7 +1976,7 @@ var maxResendOtp = document.getElementById('maxResendOtp');
 
 
 
-
+// otp timer function
 function otpTimer() {
   if (resendCount <= 3) {
     $('#otpPopUp').modal('show');
@@ -2039,7 +2039,7 @@ function submitOtp() {
 
   var dummy_otp = '1234'
   removeTimer();
-
+ 
   if (document.getElementById('otp').value != dummy_otp) {
     $('#invalidOtp').modal('show');
   }
@@ -2047,10 +2047,8 @@ function submitOtp() {
     $('#otpPopUp').modal('hide');
     $('#requirements').hide();
     $('#payment').show();
-
   }
-  document.getElementById('otp').value = ''
-
+  document.getElementById('otp').value = '';
 }
 
 // When the user clicks anywhere outside of the modal, close it and remove timer 
