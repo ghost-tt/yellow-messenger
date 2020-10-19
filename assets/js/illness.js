@@ -1629,6 +1629,14 @@ function goBack1() {
 var duration;
 var remaining = 120; // 2 mins timer 
 var resendCount = 0;
+var otpModal = document.getElementById('otpPopUp');
+var otpExpModal = document.getElementById('otpExpiry');
+var invalidOtpModal = document.getElementById('invalidOtp');
+var maxResendOtp = document.getElementById('maxResendOtp');
+
+
+
+
 function otpTimer() {
     if (resendCount <= 3) {
         $('#otpPopUp').modal('show');
@@ -1688,7 +1696,7 @@ function resendOtp(type) {
 
 function submitOtp() {
     //api call fro submit otp
-    document.getElementById('otp').value = ''
+
     var dummy_otp = '1234'
     removeTimer();
 
@@ -1702,6 +1710,15 @@ function submitOtp() {
 
     }
 
+    document.getElementById('otp').value = ''
+}
+
+// When the user clicks anywhere outside of the modal, close it and remove timer 
+window.onclick = function (event) {
+    if (event.target == otpModal || event.target == otpExpModal || event.target == invalidOtpModal || event.target == maxResendOtp) {
+        console.log(event.target)
+        removeTimer();
+    }
 }
 
 //drop-2 methods
