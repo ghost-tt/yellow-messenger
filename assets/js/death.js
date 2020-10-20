@@ -21,7 +21,7 @@ var bpiCount = 0;
 var acctButtonCount = 0;
 var traverse;
 var currSeconds = 0;
-
+var user_mobile;
 
 var file1 = document.getElementById('file_Upload_1');
 var file2 = document.getElementById('file_Upload_2');
@@ -1382,7 +1382,7 @@ function handleForm(event) {
         InsuredInformation["Suffix"] = field_lastName_Suffix;
         InsuredInformation["DateOfBirth"] = field_DOB.split('-')[1] + "/" + field_DOB.split('-')[2] + "/" + field_DOB.split('-')[0];
         InsuredInformation["InsuredsDeath"] = field_DOID.split('-')[1] + "/" + field_DOID.split('-')[2] + "/" + field_DOID.split('-')[0];
-
+        document.getElementById('user_mobile').innerHTML = field_mobileNum.replace(/.(?=.{4})/g, '*')
         basicInformation["CauseOfLoss"] = field_NatureLoss;
 
         let beneficiary = {};
@@ -2934,6 +2934,7 @@ function buttonSubmitClicked(event) {
 
         console.log("final payload : ")
         console.log(finalPayload)
+        otpTimer();
         window.parent.postMessage(JSON.stringify({
             event_code: 'ym-client-event', data: JSON.stringify({
                 event: {
@@ -2951,8 +2952,7 @@ function buttonSubmitClicked(event) {
             /*  $("#step3").addClass("active");
             $("#step3>div").addClass("active"); */
             /*  $("#step3").addClass("done"); */
-            $('#requirements').hide();
-            $('#process_confirmation').show();
+
 
         });
         console.log('upload data --> ', upload_data);
@@ -3126,7 +3126,7 @@ function handleAccountInfo(event) {
         $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
         $('#popUp').modal('show');
         return;
-    }else {
+    } else {
         $('#upload_feedback_label').hide();
         $('#upload_feedback_label').text('');
     }
@@ -3278,7 +3278,7 @@ function addBenificiaryAccountInfo(event) {
             $('#upload_feedback_label8').text('Please upload your Bank Account Ownership');
             $('#popUp').modal('show');
             return;
-        } else {    
+        } else {
             $('#upload_feedback_label8').hide();
             $('#upload_feedback_label8').text('');
         }
@@ -3828,3 +3828,101 @@ function acctButton() {
         acctButtonCount = 1;
     }
 }
+
+
+
+//drop-2 methods
+var duration;
+var remaining = 120; // 2 mins timer 
+var resendCount = 0;
+var otpModal = document.getElementById('otpPopUp');
+var otpExpModal = document.getElementById('otpExpiry');
+var invalidOtpModal = document.getElementById('invalidOtp');
+var maxResendOtp = document.getElementById('maxResendOtp');
+
+
+
+// otp timer function
+function otpTimer() {
+    if (resendCount <= 3) {
+        $('#otpPopUp').modal('show');
+        if (remaining == 120) {
+            duration = setInterval(otpTimer, 1000);
+        }
+        var m = Math.floor(remaining / 60);
+        var s = remaining % 60;
+        m = m < 10 ? '0' + m : m;
+        s = s < 10 ? '0' + s : s;
+        document.getElementById('otpTimer').innerHTML = m + ':' + s;
+        remaining -= 1;
+        if (remaining == 0) {
+            //  timeout stuff here
+            removeTimer();
+            $('#otpPopUp').modal('hide'); // to hide otp modal on timer exceed
+            $('#otpExpiry').modal('show'); //show otp expiry  modal on timer exceed
+        }
+    }
+    else {
+        $('#otpExpiry').modal('hide');
+        $('#invalidOtp').modal('hide');
+        $('#maxResendOtp').modal('show');
+    }
+}
+
+
+// to refresh the otp otp timer
+
+function removeTimer() {
+    clearInterval(duration);
+    document.getElementById('otpTimer').innerHTML = "";
+    remaining = 120;
+}
+
+function resendOtp(type) {
+    //api call for resend otp
+
+    removeTimer();
+    resendCount++;
+    if (resendCount > 3) {
+        $('#otpPopUp').modal('hide');
+        $('#invalidOtp').modal('hide');
+        $('#maxResendOtp').modal('show');
+
+    }
+    else {
+        $('#invalidOtp').modal('hide');
+        if (type != 'resend') { $('#otpPopUp').modal('show'); }
+        document.getElementById('otp').value = ''
+        otpTimer();
+
+    }
+    $('#otpExpiry').modal('hide');
+}
+
+
+function submitOtp() {
+    //api call fro submit otp
+
+    var dummy_otp = '1234'
+    removeTimer();
+
+    if (document.getElementById('otp').value != dummy_otp) {
+        $('#invalidOtp').modal('show');
+    }
+    else {
+        $('#otpPopUp').modal('hide');
+        $('#requirements').hide();
+        $('#process_confirmation').show();
+    }
+    document.getElementById('otp').value = '';
+}
+
+// When the user clicks anywhere outside of the modal, close it and remove timer 
+window.onclick = function (event) {
+    if (event.target == otpModal || event.target == otpExpModal || event.target == invalidOtpModal || event.target == maxResendOtp) {
+        console.log(event.target)
+        removeTimer();
+    }
+}
+
+//drop-2 methods

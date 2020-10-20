@@ -4897,7 +4897,123 @@
 		
 
 
+		<!-- otp pop up modal (drop-2 ) -->
+		<section class="hide modal fade" id="otpPopUp" tabindex="-1" role="dialog" aria-labelledby="otpPopUp"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p id="otp-text">We have send a One-Time PIN to your
+							<br> mobile number <span id="user_mobile"></span>.
+							<br> Kindly enter the OTP in the space below.</p>
+						<p id="otp-text">Your OTP expires after two minutes.
+							<br> Click
+							<a style="color:#1b89f0 ;cursor: pointer;" onclick="resendOtp('resend')">here</a> to resend another
+							one.</p>
+						<p id="otp-text">If your current mobile number does not
+							<br> match our records, kindly update your
+							<br> contact details via
+							<a style="color:#1b89f0 ;cursor: pointer;">ePlan</a> or by calling
+							<br> our hotline at (02)8528-2000. </p>
+						<br>
+						<input type="text" class="input__box" maxlength="25" id="otp" value="" placeholder="OTP" tabindex="1" />
 		
+						<div align="right">Time left : <span id="otpTimer"></span></div>
+					</div>
+					<button type="button" data-dismiss="modal" class="btn btn-danger" onclick="submitOtp(event)"
+						style="width: 50%; margin: 0 auto 3rem auto;">Submit</button>
+				</div>
+		
+			</div>
+		</section>
+		<!-- otp pop up modal (drop-2 ) -->
+		
+		<!-- Empty mobile number  modal (drop-2 ) -->
+		<section class="hide modal fade" id="emptyMobileNumPopUp" tabindex="-1" role="dialog"
+			aria-labelledby="emptyMobileNumPopUp" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p id="modal-text">We currently do not have your mobile number on record. Kindly provide us your mobile
+							number in the space below provided so we can proceed with your claim request.
+						</p>
+		
+						<br>
+						<input type="text" class="input__box" maxlength="25" id="newMobileNum" value=""
+							placeholder="Mobile Number" tabindex="1" />
+		
+					</div>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"
+						style="width: 50%; margin: 0 auto 3rem auto;">Submit</button>
+				</div>
+		
+			</div>
+		</section>
+		<!-- Empty mobile number  modal (drop-2 ) -->
+		
+		<!-- Invalid Otp modal (drop-2 ) -->
+		<section class="hide modal fade" id="invalidOtp" tabindex="-1" role="dialog" aria-labelledby="invalidOtp"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p id="modal-text" style="text-align:center;">Sorry, you have entered an invalid
+							<br> One-Time PIN. To have another OTP sent to your mobile number, please click
+							<a style="color:#1b89f0 ;cursor: pointer;" onclick="resendOtp('invalidInput')">here</a>.
+						</p>
+		
+						<br>
+		
+		
+					</div>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"
+						style="width: 50%; margin: 0 auto 3rem auto;">Exit</button>
+				</div>
+		
+			</div>
+		</section>
+		<!-- Invalid Otp modal (drop-2 ) -->
+		
+		<!--Otp expiry modal (drop-2 ) -->
+		<section class="hide modal fade" id="otpExpiry" tabindex="-1" role="dialog" aria-labelledby="otpExpiry"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p id="modal-text">Sorry, your 2 minutes to enter the OTP is up. To have another OTP sent to your mobile
+							number,please click
+							<a style="color:#1b89f0;cursor: pointer;" onclick="resendOtp('otpExpire')">here</a>.
+						</p>
+		
+					</div>
+					<br>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"
+						style="width: 50%; margin: 0 auto 3rem auto;">Exit</button>
+				</div>
+		
+			</div>
+		</section>
+		<!-- Otp expiry modal (drop-2 ) -->
+		
+		<!--Resend otp max number exceed (drop-2 ) -->
+		<section class="hide modal fade" id="maxResendOtp" tabindex="-1" role="dialog" aria-labelledby="maxResendOtp"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p id="modal-text">Sorry, you have reached the maximum
+							<br> allowable number to resend the OTP to <br> your mobile number. Please try again <br> in 24
+							hours.</p>
+		
+					</div>
+					<br>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"
+						style="width: 50%; margin: 0 auto 3rem auto;">Exit</button>
+				</div>
+		
+			</div>
+		</section>
+		<!-- Resend otp max number exceed (drop-2 ) -->
         
 	</main>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
