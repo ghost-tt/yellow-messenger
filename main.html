@@ -158,9 +158,9 @@
                             </div>
                             <div class="input-group mb-3  justifyCenter"
                                 style="padding-top: 31px; padding-left: 6px;padding-right: 6px;">
-                                <input type="text" class="form-control" placeholder="Reference Number"
-                                    aria-label="Recipient's username" aria-describedby="basic-addon2"
-                                    style=" max-width: 602px; height: 62px;">
+                                <input type="text" class="form-control" id="reference_number"
+                                    placeholder="Reference Number" aria-label="Recipient's username"
+                                    aria-describedby="basic-addon2" style=" max-width: 602px; height: 62px;">
                                 <div class="input-group-append">
                                     <button onclick="captcha()" class="input-group-text" id="basic-addon2"
                                         style="width: 82px; background-color: #b8123e !important; cursor: pointer;">
@@ -185,10 +185,30 @@
             </div>
     </section>
     <main class="jumbotron jumbotron-fluid">
+
         <section class="jumbotron jumbotron-fluid hide" id="process_confirmation1">
-            <div id="reference-divider">
-                <hr class="solid">
-            </div>
+            <section>
+                <div class="container" style="padding-top: 2%;">
+                    <div class="row">
+                        <div class="col-12 col-md-10 container">
+                            <div style="display: flex;
+                                height: 100%;">
+                                <div class="col-2" style="margin-right:1rem;">
+                                    <img class="icon1" id="claim-header-img" alt="img" />
+                                </div>
+                                <div style="margin: 0 1rem; display: grid; max-height: 1%;">
+                                    <h1 id="claim-header-text" class="display-4 main__header" style="display: inline-block;
+                                        align-self: flex-start;"></h1>
+                                    <p class="lead" style="display: inline-block;
+                                        align-self: flex-end;" id="claim-header-desc">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </section>
             <div style="text-align: center; padding-top: 3rem;padding-bottom: 3rem;">
                 <h3><strong>Sunday 14 JUNE 2020 at 4:48 PM</strong></h3>
             </div>
@@ -231,7 +251,7 @@
 
                         <div class="row">
                             <div class="col-md-7">
-                                <div id='text'></div>
+                                <div id='claim-msg-text'></div>
                                 <!-- <h3>YOUR REQUEST IS BEING PROCESSED</h3>
                                 <br />
                                 <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. Hang in there as
@@ -615,7 +635,7 @@
         <!-- Reference messages for accident -->
         <div>
             <!-- missing claim docs message -->
-            <div id='missing-docs-msg'>
+            <div id='A-1'>
                 <h3>YOUR OTHER CLAIM DOCUMENTS</h3>
                 <br />
                 <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. We have reviewed your initial
@@ -624,7 +644,7 @@
                 </p>
                 <br />
                 <p class="font-weight-normal request-font">
-                <ul>
+                <ul style="padding-left: 2rem;">
                     <li> document 1 </li>
                     <li> document 2 </li>
                     <li> document 3 </li>
@@ -641,7 +661,7 @@
             <!-- missing claim docs message -->
 
             <!-- request denied screen-1 -->
-            <div id='req-denied-msg-1'>
+            <div id='A-2'>
                 <h3>YOUR REQUEST HAS BEEN DENIED</h3>
                 <br />
                 <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. We have reviewed the documents you
@@ -665,7 +685,7 @@
             <!-- request denied screen-1 -->
 
             <!-- request denied screen-2 -->
-            <div id='req-denied-msg-2'>
+            <div id='A-3'>
                 <h3>YOUR REQUEST HAS BEEN DENIED</h3>
                 <br />
                 <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. We have reviewed the documents you
@@ -690,7 +710,7 @@
             <!-- request denied screen-2 -->
 
             <!-- request denied screen-3 -->
-            <div id='req-denied-msg-3'>
+            <div id='A-4'>
                 <h3>YOUR REQUEST HAS BEEN DENIED</h3>
                 <br />
                 <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. We have reviewed the documents you
@@ -714,13 +734,13 @@
             <!-- request denied screen-3 -->
 
             <!-- request denied screen-4 -->
-            <div id='req-denied-msg-4'>
+            <div id='A-5'>
                 <h3>YOUR REQUEST HAS BEEN DENIED</h3>
                 <br />
                 <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. We have reviewed the documents you
                     submitted and we regret
                     to inform you that we are unable to grant your claim request. Your coverage and all its benefits
-                    have ended last &lt; Month DD,YYYY &gt; dur to non-payment of premium dues.
+                    have ended last &lt; Month DD,YYYY &gt; due to non-payment of premium dues.
                 </p>
                 <br />
                 <p class="font-weight-normal request-font">
@@ -742,6 +762,66 @@
 
         <!-- Reference messages for illness -->
         <div>
+            <div id="I-1">
+                <h3>YOUR OTHER CLAIM DOCUMENTS</h3>
+                <br />
+                <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. We have reviewed your initial
+                    claim
+                    request submission and identified that we may need the following documents for us to proceed:
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                <ul style="padding-left: 2rem;">
+                    <li> document 1 </li>
+                    <li> document 2 </li>
+                    <li> document 3 </li>
+                </ul>
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    Don't worry, you can easily submit these documents to your Financial
+                    Advisor so we can proceed with your claim request. You may also submit your
+                    documents to any AIA Philam Life Customer Service Center near you. To find the nearest
+                    branch, please click <a href="">here</a>.
+                </p>
+            </div>
+            <div id="I-2">
+                <h3>YOUR PAYOUT HAS BEEN APPROVED</h3>
+                <br />
+                <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. We are glad to let you know that
+                    we have approved your claim request for your AIA Philam Life policy no. &lt; XXXXXXXXX &gt;.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    Kindly expect to recieve &lt; currency &gt; &lt; amount &gt; through your chosen payout method.
+                    Please expect an update from us on when your benefit will be released.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    We have also sent this information via <a href="">SMS</a> and <a href="">email</a> for your
+                    reference.
+                </p>
+            </div>
+            <div id="I-3">
+                <h3>YOUR PAYOUT IS READY FOR PICK UP</h3>
+                <br />
+                <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. Your claim benefit for your AIA
+                    Philam Life policy number &lt;XXXXXXXXXXX&gt; amounting to &lt; currency &gt; &lt; amount &gt; is
+                    now available for pick up from any BPI or BPI Family Savings bank branch. Please present this code
+                    together with one(1) government-issued ID at any BPI or BPI Family Savings bank branch to recieve
+                    your benefit.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    We have also sent this information via <a href="">SMS</a> and <a href="">email</a> for your
+                    reference.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    We hope this helps you and your family through this difficult time.
+                </p>
+            </div>
+
         </div>
         <!-- Reference messages for illness -->
 
@@ -749,6 +829,42 @@
 
         <!-- Reference messages for death -->
         <div>
+            <div id="D-1">
+                <h3>YOUR PAYOUT HAS BEEN APPROVED</h3>
+                <br />
+                <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. We are glad to let you know that
+                    we have approved your claim request for your AIA Philam Life policy no. &lt; XXXXXXXXX &gt;.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    Kindly expect to recieve &lt; currency &gt; &lt; amount &gt; through your chosen payout method.
+                    Please expect an update from us on when your benefit will be released.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    We have also sent this information via <a href="">SMS</a> and <a href="">email</a> for your
+                    reference.
+                </p>
+            </div>
+            <div id="D-2">
+                <h3>YOUR PAYOUT IS READY FOR PICK UP</h3>
+                <br />
+                <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. Your claim benefit for your AIA
+                    Philam Life policy number &lt;XXXXXXXXXXX&gt; amounting to &lt; currency &gt; &lt; amount &gt; is
+                    now available for pick up from any BPI or BPI Family Savings bank branch. Please present this code
+                    together with one(1) government-issued ID at any BPI or BPI Family Savings bank branch to recieve
+                    your benefit.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    We have also sent this information via <a href="">SMS</a> and <a href="">email</a> for your
+                    reference.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    We hope this helps you and your family through this difficult time.
+                </p>
+            </div>
         </div>
         <!-- Reference messages for death -->
 
@@ -817,11 +933,13 @@
                 $("#reference_No").hide();
                 $("#reference-divider").show();
                 $("#process_confirmation1").show();
-                document.getElementById('text').innerHTML = document.getElementById('missing-docs-msg').innerHTML;
+                // document.getElementById('text').innerHTML = document.getElementById('payout-pickup-ill').innerHTML;
                 activeProcess()
                 activeProcessCircle()
                 $("#err_recaptcha").text('');
                 $("#err_recaptcha").hide();
+
+                trackProgress();
             } else {
                 $("#err_recaptcha").text('Please verify the reCAPTCHA and tick the check box before submission');
                 $("#err_recaptcha").show();
@@ -836,9 +954,6 @@
             $('.arrow-down ').toggle();
 
         }
-
-
-
 
         function activeProcess() {
             var random = Math.floor(Math.random() * 5) + 1
@@ -899,6 +1014,130 @@
             }
 
         }
+
+
+        // drop-2 tracking status functions
+        var claim_type;
+        var claim_msg_type;
+        function dummyRefNumberTest() {
+            if ($('#reference_number').val() == '1234') {
+                claim_type = 'accident';
+                claim_msg_type = 'A-1'
+            }
+            else if ($('#reference_number').val() == '5678') {
+                claim_type = 'illness';
+                claim_msg_type = 'I-2'
+            }
+            if ($('#reference_number').val() == '9012') {
+                claim_type = 'death';
+                claim_msg_type = 'D-1'
+            }
+        }
+
+        function trackProgress() {
+            // api call on clicking GO button from claim status screen 
+            var response = {};
+            claim_type = response['claim-type']
+            claim_msg_type = response['claim-msg-type']
+
+
+            dummyRefNumberTest() // for testing
+
+
+            setClaimProgressScreen();
+        }
+
+        // to set header title and image for claim status screen
+        function setClaimProgressScreen() {
+            switch (claim_type) {
+                case 'accident':
+                    setClaimProgressScreenHeader('accident')
+                    break;
+                case 'illness':
+                    setClaimProgressScreenHeader('illness')
+                    break;
+                case 'death':
+                    setClaimProgressScreenHeader('death')
+                    break;
+            }
+        }
+
+        function setClaimProgressScreenHeader(title) {
+
+            if (title == 'accident') {
+                document.getElementById('claim-header-text').innerHTML = 'ACCIDENT';
+                document.getElementById('claim-header-desc').innerHTML = 'We have your back and we&#8217;re here to help you focus on your recovery';
+                document.getElementById('claim-header-img').src = './assets/images/accidental.png';
+                setAccidentClaimStatusMsg()
+            }
+            else if (title == 'illness') {
+                document.getElementById('claim-header-text').innerHTML = 'ILLNESS';
+                document.getElementById('claim-header-desc').innerHTML = 'Don’t worry about your medical expenses because we’re here for you.';
+                document.getElementById('claim-header-img').src = './assets/images/illness.png';
+                setIllnessClaimStatusMsg()
+            }
+            else if (title == 'death') {
+                document.getElementById('claim-header-text').innerHTML = 'DEATH';
+                document.getElementById('claim-header-desc').innerHTML = 'Nothing can be harder than losing someone close to us, that’s why we’re here to help you in this trying time.';
+                document.getElementById('claim-header-img').src = './assets/images/death.png';
+                setDeathClaimStatusMsg()
+            }
+        }
+
+
+        // functions to set the message for each claim status //
+        function setAccidentClaimStatusMsg() {
+            switch (claim_msg_type) {
+                case 'A-1':
+                    document.getElementById('claim-msg-text').innerHTML = document.getElementById('A-1').innerHTML;
+                    break;
+                case 'A-2':
+                    document.getElementById('claim-msg-text').innerHTML = document.getElementById('A-2').innerHTML;
+                    break;
+                case 'A-3':
+                    document.getElementById('claim-msg-text').innerHTML = document.getElementById('A-3').innerHTML;
+                    break;
+                case 'A-4':
+                    document.getElementById('claim-msg-text').innerHTML = document.getElementById('A-4').innerHTML;
+                    break;
+                case 'A-5':
+                    document.getElementById('claim-msg-text').innerHTML = document.getElementById('A-5').innerHTML;
+                    break;
+                default: document.getElementById('claim-msg-text').innerHTML = 'No message found'
+                    break;
+            }
+        }
+        function setIllnessClaimStatusMsg() {
+            switch (claim_msg_type) {
+                case 'I-1':
+                    document.getElementById('claim-msg-text').innerHTML = document.getElementById('I-1').innerHTML;
+                    break;
+                case 'I-2':
+                    document.getElementById('claim-msg-text').innerHTML = document.getElementById('I-2').innerHTML;
+                    break;
+                case 'I-3':
+                    document.getElementById('claim-msg-text').innerHTML = document.getElementById('I-3').innerHTML;
+                    break;
+                default: document.getElementById('claim-msg-text').innerHTML = 'No message found'
+                    break;
+            }
+
+        }
+        function setDeathClaimStatusMsg() {
+            switch (claim_msg_type) {
+                case 'D-1':
+                    document.getElementById('claim-msg-text').innerHTML = document.getElementById('D-1').innerHTML;
+                    break;
+                case 'D-2':
+                    document.getElementById('claim-msg-text').innerHTML = document.getElementById('D-2').innerHTML;
+                    break;
+                default: 'No message'
+                    break;
+            }
+        }
+        // functions to set the message for each claim status //
+
+// drop-2 tracking status functions
 
     </script>
 </body>
