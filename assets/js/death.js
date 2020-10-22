@@ -7,6 +7,7 @@ var bCount;
 var optiondisable = 1;
 var optionAge = false;
 var relation = false;
+var upload_data = null;
 var dataBen = null;
 var addBenAccountInfo = null;
 var addBeni_upload_data = null;
@@ -2314,7 +2315,7 @@ function addBeneficiary(event) {
 
         $("#upload_warning").text('');
         $("#warning_parent").hide();
-        const upload_data = {
+        upload_data = {
             upload_file_1: file1.value,
             upload_file_2: file2.value,
             upload_file_3: file3.value,
@@ -3475,6 +3476,46 @@ function goBackPickUp() {
     $('#form_wrapper').show();
 }
 
+function checkUploadDocument(){
+
+    if(upload_data.upload_file_1 !== '') {
+        $('#file_Upload_Tick_1').show();
+    }
+    if(upload_data.upload_file_2 !== '') {
+        $('#file_Upload_Tick_2').show();
+    }
+    if(upload_data.upload_file_3 !== '') {
+        $('#file_Upload_Tick_3').show();
+    }
+    if(upload_data.upload_file_4 !== '') {
+        $('#file_Upload_Tick_4').show();
+    }
+    if(upload_data.upload_file_5 !== '') {
+        $('#file_Upload_Tick_5').show();
+    }
+    if(upload_data.upload_file_6 !== '') {
+        $('#file_Upload_Tick_6').show();
+    }
+
+}
+
+function checkUploadDocumentBene(data) {
+
+    if(data.upload_file_9 !== '') {
+        $('#file_Upload_Tick_9').show();
+    }
+    if(data.upload_file_10 !== '') {
+        $('#file_Upload_Tick_10').show();
+    }
+    if(data.upload_file_11 !== '') {
+        $('#file_Upload_Tick_11').show();
+    }
+    if(data.upload_file_12 !== '') {
+        $('#file_Upload_Tick_12').show();
+    }
+    
+}
+
 function goBackAddBeneficiary() {
     traverse = 0;
 
@@ -3491,12 +3532,7 @@ function goBackAddBeneficiary() {
         $("#step2>div").addClass("active");
         $('#requirements').show();
         $('#addBeneficiary').hide();
-        $('#file_Upload_Tick_1').show();
-        $('#file_Upload_Tick_2').show();
-        $('#file_Upload_Tick_3').show();
-        $('#file_Upload_Tick_4').show();
-        $('#file_Upload_Tick_5').show();
-        $('#file_Upload_Tick_6').show();
+        checkUploadDocument();
     }
     if ((buttonCount > 0) && (buttonCount < 7)) {
         $("#step1").removeClass("done");
@@ -3508,46 +3544,31 @@ function goBackAddBeneficiary() {
         if (buttonCount == 1) {
             fileUploadDataReset();
             setDataUpload(uppload_data1);
-            $('#file_Upload_Tick_9').show();
-            $('#file_Upload_Tick_10').show();
-            $('#file_Upload_Tick_11').show();
-            $('#file_Upload_Tick_12').show();
+            checkUploadDocumentBene(uppload_data1);
         }
 
         if (buttonCount == 2) {
             fileUploadDataReset();
             setDataUpload(uppload_data2);
-            $('#file_Upload_Tick_9').show();
-            $('#file_Upload_Tick_10').show();
-            $('#file_Upload_Tick_11').show();
-            $('#file_Upload_Tick_12').show();
+            checkUploadDocumentBene(uppload_data2);
         }
 
         if (buttonCount == 3) {
             fileUploadDataReset();
             setDataUpload(uppload_data3);
-            $('#file_Upload_Tick_9').show();
-            $('#file_Upload_Tick_10').show();
-            $('#file_Upload_Tick_11').show();
-            $('#file_Upload_Tick_12').show();
+            checkUploadDocumentBene(uppload_data3);
         }
 
         if (buttonCount == 4) {
             fileUploadDataReset();
             setDataUpload(uppload_data4);
-            $('#file_Upload_Tick_9').show();
-            $('#file_Upload_Tick_10').show();
-            $('#file_Upload_Tick_11').show();
-            $('#file_Upload_Tick_12').show();
+            checkUploadDocumentBene(uppload_data4);
         }
 
         if (buttonCount == 5) {
             fileUploadDataReset();
             setDataUpload(uppload_data5);
-            $('#file_Upload_Tick_9').show();
-            $('#file_Upload_Tick_10').show();
-            $('#file_Upload_Tick_11').show();
-            $('#file_Upload_Tick_12').show();
+            checkUploadDocumentBene(uppload_data5);
         }
     }
 }
