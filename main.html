@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow-x: hidden;">
 
 <head>
     <meta charset="utf-8">
@@ -200,7 +200,7 @@
         <section class="jumbotron jumbotron-fluid hide" id="process_confirmation1">
             <section>
                 <div class="container" style="padding-top: 2%;">
-                    <div class="row">
+                    <div class="row" style=" padding-bottom: 4%;">
                         <div class="col-12 col-md-10 container">
                             <div style="display: flex;
                                 height: 100%;">
@@ -221,8 +221,10 @@
                 </div>
             </section>
             <section>
-                <div style="text-align: center; padding-bottom: 3rem;">
-                    <h3><strong>Sunday 14 JUNE 2020 at 4:48 PM</strong></h3>
+                <div class="row" style="text-align: center; padding-top: 3rem;">
+                    <div class="col-md-11 offset-md-1 p-0">
+                        <h2 id="displayDt"><strong></strong></h2>
+                    </div>
                 </div>
             </section>
             <section id="stepper-progress reference-stepper">
@@ -237,7 +239,7 @@
                                     <div class="md-step-title" id="step-circle-title-1">Requirements have <br> been
                                         Submitted</div>
                                     <div class="md-step-bar-left"></div>
-                                    <div class="md-step-bar-right" style="height: 1.5px;" id="step-bar-1"></div>
+                                    <div class="md-step-bar-right" style="margin-left:9px" id="step-bar-1"></div>
                                 </div>
                                 <div id="step2" class="md-step">
                                     <div class="md-step-circle" id="step-circle-2"><span
@@ -246,8 +248,8 @@
                                     <div class="md-step-title" id="step-circle-title-2">Documents are <br> being
                                         Reviewed
                                     </div>
-                                    <div class="md-step-bar-left" style="height: 1.5px;" id="step-bar-2"></div>
-                                    <div class="md-step-bar-right" style="height: 1.5px;" id="step-bar-3"></div>
+                                    <div class="md-step-bar-left" style="margin-right:9px" id="step-bar-2"></div>
+                                    <div class="md-step-bar-right" style="margin-left:9px" id="step-bar-3"></div>
                                 </div>
                                 <div id="step3" class="md-step ">
                                     <div class="md-step-circle" id="step-circle-3"><span id="step3_span"
@@ -255,7 +257,7 @@
                                     </div>
                                     <div class="md-step-title" id="step-circle-title-3">Request is being
                                         <br> Settled</div>
-                                    <div class="md-step-bar-left" style="height: 1.5px;" id="step-bar-4"></div>
+                                    <div class="md-step-bar-left" style="margin-right:14px" id="step-bar-4"></div>
                                     <div class="md-step-bar-right"></div>
                                 </div>
                             </div>
@@ -264,7 +266,7 @@
                 </div>
             </section>
 
-            <div class="container" style="padding-bottom: 3rem ;margin-top: 3rem;">
+            <div class="container" style="padding-bottom: 0.5rem ;margin-top: 3rem;">
                 <div class="row">
                     <div class="col-md-11 offset-md-1">
 
@@ -445,7 +447,7 @@
 
             <section class="jumbotron jumbotron-fluid bg_light_blue show" id="reference_No"
                 style="padding: 1rem 0 5rem 0; background-color: #d4edf1;">
-                <div class="container">
+                <div class="container" id="feedback-form">
                     <div class="row">
                         <div class="container" style="background-color: #d4edf1; margin-top: 40px;">
                             <section>
@@ -454,8 +456,8 @@
                                         <div class="col-md-11 offset-md-1" id="stepper_intro">
                                             <div class="stepper__description">
 
-                                                <h1 class="stepper__description__title">HOW WAS YOUR EXPERIENCE?
-                                                </h1>
+                                                <h3 class="stepper__description__title">HOW WAS YOUR EXPERIENCE?
+                                                </h3>
                                                 <div class="stepper__description__info">
                                                     <p class="lead font-weight-normal" style="display: inline-block;
                                                         align-self: flex-end;">
@@ -821,6 +823,42 @@
                     (02)8528-2000.
                 </p>
             </div>
+            <div id="A-6">
+                <h3>YOUR PAYOUT HAS BEEN APPROVED</h3>
+                <br />
+                <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. We are glad to let you know that
+                    we have approved your claim request for your AIA Philam Life policy no. &lt; XXXXXXXXX &gt;.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    Kindly expect to recieve &lt; currency &gt; &lt; amount &gt; through your chosen payout method.
+                    Please expect an update from us on when your benefit will be released.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    We have also sent this information via <a href="">SMS</a> and <a href="">email</a> for your
+                    reference.
+                </p>
+            </div>
+            <div id="A-7">
+                <h3>YOUR PAYOUT IS READY FOR PICK UP</h3>
+                <br />
+                <p id="customer_Name" class="font-weight-justy request-font">Hi Alex. Your claim benefit for your AIA
+                    Philam Life policy number &lt;XXXXXXXXXXX&gt; amounting to &lt; currency &gt; &lt; amount &gt; is
+                    now available for pick up from any BPI or BPI Family Savings bank branch. Please present this code
+                    together with one(1) government-issued ID at any BPI or BPI Family Savings bank branch to recieve
+                    your benefit.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    We have also sent this information via <a href="">SMS</a> and <a href="">email</a> for your
+                    reference.
+                </p>
+                <br />
+                <p class="font-weight-normal request-font">
+                    We hope this helps you and your family through this difficult time.
+                </p>
+            </div>
             <!-- request denied screen-4 -->
         </div>
         <!-- Reference messages for accident -->
@@ -1008,7 +1046,7 @@
                 // activeProcessCircle()
                 $("#err_recaptcha").text('');
                 $("#err_recaptcha").hide();
-
+                displayDateForClaimStatus()
                 trackProgress();
             } else {
                 $("#err_recaptcha").text('Please verify the reCAPTCHA and tick the check box before submission');
@@ -1091,6 +1129,7 @@
         // drop-2 tracking status functions
         var claim_type;
         var claim_msg_type;
+
         function dummyRefNumberTest() {
             if ($('#reference_number').val() == '1234') {
                 claim_type = 'accident';
@@ -1102,7 +1141,7 @@
             }
             if ($('#reference_number').val() == '9012') {
                 claim_type = 'death';
-                claim_msg_type = 'D-1'
+                claim_msg_type = 'D-2'
             }
         }
 
@@ -1264,6 +1303,10 @@
             document.getElementById('step-circle-2').style.width = '20px';
             document.getElementById('step-circle-2').style.height = '20px';
 
+            document.getElementById('step-bar-1').style.outlineColor = '#8bc435'
+            document.getElementById('step-bar-2').style.outlineColor = '#8bc435'
+            document.getElementById('step-bar-3').style.outlineColor = '#8bc435'
+            document.getElementById('step-bar-4').style.outlineColor = '#8bc435'
 
 
 
@@ -1288,14 +1331,31 @@
             document.getElementById('step-circle-1').style.height = '20px';
             document.getElementById('step-circle-2').style.width = '20px';
             document.getElementById('step-circle-2').style.height = '20px';
+
+            document.getElementById('step-bar-1').style.outlineColor = '#b8123e'
+            document.getElementById('step-bar-2').style.outlineColor = '#b8123e'
+
         }
         //functions for stepper//
 
         function trackProgressDropDown(trackMessagesArr) {
-            trackMessagesArr = [1, 2, 3, 4, 5]
-            var finaltext = '';
+            //to be reomvesd -testing
+            if (claim_msg_type == 'A-1') {
+                trackMessagesArr = [1, 4, 5, 7, 8] // for testing - to be removed
+            }
+            if (claim_msg_type == 'I-2') {
+                trackMessagesArr = [2, 4, 6, 7, 8, 9, 11] // for testing - to be removed
+            }
 
-            //ajax return list a
+            if (claim_msg_type == 'D-2') {
+                trackMessagesArr = [3, 4, 6, 7, 11, 12] // for testing - to be removed
+            }
+            else {
+
+            }
+            //to be reomved -testing
+
+            var finaltext = '';
             trackMessagesArr.forEach(function (item) {
                 progress_msges.forEach(function (msg) {
                     if (item ==
@@ -1312,6 +1372,28 @@
             });
             console.log('finaltext' + finaltext)
             document.getElementById('progs-status').innerHTML = finaltext
+        }
+
+        function displayDateForClaimStatus() {
+            var date = new Date();
+
+            var options = {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric"
+            };
+
+            var x = date.toLocaleDateString("en", options);
+            var parts = x.split(',');
+            var day = parts[0];
+            var mnthDate = parts[1].split(' ')[1];
+            var year = parts[2];
+            var time = parts[3];
+            var finalDate = day + ' ' + date.getDate() + ' ' + mnthDate + year + ' at ' + time;
+            document.getElementById("displayDt").innerHTML = finalDate
         }
 // drop-2 tracking status functions
 
