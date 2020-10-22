@@ -10,6 +10,14 @@
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Yellow Messenger</title>
+    <!-- <style>
+        .mat-step-header .mat-step-icon-selected,
+        .mat-step-header .mat-step-icon-state-done,
+        .mat-step-header .mat-step-icon-state-edit {
+            background-color: red !important;
+            color: red !important;
+        }
+    </style> -->
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -209,33 +217,35 @@
                     <hr>
                 </div>
             </section>
-            <div style="text-align: center; padding-top: 3rem;padding-bottom: 3rem;">
-                <h3><strong>Sunday 14 JUNE 2020 at 4:48 PM</strong></h3>
-            </div>
-            <section id="stepper-progress">
+            <section>
+                <div style="text-align: center; padding-bottom: 3rem;">
+                    <h3><strong>Sunday 14 JUNE 2020 at 4:48 PM</strong></h3>
+                </div>
+            </section>
+            <section id="stepper-progress reference-stepper">
                 <div class="container pl-pr-0">
                     <div class="row m-0">
                         <div class="col-md-11 offset-md-1 p-0">
-                            <div class="md-stepper-horizontal blue">
-                                <div id="step1" class="md-step active">
-                                    <div class="md-step-circle active circleNumber1"><span>1</span>
+                            <div class="md-stepper-horizontal ">
+                                <div id="step1" class="md-step">
+                                    <div class="md-step-circle"><span style="color: transparent;">1</span>
                                     </div>
-                                    <div class="md-step-title">Requirements have been Submitted</div>
+                                    <div class="md-step-title">Requirements have <br> been Submitted</div>
                                     <div class="md-step-bar-left"></div>
                                     <div class="md-step-bar-right"></div>
                                 </div>
                                 <div id="step2" class="md-step">
-                                    <div class="md-step-circle circleNumber2"><span>2</span>
+                                    <div class="md-step-circle"><span style="color: transparent;">2</span>
                                     </div>
-                                    <div class="md-step-title">Documents are being Reviewed</div>
+                                    <div class="md-step-title">Documents are <br> being Reviewed</div>
                                     <div class="md-step-bar-left"></div>
                                     <div class="md-step-bar-right"></div>
                                 </div>
                                 <div id="step3" class="md-step">
-                                    <div class="md-step-circle circleNumber3" id="step3_circle"><span
-                                            id="step3_span">3</span>
+                                    <div class="md-step-circle" id="step3_circle"><span id="step3_span"
+                                            style="color: transparent;">3</span>
                                     </div>
-                                    <div class="md-step-title" id="step3_reference">Request is beign Settled</div>
+                                    <div class="md-step-title" id="step3_reference">Request is being <br> Settled</div>
                                     <div class="md-step-bar-left"></div>
                                     <div class="md-step-bar-right"></div>
                                 </div>
@@ -244,7 +254,8 @@
                     </div>
                 </div>
             </section>
-            <div class="container" style="padding-bottom: 3rem">
+
+            <div class="container" style="padding-bottom: 3rem ;margin-top: 3rem;">
                 <div class="row">
                     <div class="col-md-11 offset-md-1">
 
@@ -290,6 +301,15 @@
                                         <div class="" style="color: #fff;">Reference Number</div>
                                         <div class="font-weight-bold" style="color: #fff;">8445730535</div>
                                     </div>
+                                    </br>
+                                    <div id="payment-ref" style="display: hidden;">
+                                        <div class="" style="color: black;">Payment</div>
+                                        <div class="font-weight-bold" style="color: black;">Php 123,456.80</div>
+                                    </div>
+                                    <div id="turnaround-time-ref" style="display: hidden;">
+                                        <div class="" style="color: black;">Turnaround Time</div>
+                                        <div class="font-weight-bold" style="color: black;">24-48 hours</div>
+                                    </div>
                                     <div>
                                         <div class="dropdown" style="padding-top: 11px;">
                                             <button onclick="trackUser()" class="font-weight-bold  dropbtn">Track your
@@ -307,7 +327,7 @@
                                                     </div>
                                                     <div>
 
-                                                        <div class="title">You have completely field out the form for
+                                                        <div class="title">You have completely filld out the form for
                                                             Accident Claims.</div>
 
                                                     </div>
@@ -358,6 +378,43 @@
                                                     </div>
                                                     <div>
                                                         <div class="title">We are requesting additional claims documents
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="step">
+                                                    <div>
+                                                        <div class="circle hide" id="circle6"><i
+                                                                class="fa fa-check"></i>
+                                                        </div>
+                                                        <div class="circle" id="circle-number6">6</div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="title">You have submitted all additional documents.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="step">
+                                                    <div>
+                                                        <div class="circle hide" id="circle7"><i
+                                                                class="fa fa-check"></i>
+                                                        </div>
+                                                        <div class="circle" id="circle-number7">7</div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="title">We have denied your claim request
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="step">
+                                                    <div>
+                                                        <div class="circle hide" id="circle8"><i
+                                                                class="fa fa-check"></i>
+                                                        </div>
+                                                        <div class="circle" id="circle-number8">8</div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="title">Your payout is ready for pick up at any BPI
+                                                            branch
                                                         </div>
                                                     </div>
                                                 </div>
@@ -934,8 +991,8 @@
                 $("#reference-divider").show();
                 $("#process_confirmation1").show();
                 // document.getElementById('text').innerHTML = document.getElementById('payout-pickup-ill').innerHTML;
-                activeProcess()
-                activeProcessCircle()
+                // activeProcess()
+                // activeProcessCircle()
                 $("#err_recaptcha").text('');
                 $("#err_recaptcha").hide();
 
@@ -943,7 +1000,7 @@
             } else {
                 $("#err_recaptcha").text('Please verify the reCAPTCHA and tick the check box before submission');
                 $("#err_recaptcha").show();
-                activeProcess()
+                // activeProcess()
             }
         }
 
@@ -1022,7 +1079,7 @@
         function dummyRefNumberTest() {
             if ($('#reference_number').val() == '1234') {
                 claim_type = 'accident';
-                claim_msg_type = 'A-1'
+                claim_msg_type = 'A-3'
             }
             else if ($('#reference_number').val() == '5678') {
                 claim_type = 'illness';
@@ -1090,18 +1147,34 @@
             switch (claim_msg_type) {
                 case 'A-1':
                     document.getElementById('claim-msg-text').innerHTML = document.getElementById('A-1').innerHTML;
+                    document.getElementById("turnaround-time-ref").style.display = "block";
+                    document.getElementById("payment-ref").style.display = "none";
+                    twoStepperActive()
+
                     break;
                 case 'A-2':
                     document.getElementById('claim-msg-text').innerHTML = document.getElementById('A-2').innerHTML;
+                    document.getElementById("turnaround-time-ref").style.display = "none";
+                    document.getElementById("payment-ref").style.display = "none";
+                    allStepperActive()
                     break;
                 case 'A-3':
                     document.getElementById('claim-msg-text').innerHTML = document.getElementById('A-3').innerHTML;
+                    document.getElementById("turnaround-time-ref").style.display = "none";
+                    document.getElementById("payment-ref").style.display = "none";
+                    allStepperActive()
                     break;
                 case 'A-4':
                     document.getElementById('claim-msg-text').innerHTML = document.getElementById('A-4').innerHTML;
+                    document.getElementById("turnaround-time-ref").style.display = "none";
+                    document.getElementById("payment-ref").style.display = "none";
+                    allStepperActive()
                     break;
                 case 'A-5':
                     document.getElementById('claim-msg-text').innerHTML = document.getElementById('A-5').innerHTML;
+                    document.getElementById("turnaround-time-ref").style.display = "none";
+                    document.getElementById("payment-ref").style.display = "none";
+                    allStepperActive()
                     break;
                 default: document.getElementById('claim-msg-text').innerHTML = 'No message found'
                     break;
@@ -1111,12 +1184,21 @@
             switch (claim_msg_type) {
                 case 'I-1':
                     document.getElementById('claim-msg-text').innerHTML = document.getElementById('I-1').innerHTML;
+                    document.getElementById("turnaround-time-ref").style.display = "none";
+                    document.getElementById("payment-ref").style.display = "none";
+                    twoStepperActive()
                     break;
                 case 'I-2':
                     document.getElementById('claim-msg-text').innerHTML = document.getElementById('I-2').innerHTML;
+                    document.getElementById("payment-ref").style.display = "block"; // to display payment box
+                    document.getElementById("turnaround-time-ref").style.display = "none";
+                    allStepperActive()
                     break;
                 case 'I-3':
                     document.getElementById('claim-msg-text').innerHTML = document.getElementById('I-3').innerHTML;
+                    document.getElementById("payment-ref").style.display = "block";
+                    document.getElementById("turnaround-time-ref").style.display = "none";
+                    allStepperActive()
                     break;
                 default: document.getElementById('claim-msg-text').innerHTML = 'No message found'
                     break;
@@ -1127,9 +1209,15 @@
             switch (claim_msg_type) {
                 case 'D-1':
                     document.getElementById('claim-msg-text').innerHTML = document.getElementById('D-1').innerHTML;
+                    document.getElementById("payment-ref").style.display = "block";
+                    document.getElementById("turnaround-time-ref").style.display = "none";
+                    allStepperActive()
                     break;
                 case 'D-2':
                     document.getElementById('claim-msg-text').innerHTML = document.getElementById('D-2').innerHTML;
+                    document.getElementById("payment-ref").style.display = "block";
+                    document.getElementById("turnaround-time-ref").style.display = "none";
+                    allStepperActive()
                     break;
                 default: 'No message'
                     break;
@@ -1137,6 +1225,18 @@
         }
         // functions to set the message for each claim status //
 
+        //functions for stepper//
+        function allStepperActive() {
+            $("#step1").addClass("active");
+            $("#step2").addClass("active");
+            $("#step3").addClass("active");
+            $("#step3").addClass("done");
+        }
+        function twoStepperActive() {
+            $("#step1").addClass("active");
+            $("#step2").addClass("active");
+        }
+          //functions for stepper//
 // drop-2 tracking status functions
 
     </script>
