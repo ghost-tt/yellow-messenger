@@ -711,6 +711,15 @@ svg > path {
   background: #f0eee1;
   /* height: 5vh; */
 }
+.light_green{
+  background:   #8bc435;
+
+}
+
+.bg_light_pink {
+  background: #f0eee1;
+  /* height: 5vh; */
+}
 
 .card-hv {
   border: 1px solid #fff;
