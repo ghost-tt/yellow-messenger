@@ -1065,68 +1065,69 @@
 
         }
 
-        function activeProcess() {
-            var random = Math.floor(Math.random() * 5) + 1
-            switch (random) {
+        // function activeProcess() {
+        //     var random = Math.floor(Math.random() * 5) + 1
+        //     switch (random) {
 
-                case 1:
-                case '1': $('#circle1').show();
-                    $('#circle-number1').hide();
-                    break;
-                case 2:
+        //         case 1:
+        //         case '1': $('#circle1').show();
+        //             $('#circle-number1').hide();
+        //             break;
+        //         case 2:
 
-                case '2': $('#circle2').show();
-                    $('#circle-number2').hide();
-                    break;
-                case 3:
+        //         case '2': $('#circle2').show();
+        //             $('#circle-number2').hide();
+        //             break;
+        //         case 3:
 
-                case '3': $('#circle3').show();
-                    $('#circle-number3').hide();
-                    break;
-                case 4:
+        //         case '3': $('#circle3').show();
+        //             $('#circle-number3').hide();
+        //             break;
+        //         case 4:
 
-                case '4': $('#circle4').show();
-                    $('#circle-number4').hide();
-                    break;
-                case 5:
+        //         case '4': $('#circle4').show();
+        //             $('#circle-number4').hide();
+        //             break;
+        //         case 5:
 
-                case '5': $('#circle5').show();
-                    $('#circle-number5').hide();
-                    break;
-            }
+        //         case '5': $('#circle5').show();
+        //             $('#circle-number5').hide();
+        //             break;
+        //     }
 
-        }
-        function activeProcessCircle() {
-            var random = Math.floor(Math.random() * 2) + 1
-            switch (random) {
+        // }
+        // function activeProcessCircle() {
+        //     var random = Math.floor(Math.random() * 2) + 1
+        //     switch (random) {
 
-                case 1:
-                    $("#step1").addClass("active");
-                    $("#step1>div").addClass("active");
-                    $("#step1").addClass("done");
-                    break;
-                case 2:
+        //         case 1:
+        //             $("#step1").addClass("active");
+        //             $("#step1>div").addClass("active");
+        //             $("#step1").addClass("done");
+        //             break;
+        //         case 2:
 
-                case '2':
-                    $("#step2").addClass("active");
-                    $("#step2>div").addClass("active");
-                    $("#step2").addClass("done");
+        //         case '2':
+        //             $("#step2").addClass("active");
+        //             $("#step2>div").addClass("active");
+        //             $("#step2").addClass("done");
 
-                    break;
-                case 3:
+        //             break;
+        //         case 3:
 
-                case '3':
-                    $("#step3").addClass("active");
-                    $("#step3>div").addClass("active");
-                    $("#step3").addClass("done");
+        //         case '3':
+        //             $("#step3").addClass("active");
+        //             $("#step3>div").addClass("active");
+        //             $("#step3").addClass("done");
 
-                    break;
-            }
+        //             break;
+        //     }
 
-        }
+        // }
 
 
-        // drop-2 tracking status functions
+
+        // -----------drop-2 tracking status functions----------------//
         var claim_type;
         var claim_msg_type;
 
@@ -1143,20 +1144,22 @@
                 claim_type = 'death';
                 claim_msg_type = 'D-2'
             }
+            else {
+                claim_type = 'accident';
+                claim_msg_type = 'A-1'
+            }
         }
 
         function trackProgress() {
             // api call on clicking GO button from claim status screen 
             var response = {};
-            claim_type = response['claim-type']
-            claim_msg_type = response['claim-msg-type']
-            trackMessagesArr = response['trackMessages']
+            claim_type = response['claim-type']         // to show header and description based on claim type
+            claim_msg_type = response['claim-msg-type'] // to set the message shown based on status
+            trackMessagesArr = response['trackMessages']  // to populate dropdown
 
             dummyRefNumberTest() // for testing
-
-
-            setClaimProgressScreen();
-            trackProgressDropDown(trackMessagesArr)
+            setClaimProgressScreen(); // to set header title and image for claim status screen
+            trackProgressDropDown(trackMessagesArr) // for tracking progress dropdown
         }
 
         // to set header title and image for claim status screen
@@ -1170,6 +1173,8 @@
                     break;
                 case 'death':
                     setClaimProgressScreenHeader('death')
+                    break;
+                default: setClaimProgressScreenHeader('accident') // to be removed
                     break;
             }
         }
@@ -1280,7 +1285,9 @@
         }
         // functions to set the message for each claim status //
 
-        //functions for stepper//
+        //-----functions for stepper-----//
+
+        //function to be called if all three steps are to be highlighted//
         function allStepperActive() {
             $("#step1").addClass("active");
             $("#step2").addClass("active");
@@ -1297,20 +1304,21 @@
             document.getElementById('step-circle-title-1').style.color = 'black';
             document.getElementById('step-circle-title-2').style.color = 'black';
             document.getElementById('step-circle-title-3').style.color = '#8bc435';
-
+            //change stepper bar colour based on status//
             document.getElementById('step-circle-1').style.width = '20px';
             document.getElementById('step-circle-1').style.height = '20px';
             document.getElementById('step-circle-2').style.width = '20px';
             document.getElementById('step-circle-2').style.height = '20px';
-
+            //change stepper bar colour based on status//
             document.getElementById('step-bar-1').style.border = '1px solid #8bc435'
             document.getElementById('step-bar-2').style.border = '1px solid #8bc435'
             document.getElementById('step-bar-3').style.border = '1px solid #8bc435'
             document.getElementById('step-bar-4').style.border = '1px solid #8bc435'
 
 
-
         }
+
+        //function to be called if only two steps are to be highlighted//
         function twoStepperActive() {
             $("#step1").addClass("active");
             $("#step2").addClass("active");
@@ -1326,17 +1334,17 @@
 
             document.getElementById('step-circle-3').style.backgroundColor = "#c7c2c2";
             document.getElementById('step-circle-3').style.borderColor = "#c7c2c2";
-
+            //change stepper circle size based on status//
             document.getElementById('step-circle-1').style.width = '20px';
             document.getElementById('step-circle-1').style.height = '20px';
             document.getElementById('step-circle-2').style.width = '20px';
             document.getElementById('step-circle-2').style.height = '20px';
-
+            //change stepper bar colour based on status//
             document.getElementById('step-bar-1').style.border = '1px solid rgb(184, 18, 62)'
             document.getElementById('step-bar-2').style.border = '1px solid rgb(184, 18, 62)'
 
         }
-        //functions for stepper//
+        //-------functions for stepper------//
 
         function trackProgressDropDown(trackMessagesArr) {
             //to be reomvesd -testing
@@ -1351,29 +1359,27 @@
                 trackMessagesArr = [3, 4, 6, 7, 11, 12] // for testing - to be removed
             }
             else {
-
+                trackMessagesArr = [1, 4, 5, 7, 8] // for testing - to be removed
             }
             //to be reomved -testing
 
             var finaltext = '';
             trackMessagesArr.forEach(function (item) {
                 progress_msges.forEach(function (msg) {
-                    if (item ==
-                        msg['id']
-                    ) {
+                    if (item == msg['id']) {
                         finaltext = finaltext + '<div class="step step-active"><div><div class="circle " id="circle2"><i class="fa fa-check" ></i ></div ></div><div><div class="title">' + msg['msg'] + '</div></div></div>'
                         // break;
                     }
-                    else {
 
-                    }
                 })
 
             });
             console.log('finaltext' + finaltext)
-            document.getElementById('progs-status').innerHTML = finaltext
+            document.getElementById('progs-status').innerHTML = finaltext // set the populated dropdown details to html
         }
 
+
+        // function to display date at top in the claim status screen//
         function displayDateForClaimStatus() {
             var date = new Date();
 
@@ -1395,7 +1401,9 @@
             var finalDate = day + ' ' + date.getDate() + ' ' + mnthDate + year + ' at ' + time;
             document.getElementById("displayDt").innerHTML = finalDate
         }
-// drop-2 tracking status functions
+
+
+// -----------drop-2 tracking status functions----------------//
 
     </script>
 </body>
