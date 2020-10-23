@@ -1052,7 +1052,7 @@ margin-top: 1rem;
   /* background-color:white; */
   min-width: 190px;
   font-family: "AIABody",Arial,"Helvetica Neue",Helvetica,sans-serif;
-  height: 333px;
+  /* height: 333px; */
   padding-left: 16px;
  /*  padding-top:20px ; */
   box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.2);
@@ -1233,6 +1233,8 @@ padding-bottom: 10px;
   }
 
 
+
+
 .request-font{
   text-align: justify;
 }
@@ -1243,6 +1245,12 @@ padding-bottom: 10px;
 
 .box , .box1{
     text-align: center;
+}
+
+#displayDt{
+  padding-left: 5%;
+  padding-right: 5%;
+
 }
 /* 
 #reference-stepper .mat-step-header .mat-step-icon-selected,
