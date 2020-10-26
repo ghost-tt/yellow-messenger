@@ -104,14 +104,6 @@ function renderProgress(progress) {
   $(".text").html(progress+"%");
 }
 
-
-
-
-
-
-
-
-
 let finalPayload = {};
 let accidentPayload = {};
 let basicInformation = {};
@@ -137,6 +129,16 @@ $(document).ready(function (event) {
   let idleInterval = setInterval(timerIncrement, 1000); 
   $(this).mousemove(resetTimer); 
   $(this).keypress(resetTimer); 
+
+  let selector = 'Peso'
+  $("#field_Bank > option").hide();
+  $("#field_Bank > option").filter(function () { return $(this).data('pub') == selector }).show();
+  
+  $('#from_currency').on('change', function (e) {
+      let selector = $(this).val();
+      $("#field_Bank > option").hide();
+      $("#field_Bank > option").filter(function () { return $(this).data('pub') == selector }).show();
+  });
 
 });
 
