@@ -916,11 +916,29 @@
                 </p>
                 <br />
                 <p class="font-weight-normal request-font">
-                <ul style="padding-left: 2rem;">
-                    <li> document 1 </li>
-                    <li> document 2 </li>
-                    <li> document 3 </li>
-                </ul>
+            <div style="padding-left: 10px;">
+                <div style="display: flex;align-items: center; padding-bottom: 1px;">
+                    <div id="outer-circle">
+                        <div id="inner-circle"></div>
+                    </div>
+                    <p>&nbsp;document 1</p>
+            
+                </div>
+                <div style="display: flex;align-items: center; padding-bottom: 1px;">
+                    <div id="outer-circle">
+                        <div id="inner-circle"></div>
+                    </div>
+                    <p>&nbsp;document 2</p>
+            
+                </div>
+                <div style="display: flex;align-items: center; padding-bottom: 1px;">
+                    <div id="outer-circle">
+                        <div id="inner-circle"></div>
+                    </div>
+                    <p>&nbsp;document 3</p>
+            
+                </div>
+            </div>
                 </p>
                 <br />
                 <p class="font-weight-normal request-font">
@@ -1190,7 +1208,7 @@
                 claim_type = 'illness';
                 claim_msg_type = 'I-2'
             }
-            if ($('#reference_number').val() == '9012') {
+            else if ($('#reference_number').val() == '9012') {
                 claim_type = 'death';
                 claim_msg_type = 'D-2'
             }
