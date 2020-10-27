@@ -116,7 +116,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-11 offset-md-1">
-							<form id="death__form" onSubmit="return false;" novalidate>
+							<form id="death__form" onSubmit="return false;" autocomplete="off" novalidate>
 								<div aria-labelledby="stepperFormTrigger1">
 									<div class="form__container">
 										<div class="row">
@@ -2155,9 +2155,9 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-11 offset-md-1 " id="form_Beneficiary">
-							<h3>We would like to extend our deepest sympatheies for your loss.</h3>
+							<h3>We would like to extend our deepest sympathies for your loss.</h3>
 							<br />
-							<p class="font-weight-normal" style="margin: 0 0 .5rem 0;">Please secure and upload copies of the necessary requirements below.</p>
+							<p class="font-weight-normal" style="margin: 0 0 .5rem 0;">Please secure and upload clear copies of the necessary requirements below.</p>
 							<p class="font-italic font-weight-normal">Important Note!</p>
 							<ul>
 								<li><p class="font-italic font-weight-normal">The insured’s valid government ID should also reflect a clearly visible signature.
@@ -2385,7 +2385,7 @@
 									<br /> -->
 									<div class="time_duration">
 										<div>Turnaround Time</div>
-										<div class="font-weight-bold">1-2 working days</div>
+										<div class="font-weight-bold">1 to 2 working days</div>
 									</div>
 								</div>
 							</div>
@@ -2413,7 +2413,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-11 offset-md-1">
-							<form id="bank_form" onSubmit="return false;" novalidate>
+							<form id="bank_form" onSubmit="return false;" autocomplete="off" novalidate>
 								<div role="tabpanel" aria-labelledby="stepperFormTrigger1">
 									<div class="row">
 										<div class="col-12 col-md-6">
@@ -2436,20 +2436,22 @@
 													<label for="validation">What is your bank?</label>
 													<select class="custom-select-container mr-sm-2 " id="field_Bank" tabindex="20">
 														<option value="" selected>--</option>
-														<option value="Bank of the Philippine Islands - BPI">Bank of the Philippine Islands - BPI</option>
-														<option value="BPI Family Savings Bank - BFB">BPI Family Savings Bank - BFB</option>
-														<option value="Banco de Oro - BDO">Banco de Oro - BDO</option>
-														<option value="China Banking Corporation - CBC">China Banking Corporation - CBC</option>
-														<option value="Citibank Philippines - CITI">Citibank Philippines - CITI</option>
-														<option value="Development Bank of the Phils - DBP">Development Bank of the Phils - DBP</option>
-														<option value="Eastwest Bank - EWB">Eastwest Bank - EWB</option>
-														<option value="Hongkong Shanghai Banking Corp. Phils - HSBC">Hongkong Shanghai Banking Corp. Phils - HSBC</option>
-														<option value="Land Bank of the Philippines - LPB">Land Bank of the Philippines - LPB</option>
-														<option value="Metropolitan Banks and Trust Company - MBTC">Metropolitan Banks and Trust Company - MBTC</option>
-														<option value="Philippine National Bank - PNB">Philippine National Bank - PNB</option>
-														<option value="Rizal Commercial Banking Corp - RCBC">Rizal Commercial Banking Corp - RCBC</option>
-														<option value="Security Bank - SBTC">Security Bank - SBTC</option>
-														<option value="Union Bank of the Philippines - UB">Union Bank of the Philippines - UB</option>
+														<option value="Bank of the Philippine Islands - BPI"  data-pub="Peso">Bank of the Philippine Islands - BPI</option>
+														<option value="BPI Family Savings Bank - BFB" data-pub="Peso">BPI Family Savings Bank - BFB</option>
+														<option value="Banco de Oro - BDO" data-pub="Peso">Banco de Oro - BDO</option>
+														<option value="China Banking Corporation - CBC" data-pub="Peso">China Banking Corporation - CBC</option>
+														<option value="Citibank Philippines - CITI" data-pub="Peso">Citibank Philippines - CITI</option>
+														<option value="Development Bank of the Phils - DBP" data-pub="Peso">Development Bank of the Phils - DBP</option>
+														<option value="Eastwest Bank - EWB" data-pub="Peso">Eastwest Bank - EWB</option>
+														<option value="Hongkong Shanghai Banking Corp. Phils - HSBC" data-pub="Peso">Hongkong Shanghai Banking Corp. Phils - HSBC</option>
+														<option value="Land Bank of the Philippines - LPB" data-pub="Peso">Land Bank of the Philippines - LPB</option>
+														<option value="Metropolitan Banks and Trust Company - MBTC" data-pub="Peso">Metropolitan Banks and Trust Company - MBTC</option>
+														<option value="Philippine National Bank - PNB" data-pub="Peso">Philippine National Bank - PNB</option>
+														<option value="Rizal Commercial Banking Corp - RCBC" data-pub="Peso">Rizal Commercial Banking Corp - RCBC</option>
+														<option value="Security Bank - SBTC" data-pub="Peso">Security Bank - SBTC</option>
+														<option value="Union Bank of the Philippines - UB" data-pub="Peso">Union Bank of the Philippines - UB</option>
+                                                        <option value="Bank of the Philippine Islands - BPI"  data-pub="USD">Bank of the Philippine Islands - BPI</option>
+                                                        <option value="Banco de Oro - BDO" data-pub="USD">Banco de Oro - BDO</option>
 													</select>
 													<div id="err_field_Bank" class="error"></div>
 												</div>
@@ -2551,7 +2553,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-11 offset-md-1">
-							<form id="death__form_addBeneficiary" onSubmit="return false;" novalidate style="margin-top: 1rem">
+							<form id="death__form_addBeneficiary" onSubmit="return false;" autocomplete="off" novalidate style="margin-top: 1rem">
 								<div class="row">
 									<input type="hidden" id="inputMailForm2" />
 									<div class="col-12 col-md-12">
@@ -4672,7 +4674,7 @@
                                         <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
                                           <a href="#" id="goBack3" onclick="goBack3()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0.5rem;">Back</a>
 											<div style="width: 50%;">
-												<p>For sole beneficiary</p>
+												<br>
 												<button type="submit" id="submit10" onclick="addBeneficiaryButtonClicked(event)" class="btn" style="width: 100%;">Submit
 													<div class="loader1">
 														<div class="loader-bg">
@@ -4809,20 +4811,22 @@
 													<label for="validation">What is your bank?</label>
 													<select class="custom-select-container mr-sm-2 " id="field_addBenificiaryBank" tabindex="20">
 														<option value="" selected>--</option>
-														<option value="Bank of the Philippine Islands - BPI">Bank of the Philippine Islands - BPI</option>
-														<option value="BPI Family Savings Bank - BFB">BPI Family Savings Bank - BFB</option>
-														<option value="Banco de Oro - BDO">Banco de Oro - BDO</option>
-														<option value="China Banking Corporation - CBC">China Banking Corporation - CBC</option>
-														<option value="Citibank Philippines - CITI">Citibank Philippines - CITI</option>
-														<option value="Development Bank of the Phils - DBP">Development Bank of the Phils - DBP</option>
-														<option value="Eastwest Bank - EWB">Eastwest Bank - EWB</option>
-														<option value="Hongkong Shanghai Banking Corp. Phils - HSBC">Hongkong Shanghai Banking Corp. Phils - HSBC</option>
-														<option value="Land Bank of the Philippines - LPB">Land Bank of the Philippines - LPB</option>
-														<option value="Metropolitan Banks and Trust Company - MBTC">Metropolitan Banks and Trust Company - MBTC</option>
-														<option value="Philippine National Bank - PNB">Philippine National Bank - PNB</option>
-														<option value="Rizal Commercial Banking Corp - RCBC">Rizal Commercial Banking Corp - RCBC</option>
-														<option value="Security Bank - SBTC">Security Bank - SBTC</option>
-														<option value="Union Bank of the Philippines - UB">Union Bank of the Philippines - UB</option>
+														<option value="Bank of the Philippine Islands - BPI"  data-pub="Peso">Bank of the Philippine Islands - BPI</option>
+														<option value="BPI Family Savings Bank - BFB" data-pub="Peso">BPI Family Savings Bank - BFB</option>
+														<option value="Banco de Oro - BDO" data-pub="Peso">Banco de Oro - BDO</option>
+														<option value="China Banking Corporation - CBC" data-pub="Peso">China Banking Corporation - CBC</option>
+														<option value="Citibank Philippines - CITI" data-pub="Peso">Citibank Philippines - CITI</option>
+														<option value="Development Bank of the Phils - DBP" data-pub="Peso">Development Bank of the Phils - DBP</option>
+														<option value="Eastwest Bank - EWB" data-pub="Peso">Eastwest Bank - EWB</option>
+														<option value="Hongkong Shanghai Banking Corp. Phils - HSBC" data-pub="Peso">Hongkong Shanghai Banking Corp. Phils - HSBC</option>
+														<option value="Land Bank of the Philippines - LPB" data-pub="Peso">Land Bank of the Philippines - LPB</option>
+														<option value="Metropolitan Banks and Trust Company - MBTC" data-pub="Peso">Metropolitan Banks and Trust Company - MBTC</option>
+														<option value="Philippine National Bank - PNB" data-pub="Peso">Philippine National Bank - PNB</option>
+														<option value="Rizal Commercial Banking Corp - RCBC" data-pub="Peso">Rizal Commercial Banking Corp - RCBC</option>
+														<option value="Security Bank - SBTC" data-pub="Peso">Security Bank - SBTC</option>
+														<option value="Union Bank of the Philippines - UB" data-pub="Peso">Union Bank of the Philippines - UB</option>
+                                                        <option value="Bank of the Philippine Islands - BPI"  data-pub="USD">Bank of the Philippine Islands - BPI</option>
+                                                        <option value="Banco de Oro - BDO" data-pub="USD">Banco de Oro - BDO</option>
 													</select>
 													<div id="err_field_addBenificiaryBank" class="error"></div>
 												</div>
