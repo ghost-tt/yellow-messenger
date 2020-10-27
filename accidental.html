@@ -138,7 +138,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-11 offset-md-1">
-                                <form id="accidental__form" onSubmit="return false;" novalidate>
+                                <form id="accidental__form" onSubmit="return false;" autocomplete="off" novalidate>
                                     <div class="form__container">
                                         <div class="row">
                                             <input type="hidden" id="inputMailForm" />
@@ -1005,11 +1005,15 @@
 
                                 <li>
                                     The Company will use such information in the insurance policy and all related
-                                    documents to conduct automated processing, data analytics, profiling, historical
-                                    research (a) to improve the Company’s internal systems and processes, (b) for
-                                    actuarial assumptions,
-                                    © in internal and external company reports, and (d) to develop and implement
-                                    business strategies.
+                                    documents
+                                    to conduct
+                                    automated processing, data analytics, profiling, historical research (a) to improve
+                                    the
+                                    Company’s internal
+                                    systems and processes, (b) for actuarial assumptions, (c) in internal and external
+                                    company
+                                    reports, and
+                                    (d) to develop and implement business strategies.
 
                                 </li>
 
@@ -1052,12 +1056,19 @@
                                 <li>
                                     <p style="margin-left: 1rem;">
                                         I/we may at anytime withdraw our consent by visiting Philam branches, calling
-                                        the Company’s contact center, or by emailing the request to <a target="_blank"
-                                            href="mailto:phi.philamprivacy@aia.com">phi.philamprivacy@aia.com</a>.
-                                        Upon receipt of such withdrawal of consent, the Company will no longer approach
-                                        me/us for promotions or products that may be suited to my/our insurance needs.
-                                        I/We am/are assured that this will not affect the Company’s
-                                        ability to provide quality service in relation to my/our existing policies
+                                        the
+                                        Company’s contact
+                                        center, or by emailing the request to <a target="_blank" href="mailto:phi.philamprivacy@aia.com">phi.philamprivacy@aia.com</a>. Upon receipt of
+                                        such
+                                        withdrawal of
+                                        consent, the Company will no longer approach me/us for promotions or products
+                                        that
+                                        may
+                                        be suited to
+                                        my/our insurance needs. I/We am/are assured that this will not affect the
+                                        Company’s
+                                        ability to provide
+                                        quality service in relation to my/our existing policies.
                                     </p>
                                 </li>
                             </ul>
@@ -1078,9 +1089,17 @@
                             <br />
                             <p class="font-weight-normal">Please secure and upload clear copies of the necessary
                                 requirements below.</p>
-                            <p class="font-italic font-weight-normal">Important Note! The insured’s valid government ID
-                                should also reflect a clearly visible signature.</p>
-
+                            <p class="font-italic font-weight-normal">Important Note!</p>
+                            <ul>
+                                <li><p class="font-italic font-weight-normal">The insured’s valid government ID
+                                                                should also reflect a clearly visible signature.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="font-italic font-weight-normal">Kindly ensure that only one file is uploaded in each field so we can successfully process your submission.
+                                    </p>
+                                </li>
+                            </ul>
                             <div class="row upload_form">
                                 <div class="col-12 col-md-6">
                                     <div class="col-12 col-md-6" style="padding: 0; margin: 1.5rem 0;">
@@ -1343,7 +1362,7 @@
                                     <br /> -->
                                     <div class="time_duration">
                                         <div>Turnaround Time</div>
-                                        <div class="font-weight-bold">1-2 working days</div>
+                                        <div class="font-weight-bold">1 to 2 working days</div>
                                     </div>
                                 </div>
                             </div>
@@ -1372,7 +1391,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-11 offset-md-1">
-                            <form id="bank_form" onSubmit="return false;" novalidate>
+                            <form id="bank_form" onSubmit="return false;" autocomplete="off" novalidate>
                                 <div role="tabpanel" aria-labelledby="stepperFormTrigger1">
                                     <div class="row">
                                         <div class="col-12 col-md-6">
@@ -1406,35 +1425,25 @@
                                                         onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
                                                     <div id="err_field_Bank" class="error"></div> -->
                                                     <select class="custom-select-container mr-sm-2 " id="field_Bank">
-                                                        <option value="" selected>--</option>
-                                                        <option value="Bank of the Philippine Islands - BPI">Bank of the
-                                                            Philippine Islands - BPI</option>
-                                                        <option value="BPI Family Savings Bank - BFB">BPI Family Savings
-                                                            Bank - BFB</option>
-                                                        <option value="Banco de Oro - BDO">Banco de Oro - BDO</option>
-                                                        <option value="China Banking Corporation - CBC">China Banking
-                                                            Corporation - CBC</option>
-                                                        <option value="Citibank Philippines - CITI">Citibank Philippines
-                                                            - CITI</option>
-                                                        <option value="Development Bank of the Phils - DBP">Development
-                                                            Bank of the Phils - DBP</option>
-                                                        <option value="Eastwest Bank - EWB">Eastwest Bank - EWB</option>
-                                                        <option value="Hongkong Shanghai Banking Corp. Phils - HSBC">
-                                                            Hongkong Shanghai Banking Corp. Phils - HSBC</option>
-                                                        <option value="Land Bank of the Philippines - LPB">Land Bank of
-                                                            the Philippines - LPB</option>
-                                                        <option value="Metropolitan Banks and Trust Company - MBTC">
-                                                            Metropolitan Banks and Trust Company - MBTC</option>
-                                                        <option value="Philippine National Bank - PNB">Philippine
-                                                            National Bank - PNB</option>
-                                                        <option value="Rizal Commercial Banking Corp - RCBC">Rizal
-                                                            Commercial Banking Corp - RCBC</option>
-                                                        <option value="Security Bank - SBTC">Security Bank - SBTC
-                                                        </option>
-                                                        <option value="Union Bank of the Philippines - UB">Union Bank of
-                                                            the Philippines - UB</option>
+														<option value="" selected>--</option>
+														<option value="Bank of the Philippine Islands - BPI"  data-pub="Peso">Bank of the Philippine Islands - BPI</option>
+														<option value="BPI Family Savings Bank - BFB" data-pub="Peso">BPI Family Savings Bank - BFB</option>
+														<option value="Banco de Oro - BDO" data-pub="Peso">Banco de Oro - BDO</option>
+														<option value="China Banking Corporation - CBC" data-pub="Peso">China Banking Corporation - CBC</option>
+														<option value="Citibank Philippines - CITI" data-pub="Peso">Citibank Philippines - CITI</option>
+														<option value="Development Bank of the Phils - DBP" data-pub="Peso">Development Bank of the Phils - DBP</option>
+														<option value="Eastwest Bank - EWB" data-pub="Peso">Eastwest Bank - EWB</option>
+														<option value="Hongkong Shanghai Banking Corp. Phils - HSBC" data-pub="Peso">Hongkong Shanghai Banking Corp. Phils - HSBC</option>
+														<option value="Land Bank of the Philippines - LPB" data-pub="Peso">Land Bank of the Philippines - LPB</option>
+														<option value="Metropolitan Banks and Trust Company - MBTC" data-pub="Peso">Metropolitan Banks and Trust Company - MBTC</option>
+														<option value="Philippine National Bank - PNB" data-pub="Peso">Philippine National Bank - PNB</option>
+														<option value="Rizal Commercial Banking Corp - RCBC" data-pub="Peso">Rizal Commercial Banking Corp - RCBC</option>
+														<option value="Security Bank - SBTC" data-pub="Peso">Security Bank - SBTC</option>
+														<option value="Union Bank of the Philippines - UB" data-pub="Peso">Union Bank of the Philippines - UB</option>
+                                                        <option value="Bank of the Philippine Islands - BPI"  data-pub="USD">Bank of the Philippine Islands - BPI</option>
+                                                        <option value="Banco de Oro - BDO" data-pub="USD">Banco de Oro - BDO</option>
                                                     </select>
-                                                    <div id="err_field_Bank" class="error"></div>
+													<div id="err_field_Bank" class="error"></div>
                                                 </div>
                                                 <div class="col-md-12 form__tags">
                                                     <label for="validation">What is your bank’s branch?</label>
@@ -1479,6 +1488,9 @@
                                                         Passbook, Bank Account Statement, or Bank Certification. You may
                                                         only upload documents that are in .jpg, .pdf formats and must
                                                         not exceed 2MB in file size.
+                                                    </small>
+                                                    <small class="form-text text-muted">
+                                                        Kindly ensure that only one file is uploaded in each field so we can successfully process your submission.
                                                     </small>
                                                     <p class="feedback_label" id="upload_feedback_label"></p>
                                                 </div>

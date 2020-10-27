@@ -71,6 +71,17 @@ function myDisable() {
     document.getElementById("bank_form").style.cursor = "no-drop";
 }
 
+function addFileToList(fileObject, fileName){
+    console.log("in function, with name : ");
+    console.log(fileName);
+    let index = filesList.findIndex(x => x.Filename == fileName )
+
+    if(index===-1){
+      console.log("adding bcoz unique");
+      filesList.push(fileObject);
+    }
+  }
+
 function timer() {
     var random = Math.floor(Math.random() * 5) + 1
     return new Promise((resolve, reject) => {
@@ -124,6 +135,16 @@ $(document).ready(function (event) {
     let idleInterval = setInterval(timerIncrement, 1000);
     $(this).mousemove(resetTimer);
     $(this).keypress(resetTimer);
+
+    let selector = 'Peso'
+    $("#field_Bank > option").hide();
+    $("#field_Bank > option").filter(function () { return $(this).data('pub') == selector }).show();
+
+    $('#from_currency').on('change', function (e) {
+        let selector = $(this).val();
+        $("#field_Bank > option").hide();
+        $("#field_Bank > option").filter(function () { return $(this).data('pub') == selector }).show();
+    });
 });
 
 
@@ -1025,7 +1046,7 @@ const isFileSizeValid = (file) => {
 
 file1.onchange = async function (e) {
     docType = "LIDC001";
-    tranType = "CIF";
+    tranType = "CIF-MIN";
     $("#file_upload_cancle_1").hide();
     $("#file_Upload_Tick_1").hide();
     console.log("Starting");
@@ -1045,17 +1066,16 @@ file1.onchange = async function (e) {
                     proceedScan(file, buttonNum, pageId);
                 }
 
-                let fileName = referenceNumber + "_" + docType + "_" + tranType;
+                let fileName = referenceNumber + "-" + docType + "-" + tranType;
 
-                console.log("setting file data : ");
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                    accident["Filename"] = `${fileName}.pdf`,
-                    accident["DocType"] = "PDF",
-                    accident["DocTypeCode"] = "LIDC001",
-                    accident["DocumentDescription"] = "Front copy of doc"
+                accident["Filename"] = `${fileName}.pdf`,
+                accident["DocType"] = "PDF",
+                accident["DocTypeCode"]= docType,
+                accident["DocumentDescription"] = "Front copy of doc"
 
-                filesList.push(accident);
+                addFileToList(accident, `${fileName}.pdf`);
                 const formData = new FormData()
                 formData.append('file', file, fileName + `.${ext}`);
                 handleFileUpload(formData, fileName);
@@ -1082,7 +1102,7 @@ file1.onchange = async function (e) {
 
 file2.onchange = async function (e) {
     docType = "LIDC001";
-    tranType = "CIB";
+    tranType = "CIB-MIN";
     $("#file_upload_cancle_2").hide();
     $("#file_Upload_Tick_2").hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -1101,16 +1121,16 @@ file2.onchange = async function (e) {
                     proceedScan(file, buttonNum, pageId);
                 }
 
-                let fileName = referenceNumber + "_" + docType + "_" + tranType;
+                let fileName = referenceNumber + "-" + docType + "-" + tranType;
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
                     accident["Filename"] = `${fileName}.pdf`,
                     accident["DocType"] = "PDF",
-                    accident["DocTypeCode"] = "LIDC001",
+                    accident["DocTypeCode"]= docType,
                     accident["DocumentDescription"] = "Back copy of doc"
 
-                filesList.push(accident);
+                addFileToList(accident, `${fileName}.pdf`);
                 const formData = new FormData()
                 formData.append('file', file, fileName + `.${ext}`)
                 handleFileUpload(formData, fileName);
@@ -1137,7 +1157,7 @@ file2.onchange = async function (e) {
 
 file3.onchange = async function (e) {
     docType = "LIDC034";
-    tranType = "APS";
+    tranType = "APS-MIN";
     $("#file_upload_cancle_3").hide();
     $("#file_Upload_Tick_3").hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -1156,7 +1176,7 @@ file3.onchange = async function (e) {
                     proceedScan(file, buttonNum, pageId);
                 }
 
-                let fileName = referenceNumber + "_" + docType + "_" + tranType;
+                let fileName = referenceNumber + "-" + docType + "-" + tranType;
 
                 let accident = {};
 
@@ -1166,7 +1186,7 @@ file3.onchange = async function (e) {
                     accident["DocTypeCode"] = docType,
                     accident["DocumentDescription"] = "Attending Physician’s Statement"
 
-                filesList.push(accident);
+                addFileToList(accident, `${fileName}.pdf`);
                 const formData = new FormData()
                 formData.append('file', file, fileName + `.${ext}`)
                 handleFileUpload(formData, fileName);
@@ -1193,7 +1213,7 @@ file3.onchange = async function (e) {
 
 file5.onchange = async function (e) {
     docType = "LIDC037";
-    tranType = "SOA";
+    tranType = "SOA-MIN";
     $("#file_upload_cancle_5").hide();
     $("#file_Upload_Tick_5").hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -1212,7 +1232,7 @@ file5.onchange = async function (e) {
                     proceedScan(file, buttonNum, pageId);
                 }
 
-                let fileName = referenceNumber + "_" + docType + "_" + tranType;
+                let fileName = referenceNumber + "-" + docType + "-" + tranType;
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
@@ -1221,7 +1241,7 @@ file5.onchange = async function (e) {
                     accident["DocTypeCode"] = docType,
                     accident["DocumentDescription"] = "Police or Narration Report"
 
-                filesList.push(accident);
+                addFileToList(accident, `${fileName}.pdf`);
                 const formData = new FormData()
                 formData.append('file', file, fileName + `.${ext}`)
                 handleFileUpload(formData, fileName);
@@ -1247,6 +1267,8 @@ file5.onchange = async function (e) {
 };
 
 file6.onchange = async function (e) {
+    docType = "LIBA001";
+    tranType = "BA-MIN";
     $("#file_upload_cancle_6").hide();
     $("#file_Upload_Tick_6").hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -1264,6 +1286,20 @@ file6.onchange = async function (e) {
                 else {
                     proceedScan(file, buttonNum, pageId);
                 }
+
+                let fileName = referenceNumber + "-" + docType + "-" + tranType;
+
+                let accident = {};
+                accident['BeneficiaryNo'] = beneficiaryCount,
+                accident["Filename"] = `${fileName}.pdf`,
+                accident["DocType"] = "PDF",
+                accident["DocTypeCode"] = docType,
+                accident["DocumentDescription"] = "Proof of Bank Account"
+
+                addFileToList(accident, `${fileName}.pdf`);
+                const formData = new FormData()
+                formData.append('file', file, fileName + `.${ext}`);
+                handleFileUpload(formData, fileName);
             } else {
                 $("#warning_parent_acct").show();
                 $("#file_loader_icon_6").hide();
@@ -1444,7 +1480,7 @@ function handleAccountInfo(event) {
             BankDetailsList.push(BankDetails);
 
             let filesObject = {};
-            filesObject["FolderName"] = `/D:/CLAIMS/${referenceNumber}`
+            filesObject["FolderName"] = `/CLAIMS/${referenceNumber}`
             filesObject["FileList"] = filesList;
 
             // filesMap["Accident"] = accident
@@ -1484,7 +1520,7 @@ function bankTranfer() {
 
 function pickUp() {
     let filesObject = {};
-    filesObject["FolderName"] = `/D:/CLAIMS/${referenceNumber}`
+    filesObject["FolderName"] = `/CLAIMS/${referenceNumber}`
     filesObject["FileList"] = filesList;
     let BankDetailsList = [];
     BankDetailsList.push(BankDetails);
