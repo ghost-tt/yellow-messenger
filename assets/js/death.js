@@ -884,7 +884,7 @@ function handleFormAddBeneficiary(event) {
             beneficiary["FirstName"] = field_addBeneficiaryFirstName,
             beneficiary["MiddleName"] = field_addBeneficiaryMiddleName,
             beneficiary["LastName"] = field_addBeneficiaryLastName,
-            beneficiary["DateOfBirth"] = field_addBeneficiaryDOB,
+            beneficiary["DateOfBirth"] = field_addBeneficiaryDOB.split('-')[1] + "/" + field_addBeneficiaryDOB.split('-')[2] + "/" + field_addBeneficiaryDOB.split('-')[0],
             beneficiary["CountryCode"] = $("select#field_addBeneficiaryMobileNumberSelect option").filter(":selected").val(),
             beneficiary["PhoneNumber"] = field_addBeneficiaryMobileNum,
             beneficiary["EmailAddress"] = field_addBeneficiaryEmailAddress,
