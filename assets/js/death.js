@@ -894,7 +894,12 @@ function handleFormAddBeneficiary(event) {
             beneficiary["Sex"] = field_addBeneficiarySex,
             beneficiary["Relationship"] = field_addBeneficiaryRelationToDeceased,
             beneficiary["DocumentFolder"] = `/CLAIMS/${referenceNumber}`,
-            beneficiary["PayoutOption"] = "CTA"
+            beneficiary["PayoutOption"] = "CTA",
+            beneficiary["Employer"] = field_addBeneficiaryEmployerName,
+            beneficiary["GovernmentOfficial"] = field_addBeneficiary_relatives1,
+            beneficiary["GovernmentOfficialRelative"] = field_add_Beneficiary_add_relatives2,
+            beneficiary["Occupation"] = field_addBeneficiaryOccupation
+
         BeneficiaryList.push(beneficiary);
 
         dataReset("field_addBeneficiaryFirstName", "field_addBeneficiaryMiddleName", "field_addBeneficiaryLastName", "field_addBeneficiaryMobileNum", "field_addBeneficiaryEmailAddress", "field_addBeneficiaryHomeAddress", "field_addBeneficiaryDOB", "field_addBeneficiaryPOB", "field_addBeneficiaryNationality", "field_addBeneficiarySex", "field_addBeneficiaryRelationToDeceased", "field_addBeneficiaryEmployerName", "field_addBeneficiaryOccupation", "field_addBeneficiary_relatives1", "field_add_Beneficiary_add_relatives2");
