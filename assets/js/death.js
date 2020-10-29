@@ -868,7 +868,9 @@ function handleFormAddBeneficiary(event) {
             field_add_Beneficiary_add_relatives2,
             country_code: $("select#field_addBeneficiaryMobileNumberSelect option").filter(":selected").val(),
             basic_checkbox: $('#invalidCheck_basicAddBeneficiary').is(':checked'),
-            privacy_checkbox: $('#invalidCheck_privacyAddBeneficiary').is(':checked')
+            privacy_checkbox: $('#invalidCheck_privacyAddBeneficiary').is(':checked'),
+            privacy_consent_beneficiary_1: $("#privacy_consent_beneficiary_1").is(":checked"),
+            privacy_consent_beneficiary_2: $("#privacy_consent_beneficiary_2").is(":checked")
         }
 
 
@@ -1432,7 +1434,9 @@ function handleForm(event) {
             field_BeneficiaryRelationToDeceased,
             country_code: $("select#field_BeneficiaryMobileNumberSelect option").filter(":selected").val(),
             basic_checkbox: $('#invalidCheck_basic').is(':checked'),
-            privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
+            privacy_checkbox: $('#invalidCheck_privacy').is(':checked'),
+            privacy_consent_1: $("#privacy_consent_1").is(":checked"),
+            privacy_consent_2: $("#privacy_consent_2").is(":checked")
         }
         InsuredInformation["FirstName"] = field_firstName;
         InsuredInformation["MiddleName"] = field_middleName;

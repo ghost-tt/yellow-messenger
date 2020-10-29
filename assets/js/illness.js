@@ -885,6 +885,8 @@ function handleForm(event) {
             field_POA,
             basic_checkbox: $("#invalidCheck_basic").is(":checked"),
             privacy_checkbox: $("#invalidCheck_privacy").is(":checked"),
+            privacy_consent_1: $("#privacy_consent_1").is(":checked"),
+            privacy_consent_2: $("#privacy_consent_2").is(":checked"),
         };
 
         $("#err_privacy_consent").text("");
