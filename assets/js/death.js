@@ -576,7 +576,8 @@ function validateNotNumber(evt) {
 
 function handleFormAddBeneficiary(event) {
     event.preventDefault();
-    beneficiaryCount++;
+    // beneficiaryCount++;
+    beneficiaryCount = buttonCount+1;
     traverse = 1;
     var field_addBeneficiaryFirstName = $("#field_addBeneficiaryFirstName").val();
     var field_addBeneficiaryMiddleName = $("#field_addBeneficiaryMiddleName").val();
