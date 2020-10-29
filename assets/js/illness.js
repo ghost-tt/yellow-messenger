@@ -928,7 +928,9 @@ function handleForm(event) {
                 }
             })
         }), '*');
-    } else {
+    }else if((comparingDob == 5) || (comparingDob == 6) || (comparingDob == 7)) {
+        $('#popUp_DOB').modal('show');
+    }  else {
         $("#popUp").modal("show");
     }
 }

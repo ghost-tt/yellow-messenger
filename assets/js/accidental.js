@@ -1010,6 +1010,8 @@ function handleForm(event) {
         }
       })
     }), '*');
+  }else if((comapareDates == false) && ((field_DOB !== '') && (field_DOA != ''))) {
+    $('#popUp_DOB').modal('show');
   } else {
     $('#popUp').modal('show');
   }

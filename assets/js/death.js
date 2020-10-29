@@ -1475,7 +1475,9 @@ function handleForm(event) {
         $("#customer_Name").text(`Hi ${field_BeneficiaryFirstName}, Hang in there as we are now processing your request. Kindly expect an SMS update from us within 1 to 2 working days on the status of your request.`);
         console.log('Data -> ', data)
 
-    } else {
+    }else if ((comapareDates == false) && ((field_DOB !== '') || (field_DOID !== ''))){
+        $('#popUp_DOB').modal('show');
+    }else {
         $('#popUp').modal('show');
     }
 }
