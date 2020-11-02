@@ -140,14 +140,23 @@ $(document).ready(function (event) {
   $(this).mousemove(resetTimer);
   $(this).keypress(resetTimer);
 
-  let selector = 'Peso'
-  $("#field_Bank > option").hide();
-  $("#field_Bank > option").filter(function () { return $(this).data('pub') == selector }).show();
-  
-  $('#from_currency').on('change', function (e) {
-      let selector = $(this).val();
-      $("#field_Bank > option").hide();
-      $("#field_Bank > option").filter(function () { return $(this).data('pub') == selector }).show();
+  var val = 'Peso'
+  if (val == "Peso") {
+    $("#field_Bank").html(
+     "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+    );
+  } 
+  $("#from_currency").change(function () {
+    var val = $(this).val();
+    if (val == "Peso") {
+      $("#field_Bank").html(
+       "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+      );
+    } else if (val == "USD") {
+      $("#field_Bank").html(
+        "<option value='Bank of the Philippine Islands - BPI'>Bank of the Philippine Islands - BPI</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option>"
+      );
+    }
   });
 
 });
@@ -960,6 +969,8 @@ function handleForm(event) {
       field_POA,
       basic_checkbox: $("#invalidCheck_basic").is(":checked"),
       privacy_checkbox: $("#invalidCheck_privacy").is(":checked"),
+      privacy_consent_1: $("#privacy_consent_1").is(":checked"),
+      privacy_consent_2: $("#privacy_consent_2").is(":checked"),
     };
 
     $('#form_wrapper').hide();
@@ -1003,6 +1014,8 @@ function handleForm(event) {
         }
       })
     }), '*');
+  }else if((comapareDates == false) && ((field_DOB !== '') && (field_DOA != ''))) {
+    $('#popUp_DOB').modal('show');
   } else {
     $('#popUp').modal('show');
   }
@@ -1085,17 +1098,17 @@ const fileCheck = (file, button, pageid) => {
     if (this.width < 400 && this.height < 400) {
       if (pageid == 1) {
         $(`#warning_parent`).show();
-        $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
+        $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable. Kindly ensure to upload clear copies of your documents to proceed.");
       }
       if (pageid == 2) {
         $("#warning_parent_acct").show();
-        $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
+        $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable. Kindly ensure to upload clear copies of your documents to proceed.");
       }
 
       $(`#file_loader_icon_${button}`).hide();
       $(`#file_Upload_Tick_${button}`).hide();
       $(`#file_upload_cancle_${button}`).show();
-      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
+      $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable. Kindly ensure to upload clear copies of your documents to proceed.");
       console.log("Image is bad");
     } else {
       console.log("This is right JPG");
@@ -1161,7 +1174,7 @@ file1.onchange = async function (e) {
         $("#file_Upload_Tick_1").hide();
         $("#file_upload_cancle_1").show();
         $("#upload_warning").text(
-          "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
+          "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
         );
       }
       break;
@@ -1216,7 +1229,7 @@ file2.onchange = async function (e) {
         $("#file_Upload_Tick_2").hide();
         $("#file_upload_cancle_2").show();
         $("#upload_warning").text(
-          "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
+          "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
         );
       }
       break;
@@ -1271,7 +1284,7 @@ file3.onchange = async function (e) {
         $("#file_Upload_Tick_3").hide();
         $("#file_upload_cancle_3").show();
         $("#upload_warning").text(
-          "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
+          "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
         );
       }
       break;
@@ -1327,7 +1340,7 @@ file4.onchange = async function (e) {
         $("#file_Upload_Tick_4").hide();
         $("#file_upload_cancle_4").show();
         $("#upload_warning").text(
-          "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
+          "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
         );
       }
       break;
@@ -1384,7 +1397,7 @@ file5.onchange = async function (e) {
         $("#file_Upload_Tick_5").hide();
         $("#file_upload_cancle_5").show();
         $("#upload_warning").text(
-          "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
+          "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
         );
       }
       break;
@@ -1441,7 +1454,7 @@ file6.onchange = async function (e) {
         $("#file_Upload_Tick_6").hide();
         $("#file_upload_cancle_6").show();
         $("#upload_warning_acct").text(
-          "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
+          "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
         );
       }
       break;
@@ -1483,7 +1496,7 @@ file7.onchange = async function (e) {
         $("#file_Upload_Tick_7").hide();
         $("#file_upload_cancle_7").show();
         $("#upload_warning").text(
-          "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
+          "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
         );
       }
       break;

@@ -74,25 +74,47 @@ $(document).ready(function (event) {
     $(this).mousemove(resetTimer);
     $(this).keypress(resetTimer);
 
-    let selector = 'Peso'
-    $("#field_Bank > option").hide();
-    $("#field_Bank > option").filter(function () { return $(this).data('pub') == selector }).show();
+    defaultBank();
 
-    $("#field_addBenificiaryBank > option").hide();
-    $("#field_addBenificiaryBank > option").filter(function () { return $(this).data('pub') == selector }).show();
-
-    $('#from_currency').on('change', function (e) {
-        let selector = $(this).val();
-        $("#field_Bank > option").hide();
-        $("#field_Bank > option").filter(function () { return $(this).data('pub') == selector }).show();
+    $("#from_currency").change(function () {
+        var val = $(this).val();
+        if (val == "Peso") {
+            $("#field_Bank").html(
+                "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+            );
+        } else if (val == "USD") {
+            $("#field_Bank").html(
+                "<option value='Bank of the Philippine Islands - BPI'>Bank of the Philippine Islands - BPI</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option>"
+            );
+        }
     });
 
-    $('#from_addBeneficiarycurrency').on('change', function (e) {
-        let selector = $(this).val();
-        $("#field_addBenificiaryBank > option").hide();
-        $("#field_addBenificiaryBank > option").filter(function () { return $(this).data('pub') == selector }).show();
+
+    $("#from_addBeneficiarycurrency").change(function () {
+        var val = $(this).val();
+        if (val == "Peso") {
+            $("#field_addBenificiaryBank").html(
+                "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+            );
+        } else if (val == "USD") {
+            $("#field_addBenificiaryBank").html(
+                "<option value='Bank of the Philippine Islands - BPI'>Bank of the Philippine Islands - BPI</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option>"
+            );
+        }
     });
 });
+
+function defaultBank() {
+    var val = 'Peso';
+    if (val == "Peso") {
+        $("#field_Bank").html(
+            "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+        );
+        $("#field_addBenificiaryBank").html(
+            "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+        );
+    }
+}
 
 
 function resetTimer() {
@@ -132,15 +154,15 @@ function myDisable() {
     document.getElementById("form_Beneficiary").style.cursor = "no-drop";
 }
 
-function addFileToList(fileObject, fileName){
+function addFileToList(fileObject, fileName) {
     console.log(fileName);
-    let index = filesList.findIndex(x => x.Filename == fileName )
-  
-    if(index===-1){
-      console.log("adding bcoz unique");
-      filesList.push(fileObject);
+    let index = filesList.findIndex(x => x.Filename == fileName)
+
+    if (index === -1) {
+        console.log("adding bcoz unique");
+        filesList.push(fileObject);
     }
-  }
+}
 
 function timer() {
     var random = Math.floor(Math.random() * 5) + 1
@@ -389,16 +411,40 @@ function disableFutureDatesDOB() {
     $('#field_DOB').attr('max', maxDate);
 }
 
-function checkKeyword(keyword) {
-
+function checkKeyword(keyword, type) {
+  
     if ((keyword == 'husband') || (keyword == 'wife') || (keyword == 'spouse') || (keyword == 'Husband') || (keyword == 'Wife') || (keyword == 'Spouse') || (keyword == 'HUSBAND') || (keyword == 'WIFE') || (keyword == 'SPOUSE')) {
+        if (type == 'new_beneficiary') {
+            document.getElementById("file_Upload_11").disabled = false;
+            document.getElementById("file_Upload_11").style.cursor = "pointer";
+            document.getElementById("file_Upload_11").style.opacity = "0";
+            document.getElementById("marriage_certificate_11").style.border = "none";
+        }
+        else {
+            document.getElementById("file_Upload_5").disabled = false;
+            document.getElementById("file_Upload_5").style.cursor = "pointer";
+            document.getElementById("file_Upload_5").style.opacity = "0";
+            document.getElementById("marriage_certificate").style.border = "none";
+        }
         return true;
     } else {
+        if (type == 'new_beneficiary') {
+            document.getElementById("file_Upload_11").disabled = true;
+            document.getElementById("file_Upload_11").style.cursor = "no-drop";
+            document.getElementById("file_Upload_11").style.opacity = "0.4";
+            document.getElementById("marriage_certificate_11").style.border = "none";
+        }
+        else {
+            document.getElementById("file_Upload_5").disabled = true;
+            document.getElementById("file_Upload_5").style.cursor = "no-drop";
+            document.getElementById("file_Upload_5").style.opacity = "0.4";
+            document.getElementById("marriage_certificate").style.border = "none";
+        }
         return false;
     }
 }
 
-function currentDate(date) {
+function currentDate(date, type) {
     var dtToday = new Date();
     var month = dtToday.getMonth() + 1;
     var day = dtToday.getDate();
@@ -408,10 +454,34 @@ function currentDate(date) {
     var userMonth = userDate[1];
     var userday = userDate[2];
     var age = year - userYear;
-
+  
     if (age <= 18) {
+        if (type == 'new_beneficiary') {
+            document.getElementById("file_Upload_12").disabled = false;
+            document.getElementById("file_Upload_12").style.cursor = "pointer";
+            document.getElementById("file_Upload_12").style.opacity = "0";
+
+        }
+        else {
+            document.getElementById("file_Upload_6").disabled = false;
+            document.getElementById("file_Upload_6").style.cursor = "pointer";
+            document.getElementById("file_Upload_6").style.opacity = "0";
+
+        }
         return true;
     } else {
+        if (type == 'new_beneficiary') {
+            document.getElementById("file_Upload_12").disabled = true;
+            document.getElementById("file_Upload_12").style.cursor = "no-drop";
+            document.getElementById("file_Upload_12").style.opacity = "0.4";
+            document.getElementById("age_cert_12").style.border = "none";
+        }
+        else {
+            document.getElementById("file_Upload_6").disabled = true;
+            document.getElementById("file_Upload_6").style.cursor = "no-drop";
+            document.getElementById("file_Upload_6").style.opacity = "0.4";
+            document.getElementById("age_cert").style.border = "none";
+        }
         return false;
     }
 
@@ -576,7 +646,8 @@ function validateNotNumber(evt) {
 
 function handleFormAddBeneficiary(event) {
     event.preventDefault();
-    beneficiaryCount++;
+    // beneficiaryCount++;
+    beneficiaryCount = buttonCount + 1;
     traverse = 1;
     var field_addBeneficiaryFirstName = $("#field_addBeneficiaryFirstName").val();
     var field_addBeneficiaryMiddleName = $("#field_addBeneficiaryMiddleName").val();
@@ -610,8 +681,8 @@ function handleFormAddBeneficiary(event) {
     var lenaddBeneficiaryNationality = fieldCheckLength(field_addBeneficiaryNationality, 120);
     var lenaddBeneficiaryRelationToDeceased = fieldCheckLength(field_addBeneficiaryRelationToDeceased, 50);
     var lenaddBeneficiaryEmployerName = fieldCheckLength(field_addBeneficiaryEmployerName, 30)
-    var ageaddBeneficiaryDOB = currentDate(field_addBeneficiaryDOB);
-    var relationaddBeneficiaryRelation = checkKeyword(field_addBeneficiaryRelationToDeceased);
+    var ageaddBeneficiaryDOB = currentDate(field_addBeneficiaryDOB, 'new_beneficiary');
+    var relationaddBeneficiaryRelation = checkKeyword(field_addBeneficiaryRelationToDeceased, 'new_beneficiary');
     /*  var numAddBeniEmployerName = numberValidation(field_addBeneficiaryEmployerName);
      var specAddBeniEmployerName = specialcharacterValidation(field_addBeneficiaryEmployerName); */
 
@@ -845,7 +916,9 @@ function handleFormAddBeneficiary(event) {
             field_add_Beneficiary_add_relatives2,
             country_code: $("select#field_addBeneficiaryMobileNumberSelect option").filter(":selected").val(),
             basic_checkbox: $('#invalidCheck_basicAddBeneficiary').is(':checked'),
-            privacy_checkbox: $('#invalidCheck_privacyAddBeneficiary').is(':checked')
+            privacy_checkbox: $('#invalidCheck_privacyAddBeneficiary').is(':checked'),
+            privacy_consent_beneficiary_1: $("#privacy_consent_beneficiary_1").is(":checked"),
+            privacy_consent_beneficiary_2: $("#privacy_consent_beneficiary_2").is(":checked")
         }
 
 
@@ -894,7 +967,12 @@ function handleFormAddBeneficiary(event) {
             beneficiary["Sex"] = field_addBeneficiarySex,
             beneficiary["Relationship"] = field_addBeneficiaryRelationToDeceased,
             beneficiary["DocumentFolder"] = `/CLAIMS/${referenceNumber}`,
-            beneficiary["PayoutOption"] = "CTA"
+            beneficiary["PayoutOption"] = "CTA",
+            beneficiary["Employer"] = field_addBeneficiaryEmployerName,
+            beneficiary["GovernmentOfficial"] = field_addBeneficiary_relatives1,
+            beneficiary["GovernmentOfficialRelative"] = field_add_Beneficiary_add_relatives2,
+            beneficiary["Occupation"] = field_addBeneficiaryOccupation
+
         BeneficiaryList.push(beneficiary);
 
         dataReset("field_addBeneficiaryFirstName", "field_addBeneficiaryMiddleName", "field_addBeneficiaryLastName", "field_addBeneficiaryMobileNum", "field_addBeneficiaryEmailAddress", "field_addBeneficiaryHomeAddress", "field_addBeneficiaryDOB", "field_addBeneficiaryPOB", "field_addBeneficiaryNationality", "field_addBeneficiarySex", "field_addBeneficiaryRelationToDeceased", "field_addBeneficiaryEmployerName", "field_addBeneficiaryOccupation", "field_addBeneficiary_relatives1", "field_add_Beneficiary_add_relatives2");
@@ -1023,7 +1101,6 @@ function handleForm(event) {
         lenLastNameSuffix = fieldCheckLength(field_lastName_Suffix, 3);
     }
     var comapareDates = compareFun(field_DOB, field_DOID);
-
     var lenFirstName = fieldCheckLength(field_firstName, 25);
     var lenMiddleName = fieldCheckLength(field_middleName, 25);
     var lenLastName = fieldCheckLength(field_lastName, 25);
@@ -1404,7 +1481,9 @@ function handleForm(event) {
             field_BeneficiaryRelationToDeceased,
             country_code: $("select#field_BeneficiaryMobileNumberSelect option").filter(":selected").val(),
             basic_checkbox: $('#invalidCheck_basic').is(':checked'),
-            privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
+            privacy_checkbox: $('#invalidCheck_privacy').is(':checked'),
+            privacy_consent_1: $("#privacy_consent_1").is(":checked"),
+            privacy_consent_2: $("#privacy_consent_2").is(":checked")
         }
         InsuredInformation["FirstName"] = field_firstName;
         InsuredInformation["MiddleName"] = field_middleName;
@@ -1412,7 +1491,7 @@ function handleForm(event) {
         InsuredInformation["Suffix"] = field_lastName_Suffix;
         InsuredInformation["DateOfBirth"] = field_DOB.split('-')[1] + "/" + field_DOB.split('-')[2] + "/" + field_DOB.split('-')[0];
         InsuredInformation["InsuredsDeath"] = field_DOID.split('-')[1] + "/" + field_DOID.split('-')[2] + "/" + field_DOID.split('-')[0];
-        document.getElementById('user_mobile').innerHTML = field_mobileNum.replace(/.(?=.{4})/g, '*')
+        document.getElementById('user_mobile').innerHTML = field_BeneficiaryMobileNum.replace(/.(?=.{4})/g, '*')
         basicInformation["CauseOfLoss"] = field_NatureLoss;
 
         let beneficiary = {};
@@ -1447,6 +1526,8 @@ function handleForm(event) {
         $("#customer_Name").text(`Hi ${field_BeneficiaryFirstName}, Hang in there as we are now processing your request. Kindly expect an SMS update from us within 1 to 2 working days on the status of your request.`);
         console.log('Data -> ', data)
 
+    } else if ((comapareDates == false) && ((field_DOB !== '') || (field_DOID !== ''))) {
+        $('#popUp_DOB').modal('show');
     } else {
         $('#popUp').modal('show');
     }
@@ -1976,7 +2057,7 @@ file6.onchange = async function (e) {
 
 file7.onchange = async function (e) {
     docType = "DIBA001";
-  tranType = "BA-MAJ";
+    tranType = "BA-MAJ";
     $("#file_upload_cancle_7").hide();
     $("#file_Upload_Tick_7").hide();
     var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -1997,15 +2078,15 @@ file7.onchange = async function (e) {
                 let fileName = referenceNumber + "-" + docType + "-" + tranType;
 
                 let accident = {};
-        
+
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident["Filename"] = `${fileName}.pdf`,
-                accident["DocType"]= "PDF",
-                accident["DocTypeCode"]= docType,
-                accident['DocumentDescription']= "Proof of Bank Account"
-        
+                    accident["Filename"] = `${fileName}.pdf`,
+                    accident["DocType"] = "PDF",
+                    accident["DocTypeCode"] = docType,
+                    accident['DocumentDescription'] = "Proof of Bank Account"
+
                 addFileToList(accident, `${fileName}.pdf`);
-        
+
                 const formData = new FormData()
                 formData.append('file', file, fileName + `.${ext}`)
                 handleFileUpload(formData, fileName);
@@ -2314,6 +2395,7 @@ function dataResetInfo(data) {
 
 function addBeneficiary(event) {
 
+    
     event.preventDefault();
     if (screenCount !== 0 && traverse == 0) {
         $('#missingDetails').modal('show');
@@ -2350,7 +2432,7 @@ function addBeneficiary(event) {
             $('#popUp').modal('show');
             return;
         }
-
+      
         if (relation == true) {
             if (!file5.value || $("#file_Upload_Tick_5").is(":hidden")) {
                 $("#warning_parent").show();
@@ -2410,7 +2492,7 @@ function addBeneficiary(event) {
 
 function addBeneficiaryNew(event) {
     event.preventDefault();
-
+   
     if (screenCount !== 0 && traverse == 0) {
         $('#missingDetails').modal('show');
     } else {
@@ -2433,6 +2515,7 @@ function addBeneficiaryNew(event) {
         }
 
         if (relation) {
+
             if (!file11.value || ($('#file_Upload_Tick_11').is(":hidden"))) {
                 $('#warning_parent_addBeneficiary').show();
                 $('#addBeneficiary_upload_warning').text('Please upload your Valid Marriage Contract!');
@@ -2504,6 +2587,7 @@ function addBeneficiaryNew(event) {
             }
 
             dataReset("field_addBenificiaryAccountName", "field_addBenificiaryAccountNumber", "field_addBenificiaryBank", "field_addBeneficiaryBranch", "field_addBeneficiaryCurrency", "upload_file_8");
+            resetBank();
             fileUploadDataReset();
 
             $('#privacy_consent_1').prop('checked', false);
@@ -2516,6 +2600,14 @@ function addBeneficiaryNew(event) {
         }
     }
 }
+
+function resetBank() {
+    $('#from_addBeneficiarycurrency').val('Peso');
+    $("#field_addBenificiaryBank").html(
+        "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+    );
+}
+
 
 
 function screen() {
@@ -3539,24 +3631,24 @@ function goBackPickUp() {
     $('#form_wrapper').show();
 }
 
-function checkUploadDocument(){
+function checkUploadDocument() {
 
-    if(upload_data.upload_file_1 !== '') {
+    if (upload_data.upload_file_1 !== '') {
         $('#file_Upload_Tick_1').show();
     }
-    if(upload_data.upload_file_2 !== '') {
+    if (upload_data.upload_file_2 !== '') {
         $('#file_Upload_Tick_2').show();
     }
-    if(upload_data.upload_file_3 !== '') {
+    if (upload_data.upload_file_3 !== '') {
         $('#file_Upload_Tick_3').show();
     }
-    if(upload_data.upload_file_4 !== '') {
+    if (upload_data.upload_file_4 !== '') {
         $('#file_Upload_Tick_4').show();
     }
-    if(upload_data.upload_file_5 !== '') {
+    if (upload_data.upload_file_5 !== '') {
         $('#file_Upload_Tick_5').show();
     }
-    if(upload_data.upload_file_6 !== '') {
+    if (upload_data.upload_file_6 !== '') {
         $('#file_Upload_Tick_6').show();
     }
 
@@ -3564,19 +3656,19 @@ function checkUploadDocument(){
 
 function checkUploadDocumentBene(data) {
 
-    if(data.upload_file_9 !== '') {
+    if (data.upload_file_9 !== '') {
         $('#file_Upload_Tick_9').show();
     }
-    if(data.upload_file_10 !== '') {
+    if (data.upload_file_10 !== '') {
         $('#file_Upload_Tick_10').show();
     }
-    if(data.upload_file_11 !== '') {
+    if (data.upload_file_11 !== '') {
         $('#file_Upload_Tick_11').show();
     }
-    if(data.upload_file_12 !== '') {
+    if (data.upload_file_12 !== '') {
         $('#file_Upload_Tick_12').show();
     }
-    
+
 }
 
 function goBackAddBeneficiary() {
@@ -3783,8 +3875,18 @@ function isEmpty(obj) {
 
 function setDataBeneficiary(data) {
     for (const [key, value] of Object.entries(data)) {
-        console.log(`${key}: ${value}`);
-        $(`#${key}`).val(`${value}`)
+
+        if (key == 'field_addBenificiaryBank') {
+            $("#field_addBenificiaryBank").html(
+                `<option value='${value}'>${value}</option>`
+            );
+        } else if (key == 'field_addBeneficiaryCurrency') {
+            $('#from_addBeneficiarycurrency').val(`${value}`)
+        }
+        else {
+            $(`#${key}`).val(`${value}`);
+        }
+
     }
 }
 
