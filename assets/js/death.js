@@ -412,7 +412,7 @@ function disableFutureDatesDOB() {
 }
 
 function checkKeyword(keyword, type) {
-  
+
     if ((keyword == 'husband') || (keyword == 'wife') || (keyword == 'spouse') || (keyword == 'Husband') || (keyword == 'Wife') || (keyword == 'Spouse') || (keyword == 'HUSBAND') || (keyword == 'WIFE') || (keyword == 'SPOUSE')) {
         if (type == 'new_beneficiary') {
             document.getElementById("file_Upload_11").disabled = false;
@@ -454,7 +454,7 @@ function currentDate(date, type) {
     var userMonth = userDate[1];
     var userday = userDate[2];
     var age = year - userYear;
-  
+
     if (age <= 18) {
         if (type == 'new_beneficiary') {
             document.getElementById("file_Upload_12").disabled = false;
@@ -1132,12 +1132,23 @@ function handleForm(event) {
     }
 
     var field_NatureOfLoss = $("select#nature_Loss option").filter(":selected").val()
-
+    debugger
     //if(field_NatureOfLoss == 'Illness') {
     if (0 == field_NatureOfLoss.localeCompare("Illness")) {
+        document.getElementById("file_Upload_2").disabled = true;
+        document.getElementById("file_Upload_2").style.cursor = "no-drop";
+        document.getElementById("file_Upload_2").style.opacity = "0.4";
+        document.getElementById("police_report").style.border = "none";
+
+
         optiondisable = 2;
     }
     else {
+
+        document.getElementById("file_Upload_2").disabled = false;
+        document.getElementById("file_Upload_2").style.cursor = "pointer";
+        document.getElementById("file_Upload_2").style.opacity = "0";
+        document.getElementById("police_report").style.border = "none";
         optiondisable = 1;
     }
 
@@ -1532,6 +1543,8 @@ function handleForm(event) {
         $('#popUp').modal('show');
     }
 }
+
+
 
 function dataReset() {
     let args = arguments;
@@ -2395,7 +2408,7 @@ function dataResetInfo(data) {
 
 function addBeneficiary(event) {
 
-    
+
     event.preventDefault();
     if (screenCount !== 0 && traverse == 0) {
         $('#missingDetails').modal('show');
@@ -2432,7 +2445,7 @@ function addBeneficiary(event) {
             $('#popUp').modal('show');
             return;
         }
-      
+
         if (relation == true) {
             if (!file5.value || $("#file_Upload_Tick_5").is(":hidden")) {
                 $("#warning_parent").show();
@@ -2492,7 +2505,7 @@ function addBeneficiary(event) {
 
 function addBeneficiaryNew(event) {
     event.preventDefault();
-   
+
     if (screenCount !== 0 && traverse == 0) {
         $('#missingDetails').modal('show');
     } else {
