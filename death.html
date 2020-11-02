@@ -6923,11 +6923,7 @@
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="validation">What is your account number?</label>
-													<input type="text" class="input__box"
-														id="field_addBenificiaryAccountNumber" value=""
-														placeholder="Account Number"
-														onkeypress="return isNumber(event) && check_Mobile_Length(event, 20)"
-														tabindex="18" required />
+													<input type="text" class="input__box" maxlength="20" id="field_addBenificiaryAccountNumber" value="" placeholder="Account Number" onkeypress="return isNumber(event) && check_Mobile_Length(event, 20)" tabindex="18" required />
 													<div id="err_field_addBenificiaryAccountNumber" class="error"></div>
 												</div>
 											</div>
