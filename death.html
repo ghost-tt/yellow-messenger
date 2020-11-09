@@ -3830,16 +3830,205 @@
 
 												</div>
 											</div>
-											<!-- <button type="submit" class="btn submit__btn" style="width: 50%; margin: 3rem 0;" tabindex="23">Submit</button> -->
-
-											<div class="col-md-12" style="display: flex; justify-content: flex-end;">
-												<a href="#" onclick="goBack()"
-													style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0">Back</a>
-												<button type="submit" class="btn submit__btn"
-													style="width: 50%;">Submit</button>
-											</div>
-
 										</div>
+										<div class="col-12 col-md-12">
+											<div class="row">
+												<div class="col-12 col-md-6">
+													<button type="submit" onclick="addBank(event)" class="btn"
+														style="margin: 3.5rem 0 0 0;">CHANGE BANK
+														ACCOUNT</button>
+												</div>
+												<div class="col-12 col-md-6"
+													style="display: flex; justify-content: flex-end;">
+													<a href="#" onclick="goBack1()" id="back_btn1"
+														style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 55px 0.5rem;">Back</a>
+													<div style="width: 50%;">
+														<button type="submit" id="submit9" class="btn submit__btn"
+															style="width: 100%; margin: 3rem 0;">Submit
+
+															<div class="loader1" id="file_loader_icon_9">
+																<div class="loader-bg">
+																	<div class="text"></div>
+																</div>
+																<div class="spiner-holder-one animate-0-25-a">
+																	<div class="spiner-holder-two animate-0-25-b">
+																		<div class="loader-spiner"></div>
+																	</div>
+																</div>
+																<div class="spiner-holder-one animate-25-50-a">
+																	<div class="spiner-holder-two animate-25-50-b">
+																		<div class="loader-spiner"></div>
+																	</div>
+																</div>
+																<div class="spiner-holder-one animate-50-75-a">
+																	<div class="spiner-holder-two animate-50-75-b">
+																		<div class="loader-spiner"></div>
+																	</div>
+																</div>
+																<div class="spiner-holder-one animate-75-100-a">
+																	<div class="spiner-holder-two animate-75-100-b">
+																		<div class="loader-spiner"></div>
+																	</div>
+																</div>
+															</div>
+
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="hide" id="account_details1" style="margin-top: 2rem;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-11 offset-md-1" id="stepper_intro">
+						<div class="stepper__description">
+							<h3 class="stepper__description__title">Bank Transfer</h3>
+							<div class="stepper__description__info">
+								<p class="lead font-weight-normal">We have your bank details on file</p>
+								<br />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="form_wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-11 offset-md-1">
+							<form id="addbank_form" onSubmit="return false;" novalidate>
+								<div role="tabpanel" aria-labelledby="stepperFormTrigger1">
+									<div class="row">
+										<div class="col-12 col-md-6">
+											<div class="form-row">
+												<div class="col-md-12 form__tags">
+													<label for="validation">What is your account name?</label>
+													<input type="text" class="input__box" maxlength="90"
+														id="field_AccountName1" value="" placeholder="Account Name"
+														tabindex="17"
+														onkeypress="return isNotNumber(event) && checkSpcialChar(event) && checkLength(event,90)"
+														required />
+													<div id="err_field_AccountName1" class="error"></div>
+												</div>
+												<div class="col-md-12 form__tags">
+													<label for="validation">What is your account number?</label>
+													<input type="text" class="input__box" maxlength="20"
+														id="field_AccountNumber1" value="" placeholder="Account Number"
+														tabindex="18"
+														onkeypress="return isNumber(event) && check_Mobile_Length(event,20)"
+														required />
+													<div id="err_field_AccountNumber1" class="error"></div>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6">
+											<div class="form-row">
+												<div class="col-md-12 form__tags">
+													<label for="validation">What is your bank?</label>
+													<!-- <input type="text" class="input__box" id="field_Bank1" value=""
+                                                        placeholder="Bank" tabindex="20"
+                                                        onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
+                                                    <div id="err_field_Bank1" class="error"></div> -->
+													<select class="custom-select-container mr-sm-2 " id="field_Bank1">
+														<option value="" selected>--</option>
+														<option value="Bank of the Philippine Islands - BPI">Bank of the
+															Philippine Islands - BPI</option>
+														<option value="BPI Family Savings Bank - BFB">BPI Family Savings
+															Bank - BFB</option>
+														<option value="Banco de Oro - BDO">Banco de Oro - BDO</option>
+														<option value="China Banking Corporation - CBC">China Banking
+															Corporation - CBC</option>
+														<option value="Citibank Philippines - CITI">Citibank Philippines
+															- CITI</option>
+														<option value="Development Bank of the Phils - DBP">Development
+															Bank of the Phils - DBP</option>
+														<option value="Eastwest Bank - EWB">Eastwest Bank - EWB</option>
+														<option value="Hongkong Shanghai Banking Corp. Phils - HSBC">
+															Hongkong Shanghai Banking Corp. Phils - HSBC</option>
+														<option value="Land Bank of the Philippines - LPB">Land Bank of
+															the Philippines - LPB</option>
+														<option value="Metropolitan Banks and Trust Company - MBTC">
+															Metropolitan Banks and Trust Company - MBTC</option>
+														<option value="Philippine National Bank - PNB">Philippine
+															National Bank - PNB</option>
+														<option value="Rizal Commercial Banking Corp - RCBC">Rizal
+															Commercial Banking Corp - RCBC</option>
+														<option value="Security Bank - SBTC">Security Bank - SBTC
+														</option>
+														<option value="Union Bank of the Philippines - UB">Union Bank of
+															the Philippines - UB</option>
+													</select>
+													<div id="err_field_Bank1" class="error"></div>
+												</div>
+												<div class="col-md-12 form__tags">
+													<label for="validation">What is your bank’s branch?</label>
+													<input type="text" class="input__box" maxlength="50"
+														id="field_Branch1" value="" placeholder="Branch" tabindex="21"
+														onkeypress="checkLength(event,50)" required />
+													<div id="err_field_Branch1" class="error"></div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-12 col-md-6">
+											<div class="form-row">
+												<div class="col-md-12 form__tags">
+													<label for="validation">What is your account’s currency?</label>
+													<!-- <input type="text" class="input__box" id="field_Currency" value=""
+                                                        placeholder="Currency" tabindex="19"
+                                                        onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required /> -->
+													<select id="from_currency1" class="custom-select-container mr-sm-2 "
+														tabindex="19">
+														<option value="Peso" selected>Peso</option>
+														<option value="USD">USD</option>
+													</select>
+													<div id="err_field_Currency1" class="error"></div>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6">
+											<div class="form-row">
+												<div style="padding: 0; margin: 1.5rem 0;">
+													<p class="upload_btn_title">Proof of Bank Account Ownership</p>
+													<span class="btn btn-file" tabindex="22">
+														Upload<input type="file" id="proof_addBAO" />
+														<span id="file_Upload_Tick_13"
+															class="upload_btn_span">&#10004;</span>
+														<span id="file_loader_icon_13" class="loader"></span>
+														<span id="file_upload_cancle_13"
+															class="upload_btn_span">&#10006;</span>
+													</span>
+													<small class="form-text text-muted">
+														Acceptable format .jpg .pdf & 2MB size
+													</small>
+													<p class="feedback_label" id="upload_feedback_label1"></p>
+												</div>
+											</div>
+											<button type="submit" class="btn submit__btn"
+												style="width: 50%; margin: 3rem 0;">Submit</button>
+										</div>
+										<!-- <div class="col-12 col-md-12">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <button type="submit" class="btn" style="margin: 3.5rem 0 0 0;">CHANGE BANK ACCOUNT</button>
+                                                </div>
+                                                <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
+                                                    <div style="width: 50%;">
+                                                        <button type="submit" class="btn" style="width: 100%; margin: 3rem 0;">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
 									</div>
 								</div>
 							</form>
@@ -3848,6 +4037,7 @@
 				</div>
 			</div>
 		</section>
+
 
 		<section id="addBeneficiary" class="hide">
 			<div class="container">
@@ -6923,7 +7113,11 @@
 												</div>
 												<div class="col-md-12 form__tags">
 													<label for="validation">What is your account number?</label>
-													<input type="text" class="input__box" maxlength="20" id="field_addBenificiaryAccountNumber" value="" placeholder="Account Number" onkeypress="return isNumber(event) && check_Mobile_Length(event, 20)" tabindex="18" required />
+													<input type="text" class="input__box" maxlength="20"
+														id="field_addBenificiaryAccountNumber" value=""
+														placeholder="Account Number"
+														onkeypress="return isNumber(event) && check_Mobile_Length(event, 20)"
+														tabindex="18" required />
 													<div id="err_field_addBenificiaryAccountNumber" class="error"></div>
 												</div>
 											</div>

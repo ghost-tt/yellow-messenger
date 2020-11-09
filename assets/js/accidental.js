@@ -7,6 +7,7 @@ var stepperFormEl */
 var form = document.getElementById("accidental__form");
 var form_Bank = document.getElementById("bank_form");
 var listCheckBox = document.querySelector('#upload_invalidCheck_1');
+var multifileupload = document.getElementById('file_Upload_test');
 var file1 = document.getElementById('file_Upload_1');
 var file2 = document.getElementById('file_Upload_2');
 var file3 = document.getElementById('file_Upload_3');
@@ -57,11 +58,11 @@ function myDisable() {
   document.getElementById("bank_form").style.cursor = "no-drop";
 }
 
-function addFileToList(fileObject, fileName){
+function addFileToList(fileObject, fileName) {
   console.log(fileName);
-  let index = filesList.findIndex(x => x.Filename == fileName )
+  let index = filesList.findIndex(x => x.Filename == fileName)
 
-  if(index===-1){
+  if (index === -1) {
     console.log("adding bcoz unique");
     filesList.push(fileObject);
   }
@@ -123,6 +124,7 @@ let PaymentOption = {};
 let BankDetails = {};
 let FilesInformation = {};
 let filesList = [];
+let multiFileList = [];
 let beneficiaryCount = 1;
 let filesMap = {};
 let claimType, causeOfLoss, govIdFront, govIdBack, apsFile, narrationReport, officialReceipts;
@@ -143,14 +145,14 @@ $(document).ready(function (event) {
   var val = 'Peso'
   if (val == "Peso") {
     $("#field_Bank").html(
-     "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+      "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
     );
-  } 
+  }
   $("#from_currency").change(function () {
     var val = $(this).val();
     if (val == "Peso") {
       $("#field_Bank").html(
-       "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+        "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
       );
     } else if (val == "USD") {
       $("#field_Bank").html(
@@ -994,7 +996,7 @@ function handleForm(event) {
     InsuredInformation["EmailAddress"] = field_emailAddress;
     InsuredInformation["HomeAddress"] = field_homeAddress;
     InsuredInformation["InjuryDetails"] = field_injury;
-    InsuredInformation["AccidentDate"] =  field_DOA.split('-')[1]+'/'+field_DOA.split('-')[2]+'/'+field_DOA.split('-')[0];
+    InsuredInformation["AccidentDate"] = field_DOA.split('-')[1] + '/' + field_DOA.split('-')[2] + '/' + field_DOA.split('-')[0];
     InsuredInformation["AccidentTime"] = full_TOA;
     InsuredInformation["AccidentPlace"] = field_POA;
     // for otp screen
@@ -1014,7 +1016,7 @@ function handleForm(event) {
         }
       })
     }), '*');
-  }else if((comapareDates == false) && ((field_DOB !== '') && (field_DOA != ''))) {
+  } else if ((comapareDates == false) && ((field_DOB !== '') && (field_DOA != ''))) {
     $('#popUp_DOB').modal('show');
   } else {
     $('#popUp').modal('show');
@@ -1087,6 +1089,7 @@ const proceedScan = async (fileObj, button, pageid) => {
 };
 
 const fileCheck = (file, button, pageid) => {
+
   console.log(button);
   var _URL = window.URL || window.webkitURL;
   console.log("FILE OBJECT -> ", file);
@@ -1128,6 +1131,141 @@ const isFileSizeValid = (file) => {
   }
   return false;
 };
+
+//multifile check extension
+function multifileCheckExt(files) {
+  var fileNamesDisplay = '';
+  $("#multiFileNames").text('')
+  var comma = '';
+  var invalidExt = 0;
+
+  for (var i = 0; i < 4; i++) {
+    var ext = files[i].name.split('.')[1];
+    if (i != 0) {
+      comma = ', '
+    }
+    fileNamesDisplay = fileNamesDisplay + comma + files[i].name;
+    if (ext == 'pdf' || ext == 'jpg') {
+
+    }
+    else {
+      invalidExt++;
+    }
+  }
+  $("#multiFileNames").text(fileNamesDisplay) // to display names of uploaded files under the upload button
+
+  if (invalidExt > 0) {
+    return false;
+  }
+  else {
+    return true;
+  }
+
+}
+//multifile check extension
+
+//multifile check upload doc size
+function multifileCheckSize(files) {
+  var fileNamesDisplay = '';
+  $("#multiFileNames").text('')
+  var comma = '';
+  var invalidSizeDocs = 0;
+
+  for (var i = 0; i < 4; i++) {
+    var sizevalid = isFileSizeValid(files[i]);
+    if (i != 0) {
+      comma = ', '
+    }
+    fileNamesDisplay = fileNamesDisplay + comma + files[i].name;
+    if (!sizevalid) { invalidSizeDocs++ }
+
+  }
+  $("#multiFileNames").text(fileNamesDisplay) // to display names of uploaded files under the upload button
+
+
+  if (invalidSizeDocs > 0) {
+    return false;
+  }
+  else {
+    return true;
+  }
+
+}
+//multifile check upload doc size
+
+
+
+
+
+//test for multiupload
+multifileupload.onchange = async function (e) {
+
+  docType = "LIDC001";
+  tranType = "CIF-MIN";
+  $("#file_upload_cancel_test").hide();
+  $("#file_Upload_Tick_test").hide();
+  console.log("Starting");
+  pageID = 1; //in which page is the button located
+  buttonNum = 1; // button number 
+  if (this.files.length <= 4) {
+
+    var extVal = multifileCheckExt(this.files)
+    if (!extVal) {
+      $("#warning_parent").show();
+      $("#file_Upload_Tick_test").hide();
+      $("#file_upload_cancel_test").show();
+      $("#upload_warning_multi").text(
+        "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+      );
+      this.value = "";
+    }
+    else {
+      var filesize = multifileCheckSize(this.files);
+      if (!filesize) {
+        $("#warning_parent").show();
+        $("#file_loader_icon_test").hide();
+        $("#file_Upload_Tick_test").hide();
+        $("#file_upload_cancel_test").show();
+        $("#upload_warning_multi").text(
+          "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
+        );
+      }
+      else {
+        var fileName;
+        var comma = '';
+        var fileNamesDisplay = '';
+        $("#multiFileNames").text('')
+        const formData = new FormData();
+        for (var i = 0; i < 4; i++) {
+          if (this.files[i].name.split('.')[1] == "jpg") {
+            fileCheck(this.files[i], buttonNum, pageID);
+          }
+          else {
+            proceedScan(this.files[i], buttonNum, pageID);
+          }
+          if (i != 0) {
+            comma = ', '
+          }
+          fileNamesDisplay = fileNamesDisplay + comma + this.files[i].name;
+          fileName = referenceNumber + "-" + docType + "-" + tranType + "-" + i + 1;
+          //add files to multifilelist -pending
+
+          formData.append('file' + `${i + 1}`, this.files[i], fileName + `.${this.files[i].name.split('.')[1]}`);
+          //handleFileUpload uploading files to api -pending
+
+          console.log('multifile form dt' + formData)
+
+        }
+        $("#multiFileNames").text(fileNamesDisplay) // to display names of uploaded files under the upload button
+
+      }
+    }
+  }
+  else {
+    alert('Only 4 documents can be uploaded !!')
+  }
+};
+//test 
 
 file1.onchange = async function (e) {
   docType = "LIDC001";
@@ -1381,10 +1519,10 @@ file5.onchange = async function (e) {
         let accident = {};
 
         accident['BeneficiaryNo'] = beneficiaryCount,
-        accident["Filename"] = `${fileName}.pdf`,
-        accident["DocType"]= "PDF",
-        accident["DocTypeCode"]= docType,
-        accident["DocumentDescription"]= "Official Receipts (ORs)"
+          accident["Filename"] = `${fileName}.pdf`,
+          accident["DocType"] = "PDF",
+          accident["DocTypeCode"] = docType,
+          accident["DocumentDescription"] = "Official Receipts (ORs)"
 
         addFileToList(accident, `${fileName}.pdf`);
 
@@ -1438,10 +1576,10 @@ file6.onchange = async function (e) {
         let accident = {};
 
         accident['BeneficiaryNo'] = beneficiaryCount,
-        accident["Filename"] = `${fileName}.pdf`,
-        accident["DocType"]= "PDF",
-        accident["DocTypeCode"]= docType,
-        accident["DocumentDescription"]= "Proof of Bank Account"
+          accident["Filename"] = `${fileName}.pdf`,
+          accident["DocType"] = "PDF",
+          accident["DocTypeCode"] = docType,
+          accident["DocumentDescription"] = "Proof of Bank Account"
 
         addFileToList(accident, `${fileName}.pdf`);
 
@@ -2079,7 +2217,7 @@ function submitOtp() {
 
   var dummy_otp = '1234'
   removeTimer();
- 
+
   if (document.getElementById('otp').value != dummy_otp) {
     $('#invalidOtp').modal('show');
   }

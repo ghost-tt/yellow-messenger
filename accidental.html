@@ -224,6 +224,27 @@
                                                         tabindex="5" />
                                                     <div id="err_field_DOB" class="error"></div>
                                                 </div>
+                                                <!-- dummy multifile upload -->
+                                                <div class="col-md-12 form__tags">
+                                                    <p class="upload_btn_title">Multi file upload Test</p>
+                                                    <span class="btn btn-file">
+                                                        Upload<input type="file" id="file_Upload_test" multiple>
+                                                        <span id="file_loader_icon_test" class="loader"></span>
+                                                        <span id="file_Upload_Tick_test"
+                                                            class="upload_btn_span">&#10004;</span>
+                                                        <span id="file_upload_cancel_test"
+                                                            class="upload_btn_span">&#10006;</span>
+                                                    </span>
+                                                    <h6 id="multiFileNames" class="form-text text-muted">
+                                                    </h6>
+
+                                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                                        Acceptable format .jpg .pdf & 2MB size.
+                                                    </small>
+
+                                                </div>
+
+                                                <!-- dummy multifile upload -->
                                                 <div class="col-md-12 form__tags">
                                                     <label for="validationCustom02">What is your mobile
                                                         number?</label>
@@ -957,6 +978,31 @@
                                                     tabindex="16" id="next"
                                                     style="width: 50%; margin: 4rem 0 2rem 0;">NEXT</button>
                                             </div>
+                                            <div class="col-12 col-md-6 order-11 order-md-11" style="margin-top: 3rem;">
+
+                                                <div class="card" id="warning_parent">
+                                                    <div class="card-body" style="display: flex;padding: 0.5rem;">
+                                                        <div style="font-size: 1.8rem;">
+                                                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                                                class="bi bi-exclamation-triangle-fill"
+                                                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                                                            </svg>
+                                                        </div>
+                                                        <div id="upload_warning_multi" style="padding: 0 0.9rem;">
+                                                            Warning: We detected a virus/malware in your uploaded
+                                                            documents.
+                                                            Please
+                                                            re-upload a clean, virus-free document to proceed.
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 
+                                            <div id="warning_parent">
+                                                <small id="upload_warning_multi"> </small></div> -->
                                         </div>
                                     </div>
                                 </form>
@@ -1055,7 +1101,13 @@
                                 </li>
                                 <li>
                                     <p style="margin-left: 1rem;">
-                                        I/we may at anytime withdraw our consent by visiting Philam branches, calling the Company’s contact center, or by emailing the request to <a target="_blank" href="mailto:phi.philamprivacy@aia.com">phi.philamprivacy@aia.com</a>. Upon receipt of such withdrawal of consent, the Company will no longer approach you for promotions or products that may be suited to your insurance needs. However, rest assured that this will not affect our ability to provide quality service in relation to your existing policies.
+                                        I/we may at anytime withdraw our consent by visiting Philam branches, calling
+                                        the Company’s contact center, or by emailing the request to <a target="_blank"
+                                            href="mailto:phi.philamprivacy@aia.com">phi.philamprivacy@aia.com</a>. Upon
+                                        receipt of such withdrawal of consent, the Company will no longer approach you
+                                        for promotions or products that may be suited to your insurance needs. However,
+                                        rest assured that this will not affect our ability to provide quality service in
+                                        relation to your existing policies.
                                     </p>
                                 </li>
                             </ul>
@@ -1078,17 +1130,21 @@
                                 requirements below.</p>
                             <p class="font-italic font-weight-normal">Important Note!</p>
                             <ul>
-                                <li><p class="font-italic font-weight-normal">The insured’s valid government ID
-                                                                should also reflect a clearly visible signature.
+                                <li>
+                                    <p class="font-italic font-weight-normal">The insured’s valid government ID
+                                        should also reflect a clearly visible signature.
                                     </p>
                                 </li>
                                 <li>
-                                    <p class="font-italic font-weight-normal">Kindly ensure that only one file is uploaded in each field so we can successfully process your submission.
+                                    <p class="font-italic font-weight-normal">Kindly ensure that only one file is
+                                        uploaded in each field so we can successfully process your submission.
                                     </p>
                                 </li>
                             </ul>
                             <div class="row upload_form">
+
                                 <div class="col-12 col-md-6">
+
                                     <div class="col-12 col-md-6" style="padding: 0; margin: 1.5rem 0;">
                                         <p class="upload_btn_title">Valid Government ID (Front)</p>
                                         <span class="btn btn-file">
@@ -1412,9 +1468,9 @@
                                                         onkeypress="return isNotNumber(event) && checkSpcialChar(event)" required />
                                                     <div id="err_field_Bank" class="error"></div> -->
                                                     <select class="custom-select-container mr-sm-2 " id="field_Bank">
-														
+
                                                     </select>
-													<div id="err_field_Bank" class="error"></div>
+                                                    <div id="err_field_Bank" class="error"></div>
                                                 </div>
                                                 <div class="col-md-12 form__tags">
                                                     <label for="validation">What is your bank’s branch?</label>
@@ -1461,7 +1517,8 @@
                                                         not exceed 2MB in file size.
                                                     </small>
                                                     <small class="form-text text-muted">
-                                                        Kindly ensure that only one file is uploaded in each field so we can successfully process your submission.
+                                                        Kindly ensure that only one file is uploaded in each field so we
+                                                        can successfully process your submission.
                                                     </small>
                                                     <p class="feedback_label" id="upload_feedback_label"></p>
                                                 </div>
@@ -1490,7 +1547,8 @@
                                         <div class="col-12 col-md-12">
                                             <div class="row">
                                                 <div class="col-12 col-md-6">
-                                                    <!--  <button type="submit" onclick="addBank(event)" class="btn" style="margin: 3.5rem 0 0 0;">CHANGE BANK ACCOUNT</button> -->
+                                                    <button type="submit" onclick="addBank(event)" class="btn"
+                                                        style="margin: 3.5rem 0 0 0;">CHANGE BANK ACCOUNT</button>
                                                 </div>
                                                 <div class="col-12 col-md-6"
                                                     style="display: flex; justify-content: flex-end;">
@@ -1865,15 +1923,18 @@
             </div>
         </section>
 
-        <section class="hide modal fade" id="popUp_DOB" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <section class="hide modal fade" id="popUp_DOB" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                <div class="modal-body">
-                    <p id="p1">We’re sorry, the date of birth keyed in is invalid and does not match the date of incident / loss reported. Please double check all information before proceeding.
-                      </p>
+                    <div class="modal-body">
+                        <p id="p1">We’re sorry, the date of birth keyed in is invalid and does not match the date of
+                            incident / loss reported. Please double check all information before proceeding.
+                        </p>
+                    </div>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                        style="width: 50%; margin: 0 auto 3rem auto;">Ok</button>
                 </div>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 50%; margin: 0 auto 3rem auto;">Ok</button>
-            </div>
         </section>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

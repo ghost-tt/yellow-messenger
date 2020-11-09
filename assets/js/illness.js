@@ -14,6 +14,7 @@ var file2 = document.getElementById('illness_file_Upload_2');
 var file3 = document.getElementById('illness_file_Upload_3');
 var file5 = document.getElementById('illness_file_Upload_5');
 var file6 = document.getElementById('proof_BAO');
+var file7 = document.getElementById('proof_addBAO');
 
 $('#privacy_consent_1').prop('checked', true);
 $('#privacy_consent_2').prop('checked', true);
@@ -25,6 +26,9 @@ let botId = url.searchParams.get('botId');
 
 form.addEventListener('submit', handleForm);
 form_Bank.addEventListener('submit', handleAccountInfo);
+
+var form_addBank = document.getElementById("addbank_form");
+form_addBank.addEventListener('submit', handleAddBankInfo);
 
 let beneficiaryCount = 1;
 let finalPayload = {};
@@ -71,16 +75,16 @@ function myDisable() {
     document.getElementById("bank_form").style.cursor = "no-drop";
 }
 
-function addFileToList(fileObject, fileName){
+function addFileToList(fileObject, fileName) {
     console.log("in function, with name : ");
     console.log(fileName);
-    let index = filesList.findIndex(x => x.Filename == fileName )
+    let index = filesList.findIndex(x => x.Filename == fileName)
 
-    if(index===-1){
-      console.log("adding bcoz unique");
-      filesList.push(fileObject);
+    if (index === -1) {
+        console.log("adding bcoz unique");
+        filesList.push(fileObject);
     }
-  }
+}
 
 function timer() {
     var random = Math.floor(Math.random() * 5) + 1
@@ -138,21 +142,21 @@ $(document).ready(function (event) {
 
     var val = 'Peso'
     if (val == "Peso") {
-      $("#field_Bank").html(
-       "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
-      );
-    } 
+        $("#field_Bank").html(
+            "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+        );
+    }
     $("#from_currency").change(function () {
-      var val = $(this).val();
-      if (val == "Peso") {
-        $("#field_Bank").html(
-         "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
-        );
-      } else if (val == "USD") {
-        $("#field_Bank").html(
-          "<option value='Bank of the Philippine Islands - BPI'>Bank of the Philippine Islands - BPI</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option>"
-        );
-      }
+        var val = $(this).val();
+        if (val == "Peso") {
+            $("#field_Bank").html(
+                "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+            );
+        } else if (val == "USD") {
+            $("#field_Bank").html(
+                "<option value='Bank of the Philippine Islands - BPI'>Bank of the Philippine Islands - BPI</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option>"
+            );
+        }
     });
 
 });
@@ -240,6 +244,13 @@ function futureDate(date) {
     }
 }
 
+function addBank(event) {
+    event.preventDefault();
+    $('#account_details').hide();
+    $('#requirements').hide();
+    $('#account_details1').show();
+    /*   $('#account_details1')[0].scrollIntoView(true); */
+}
 
 function futureDateDOB(date) {
     /*   let id = evt.target.id;
@@ -932,9 +943,9 @@ function handleForm(event) {
                 }
             })
         }), '*');
-    }else if((comparingDob == 5) || (comparingDob == 6) || (comparingDob == 7)) {
+    } else if ((comparingDob == 5) || (comparingDob == 6) || (comparingDob == 7)) {
         $('#popUp_DOB').modal('show');
-    }  else {
+    } else {
         $("#popUp").modal("show");
     }
 }
@@ -1084,10 +1095,10 @@ file1.onchange = async function (e) {
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident["Filename"] = `${fileName}.pdf`,
-                accident["DocType"] = "PDF",
-                accident["DocTypeCode"]= docType,
-                accident["DocumentDescription"] = "Front copy of doc"
+                    accident["Filename"] = `${fileName}.pdf`,
+                    accident["DocType"] = "PDF",
+                    accident["DocTypeCode"] = docType,
+                    accident["DocumentDescription"] = "Front copy of doc"
 
                 addFileToList(accident, `${fileName}.pdf`);
                 const formData = new FormData()
@@ -1141,7 +1152,7 @@ file2.onchange = async function (e) {
                 accident['BeneficiaryNo'] = beneficiaryCount,
                     accident["Filename"] = `${fileName}.pdf`,
                     accident["DocType"] = "PDF",
-                    accident["DocTypeCode"]= docType,
+                    accident["DocTypeCode"] = docType,
                     accident["DocumentDescription"] = "Back copy of doc"
 
                 addFileToList(accident, `${fileName}.pdf`);
@@ -1305,10 +1316,10 @@ file6.onchange = async function (e) {
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident["Filename"] = `${fileName}.pdf`,
-                accident["DocType"] = "PDF",
-                accident["DocTypeCode"] = docType,
-                accident["DocumentDescription"] = "Proof of Bank Account"
+                    accident["Filename"] = `${fileName}.pdf`,
+                    accident["DocType"] = "PDF",
+                    accident["DocTypeCode"] = docType,
+                    accident["DocumentDescription"] = "Proof of Bank Account"
 
                 addFileToList(accident, `${fileName}.pdf`);
                 const formData = new FormData()
@@ -1334,6 +1345,49 @@ file6.onchange = async function (e) {
             this.value = "";
     }
 };
+
+file7.onchange = async function (e) {
+    $("#file_upload_cancle_7").hide();
+    $("#file_Upload_Tick_7").hide();
+    var ext = this.value.match(/\.([^\.]+)$/)[1];
+    switch (ext) {
+        case "jpg":
+        case "pdf":
+            var file = this.files[0];
+            var buttonNum = 7;
+            var sizevalid = isFileSizeValid(file, buttonNum);
+            if (sizevalid) {
+                if (ext == "jpg") {
+                    fileCheck(file, buttonNum);
+                }
+                else {
+                    proceedScan(file, buttonNum);
+                }
+                file1Buffer = await getBuffer(file);
+                console.log("file buffer : ")
+                console.log(file1Buffer);
+                filesMap["file7"] = file1Buffer;
+            } else {
+                $("#warning_parent").show();
+                $("#file_loader_icon_7").hide();
+                $("#file_Upload_Tick_7").hide();
+                $("#file_upload_cancle_7").show();
+                $("#upload_warning").text(
+                    "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
+                );
+            }
+            break;
+        default:
+            $("#warning_parent").show();
+            $("#file_Upload_Tick_7").hide();
+            $("#file_upload_cancle_7").show();
+            $("#upload_warning").text(
+                "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+            );
+            this.value = "";
+    }
+};
+
 
 function buttonSubmitClicked(event) {
     event.preventDefault();
@@ -1521,6 +1575,99 @@ function handleAccountInfo(event) {
         });
     } else {
         $('#popUp').modal('show');
+    }
+}
+
+function handleAddBankInfo(event) {
+    event.preventDefault();
+    var field_AccountName1 = $("#field_AccountName1").val();
+    var field_AccountNumber1 = $("#field_AccountNumber1").val();
+    var field_currency1 = $("#from_currency1").val();
+    var field_Bank1 = $("#field_Bank1").val();
+    var field_Branch1 = $("#field_Branch1").val();
+    var speCharAddAccountName = specialcharacterValidation(field_AccountName1);
+    var numAddAccountName = numberValidation(field_AccountName1);
+    var numAddAccountNumber = onlyNumberValidate(field_AccountNumber1);
+
+
+    if (field_AccountName1.length === 0) {
+        $("#err_field_AccountName1").text('Field is empty');
+        $("#err_field_AccountName1").show();
+    } else if (speCharAddAccountName) {
+        $("#err_field_AccountName1").text('special character is not allowed');
+        $("#err_field_AccountName1").show();
+    } else if (numAddAccountName) {
+        $("#err_field_AccountName1").text('Number not allowed');
+        $("#err_field_AccountName1").show();
+    } else {
+        $("#err_field_AccountName1").text('');
+        $("#err_field_AccountName1").hide();
+    }
+
+    if (field_AccountNumber1.length === 0) {
+        $("#err_field_AccountNumber1").text('Field is empty');
+        $("#err_field_AccountNumber1").show();
+    } else if (!numAddAccountNumber) {
+        $("#err_field_AccountNumber1").text('Only number is allowed');
+        $("#err_field_AccountNumber1").show();
+    } else {
+        $("#err_field_AccountNumber1").text('');
+        $("#err_field_AccountNumber1").hide();
+    }
+
+    if (field_currency1 <= 0) {
+        $("#err_field_Currency1").text('Field is empty');
+        $("#err_field_Currency1").show();
+    } else {
+        $("#err_field_Currency1").text('');
+        $("#err_field_Currency1").show();
+    }
+
+    if (field_Bank1.length <= 0) {
+        $("#err_field_Bank1").text('Field is empty');
+        $("#err_field_Bank1").show();
+    } else {
+        $("#err_field_Bank1").text('');
+        $("#err_field_Bank1").hide();
+    }
+
+    if (field_Branch1.length === 0) {
+        $("#err_field_Branch1").text('Field is empty');
+        $("#err_field_Branch1").show();
+    }/*  else if (specCharAddBRANCH) {
+    $("#err_field_Branch1").text('special character is not allowed');
+    $("#err_field_Branch1").show();
+  } else if (numAddBranch) {
+    $("#err_field_Branch1").text('Number not allowed');
+    $("#err_field_Branch1").show();
+  }  */else {
+        $("#err_field_Branch1").text('');
+        $("#err_field_Branch1").hide();
+    }
+
+    if (!file7.value) {
+        $('#upload_feedback_label1').show();
+        $('#upload_feedback_label1').text('Please upload your Bank Account Ownership');
+    }
+
+    if (field_AccountName1.length !== 0 && field_AccountNumber1.length !== 0 && field_currency1.length !== 0 && field_Bank1.length !== 0 && field_Branch1.length !== 0 && file7.length !== 0 && (speCharAddAccountName == false) && (numAddAccountName == false) && (numAddAccountNumber == true)) {
+        const data = {
+            field_AccountName1,
+            field_AccountNumber1,
+            field_Bank1,
+            field_Branch1,
+            field_Currency1: $("select#from_currency1 option").filter(":selected").val(),
+            upload_file_7: file7.value
+        }
+        $("#step3_circle").addClass("md-step-step3-circle ");
+        $("#step3_span").addClass("md-step3-span");
+        $("#step3_reference").addClass("md-step3-span")
+        /* $("#step3").addClass("active");
+        $("#step3>div").addClass("active"); */
+        /* $("#step3").addClass("done"); */
+        $('#account_details1').hide();
+        $('#process_confirmation').show();
+        console.log('bank data -> ', data)
     }
 }
 

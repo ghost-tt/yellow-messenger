@@ -36,6 +36,7 @@ var file9 = document.getElementById('file_Upload_9');
 var file10 = document.getElementById('file_Upload_10');
 var file11 = document.getElementById('file_Upload_11');
 var file12 = document.getElementById('file_Upload_12');
+var file13 = document.getElementById('proof_addBAO');
 
 let url = new URL(window.location.href);
 let referenceNumber = url.searchParams.get('refNumber');
@@ -55,6 +56,7 @@ let BeneficiaryList = [];
 let BankDetailsList = [];
 let FilesInformation = {};
 let filesList = [];
+let multifileList = [];
 let beneficiaryCount = 1;
 let docType, tranType;
 basicInformation["WebReferenceNumber"] = referenceNumber;
@@ -65,6 +67,9 @@ form.addEventListener('submit', handleForm);
 death__form_addBeneficiary.addEventListener('submit', handleFormAddBeneficiary);
 form_Bank.addEventListener('submit', handleAccountInfo);
 addBeneficiaryform_Bank.addEventListener('submit', addBenificiaryAccountInfo);
+
+var form_addBank = document.getElementById("addbank_form");
+form_addBank.addEventListener('submit', handleAddBankInfo);
 
 $(document).ready(function (event) {
     disableFutureDates();
@@ -1689,6 +1694,7 @@ const proceedScan = async (fileObj, button, pageid) => {
 };
 
 const fileCheck = (file, button, pageid) => {
+    debugger
     console.log(button);
     var _URL = window.URL || window.webkitURL;
     console.log("FILE OBJECT -> ", file);
@@ -2399,6 +2405,56 @@ file12.onchange = async function (e) {
             this.value = "";
     }
 };
+
+file13.onchange = async function (e) {
+    $("#file_upload_cancle_13").hide();
+    $("#file_Upload_Tick_13").hide();
+    var ext = this.value.match(/\.([^\.]+)$/)[1];
+    switch (ext) {
+        case "jpg":
+        case "pdf":
+            var file = this.files[0];
+            var buttonNum = 7;
+            var sizevalid = isFileSizeValid(file, buttonNum);
+            if (sizevalid) {
+                if (ext == "jpg") {
+                    fileCheck(file, buttonNum);
+                }
+                else {
+                    proceedScan(file, buttonNum);
+                }
+                file1Buffer = await getBuffer(file);
+                console.log("file buffer : ")
+                console.log(file1Buffer);
+                filesMap["file13"] = file1Buffer;
+            } else {
+                $("#warning_parent").show();
+                $("#file_loader_icon_13").hide();
+                $("#file_Upload_Tick_13").hide();
+                $("#file_upload_cancle_13").show();
+                $("#upload_warning").text(
+                    "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
+                );
+            }
+            break;
+        default:
+            $("#warning_parent").show();
+            $("#file_Upload_Tick_13").hide();
+            $("#file_upload_cancle_13").show();
+            $("#upload_warning").text(
+                "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
+            );
+            this.value = "";
+    }
+};
+
+function addBank(event) {
+    event.preventDefault();
+    $('#account_details').hide();
+    $('#requirements').hide();
+    $('#account_details1').show();
+    /*   $('#account_details1')[0].scrollIntoView(true); */
+}
 
 function dataResetInfo(data) {
     for (const [key, value] of Object.entries(data)) {
@@ -3330,6 +3386,100 @@ function handleAccountInfo(event) {
         $('#popUp').modal('show');
     }
 }
+
+function handleAddBankInfo(event) {
+    event.preventDefault();
+    var field_AccountName1 = $("#field_AccountName1").val();
+    var field_AccountNumber1 = $("#field_AccountNumber1").val();
+    var field_currency1 = $("#from_currency1").val();
+    var field_Bank1 = $("#field_Bank1").val();
+    var field_Branch1 = $("#field_Branch1").val();
+    var speCharAddAccountName = specialcharacterValidation(field_AccountName1);
+    var numAddAccountName = numberValidation(field_AccountName1);
+    var numAddAccountNumber = onlyNumberValidate(field_AccountNumber1);
+
+
+    if (field_AccountName1.length === 0) {
+        $("#err_field_AccountName1").text('Field is empty');
+        $("#err_field_AccountName1").show();
+    } else if (speCharAddAccountName) {
+        $("#err_field_AccountName1").text('special character is not allowed');
+        $("#err_field_AccountName1").show();
+    } else if (numAddAccountName) {
+        $("#err_field_AccountName1").text('Number not allowed');
+        $("#err_field_AccountName1").show();
+    } else {
+        $("#err_field_AccountName1").text('');
+        $("#err_field_AccountName1").hide();
+    }
+
+    if (field_AccountNumber1.length === 0) {
+        $("#err_field_AccountNumber1").text('Field is empty');
+        $("#err_field_AccountNumber1").show();
+    } else if (!numAddAccountNumber) {
+        $("#err_field_AccountNumber1").text('Only number is allowed');
+        $("#err_field_AccountNumber1").show();
+    } else {
+        $("#err_field_AccountNumber1").text('');
+        $("#err_field_AccountNumber1").hide();
+    }
+
+    if (field_currency1 <= 0) {
+        $("#err_field_Currency1").text('Field is empty');
+        $("#err_field_Currency1").show();
+    } else {
+        $("#err_field_Currency1").text('');
+        $("#err_field_Currency1").show();
+    }
+
+    if (field_Bank1.length <= 0) {
+        $("#err_field_Bank1").text('Field is empty');
+        $("#err_field_Bank1").show();
+    } else {
+        $("#err_field_Bank1").text('');
+        $("#err_field_Bank1").hide();
+    }
+
+    if (field_Branch1.length === 0) {
+        $("#err_field_Branch1").text('Field is empty');
+        $("#err_field_Branch1").show();
+    }/*  else if (specCharAddBRANCH) {
+    $("#err_field_Branch1").text('special character is not allowed');
+    $("#err_field_Branch1").show();
+  } else if (numAddBranch) {
+    $("#err_field_Branch1").text('Number not allowed');
+    $("#err_field_Branch1").show();
+  }  */else {
+        $("#err_field_Branch1").text('');
+        $("#err_field_Branch1").hide();
+    }
+
+    if (!file13.value) {
+        $('#upload_feedback_label1').show();
+        $('#upload_feedback_label1').text('Please upload your Bank Account Ownership');
+    }
+
+    if (field_AccountName1.length !== 0 && field_AccountNumber1.length !== 0 && field_currency1.length !== 0 && field_Bank1.length !== 0 && field_Branch1.length !== 0 && file7.length !== 0 && (speCharAddAccountName == false) && (numAddAccountName == false) && (numAddAccountNumber == true)) {
+        const data = {
+            field_AccountName1,
+            field_AccountNumber1,
+            field_Bank1,
+            field_Branch1,
+            field_Currency1: $("select#from_currency1 option").filter(":selected").val(),
+            upload_file_13: file13.value
+        }
+        $("#step3_circle").addClass("md-step-step3-circle ");
+        $("#step3_span").addClass("md-step3-span");
+        $("#step3_reference").addClass("md-step3-span")
+        /* $("#step3").addClass("active");
+        $("#step3>div").addClass("active"); */
+        /* $("#step3").addClass("done"); */
+        $('#account_details1').hide();
+        $('#process_confirmation').show();
+        console.log('bank data -> ', data)
+    }
+}
+
 
 /* Add Beneficiary Account Information */
 function addBenificiaryAccountInfo(event) {
