@@ -7,7 +7,7 @@ var stepperFormEl */
 var form = document.getElementById("accidental__form");
 var form_Bank = document.getElementById("bank_form");
 var listCheckBox = document.querySelector('#upload_invalidCheck_1');
-var multifileupload = document.getElementById('file_Upload_test');
+var multifileupload = document.getElementById('file_Upload_test').multiple;
 var file1 = document.getElementById('file_Upload_1');
 var file2 = document.getElementById('file_Upload_2');
 var file3 = document.getElementById('file_Upload_3');
