@@ -1139,7 +1139,7 @@ function multifileCheckExt(files) {
   var comma = '';
   var invalidExt = 0;
 
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < files.length; i++) {
     var ext = files[i].name.split('.')[1];
     if (i != 0) {
       comma = ', '
@@ -1171,7 +1171,7 @@ function multifileCheckSize(files) {
   var comma = '';
   var invalidSizeDocs = 0;
 
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < files.length; i++) {
     var sizevalid = isFileSizeValid(files[i]);
     if (i != 0) {
       comma = ', '
@@ -1236,7 +1236,7 @@ multifileupload.onchange = async function (e) {
         var fileNamesDisplay = '';
         $("#multiFileNames").text('')
         const formData = new FormData();
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < this.files.length; i++) {
           if (this.files[i].name.split('.')[1] == "jpg") {
             fileCheck(this.files[i], buttonNum, pageID);
           }
@@ -1262,6 +1262,10 @@ multifileupload.onchange = async function (e) {
     }
   }
   else {
+    var fileNamesDisplay = '';
+    $("#multiFileNames").text('')
+    $("#warning_parent").hide();
+    $("#upload_warning_multi").text('')
     alert('Only 4 documents can be uploaded !!')
   }
 };
