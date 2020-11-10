@@ -1204,6 +1204,8 @@ multifileupload.onchange = async function (e) {
   tranType = "CIF-MIN";
   $("#file_upload_cancel_test").hide();
   $("#file_Upload_Tick_test").hide();
+  $("#warning_parent").hide();
+  $("#upload_warning_multi").text('')
   console.log("Starting");
   pageID = 1; //in which page is the button located
   buttonNum = 1; // button number 
