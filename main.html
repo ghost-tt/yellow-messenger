@@ -704,7 +704,26 @@
             </section>
         </section>
     </main>
+    <!-- warning pop up for wrong reference number -->
+    <section class="hide modal fade" id="refNoWarning" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
 
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">
+                        ×
+                    </button>
+                    <p id="p1">We’re sorry, it seems like the reference number you placed does not match what we
+                        have on record. You may try again, or
+                        contact your financial advisor for assistance.
+                    </p>
+                </div>
+
+            </div>
+    </section>
+    <!-- warning pop up for wrong reference number -->
     <div style="display: none;">
 
 
@@ -1105,18 +1124,10 @@
         }
 
         function captcha() {
+            // $('#refNoWarning').modal('hide');
             if (grecaptcha && grecaptcha.getResponse().length > 0) {
-                $("#img_claim").hide();
-                $("#claim").hide();
-                $("#reference_No").hide();
-                $("#reference-divider").show();
-                $("#process_confirmation1").show();
-                // document.getElementById('text').innerHTML = document.getElementById('payout-pickup-ill').innerHTML;
-                // activeProcess()
-                // activeProcessCircle()
-                $("#err_recaptcha").text('');
-                $("#err_recaptcha").hide();
-                displayDateForClaimStatus()
+
+
                 trackProgress();
             } else {
                 $("#err_recaptcha").text('Please verify the reCAPTCHA and tick the check box before submission');
@@ -1202,34 +1213,56 @@
         var claim_msg_type;
 
         function dummyRefNumberTest() {
+
             if ($('#reference_number').val() == '1234') {
                 claim_type = 'accident';
                 claim_msg_type = 'A-1'
+                return true;
             }
             else if ($('#reference_number').val() == '5678') {
                 claim_type = 'illness';
                 claim_msg_type = 'I-2'
+                return true;
             }
             else if ($('#reference_number').val() == '9012') {
                 claim_type = 'death';
                 claim_msg_type = 'D-2'
+                return true;
             }
             else {
-                claim_type = 'accident';
-                claim_msg_type = 'A-1'
+                return false;
+
             }
         }
 
         function trackProgress() {
+            debugger
             // api call on clicking GO button from claim status screen 
             var response = {};
             claim_type = response['claim-type']         // to show header and description based on claim type
             claim_msg_type = response['claim-msg-type'] // to set the message shown based on status
             trackMessagesArr = response['trackMessages']  // to populate dropdown
 
-            dummyRefNumberTest() // for testing
-            setClaimProgressScreen(); // to set header title and image for claim status screen
-            trackProgressDropDown(trackMessagesArr) // for tracking progress dropdown
+            var x = dummyRefNumberTest() // for testing
+            if (x == false) {
+                $('#refNoWarning').modal('show');
+            }
+            else {
+                displayDateForClaimStatus()
+                $("#img_claim").hide();
+                $("#claim").hide();
+                $("#reference_No").hide();
+
+                // document.getElementById('text').innerHTML = document.getElementById('payout-pickup-ill').innerHTML;
+                // activeProcess()
+                // activeProcessCircle()
+                $("#err_recaptcha").text('');
+                $("#err_recaptcha").hide();
+                $("#reference-divider").show();
+                $("#process_confirmation1").show();
+                setClaimProgressScreen(); // to set header title and image for claim status screen
+                trackProgressDropDown(trackMessagesArr) // for tracking progress dropdown
+            }
         }
 
         // to set header title and image for claim status screen
