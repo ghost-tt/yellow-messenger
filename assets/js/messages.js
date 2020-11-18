@@ -10,7 +10,10 @@ var progress_msges = [
     { 'id': 9, 'msg': "You have submitted all additional documents." },
     { 'id': 10, 'msg': "We have denied your claim request." },
     { 'id': 11, 'msg': "We have approved your claim request." },
-    { 'id': 12, 'msg': "Your payout is ready for pick up at any BPI branch." }
+    { 'id': 12, 'msg': "Your payout is ready for pick up at any BPI branch." },
+    { 'id': 13, 'msg': "You have chosen your preferred payout method." }, //for death
+    { 'id': 14, 'msg': "We are currently processing your payout" },
+    { 'id': 15, 'msg': "Your payout will be credited to your nominated bank account." },
 ]
     // "form-complete-accident": "You have completely filled out the form for Accident Claims.",
     // "form-complete-illness": "You have completely filled out the form for Illness Claims.",

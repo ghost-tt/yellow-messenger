@@ -23,6 +23,7 @@ var acctButtonCount = 0;
 var traverse;
 var currSeconds = 0;
 var user_mobile;
+var ben_name_req_progress = '';
 
 var file1 = document.getElementById('file_Upload_1');
 var file2 = document.getElementById('file_Upload_2');
@@ -657,6 +658,7 @@ function handleFormAddBeneficiary(event) {
     // beneficiaryCount++;
     beneficiaryCount = buttonCount + 1;
     traverse = 1;
+
     var field_addBeneficiaryFirstName = $("#field_addBeneficiaryFirstName").val();
     var field_addBeneficiaryMiddleName = $("#field_addBeneficiaryMiddleName").val();
     var field_addBeneficiaryLastName = $("#field_addBeneficiaryLastName").val();
@@ -928,7 +930,7 @@ function handleFormAddBeneficiary(event) {
             privacy_consent_beneficiary_1: $("#privacy_consent_beneficiary_1").is(":checked"),
             privacy_consent_beneficiary_2: $("#privacy_consent_beneficiary_2").is(":checked"),
             privacy_consent_beneficiary_3: $("#privacy_consent_beneficiary_3").is(":checked")
-            
+
         }
 
 
@@ -984,7 +986,17 @@ function handleFormAddBeneficiary(event) {
             beneficiary["Occupation"] = field_addBeneficiaryOccupation
 
         BeneficiaryList.push(beneficiary);
+        if (beneficiaryCount == 3) {
+            // name to show in 'your request is being processed section'
+            ben_name_req_progress = 'Hi ' + field_addBeneficiaryFirstName + '.'
+            $('#user_name').text = ben_name_req_progress;
 
+        }
+        else {
+            // name to show in 'your request is being processed section'
+            ben_name_req_progress = ''
+            $('#user_name').text = ben_name_req_progress;
+        }
         dataReset("field_addBeneficiaryFirstName", "field_addBeneficiaryMiddleName", "field_addBeneficiaryLastName", "field_addBeneficiaryMobileNum", "field_addBeneficiaryEmailAddress", "field_addBeneficiaryHomeAddress", "field_addBeneficiaryDOB", "field_addBeneficiaryPOB", "field_addBeneficiaryNationality", "field_addBeneficiarySex", "field_addBeneficiaryRelationToDeceased", "field_addBeneficiaryEmployerName", "field_addBeneficiaryOccupation", "field_addBeneficiary_relatives1", "field_add_Beneficiary_add_relatives2");
         uploadDataReset();
         // $('#stepper_intro').hide();
@@ -1537,6 +1549,12 @@ function handleForm(event) {
             beneficiary["GovernmentOfficialRelative"] = $("select#field_Beneficiary_relatives2 option").filter(":selected").val(),
             beneficiary["Occupation"] = field_BenificiaryOccupation
         BeneficiaryList.push(beneficiary);
+
+
+        ben_name_req_progress = 'Hi ' + field_firstName + '.'
+        document.getElementById('user_name').innerHTML = ben_name_req_progress; // name to show in 'your request is being processed section'
+
+
         /*  dataReset("field_firstName", "field_firstName", "field_middleName", "field_lastName", "field_lastName_Suffix", "field_DOB", "field_DOID", "field_BeneficiaryFirstName", "field_BeneficiaryMiddleName", "field_BeneficiaryLastName", "field_BeneficiaryMobileNum", "field_BeneficiaryEmailAddress", "field_BeneficiaryHomeAddress", "field_BeneficiaryDOB", "field_BeneficiaryPOB", "field_BeneficiaryNationality", "field_BeneficiarySex", "field_BeneficiaryRelationToDeceased","field_Beneficiary_relatives1","field_Beneficiary_relatives2") */
         $("#step1").addClass("done");
         $("#step2").addClass("active");
@@ -4285,12 +4303,19 @@ function resendOtp(type) {
 
 function submitOtp() {
     //api call fro submit otp
-
+    invalidOtp = 0;
     var dummy_otp = '1234'
     removeTimer();
 
     if (document.getElementById('otp').value != dummy_otp) {
-        $('#invalidOtp').modal('show');
+        invalidOtp++;
+        if (invalidOtp <= 3) {
+            $('#invalidOtp').modal('show');
+        }
+        else {
+            $('#invalidOtp').modal('hide');
+            $('#maxInvalidOtp').modal('show');
+        }
     }
     else {
         $('#otpPopUp').modal('hide');
@@ -4308,6 +4333,12 @@ window.onclick = function (event) {
     }
 }
 
-function backToFileClaim() { }
+// when user clicks exit button from OTP pop up
+function backToFileClaim() {
+
+    window.location.href = "main.html";
+
+
+}
 
 //drop-2 methods

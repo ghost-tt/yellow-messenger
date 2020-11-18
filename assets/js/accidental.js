@@ -2221,12 +2221,20 @@ function resendOtp(type) {
 
 function submitOtp() {
   //api call fro submit otp
-
+  
   var dummy_otp = '1234'
   removeTimer();
 
   if (document.getElementById('otp').value != dummy_otp) {
-    $('#invalidOtp').modal('show');
+    invalidOtp++;
+    if (invalidOtp <= 3) {
+      $('#invalidOtp').modal('show');
+    }
+    else {
+      $('#invalidOtp').modal('hide');
+      $('#maxInvalidOtp').modal('show');
+    }
+
   }
   else {
     $('#otpPopUp').modal('hide');
@@ -2244,6 +2252,12 @@ window.onclick = function (event) {
   }
 }
 
-function backToFileClaim(){}
+// when user clicks exit button from OTP pop up
+function backToFileClaim() {
+
+  window.location.href = "main.html";
+
+
+}
 
 //drop-2 methods

@@ -1308,11 +1308,16 @@
                                     you immediately.
                                 </p>
                                 <br />
-                                <p class="font-weight-normal">
+                                <p class="font-weight-normal">You may also check the progress of your request <a
+                                        href="main.html">here</a>. Just
+                                    type in your reference
+                                    number to view the status of your
+                                    request.</p>
+                                <!-- <p class="font-weight-normal">
                                     If you have any questions regarding your claim request, please send us
                                     an email at Philamlife@aia.com. You may also visit any of our AIA Philam
                                     Life branches or call our Customer Hotline at (02) 8528-2000.
-                                </p>
+                                </p> -->
                             </div>
                             <div class="col-3 time_container">
                                 <div>
@@ -1856,7 +1861,29 @@
                         </div>
                 </section>
 
+                <!-- Max Invalid Otp  modal (drop-2 ) -->
+                <section class="hide modal fade" id="maxInvalidOtp" tabindex="-1" role="dialog"
+                    aria-labelledby="maxInvalidOtp" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <p id="modal-text" style="text-align:center;">Sorry, you have entered an invalid
+                                    One-Time PIN.
+                                    After 3 attempts, we will no longer be able to generate a new PIN for
+                                    you. Kindly seek assistance from your financial advisor.
+                                </p>
 
+                                <br>
+
+
+                            </div>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                style="width: 50%; margin: 0 auto 3rem auto;" onclick="backToFileClaim()">Exit</button>
+                        </div>
+
+                    </div>
+                </section>
+                <!-- Max Invalid Otp modal (drop-2 ) -->
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

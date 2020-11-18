@@ -3679,16 +3679,23 @@
 						<br />
 						<div class="row">
 							<div class="col-9">
-								<p id="customer_Name" class="font-weight-normal">Hi Alex. Hang in there as we are now
-									processing your request. Kindly expect an update from us within 1 to 2 working days
-									on the status of your request.</p>
+								<p id="customer_Name" class="font-weight-normal"><span id="user_name"> Hang in there
+										as we are now
+										processing your request. Kindly expect an update from us within 1 to 2 working
+										days
+										on the status of your request.</p>
 								<br />
 								<p class="font-weight-normal">If we would need additional documents to support your
 									request, we will reach out to you immediately.</p>
 								<br />
-								<p class="font-weight-normal">If you have any questions regarding your claim request,
+								<p class="font-weight-normal">You may also check the progress of your request <a
+										href="main.html">here</a>. Just
+									type in your reference
+									number to view the status of your
+									request.</p>
+								<!-- <p class="font-weight-normal">If you have any questions regarding your claim request,
 									please send us an email at Philamlife@aia.com. You may also visit any of our AIA
-									Philam Life branches or call our Customer Hotline at (02) 8528-2000.</p>
+									Philam Life branches or call our Customer Hotline at (02) 8528-2000.</p> -->
 							</div>
 							<div class="col-3 time_container">
 								<div>
@@ -7356,7 +7363,7 @@
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-body">
-						<p id="otp-text">We have send a One-Time PIN to your
+						<p id="otp-text">We have send a One-Time PIN to the
 							<br> mobile number <span id="user_mobile"></span>.
 							<br> Kindly enter the OTP in the space below.</p>
 						<p id="otp-text">Your OTP expires after two minutes.
@@ -7364,11 +7371,11 @@
 							<a style="color:#1b89f0 ;cursor: pointer;" onclick="resendOtp('resend')">here</a> to resend
 							another
 							one.</p>
-						<p id="otp-text">If your current mobile number does not
+						<!-- <p id="otp-text">If your current mobile number does not
 							<br> match our records, kindly update your
 							<br> contact details via
 							<a style="color:#1b89f0 ;cursor: pointer;">ePlan</a> or by calling
-							<br> our hotline at (02)8528-2000. </p>
+							<br> our hotline at (02)8528-2000. </p> -->
 						<br>
 						<input type="text" class="input__box" maxlength="25" id="otp" value="" placeholder="OTP"
 							tabindex="1" />
@@ -7472,7 +7479,28 @@
 			</div>
 		</section>
 		<!-- Resend otp max number exceed (drop-2 ) -->
+		<!-- Max Invalid Otp  modal (drop-2 ) -->
+		<section class="hide modal fade" id="maxInvalidOtp" tabindex="-1" role="dialog" aria-labelledby="maxInvalidOtp"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p id="modal-text" style="text-align:center;">Sorry, you have entered an invalid One-Time PIN.
+							After 3 attempts, we will no longer be able to generate a new PIN for
+							you. Kindly seek assistance from your financial advisor.
+						</p>
 
+						<br>
+
+
+					</div>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"
+						style="width: 50%; margin: 0 auto 3rem auto;" onclick="backToFileClaim()">Exit</button>
+				</div>
+
+			</div>
+		</section>
+		<!-- Max Invalid Otp modal (drop-2 ) -->
 	</main>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
