@@ -7,7 +7,7 @@ var stepperFormEl */
 var form = document.getElementById("accidental__form");
 var form_Bank = document.getElementById("bank_form");
 var listCheckBox = document.querySelector('#upload_invalidCheck_1');
-var multifileupload = document.getElementById('file_Upload_test').multiple;
+
 var file1 = document.getElementById('file_Upload_1');
 var file2 = document.getElementById('file_Upload_2');
 var file3 = document.getElementById('file_Upload_3');
@@ -124,7 +124,7 @@ let PaymentOption = {};
 let BankDetails = {};
 let FilesInformation = {};
 let filesList = [];
-let multiFileList = [];
+
 let beneficiaryCount = 1;
 let filesMap = {};
 let claimType, causeOfLoss, govIdFront, govIdBack, apsFile, narrationReport, officialReceipts;
@@ -1133,146 +1133,7 @@ const isFileSizeValid = (file) => {
   return false;
 };
 
-//multifile check extension
-function multifileCheckExt(files) {
-  var fileNamesDisplay = '';
-  $("#multiFileNames").text('')
-  var comma = '';
-  var invalidExt = 0;
 
-  for (var i = 0; i < files.length; i++) {
-    var ext = files[i].name.split('.')[1];
-    if (i != 0) {
-      comma = ', '
-    }
-    fileNamesDisplay = fileNamesDisplay + comma + files[i].name;
-    if (ext == 'pdf' || ext == 'jpg') {
-
-    }
-    else {
-      invalidExt++;
-    }
-  }
-  $("#multiFileNames").text(fileNamesDisplay) // to display names of uploaded files under the upload button
-
-  if (invalidExt > 0) {
-    return false;
-  }
-  else {
-    return true;
-  }
-
-}
-//multifile check extension
-
-//multifile check upload doc size
-function multifileCheckSize(files) {
-  var fileNamesDisplay = '';
-  $("#multiFileNames").text('')
-  var comma = '';
-  var invalidSizeDocs = 0;
-
-  for (var i = 0; i < files.length; i++) {
-    var sizevalid = isFileSizeValid(files[i]);
-    if (i != 0) {
-      comma = ', '
-    }
-    fileNamesDisplay = fileNamesDisplay + comma + files[i].name;
-    if (!sizevalid) { invalidSizeDocs++ }
-
-  }
-  $("#multiFileNames").text(fileNamesDisplay) // to display names of uploaded files under the upload button
-
-
-  if (invalidSizeDocs > 0) {
-    return false;
-  }
-  else {
-    return true;
-  }
-
-}
-//multifile check upload doc size
-
-
-
-
-
-//test for multiupload
-multifileupload.onchange = async function (e) {
-
-  docType = "LIDC001";
-  tranType = "CIF-MIN";
-  $("#file_upload_cancel_test").hide();
-  $("#file_Upload_Tick_test").hide();
-  $("#warning_parent").hide();
-  $("#upload_warning_multi").text('')
-  console.log("Starting");
-  pageID = 1; //in which page is the button located
-  buttonNum = 1; // button number 
-  if (this.files.length <= 4) {
-
-    var extVal = multifileCheckExt(this.files)
-    if (!extVal) {
-      $("#warning_parent").show();
-      $("#file_Upload_Tick_test").hide();
-      $("#file_upload_cancel_test").show();
-      $("#upload_warning_multi").text(
-        "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
-      );
-      this.value = "";
-    }
-    else {
-      var filesize = multifileCheckSize(this.files);
-      if (!filesize) {
-        $("#warning_parent").show();
-        $("#file_loader_icon_test").hide();
-        $("#file_Upload_Tick_test").hide();
-        $("#file_upload_cancel_test").show();
-        $("#upload_warning_multi").text(
-          "You may only upload documents not exceeding 2MB in file size. Please re-upload in the correct format and file size proceed."
-        );
-      }
-      else {
-        var fileName;
-        var comma = '';
-        var fileNamesDisplay = '';
-        $("#multiFileNames").text('')
-        const formData = new FormData();
-        for (var i = 0; i < this.files.length; i++) {
-          if (this.files[i].name.split('.')[1] == "jpg") {
-            fileCheck(this.files[i], buttonNum, pageID);
-          }
-          else {
-            proceedScan(this.files[i], buttonNum, pageID);
-          }
-          if (i != 0) {
-            comma = ', '
-          }
-          fileNamesDisplay = fileNamesDisplay + comma + this.files[i].name;
-          fileName = referenceNumber + "-" + docType + "-" + tranType + "-" + i + 1;
-          //add files to multifilelist -pending
-
-          formData.append('file' + `${i + 1}`, this.files[i], fileName + `.${this.files[i].name.split('.')[1]}`);
-          //handleFileUpload uploading files to api -pending
-
-          console.log('multifile form dt' + formData)
-
-        }
-        $("#multiFileNames").text(fileNamesDisplay) // to display names of uploaded files under the upload button
-
-      }
-    }
-  }
-  else {
-    var fileNamesDisplay = '';
-    $("#multiFileNames").text('')
-    $("#warning_parent").hide();
-    $("#upload_warning_multi").text('')
-    alert('Only 4 documents can be uploaded !!')
-  }
-};
-//test 
 
 file1.onchange = async function (e) {
   docType = "LIDC001";

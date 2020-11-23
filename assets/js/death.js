@@ -60,7 +60,7 @@ let BeneficiaryList = [];
 let BankDetailsList = [];
 let FilesInformation = {};
 let filesList = [];
-let multifileList = [];
+
 let beneficiaryCount = 1;
 let docType, tranType;
 basicInformation["WebReferenceNumber"] = referenceNumber;
