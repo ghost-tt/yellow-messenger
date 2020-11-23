@@ -23,6 +23,7 @@ let botId = url.searchParams.get('botId');
 var user_mobile;
 var currSeconds = 0;
 
+
 $('#privacy_consent_1').prop('checked', true);
 $('#privacy_consent_2').prop('checked', true);
 $('#privacy_consent_3').prop('checked', true);
@@ -1767,6 +1768,7 @@ function handleAccountInfo(event) {
 
 
 function bankTranfer() {
+  document.getElementById('ref_number').innerHTML = referenceNumber
   $('#payment').hide();
   $('#account_details').show();
   $("#step2").addClass("active");
@@ -1774,6 +1776,7 @@ function bankTranfer() {
 }
 
 function pickUp() {
+  document.getElementById('ref_number').innerHTML = referenceNumber
   let filesObject = {};
   filesObject["FolderName"] = `/CLAIMS/${referenceNumber}`
   filesObject["FileList"] = filesList;
@@ -1808,6 +1811,7 @@ function pickUp() {
 }
 
 function pickup_Bpi() {
+
   $("#pickUp").hide();
   $('#process_confirmation').show();
   $("#step2").addClass("done");
@@ -1921,6 +1925,7 @@ function handleAddBankInfo(event) {
 }
 
 function openlink() {
+  document.getElementById('ref_number').innerHTML = referenceNumber
   window.open("https://www.google.com/maps/search/bpi+branch+locator/@14.6079731,120.9860096,14z/data=!3m1!4b1");
 }
 
@@ -2082,7 +2087,7 @@ function resendOtp(type) {
 
 function submitOtp() {
   //api call fro submit otp
-  
+
   var dummy_otp = '1234'
   removeTimer();
 

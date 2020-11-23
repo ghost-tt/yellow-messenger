@@ -41,6 +41,7 @@ var file13 = document.getElementById('proof_addBAO');
 
 let url = new URL(window.location.href);
 let referenceNumber = url.searchParams.get('refNumber');
+
 let uid = url.searchParams.get('sender');
 let botId = url.searchParams.get('botId');
 
@@ -3727,6 +3728,7 @@ function addBeneficiaryuploadDataReset() {
 }
 
 function bankTranfer() {
+    document.getElementById('ref_number').innerHTML = referenceNumber
     trackBenificiary = 0;
     $('#payment').hide();
     $('#account_details').show();
@@ -3767,6 +3769,7 @@ function addBeneficiarybankTranfer() {
 
 function pickUp() {
     // BeneficiaryList.filter(bens => bens[BeneficiaryNo])
+    document.getElementById('ref_number').innerHTML = referenceNumber
     let index = BeneficiaryList.findIndex(ele => ele["BeneficiaryNo"] == "1")
     let benObject = BeneficiaryList[index]
     benObject["PayoutOption"] = "PUA";
@@ -4106,6 +4109,7 @@ function setDataBeneficiary(data) {
 }
 
 function pickup_Bpi() {
+
     $("#pickUp").hide();
     $('#requirements').show();
     /* $('#process_confirmation').show(); */

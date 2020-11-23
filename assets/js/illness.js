@@ -22,6 +22,7 @@ $('#privacy_consent_3').prop('checked', true);
 
 let url = new URL(window.location.href);
 let referenceNumber = url.searchParams.get('refNumber');
+
 let uid = url.searchParams.get('sender');
 let botId = url.searchParams.get('botId');
 
@@ -1677,6 +1678,7 @@ function handleAddBankInfo(event) {
 
 
 function bankTranfer() {
+    document.getElementById('ref_number').innerHTML = referenceNumber
     $('#payment').hide();
     $('#account_details').show();
     $("#step2").addClass("active");
@@ -1684,6 +1686,7 @@ function bankTranfer() {
 }
 
 function pickUp() {
+    document.getElementById('ref_number').innerHTML = referenceNumber
     let filesObject = {};
     filesObject["FolderName"] = `/CLAIMS/${referenceNumber}`
     filesObject["FileList"] = filesList;
@@ -1718,6 +1721,7 @@ function pickUp() {
 }
 
 function pickup_Bpi() {
+
     $("#pickUp").hide();
     $('#process_confirmation').show();
     $("#step2").addClass("done");
