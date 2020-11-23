@@ -1845,7 +1845,7 @@ var maxResendOtp = document.getElementById('maxResendOtp');
 
 
 function otpTimer() {
-    if (resendCount <= 3) {
+    if (resendCount <= 5) {
         $('#otpPopUp').modal('show');
         if (remaining == 120) {
             duration = setInterval(otpTimer, 1000);
