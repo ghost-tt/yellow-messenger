@@ -26,7 +26,7 @@ let botId = url.searchParams.get('botId');
 form.addEventListener('submit', handleForm);
 form_Bank.addEventListener('submit', handleAccountInfo);
 
-let beneficiaryCount =1;
+let beneficiaryCount = 1;
 let finalPayload = {};
 let accidentPayload = {};
 let basicInformation = {};
@@ -71,16 +71,16 @@ function myDisable() {
     document.getElementById("bank_form").style.cursor = "no-drop";
 }
 
-function addFileToList(fileObject, fileName){
+function addFileToList(fileObject, fileName) {
     console.log("in function, with name : ");
     console.log(fileName);
-    let index = filesList.findIndex(x => x.Filename == fileName )
+    let index = filesList.findIndex(x => x.Filename == fileName)
 
-    if(index===-1){
-      console.log("adding bcoz unique");
-      filesList.push(fileObject);
+    if (index === -1) {
+        console.log("adding bcoz unique");
+        filesList.push(fileObject);
     }
-  }
+}
 
 function timer() {
     var random = Math.floor(Math.random() * 5) + 1
@@ -138,23 +138,22 @@ $(document).ready(function (event) {
 
     var val = 'Peso'
     if (val == "Peso") {
-      $("#field_Bank").html(
-       "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
-      );
-    } 
+        $("#field_Bank").html(
+            "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+        );
+    }
     $("#from_currency").change(function () {
-      var val = $(this).val();
-      if (val == "Peso") {
-        $("#field_Bank").html(
-         "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
-        );
-      } else if (val == "USD") {
-        $("#field_Bank").html(
-          "<option value='Bank of the Philippine Islands - BPI'>Bank of the Philippine Islands - BPI</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option>"
-        );
-      }
+        var val = $(this).val();
+        if (val == "Peso") {
+            $("#field_Bank").html(
+                "<option value='Bank of the Philippine Islands - BPI' >Bank of the Philippine Islands - BPI</option><option value='BPI Family Savings Bank - BFB'>BPI Family Savings Bank - BFB</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option><option value='China Banking Corporation - CBC'>China Banking Corporation - CBC</option><option value='Citibank Philippines - CITI'>Citibank Philippines - CITI</option><option value='Development Bank of the Phils - DBP'>Development Bank of the Phils - DBP</option><option value='Eastwest Bank - EWB'>Eastwest Bank - EWB</option><option value='Hongkong Shanghai Banking Corp. Phils - HSBC'>Hongkong Shanghai Banking Corp. Phils - HSBC</option><option value='Land Bank of the Philippines - LPB'>Land Bank of the Philippines - LPB</option><option value='Metropolitan Banks and Trust Company - MBTC'>Metropolitan Banks and Trust Company - MBTC</option><option value='Philippine National Bank - PNB'>Philippine National Bank - PNB</option><option value='Rizal Commercial Banking Corp - RCBC'>Rizal Commercial Banking Corp - RCBC</option><option value='Security Bank - SBTC'>Security Bank - SBTC</option><option value='Union Bank of the Philippines - UB'>Union Bank of the Philippines - UB</option>"
+            );
+        } else if (val == "USD") {
+            $("#field_Bank").html(
+                "<option value='Bank of the Philippine Islands - BPI'>Bank of the Philippine Islands - BPI</option><option value='Banco de Oro - BDO'>Banco de Oro - BDO</option>"
+            );
+        }
     });
-
 });
 
 
@@ -906,15 +905,17 @@ function handleForm(event) {
         InsuredInformation["MiddleName"] = field_middleName;
         InsuredInformation["LastName"] = field_lastName;
         InsuredInformation["Suffix"] = field_lastName_Suffix;
-        InsuredInformation["DateOfBirth"] = field_DOB.split('-')[1]+'/'+field_DOB.split('-')[2]+'/'+field_DOB.split('-')[0];
+        InsuredInformation["DateOfBirth"] = field_DOB.split('-')[1] + '/' + field_DOB.split('-')[2] + '/' + field_DOB.split('-')[0];
         InsuredInformation["CountryCode"] = $("select#inlineFormCustomSelect option").filter(":selected").val();
         InsuredInformation["PhoneNumber"] = field_mobileNum;
         InsuredInformation["EmailAddress"] = field_emailAddress;
         InsuredInformation["HomeAddress"] = field_homeAddress;
-        InsuredInformation["FirstSymptomsDate"] =  field_DOA.split('-')[1]+'/'+field_DOA.split('-')[2]+'/'+field_DOA.split('-')[0];
-        InsuredInformation["AccidentDate"] = field_TOA.split('-')[1]+'/'+field_TOA.split('-')[2]+'/'+field_TOA.split('-')[0];
-        InsuredInformation["FirstConsultationDate"] =  field_POA.split('-')[1]+'/'+field_POA.split('-')[2]+'/'+field_POA.split('-')[0];
+        InsuredInformation["FirstSymptomsDate"] = field_DOA.split('-')[1] + '/' + field_DOA.split('-')[2] + '/' + field_DOA.split('-')[0];
+        InsuredInformation["AccidentDate"] = field_TOA.split('-')[1] + '/' + field_TOA.split('-')[2] + '/' + field_TOA.split('-')[0];
+        InsuredInformation["FirstConsultationDate"] = field_POA.split('-')[1] + '/' + field_POA.split('-')[2] + '/' + field_POA.split('-')[0];
         InsuredInformation["InjuryDetails"] = field_MedicalConsultation;
+        InsuredInformation["check1"] = data.privacy_consent_1;
+        InsuredInformation["check2"] = data.privacy_consent_2;
 
         let stageOneData = {
             stageOne: true,
@@ -930,9 +931,9 @@ function handleForm(event) {
                 }
             })
         }), '*');
-    }else if((comparingDob == 5) || (comparingDob == 6) || (comparingDob == 7)) {
+    } else if ((comparingDob == 5) || (comparingDob == 6) || (comparingDob == 7)) {
         $('#popUp_DOB').modal('show');
-    }  else {
+    } else {
         $("#popUp").modal("show");
     }
 }
@@ -1082,10 +1083,10 @@ file1.onchange = async function (e) {
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident["Filename"] = `${fileName}.pdf`,
-                accident["DocType"] = "PDF",
-                accident["DocTypeCode"]= docType,
-                accident["DocumentDescription"] = "Front copy of doc"
+                    accident["Filename"] = `${fileName}.pdf`,
+                    accident["DocType"] = "PDF",
+                    accident["DocTypeCode"] = docType,
+                    accident["DocumentDescription"] = "Front copy of doc"
 
                 addFileToList(accident, `${fileName}.pdf`);
                 const formData = new FormData()
@@ -1139,7 +1140,7 @@ file2.onchange = async function (e) {
                 accident['BeneficiaryNo'] = beneficiaryCount,
                     accident["Filename"] = `${fileName}.pdf`,
                     accident["DocType"] = "PDF",
-                    accident["DocTypeCode"]= docType,
+                    accident["DocTypeCode"] = docType,
                     accident["DocumentDescription"] = "Back copy of doc"
 
                 addFileToList(accident, `${fileName}.pdf`);
@@ -1303,10 +1304,10 @@ file6.onchange = async function (e) {
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident["Filename"] = `${fileName}.pdf`,
-                accident["DocType"] = "PDF",
-                accident["DocTypeCode"] = docType,
-                accident["DocumentDescription"] = "Proof of Bank Account"
+                    accident["Filename"] = `${fileName}.pdf`,
+                    accident["DocType"] = "PDF",
+                    accident["DocTypeCode"] = docType,
+                    accident["DocumentDescription"] = "Proof of Bank Account"
 
                 addFileToList(accident, `${fileName}.pdf`);
                 const formData = new FormData()
