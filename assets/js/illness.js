@@ -160,7 +160,6 @@ $(document).ready(function (event) {
             );
         }
     });
-
 });
 
 
@@ -934,6 +933,9 @@ function handleForm(event) {
         // for otp screen
         document.getElementById('user_mobile').innerHTML = field_mobileNum.replace(/.(?=.{4})/g, '*')
         // for otp screen
+        InsuredInformation["check1"] = data.privacy_consent_1;
+        InsuredInformation["check2"] = data.privacy_consent_2;
+
         let stageOneData = {
             stageOne: true,
             type: "Accident",
