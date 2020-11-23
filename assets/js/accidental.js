@@ -2202,7 +2202,7 @@ function resendOtp(type) {
 
   removeTimer();
   resendCount++;
-  if (resendCount > 3) {
+  if (resendCount > 5) {
     $('#otpPopUp').modal('hide');
     $('#invalidOtp').modal('hide');
     $('#maxResendOtp').modal('show');
