@@ -4244,7 +4244,7 @@ var otpModal = document.getElementById('otpPopUp');
 var otpExpModal = document.getElementById('otpExpiry');
 var invalidOtpModal = document.getElementById('invalidOtp');
 var maxResendOtp = document.getElementById('maxResendOtp');
-
+var invalidOtp = 0;
 
 
 // otp timer function
@@ -4307,13 +4307,13 @@ function resendOtp(type) {
 
 function submitOtp() {
     //api call fro submit otp
-    invalidOtp = 0;
+    
     var dummy_otp = '1234'
     removeTimer();
 
     if (document.getElementById('otp').value != dummy_otp) {
         invalidOtp++;
-        if (invalidOtp <= 3) {
+        if (invalidOtp < 3) {
             $('#invalidOtp').modal('show');
         }
         else {

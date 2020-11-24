@@ -1841,7 +1841,7 @@ var otpExpModal = document.getElementById('otpExpiry');
 var invalidOtpModal = document.getElementById('invalidOtp');
 var maxResendOtp = document.getElementById('maxResendOtp');
 
-
+var invalidOtp = 0;
 
 
 function otpTimer() {
@@ -1903,7 +1903,7 @@ function resendOtp(type) {
 
 function submitOtp() {
     //api call fro submit otp
-    invalidOtp = 0;
+
     var dummy_otp = '1234'
     removeTimer();
 

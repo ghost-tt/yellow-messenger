@@ -18,6 +18,7 @@ var file7 = document.getElementById('proof_addBAO');
 var trackBenificiary;
 let url = new URL(window.location.href);
 let referenceNumber = url.searchParams.get('refNumber');
+
 let uid = url.searchParams.get('sender');
 let botId = url.searchParams.get('botId');
 var user_mobile;
@@ -2021,7 +2022,7 @@ var otpModal = document.getElementById('otpPopUp');
 var otpExpModal = document.getElementById('otpExpiry');
 var invalidOtpModal = document.getElementById('invalidOtp');
 var maxResendOtp = document.getElementById('maxResendOtp');
-
+var invalidOtp = 0;
 
 
 // otp timer function
@@ -2089,8 +2090,9 @@ function submitOtp() {
   removeTimer();
 
   if (document.getElementById('otp').value != dummy_otp) {
+    debugger
     invalidOtp++;
-    if (invalidOtp <= 3) {
+    if (invalidOtp < 3) {
       $('#invalidOtp').modal('show');
     }
     else {
