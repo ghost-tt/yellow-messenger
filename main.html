@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Yellow Messenger</title>
     <style>
-      
         .btnn:hover {
             color: white;
             /* color: #b8123e !important; */
@@ -28,6 +27,7 @@
             border: 1px solid white !important;
         }
     </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -196,7 +196,7 @@
                         </div>
 
                         <div>
-                            <div class="g-recaptcha" data-sitekey="6LeyUtkZAAAAAFcgCZc3o3i7qi4DWYkHjhfukp4T"></div>
+                            <div class="g-recaptcha" data-sitekey="6LeFPOsZAAAAADGU9ehAxipxQBBlv1XvZRGd29gx"></div>
                             <span class="error reference-track" id="err_recaptcha"></span>
                         </div>
                     </div>
@@ -328,7 +328,7 @@
                                         <div class="font-weight-bold" style="color: black;">Php 123,456.80</div>
                                     </div>
                                     <div id="turnaround-time-ref" style="display: hidden;">
-                                        <div  style="color: black;">Turnaround Time</div>
+                                        <div style="color: black;">Turnaround Time</div>
                                         <div class="font-weight-bold" style="color: black;">24-48 hours</div>
                                     </div>
                                     <div>
@@ -1478,9 +1478,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <script src="./assets/js/messages.js"></script>
- 
+
     <!-- To make recaptcha responsive -->
     <!-- <script>
             var width = $('.g-recaptcha').parent().width();
@@ -1643,7 +1643,7 @@
         }
 
         function trackProgress() {
-           
+
             // api call on clicking GO button from claim status screen 
             var response = {};
             claim_type = response['claim-type']         // to show header and description based on claim type
