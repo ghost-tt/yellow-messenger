@@ -15,18 +15,7 @@ var progress_msges = [
     { 'id': 14, 'msg': "We are currently processing your payout" },
     { 'id': 15, 'msg': "Your payout will be credited to your nominated bank account." },
 ]
-    // "form-complete-accident": "You have completely filled out the form for Accident Claims.",
-    // "form-complete-illness": "You have completely filled out the form for Illness Claims.",
-    // "form-complete-death": "You have completely filled out the form for Death Claims.",
-    // "docs-submitted": "You have submitted all the required documents.",
-    // "bank-tranfer-method": "You have chosen Bank Transfer as a preferred payout method.",
-    // "payout-method": "You have chosen Pick Up Anywhere as a preferred payout method.",
-    // "recieved-appl": "We have received and reviewed your application.",
-    // "additional-docs-required": "We are requesting additional claims documents.",
-    // "additional-docs-submitted": "You have submitted all additional documents.",
-    // "claim-denied": "We have denied your claim request.",
-    // "claim-approved": "We have approved your claim request.",
-    // "pick-up-ready": "Your payout is ready for pick up at any BPI branch."
+  
 
 
 

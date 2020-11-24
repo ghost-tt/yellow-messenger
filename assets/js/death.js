@@ -24,6 +24,7 @@ var traverse;
 var currSeconds = 0;
 var user_mobile;
 var ben_name_req_progress = '';
+let filesMap = {};
 
 var file1 = document.getElementById('file_Upload_1');
 var file2 = document.getElementById('file_Upload_2');
@@ -526,6 +527,15 @@ const handleFileUpload = (formData, fileName) => {
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 }
+
+const getBuffer = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    console.log("reading file")
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
 
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -1136,8 +1146,8 @@ function handleForm(event) {
     var lenBeneficiaryNationality = fieldCheckLength(field_BeneficiaryNationality, 120)
     var lenBeneficiaryRelationToDeceased = fieldCheckLength(field_BeneficiaryRelationToDeceased, 50)
     var lenBeneficiaryEmployerName = fieldCheckLength(field_BeneficiaryEmployerName, 30)
-    var checkDOb = currentDate(field_BeneficiaryDOB);
-    var relationKeyword = checkKeyword(field_BeneficiaryRelationToDeceased);
+    var checkDOb = currentDate(field_BeneficiaryDOB, '');
+    var relationKeyword = checkKeyword(field_BeneficiaryRelationToDeceased, '');
 
 
     if (field_DOB.length !== 0) {
@@ -1155,7 +1165,7 @@ function handleForm(event) {
     }
 
     var field_NatureOfLoss = $("select#nature_Loss option").filter(":selected").val()
-    debugger
+ 
     //if(field_NatureOfLoss == 'Illness') {
     if (0 == field_NatureOfLoss.localeCompare("Illness")) {
         document.getElementById("file_Upload_2").disabled = true;
@@ -2438,7 +2448,7 @@ file13.onchange = async function (e) {
         case "jpg":
         case "pdf":
             var file = this.files[0];
-            var buttonNum = 7;
+            var buttonNum = 13;
             var sizevalid = isFileSizeValid(file, buttonNum);
             if (sizevalid) {
                 if (ext == "jpg") {
@@ -4307,7 +4317,7 @@ function resendOtp(type) {
 
 function submitOtp() {
     //api call fro submit otp
-    
+
     var dummy_otp = '1234'
     removeTimer();
 
