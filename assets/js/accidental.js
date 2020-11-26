@@ -1093,7 +1093,7 @@ const proceedScan = async (fileObj, button, pageid) => {
 const fileCheck = (file, button, pageid) => {
 
   console.log(button);
-  fileBlurStatus = false;
+  fileBlurStatus = true;
   var _URL = window.URL || window.webkitURL;
   console.log("FILE OBJECT -> ", file);
   var img = new Image();
@@ -1121,10 +1121,11 @@ const fileCheck = (file, button, pageid) => {
       fileBlurStatus = true;
 
     } else {
-      console.log("This is right JPG");
 
+      console.log("This is right JPG");
       proceedScan(file, button);
       fileBlurStatus = false;
+
     }
   };
   img.onerror = function () {
@@ -1244,7 +1245,7 @@ file2.onchange = async function (e) {
       if (sizevalid) {
 
         if (ext == "jpg") {
-          var isFileBlur = fileCheck(file, buttonNum, pageID)
+          var isFileBlur = fileCheck(file, buttonNum, pageId)
           if (isFileBlur == false) {
 
             let fileName = referenceNumber + "-" + docType + "-" + tranType;
@@ -1319,7 +1320,7 @@ file3.onchange = async function (e) {
       if (sizevalid) {
 
         if (ext == "jpg") {
-          var isFileBlur = fileCheck(file, buttonNum, pageID)
+          var isFileBlur = fileCheck(file, buttonNum, pageId)
           if (isFileBlur == false) {
             let fileName = referenceNumber + "-" + docType + "-" + tranType;
 
@@ -1392,7 +1393,7 @@ file4.onchange = async function (e) {
       if (sizevalid) {
 
         if (ext == "jpg") {
-          var isFileBlur = fileCheck(file, buttonNum, pageID)
+          var isFileBlur = fileCheck(file, buttonNum, pageId)
           if (isFileBlur == false) {
             let fileName = referenceNumber + "-" + docType + "-" + tranType;
 
@@ -1467,7 +1468,7 @@ file5.onchange = async function (e) {
       if (sizevalid) {
 
         if (ext == "jpg") {
-          var isFileBlur = fileCheck(file, buttonNum, pageID)
+          var isFileBlur = fileCheck(file, buttonNum, pageId)
           if (isFileBlur == false) {
             let fileName = referenceNumber + "-" + docType + "-" + tranType;
 
@@ -1544,7 +1545,7 @@ file6.onchange = async function (e) {
       if (sizevalid) {
 
         if (ext == "jpg") {
-          var isFileBlur = fileCheck(file, buttonNum, pageID)
+          var isFileBlur = fileCheck(file, buttonNum, pageId)
           if (isFileBlur == false) {
             let fileName = referenceNumber + "-" + docType + "-" + tranType;
 
