@@ -1065,6 +1065,8 @@ const proceedScan = async (fileObj, button, pageid) => {
         return;
       } else {
         $("#warning_parent").hide();
+        $("#warning_uploads_docs").hide();
+
         $("#warning_parent_acct").hide();
         $(`#file_loader_icon_${button}`).hide();
         $(`#file_Upload_Tick_${button}`).show();
@@ -1076,6 +1078,7 @@ const proceedScan = async (fileObj, button, pageid) => {
       console.log("error", error);
       if (pageid == 1) {
         $("#warning_parent").show();
+        $("#warning_uploads_docs").show();
       }
       if (pageid == 2) {
         $("#warning_parent_acct").show();
@@ -1104,7 +1107,7 @@ const fileCheck = (file, button, pageid) => {
     console.log(this.width + " " + this.height);
     if (this.width < 400 && this.height < 400) {
       if (pageid == 1) {
-        $(`#warning_parent`).show();
+        $(`#warning_uploads_docs`).show();
         $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable. Kindly ensure to upload clear copies of your documents to proceed.");
       }
       if (pageid == 2) {
@@ -1209,7 +1212,8 @@ file1.onchange = async function (e) {
 
 
       } else {
-        $("#warning_parent").show();
+        // $("#warning_uploads_docs").attr("style", "display: block !important;")
+        $("#warning_uploads_docs").show();
         $("#file_loader_icon_1").hide();
         $("#file_Upload_Tick_1").hide();
         $("#file_upload_cancle_1").show();
@@ -1219,7 +1223,7 @@ file1.onchange = async function (e) {
       }
       break;
     default:
-      $("#warning_parent").show();
+      $("#warning_uploads_docs").show();
       $("#file_Upload_Tick_1").hide();
       $("#file_upload_cancle_1").show();
       $("#upload_warning").text(
@@ -1284,7 +1288,7 @@ file2.onchange = async function (e) {
         }
 
       } else {
-        $("#warning_parent").show();
+        $("#warning_uploads_docs").show();
         $("#file_loader_icon_2").hide();
         $("#file_Upload_Tick_2").hide();
         $("#file_upload_cancle_2").show();
@@ -1294,7 +1298,7 @@ file2.onchange = async function (e) {
       }
       break;
     default:
-      $("#warning_parent").show();
+      $("#warning_uploads_docs").show();
       $("#file_Upload_Tick_2").hide();
       $("#file_upload_cancle_2").show();
       $("#upload_warning").text(
@@ -1357,7 +1361,7 @@ file3.onchange = async function (e) {
         }
 
       } else {
-        $("#warning_parent").show();
+        $("#warning_uploads_docs").show();
         $("#file_loader_icon_3").hide();
         $("#file_Upload_Tick_3").hide();
         $("#file_upload_cancle_3").show();
@@ -1367,7 +1371,7 @@ file3.onchange = async function (e) {
       }
       break;
     default:
-      $("#warning_parent").show();
+      $("#warning_uploads_docs").show();
       $("#file_Upload_Tick_3").hide();
       $("#file_upload_cancle_3").show();
       $("#upload_warning").text(
@@ -1432,7 +1436,7 @@ file4.onchange = async function (e) {
 
 
       } else {
-        $("#warning_parent").show();
+        $("#warning_uploads_docs").show();
         $("#file_loader_icon_4").hide();
         $("#file_Upload_Tick_4").hide();
         $("#file_upload_cancle_4").show();
@@ -1442,7 +1446,7 @@ file4.onchange = async function (e) {
       }
       break;
     default:
-      $("#warning_parent").show();
+      $("#warning_uploads_docs").show();
       $("#file_Upload_Tick_4").hide();
       $("#file_upload_cancle_4").show();
       $("#upload_warning").text(
@@ -1509,7 +1513,7 @@ file5.onchange = async function (e) {
 
 
       } else {
-        $("#warning_parent").show();
+        $("#warning_uploads_docs").show();
         $("#file_loader_icon_5").hide();
         $("#file_Upload_Tick_5").hide();
         $("#file_upload_cancle_5").show();
@@ -1519,7 +1523,7 @@ file5.onchange = async function (e) {
       }
       break;
     default:
-      $("#warning_parent").show();
+      $("#warning_uploads_docs").show();
       $("#file_Upload_Tick_5").hide();
       $("#file_upload_cancle_5").show();
       $("#upload_warning").text(
@@ -1640,7 +1644,7 @@ file7.onchange = async function (e) {
         }
 
       } else {
-        $("#warning_parent").show();
+        $("#warning_uploads_docs").show();
         $("#file_loader_icon_7").hide();
         $("#file_Upload_Tick_7").hide();
         $("#file_upload_cancle_7").show();
@@ -1650,7 +1654,7 @@ file7.onchange = async function (e) {
       }
       break;
     default:
-      $("#warning_parent").show();
+      $("#warning_uploads_docs").show();
       $("#file_Upload_Tick_7").hide();
       $("#file_upload_cancle_7").show();
       $("#upload_warning").text(
