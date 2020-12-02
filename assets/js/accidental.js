@@ -39,6 +39,16 @@ form_Bank.addEventListener('submit', handleAccountInfo);
         animation: true
     })
 }) */
+window.addEventListener('message', function(eventData) {
+  if (JSON.parse(eventData.data)) {
+    let event = JSON.parse(eventData.data);
+     if (event.data && event.data.code === "submit_now") {
+        console.log("posting from bot : ");
+        return;
+    }
+  }
+})
+
 document.addEventListener("ym_event", () => {
   console.log("You knocked?");
 });
