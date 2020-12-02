@@ -1132,7 +1132,7 @@ const fileCheck = (file, button, pageid, formData, fileName) => {
 
       console.log("This is right JPG");
       await proceedScan(file, button);
-      if (scanDoc == true) { handleFileUpload(formData, fileName); }
+      if (scanDoc == true) { handleFileUpload(formData, fileName); scanDoc = false }
     }
   };
   img.onerror = function () {
