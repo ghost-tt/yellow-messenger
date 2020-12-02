@@ -1169,6 +1169,8 @@ file1.onchange = async function (e) {
       var pageID = 1
       var sizevalid = isFileSizeValid(file, buttonNum);
 
+      console.log("size blur:");
+          console.log(sizevalid)
       if (sizevalid) {
         if (ext == "jpg") {
           var isFileBlur = fileCheck(file, buttonNum, pageID)
