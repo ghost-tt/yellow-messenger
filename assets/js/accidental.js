@@ -1172,7 +1172,8 @@ file1.onchange = async function (e) {
       if (sizevalid) {
         if (ext == "jpg") {
           var isFileBlur = fileCheck(file, buttonNum, pageID)
-
+          console.log("file blur:");
+          console.log(isFileBlur)
           if (isFileBlur == false) {
 
             let fileName = referenceNumber + "-" + docType + "-" + tranType;
