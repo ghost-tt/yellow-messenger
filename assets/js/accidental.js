@@ -49,8 +49,9 @@ window.addEventListener('message', function(eventData) {
   }
 })
 
-document.addEventListener("ym_event", () => {
+window.addEventListener("otp", () => {
   console.log("You knocked?");
+  console.log("OTP event");
 });
 
 function myDisable() {
